@@ -1,0 +1,43 @@
+{
+  "name": "@data-visuals/create",
+  "version": "0.1.0",
+  "description": "Create graphics and features the Data Visuals way.",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/texastribune/data-visuals-create.git"
+  },
+  "keywords": [
+    "templates",
+    "cli",
+    "generator",
+    "graphics"
+  ],
+  "author": "Ryan Murphy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/texastribune/data-visuals-create/issues"
+  },
+  "homepage": "https://github.com/texastribune/data-visuals-create#readme",
+  "devDependencies": {
+    "prettier": "1.9.2"
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  }
+  "lint-staged": {
+    "*.{js,md}": [
+      "prettier --write",
+      "git add"
+]
+}
+}
