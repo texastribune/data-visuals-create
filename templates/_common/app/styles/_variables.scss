@@ -1,0 +1,93 @@
+// Colors
+$color-primary: hsl(0, 0%, 13%);
+$color-secondary: hsl(0, 0%, 29%);
+$color-grey: hsl(0, 0%, 47%);
+$color-offgrey: hsl(0, 0%, 82%);
+$color-offwhite: hsl(0, 0%, 95%);
+$color-white: hsl(0, 0%, 100%);
+
+$color-tribune-yellow: hsl(46, 100%, 50%);
+$color-tribune-blue: hsl(193, 36%, 50%);
+$color-tribune-light-blue: hsl(193, 49%, 75%);
+
+$color-facebook: hsl(220, 63%, 47%);
+$color-twitter: hsl(206, 82%, 63%);
+
+// political party colors
+$color-republican: hsl(1, 64%, 56%);
+$color-democrat: hsl(203, 77%, 39%);
+$color-green: hsl(135, 23%, 40%);
+$color-libertarian: hsl(47, 71%, 53%);
+
+// good/bad, approval/disapproval, positive/negative
+$color-positive: hsl(171, 44%, 44%);
+$color-neutral: hsl(33, 91%, 50%);
+$color-negative: hsl(7, 77%, 54%);
+$color-no-data: $color-grey;
+
+$color-chart-purple: hsl(267, 42%, 51%);
+$color-chart-blue: hsl(200, 56%, 40%);
+$color-chart-sea-green: hsl(170, 30%, 37%);
+
+// Typography
+$font-size-base: 16;
+
+$line-height-title: 1.2;
+$line-height-subtitle: 1.3;
+$line-height-body: 1.55;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+// none of our default fonts use these, but just in case you pull in some that
+// do
+// $font-weight-medium: 500;
+// $font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
+$font-serif: 'PT Serif', Georgia, 'Times New Roman', Times, serif;
+
+$color-text: $color-primary;
+$color-text-inverse: $color-white;
+$color-text-link: $color-tribune-light-blue;
+$color-text-link-active: $color-tribune-blue;
+
+$text-shadow-black: 0 0 2px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3);
+$text-shadow-white: 0 0 2px rgba(255, 255, 255, 0.3),
+  0 0 2px rgba(255, 255, 255, 0.3);
+
+// Spacing
+$gutter: 1.25rem;
+
+$gutter-half: $gutter * 0.5;
+$gutter-quarter: $gutter * 0.25;
+$gutter-eighth: $gutter * 0.125;
+
+$gutter-double: $gutter * 2;
+$gutter-quad: $gutter * 4;
+$gutter-octo: $gutter * 8;
+
+// Animation curves
+
+// best for elements moving on screen
+$curve-standard: cubic-bezier(0.4, 0, 0.2, 1);
+// best for elements leaving the screen
+$curve-accelarate: cubic-bezier(0.4, 0, 1, 1);
+// best for elements entering the screen
+$curve-decelerate: cubic-bezier(0, 0, 0.2, 1);
+// best for elements that may enter at any time (menus, etc.)
+$curve-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+// sass-mq
+$mq-responsive: true;
+
+$mq-breakpoints: (
+  s: 544px,
+  m: 768px,
+  l: 992px,
+  xl: 1200px,
+  header-break: 840px,
+  footer-break: 850px
+);
+
+$mq-media-type: screen;

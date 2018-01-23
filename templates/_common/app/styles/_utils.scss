@@ -1,0 +1,74 @@
+.clearfix {
+  @include clearfix;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.sr-only {
+  @include sr-only;
+}
+
+.sr-only-focusable {
+  @include sr-only-focusable;
+}
+
+.embed-responsive {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  &:before {
+    display: block;
+    content: '';
+  }
+
+  .embed-responsive__item, iframe, embed, object, video {
+    border: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.embed-responsive--21x9 {
+  &:before {
+    padding-top: percentage(9 / 21);
+  }
+}
+
+.embed-responsive--16x9 {
+  &:before {
+    padding-top: percentage(9 / 16);
+  }
+}
+
+.embed-responsive--4x3 {
+  &:before {
+    padding-top: percentage(3 / 4);
+  }
+}
+
+.embed-responsive--1x1 {
+  &:before {
+    padding-top: percentage(1 / 1);
+  }
+}

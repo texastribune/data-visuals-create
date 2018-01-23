@@ -1,0 +1,11 @@
+{% import 'macros/processors.html' as processors %}
+
+{% macro prose(content, context, data) %}
+{% for item in content %}
+  {% if processors[item.type] %}
+    {{ processors[item.type](item.value, context, data) }}
+  {% else %}
+    {{ processors['raw'](item.value, context, data) }}
+  {% endif %}
+{% endfor %}
+{% endmacro %}

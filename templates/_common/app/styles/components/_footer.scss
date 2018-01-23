@@ -1,0 +1,99 @@
+.footer {
+  background-color: $color-primary;
+  color: $color-offwhite;
+  font-family: $font-sans-serif;
+  font-size: .875rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: $gutter-double;
+  max-width: 100%;
+  width: 100%;
+
+  @include mq($from: footer-break) {
+    font-size: .75rem;
+  }
+}
+
+.footer-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: to-rem(1300);
+  padding-bottom: $gutter-half;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  padding-top: $gutter;
+
+  @include mq($from: footer-break) {
+    flex-wrap: nowrap;
+    padding-top: $gutter-half;
+  }
+}
+
+.footer-copyright {
+  margin-bottom: $gutter;
+  text-align: center;
+  width: 100%;
+
+  @include mq($from: footer-break) {
+    flex: 1 0 0;
+    margin-bottom: 0;
+    text-align: left;
+    width: auto;
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+
+  @include mq($from: footer-break) {
+    text-align: left;
+    flex-wrap: nowrap;
+  }
+
+  a {
+    border-bottom: 0;
+    box-shadow: none;
+  }
+}
+
+.footer-nav-item {
+  margin-bottom: $gutter;
+  width: 50%;
+
+  @include mq($from: footer-break) {
+    border-left: 1px solid $color-offwhite;
+    padding-left: $gutter-half;
+    padding-right: $gutter-half;
+    margin-bottom: 0;
+    width: auto;
+
+    &:first-child {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.footer-link {
+  color: $color-offwhite;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.footer-link-donate {
+  color: $color-text-link;
+  font-weight: $font-weight-bold;
+}

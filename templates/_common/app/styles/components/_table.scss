@@ -1,0 +1,50 @@
+.dv-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: to-rem(14);
+  max-width: 100%;
+  width: 100%;
+
+  @include mq($from: s) {
+    font-size: to-rem(16);
+  }
+}
+
+.dv-table caption {
+  font-weight: $font-weight-bold;
+  font-size: 1em;
+  line-height: $line-height-title;
+  margin-bottom: $gutter-quarter;
+  text-align: left;
+}
+
+.dv-table th, .dv-table td {
+  border-top: to-rem(1) solid $color-offgrey;
+  font-size: .875em;
+  line-height: $line-height-subtitle;
+  padding: .375em .5em;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.dv-table thead th {
+  border-bottom: to-rem(2) solid $color-offgrey;
+  border-top: 0;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-title;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.dv-table tr.highlight-row {
+  background-color: $color-offwhite;
+  font-weight: $font-weight-bold;
+}
+
+.dv-table th.numeric-cell, .dv-table td.numeric-cell {
+  text-align: right;
+}
+
+.dv-table th.nowrap-cell, .dv-table td.nowrap-cell {
+  white-space: nowrap;
+}

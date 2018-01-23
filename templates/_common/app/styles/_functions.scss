@@ -1,0 +1,59 @@
+// to-rem
+// Converts a value to rem based on the base font size
+@function to-rem($val, $base: $font-size-base) {
+  $val-type: type-of($val);
+
+  @if $val-type != 'number' {
+    @warn inspect($val) + ' was passed to to-rem(), but it is not a number.';
+    @return $val;
+  }
+
+  $val-unit: unit($val);
+
+  // strip off the px if needed
+  @if $val-unit == 'px' {
+    $val: $val / 1px;
+  }
+
+  // Calculate rem if units for $val is not rem
+  @if $val-unit != 'rem' {
+    $val: ($val / $base) * 1rem;
+  }
+
+  // 0rem into 0
+  @if $val == 0rem {
+    $val: 0;
+  }
+
+  @return $val;
+}
+
+// to-em
+// Converts a value to em based on the base font size
+@function to-em($val, $base: $font-size-base) {
+  $val-type: type-of($val);
+
+  @if $val-type != 'number' {
+    @warn inspect($val) + ' was passed to to-em(), but it is not a number.';
+    @return $val;
+  }
+
+  $val-unit: unit($val);
+
+  // strip off the px if needed
+  @if $val-unit == 'px' {
+    $val: $val / 1px;
+  }
+
+  // Calculate em if units for $val is not em
+  @if $val-unit != 'em' {
+    $val: ($val / $base) * 1em;
+  }
+
+  // 0em into 0
+  @if $val == 0em {
+    $val: 0;
+  }
+
+  @return $val;
+}

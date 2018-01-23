@@ -1,0 +1,81 @@
+$ribbon-height: 100px;
+
+.ribbon {
+  background-color: $color-white;
+  border-top: 1px solid $color-offgrey;
+  bottom: -$ribbon-height;
+  display: none;
+  height: $ribbon-height;
+  opacity: 1;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  padding-top: $gutter-half;
+  position: fixed;
+  transform: translateY(-$ribbon-height);
+  transition: transform 200ms $curve-decelerate;
+  width: 100vw;
+
+  @include mq($from: m) {
+    display: block;
+  }
+}
+
+.ribbon--inactive {
+  transform: translateY(0);
+  transition: transform 200ms $curve-accelarate;
+}
+
+.ribbon__title {
+  font-size: to-rem(13);
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.03em;
+  line-height: $line-height-title;
+  margin-bottom: $gutter-half;
+  text-transform: uppercase;
+
+  > a {
+    @include default-link;
+  }
+}
+
+.ribbon__stories {
+  display: flex;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+}
+
+.ribbon__story {
+  flex-basis: 0;
+  flex-grow: 1;
+  font-family: $font-serif;
+  font-size: to-rem(13);
+  font-weight: $font-weight-bold;
+  line-height: $line-height-subtitle;
+  max-width: 100%;
+  padding-left: $gutter;
+  padding-right: $gutter;
+
+  > a {
+    @include bare-link;
+  }
+}
+
+.ribbon__story--three {
+  display: none;
+
+  @include mq($from: l) {
+    display: inline;
+  }
+}
+
+.ribbon__story--four {
+  display: none;
+
+  @include mq($from: xl) {
+    display: inline;
+  }
+}
+
+.ribbon__art {
+  width: to-rem(100);
+}

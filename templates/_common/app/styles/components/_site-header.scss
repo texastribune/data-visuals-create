@@ -1,0 +1,99 @@
+.site-header {
+  background-color: $color-primary;
+  color: $color-offwhite;
+  position: relative;
+  width: 100%;
+}
+
+.site-header-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: to-rem(1300);
+  padding-bottom: $gutter-quarter;
+  padding-left: $gutter-half;
+  padding-right: $gutter-half;
+  padding-top: $gutter-quarter;
+
+  @include mq($from: header-break) {
+    justify-content: flex-start;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+.site-header-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: to-rem(1300);
+  padding-bottom: $gutter-half;
+  padding-left: $gutter-half;
+  padding-right: $gutter-half;
+  padding-top: $gutter-half;
+  width: 100%;
+
+  @include mq($from: header-break) {
+    justify-content: space-between;
+  }
+}
+
+.site-header-logo {
+  flex-basis: auto;
+  flex-grow: 0;
+}
+
+.site-header-logo-link {
+  img {
+    @include site-logo-height(20);
+
+    @include mq($from: header-break) {
+      @include site-logo-height(24);
+    }
+  }
+}
+
+.site-header-links {
+  display: none;
+  flex-grow: 1;
+  font-weight: $font-weight-bold;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+
+  @include mq($from: header-break) {
+    display: flex;
+    margin-left: $gutter-double;
+  }
+
+  ul {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  li + li {
+    margin-left: $gutter;
+  }
+
+  a {
+    color: $color-offwhite;
+    font-size: to-rem(14);
+    line-height: 1;
+    text-decoration: none;
+
+    &.donate {
+      color: $color-text-link;
+    }
+
+    &:hover {
+      color: $color-tribune-yellow;
+    }
+  }
+}

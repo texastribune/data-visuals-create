@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% from 'macros/prose.html' import prose %}
+
+{% block content %}
+<div class="app">
+  <h1 class="graphic-title">Lorem ipsum dolor sit amet</h1>
+  <p class="graphic-prose">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, eveniet, voluptatem. Debitis, deserunt, numquam. Omnis consectetur, voluptate, ipsam ad quasi tempore suscipit? Iusto nemo labore earum deleniti officiis minima nihil!</p>
+  <div id="graphic" class="graphic"></div>
+  <ul class="graphic-footer">
+    <li>Note: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, porro.</li>
+    <li>Source: <a href="#">Lorem ipsum dolor sit</a></li>
+  </ul>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+<script defer src="{{ static('scripts/main.js') }}"></script>
+{% endblock scripts %}

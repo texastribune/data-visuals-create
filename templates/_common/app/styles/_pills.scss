@@ -1,0 +1,49 @@
+.pill {
+  border-radius: 2px;
+  display: inline-block;
+  font-family: $font-sans-serif;
+  font-size: 70%;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: .2em .4em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.circle-pill {
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 1.5em;
+  font-size: .75em;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: top;
+  padding: 0;
+  border: none;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.pill--basic {
+  background-color: $color-secondary;
+  color: $color-white;
+}
+
+.pill--rep {
+  background-color: $color-republican;
+  border-color: $color-republican;
+  color: $color-white;
+}
+
+.pill--rep-light {
+  background-color: lighten($color-republican, 10%);
+  border-color: lighten($color-republican, 10%);
+  color: $color-white;
+}
+
+.pill--dem {
+  background-color: $color-democrat;
+  border-color: $color-democrat;
+  color: $color-white;
+}
