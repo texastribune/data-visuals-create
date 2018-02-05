@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% from 'macros/prose.html' import prose %}
+
+{% set context = data.text %}
 
 {% block content %}
 <div class="app">
