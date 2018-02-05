@@ -1,11 +1,12 @@
 {
   "name": "@data-visuals/create",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Create graphics and features the Data Visuals way.",
   "scripts": {
     "precommit": "lint-staged",
-    "release": "np",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "bin": {
     "data-visuals-create": "bin/data-visuals-create"
@@ -29,8 +30,8 @@
   "devDependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.0.1",
-    "np": "*",
-    "prettier": "1.9.2"
+    "prettier": "1.9.2",
+    "publish-please": "^2.3.1"
   },
   "prettier": {
     "bracketSpacing": true,
