@@ -7,7 +7,7 @@
  * @param  {Object} pymChild         A reference to the IFrame's Pym instance
  * @return {void}
  */
-export default function renderGraphic(frameWidth = 600, pymChild) {
+export default function renderGraphic(frameWidth, pymChild) {
   // Any code neccessary to render your graphic should be placed here - this
   // function is what is called in main.js by Pym
 }

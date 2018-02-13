@@ -1,7 +1,4 @@
 /* global pym */
-import onDocumentReady from './utils/on-document-ready';
-// import onDocumentComplete from './utils/on-document-complete';
-
 import renderGraphic from './graphic';
 
 /**
@@ -18,7 +15,7 @@ let pymChild;
  * @return {void}
  */
 function render(frameWidth) {
-  renderGraphic(frameWidth, pymChild);
+  renderGraphic(frameWidth || 600, pymChild);
 
   if (pymChild) {
     pymChild.sendHeight();
@@ -40,14 +37,6 @@ function onLoad() {
   pymChild.sendMessage('childLoaded', 'ready');
 }
 
-// Called once the child page's HTML/DOM has loaded, but BEFORE any stylesheets
-// or images have finished. You typically want this, because it will make your
-// embed load much quicker.
-onDocumentReady(onLoad);
-
-// However, if your graphic depends on images, you should comment out the
-// `onDocumentReady` import up top and the `onDocumentReady` line above, and
-// uncomment the `onDocumentComplete` import and the `onDocumentComplete`
-// below. This will ensure pym waits for all of your images before calculating
-// the page's height.
-// onDocumentComplete(onLoad);
+// The `onLoad` function is called once the child page's HTML/DOM, stylesheets
+// and images have finished loading.
+window.onload = onLoad;
