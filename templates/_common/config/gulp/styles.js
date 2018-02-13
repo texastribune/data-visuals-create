@@ -22,9 +22,7 @@ module.exports = () => {
         precision: 10,
       }).on('error', sass.logError)
     )
-    .pipe(
-      postcss([autoprefixer({ browsers: ['last 2 versions', 'iOS >= 8'] })])
-    )
+    .pipe(postcss([autoprefixer({ flexbox: 'no-2009' })]))
     .pipe(gulp.dest('./.tmp/styles'))
     .pipe(gulpIf(NODE_ENV === 'production', cleancss()))
     .pipe(gulpIf(NODE_ENV === 'production', gulp.dest('./dist/styles')))
