@@ -4,6 +4,7 @@ const cleancss = require('gulp-clean-css');
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
 const postcss = require('gulp-postcss');
+const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const sass = require('gulp-sass');
 const size = require('gulp-size');
 
@@ -22,9 +23,7 @@ module.exports = () => {
         precision: 10,
       }).on('error', sass.logError)
     )
-    .pipe(
-      postcss([autoprefixer({ browsers: ['last 2 versions', 'iOS >= 8'] })])
-    )
+    .pipe(postcss([postcssFlexbugsFixes, autoprefixer({ flexbox: 'no-2009' })]))
     .pipe(gulp.dest('./.tmp/styles'))
     .pipe(gulpIf(NODE_ENV === 'production', cleancss()))
     .pipe(gulpIf(NODE_ENV === 'production', gulp.dest('./dist/styles')))

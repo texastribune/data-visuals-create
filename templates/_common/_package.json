@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "archieml": "^0.4.1",
-    "autoprefixer": "^7.2.5",
+    "autoprefixer": "^8.0.0",
     "aws-sdk": "^2.185.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -50,6 +50,7 @@
     "mime-types": "^2.1.17",
     "mkdirp": "^0.5.1",
     "nunjucks": "^3.0.1",
+    "postcss-flexbugs-fixes": "^3.3.0",
     "prettier": "1.10.2",
     "quaff": "^2.0.0",
     "run-sequence": "^2.2.1",
@@ -75,5 +76,11 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ]
 }
