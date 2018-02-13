@@ -50,6 +50,7 @@
     "mime-types": "^2.1.17",
     "mkdirp": "^0.5.1",
     "nunjucks": "^3.0.1",
+    "postcss-flexbugs-fixes": "^3.3.0",
     "prettier": "1.10.2",
     "quaff": "^2.0.0",
     "run-sequence": "^2.2.1",
