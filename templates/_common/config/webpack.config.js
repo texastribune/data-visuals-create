@@ -30,6 +30,7 @@ const config = {
   module: {
     strictExportPresence: true,
     rules: [
+      { parser: { requireEnsure: false } },
       {
         test: /\.(js|jsx)$/,
         include: path.join(paths.appSrc, 'scripts'),
