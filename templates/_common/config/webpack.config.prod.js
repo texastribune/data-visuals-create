@@ -1,4 +1,5 @@
 const ManifestPlugin = require('webpack-manifest-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -28,14 +29,19 @@ productionConfig.plugins.push(
     },
   }),
   new ManifestPlugin({ basePath: 'scripts/', fileName: 'rev-manifest.json' }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-      comparisons: false,
+  new UglifyJsPlugin({
+    uglifyOptions: {
+      compress: {
+        warnings: false,
+        comparisons: false,
+      },
+      output: {
+        ascii_only: true,
+        comments: false,
+      },
     },
-    output: {
-      comments: false,
-    },
+    parallel: true,
+    cache: true,
     sourceMap: true,
   })
 );
