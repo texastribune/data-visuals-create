@@ -1,5 +1,5 @@
 if (!window.Promise) window.Promise = require('promise-polyfill');
-if (!window.fetch) window.fetch = require('unfetch');
+require('unfetch/polyfill');
 
 Object.assign = require('object-assign');
 require('intersection-observer');
