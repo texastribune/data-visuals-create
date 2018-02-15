@@ -51,10 +51,7 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new CaseSensitivePathsPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-  ],
+  plugins: [new CaseSensitivePathsPlugin()],
   node: {
     __dirname: false,
     __filename: false,
