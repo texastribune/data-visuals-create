@@ -4,12 +4,13 @@
 
 {% block content %}
 <div class="app">
-  <h1 class="graphic-title">Lorem ipsum dolor sit amet</h1>
-  <p class="graphic-prose">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, eveniet, voluptatem. Debitis, deserunt, numquam. Omnis consectetur, voluptate, ipsam ad quasi tempore suscipit? Iusto nemo labore earum deleniti officiis minima nihil!</p>
+  <h1 class="graphic-title">{{ context.title }}</h1>
+  <p class="graphic-prose">{{ context.prose }}</p>
   <div id="graphic" class="graphic"></div>
   <ul class="graphic-footer">
-    <li>Note: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, porro.</li>
-    <li>Source: <a href="#">Lorem ipsum dolor sit</a></li>
+    {% if context.note %}<li>Note: {{ context.note }}</li>{% endif %}
+    {% if context.source %}<li>Source: {{ context.source }}</li>{% endif %}
+    {% if context.credit %}<li>Credit: {{ context.credit }}</li>{% endif %}
   </ul>
 </div>
 {% endblock content %}

@@ -10,7 +10,8 @@ const config = {
   devtool: 'cheap-module-source-map',
   context: path.join(paths.appSrc, 'scripts'),
   entry: {
-    main: [paths.appPolyfills, paths.appMain],
+    main: paths.appMain,
+    vendor: paths.appPolyfills,
   },
   output: {
     path: path.join(paths.appDist, 'scripts'),
@@ -51,7 +52,24 @@ const config = {
       },
     ],
   },
-  plugins: [new CaseSensitivePathsPlugin()],
+  plugins: [
+    new CaseSensitivePathsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      // A name of the chunk that will include the dependencies.
+      // This name is substituted in place of [name] from step 1
+      name: 'vendor',
+
+      // A function that determines which modules to include into this chunk
+      minChunks: module =>
+        module.context && module.context.includes('node_modules'),
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+      // minChunks: Infinity means that no app modules
+      // will be included into this chunk
+      minChunks: Infinity,
+    }),
+  ],
   node: {
     __dirname: false,
     __filename: false,
