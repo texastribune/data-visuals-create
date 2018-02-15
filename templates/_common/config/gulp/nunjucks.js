@@ -10,6 +10,7 @@ const url = require('url');
 const config = require('../../project.config');
 const customFilters = require('../../custom-filters');
 const parseData = require('../../utils/parse-data');
+const paths = require('../paths');
 
 const NODE_ENV = process.env.NODE_ENV;
 const PROJECT_URL = `https://${config.bucket}/${config.folder}/`;
@@ -55,16 +56,16 @@ SVG icons.
  */
 env.addGlobal('inject', p => {
   if (NODE_ENV === 'production') {
-    return fs.readFileSync(path.join(config.distDir, p), 'utf8');
+    return fs.readFileSync(path.join(paths.appDist, p), 'utf8');
   }
 
   let s;
 
   try {
-    s = fs.readFileSync(path.join('./.tmp', p), 'utf8');
+    s = fs.readFileSync(path.join(paths.appTmp, p), 'utf8');
   } catch (e) {
     if (e.code === 'ENOENT') {
-      s = fs.readFileSync(path.join(config.srcDir, p), 'utf8');
+      s = fs.readFileSync(path.join(paths.appSrc, p), 'utf8');
     } else {
       throw e;
     }
