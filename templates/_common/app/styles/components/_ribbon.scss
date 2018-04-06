@@ -1,4 +1,4 @@
-$ribbon-height: 100px;
+$ribbon-height: 110px;
 
 .ribbon {
   background-color: $color-white;
@@ -25,6 +25,10 @@ $ribbon-height: 100px;
   transition: transform 200ms $curve-accelarate;
 }
 
+.ribbon--hidden {
+  display: none;
+}
+
 .ribbon__title {
   font-size: to-rem(13);
   font-weight: $font-weight-bold;
@@ -39,6 +43,7 @@ $ribbon-height: 100px;
 }
 
 .ribbon__stories {
+  align-items: center;
   display: flex;
   margin-left: -$gutter;
   margin-right: -$gutter;
@@ -48,7 +53,7 @@ $ribbon-height: 100px;
   flex-basis: 0;
   flex-grow: 1;
   font-family: $font-serif;
-  font-size: to-rem(13);
+  font-size: to-rem(14);
   font-weight: $font-weight-bold;
   line-height: $line-height-subtitle;
   max-width: 100%;

@@ -49,3 +49,6 @@ app/assets/*
 !app/assets/.gitkeep
 data/*
 !data/.gitkeep
+
+# VS Code
+.vscode

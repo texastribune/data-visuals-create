@@ -10,10 +10,10 @@
   letter-spacing: 0.07em;
   line-height: 1.2;
   margin: 0;
-  padding-bottom: .375em;
-  padding-left: .75em;
-  padding-right: .75em;
-  padding-top: .375em;
+  padding-bottom: 0.375em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-top: 0.375em;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
@@ -29,6 +29,11 @@
   @include mq($from: s) {
     font-size: to-rem(12);
   }
+}
+
+.button--link {
+  border: 0;
+  padding: 0;
 }
 
 .button--yellow {
