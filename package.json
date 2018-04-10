@@ -29,7 +29,7 @@
   "homepage": "https://github.com/texastribune/data-visuals-create#readme",
   "devDependencies": {
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.3",
+    "lint-staged": "^7.0.4",
     "prettier": "^1.11.1",
     "publish-please": "^2.4.1"
   },
