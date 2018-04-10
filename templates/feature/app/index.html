@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% from 'macros/prose.html' import prose %}
+{% import "macros/shares.html" as shares %}
+
+{% set context = data.text %}
+
+{% block content %}
+<div class="container">
+  <header class="article-header text-center">
+    <h1 class="article-title">The only member-supported, digital-first, nonpartisan media organization</h1>
+    <p class="article-byline">
+      <span class="article-author">By <a href="#">Super Cool Corgi</a></span>
+      <span class="article-pub-date"><time datetime="{{ context.pub_date }}">{{ apFormatDate(context.pub_date) }}</time></span>
+    </p>
+  </header>
+
+  <div class="intro-prose">
+    {{ prose(context.prose, context, data) }}
+    <p class="copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
+
+    <p class="copy">Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
+
+    <p class="copy">Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
+
+    <p class="copy">Phasellus sed augue sit amet ligula tristique lobortis. Suspendisse porttitor efficitur felis, et porttitor urna placerat id. Proin a volutpat orci, vel maximus odio. Integer molestie odio eu ex gravida mattis. Nam sit amet convallis erat, et convallis erat. Integer ornare dictum finibus. Duis sit amet orci dictum, auctor ex non, sagittis enim. Phasellus porttitor lobortis ipsum, nec mattis diam consectetur et. In blandit ut ante eu molestie. In hac habitasse platea dictumst. Phasellus consequat lectus ac elit ullamcorper fringilla. Proin condimentum bibendum ex. Ut lobortis accumsan consequat. Suspendisse feugiat eros semper leo euismod aliquet. Donec non augue non tortor porttitor porta. Nam vitae felis id tortor porttitor iaculis.</p>
+  </div>
+</div>
+
+<div id="ribbon-container"></div>
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+<script defer src="{{ static('scripts/main.js') }}"></script>
+{% endblock scripts %}

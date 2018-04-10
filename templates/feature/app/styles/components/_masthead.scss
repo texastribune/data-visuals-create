@@ -16,7 +16,7 @@
 
 .tribune-logo {
   @include site-logo-height(18);
-  filter: drop-shadow(1px 1px 1px transparentize($color-primary, .7));
+  filter: drop-shadow(1px 1px 1px transparentize($color-primary, 0.7));
   opacity: 0.95;
 
   @include mq($from: m) {
@@ -52,7 +52,7 @@
     color: $color-facebook;
   }
 
-  @include mq($until: s) {
+  @include mq($until: xs) {
     display: none;
   }
 }
@@ -63,7 +63,7 @@
     color: $color-twitter;
   }
 
-  @include mq($until: s) {
+  @include mq($until: xs) {
     display: none;
   }
 }

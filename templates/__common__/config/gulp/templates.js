@@ -31,7 +31,10 @@ module.exports = () => {
 
     const extName = path.extname(relPath);
     const baseName = path.basename(relPath, extName);
-    const dirName = baseName === 'index' ? '' : relPath.replace(extName, '');
+    const dirName =
+      baseName === 'index'
+        ? relPath.replace('index.html', '')
+        : relPath.replace(extName, '');
 
     nunjucksEnv.addGlobal(
       'CURRENT_PAGE_URL',

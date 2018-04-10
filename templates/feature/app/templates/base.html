@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>{% if context.title %}{{ context.title + ' | ' }}{% endif %}The Texas Tribune</title>
+  {% include 'includes/metas.html' %}
+
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Start fonts -->
+  <script>
+  window.WebFontConfig = {
+  google: { families: ['Open Sans:300,400,700', 'PT Serif:400,700'] },
+  timeout: 10000,
+};
+</script>
+  <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+  <!-- End fonts -->
+  <link rel="stylesheet" href="{{ static('styles/main.css') }}">
+</head>
+<body>
+
+{% include 'includes/svg-defs.html' %}
+
+{% include 'components/simple-masthead.html' %}
+
+<main role="main">
+{% block content %}{% endblock content %}
+</main>
+
+{% include 'components/footer.html' %}
+
+{% block inline_data %}{% endblock inline_data %}
+{% block scripts %}
+<script defer src="{{ static('scripts/runtime.js') }}"></script>
+<script defer src="{{ static('scripts/vendor.js') }}"></script>
+{% endblock scripts %}
+
+{% if ENV == 'production' %}
+<!-- Google Analytics -->
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+<!-- Google Tag Manager -->
+<script>
+(function(w, d, s, l, i) {
+  w[l] = w[l] || [];
+  w[l].push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
+  var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s),
+    dl = l != 'dataLayer' ? '&l=' + l : '';
+  j.async = true;
+  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+  f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-P5L2Z5Z');
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5L2Z5Z" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- START Parse.ly Include: Standard -->
+<div id="parsely-root" style="display: none">
+  <span id="parsely-cfg" data-parsely-site="texastribune.org"></span>
+</div>
+<script>
+(function(s, p, d) {
+  var h = d.location.protocol,
+    i = p + '-' + s,
+    e = d.getElementById(i),
+    r = d.getElementById(p + '-root'),
+    u =
+      h === 'https:' ? 'd1z2jf7jlzjs58.cloudfront.net' : 'static.' + p + '.com';
+  if (e) return;
+  e = d.createElement(s);
+  e.id = i;
+  e.async = true;
+  e.src = h + '//' + u + '/p.js';
+  r.appendChild(e);
+})('script', 'parsely', document);
+</script>
+<!-- END Parse.ly Include: Standard -->
+{% endif %}
+</body>
+</html>

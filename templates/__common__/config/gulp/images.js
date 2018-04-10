@@ -7,8 +7,8 @@ const size = require('gulp-size');
 
 module.exports = () => {
   return gulp
-    .src('./app/assets/images/**/*')
+    .src('./app/assets/**/*')
     .pipe(cache(imagemin()))
-    .pipe(gulp.dest('./dist/assets/images'))
+    .pipe(gulp.dest('./dist/assets/'))
     .pipe(size({ title: 'images' }));
 };

@@ -15,6 +15,14 @@
 </div>
 {% endblock content %}
 
+{% block inline_data %}
+{% if data.data %}
+<script>
+  window.DATA = {{ data.data|dump }};
+</script>
+{% endif %}
+{% endblock inline_data %}
+
 {% block scripts %}
 {{ super() }}
 <script defer src="{{ static('scripts/main.js') }}"></script>
