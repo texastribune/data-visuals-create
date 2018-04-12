@@ -8,7 +8,8 @@
     "data:fetch": "node ./utils/fetch/get-data.js",
     "predeploy": "npm run build && npm run assets:push",
     "preinstall": "node ./config/build/yarn-check.js",
-    "serve": "NODE_ENV=development gulp serve"
+    "serve": "NODE_ENV=development gulp serve",
+    "start": "npm run serve"
   },
   "devDependencies": {
     "archieml": "^0.4.1",
