@@ -1,6 +1,6 @@
 module.exports = {
   bucket: 'moose.texastribune.org',
-  folder: 'test-project',
+  folder: 'features/<<year>>/<<slug>>',
   files: [
     {
       fileId: '1ehh3ISrwq5lHNQS-eEs_i30Wi7UAF9txWgYTo56NFBI',

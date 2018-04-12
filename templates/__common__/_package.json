@@ -1,4 +1,5 @@
 {
+  "name": "<<slug>>",
   "private": true,
   "scripts": {
     "assets:pull": "node ./utils/deployment/pull-assets.js",
@@ -8,8 +9,8 @@
     "data:fetch": "node ./utils/fetch/get-data.js",
     "predeploy": "npm run build && npm run assets:push",
     "preinstall": "node ./config/build/yarn-check.js",
-    "serve": "NODE_ENV=development gulp serve",
-    "start": "npm run serve"
+    "serve": "npm start",
+    "start": "NODE_ENV=development gulp serve"
   },
   "devDependencies": {
     "archieml": "^0.4.1",
@@ -52,7 +53,7 @@
     "mkdirp": "^0.5.1",
     "nunjucks": "^3.0.1",
     "postcss-flexbugs-fixes": "^3.3.0",
-    "prettier": "1.11.1",
+    "prettier": "1.12.0",
     "quaff": "^2.0.0",
     "run-sequence": "^2.2.1",
     "strip-ansi": "^4.0.0",
