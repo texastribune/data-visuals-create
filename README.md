@@ -43,7 +43,7 @@ This is to ensure consistent naming of our directories!
 
 All project templates share the same build commands.
 
-#### `npm run serve`
+#### `npm start` or `npm run serve`
 
 The main command for development. This will build your HTML pages, prepare your SCSS files and compile your JavaScript. A local server is set up so you can view the project in your browser.
 
