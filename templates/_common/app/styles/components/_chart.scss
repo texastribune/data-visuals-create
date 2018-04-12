@@ -1,0 +1,30 @@
+.axis {
+  font-family: $font-sans-serif;
+  font-size: to-rem(12);
+
+  text {
+    fill: $color-primary;
+  }
+}
+
+.axis--x .domain,
+.axis--y .domain {
+  display: none;
+}
+
+.axis .tick line {
+  stroke: $color-primary;
+  stroke-opacity: 0.1;
+}
+
+.layer .line,
+.layer .area {
+  fill: none;
+  stroke: $color-offgrey;
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.layer .area {
+  fill: $color-offwhite;
+}
