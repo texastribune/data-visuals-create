@@ -1,9 +1,9 @@
-export function prepareData(rawData, rowKey, limitColumns) {
+export function prepareData(raw, rowKey, limitColumns) {
   // get the keys of the first object
-  const keys = Object.keys(rawData[0]);
+  const keys = Object.keys(raw[0]);
 
   // get all the row names based on the row key
-  const rowNames = rawData.map(d => d[rowKey]);
+  const rowNames = raw.map(d => d[rowKey]);
 
   // check if the limitColumns parameter was passed
   const hasLimitColumns = limitColumns != null;
@@ -21,7 +21,7 @@ export function prepareData(rawData, rowKey, limitColumns) {
 
   // the data in a new, better format
   const series = columnNames.map(columnName => {
-    const _values = rawData.map(d => {
+    const _values = raw.map(d => {
       const rowName = d[rowKey];
       const value = d[columnName];
 
@@ -53,5 +53,6 @@ export function prepareData(rawData, rowKey, limitColumns) {
     series,
     seriesValues,
     values,
+    raw,
   };
 }
