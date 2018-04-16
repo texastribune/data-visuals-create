@@ -1,4 +1,5 @@
 module.exports = {
+  projectType: 'feature',
   bucket: 'moose.texastribune.org',
   folder: 'features/<<year>>/<<slug>>',
   files: [
