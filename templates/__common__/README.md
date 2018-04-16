@@ -1,6 +1,6 @@
 # <<title>>
 
-This `<<type>>` was created using [data-visuals-create](https://github.com/texastribune/data-visuals-create) <<createVersion>> on <<year>>-<<month>>-<<day>>.
+This `<<type>>` was created using [`data-visuals-create`](https://github.com/texastribune/data-visuals-create) <<createVersion>> on <<year>>-<<month>>-<<day>>.
 
 ## Available commands
 
