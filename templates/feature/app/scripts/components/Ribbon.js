@@ -40,7 +40,11 @@ class Ribbon extends Component {
 
     fetch(TRENDING_STORIES)
       .then(res => res.json())
-      .then(stories => this.setState({ loadSucceeded: true, stories }));
+      .then(data => {
+        const stories = data.results ? data.results : data;
+
+        this.setState({ loadSucceeded: true, stories });
+      });
   }
 
   componentWillUnmount() {
