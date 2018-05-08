@@ -6,6 +6,9 @@ import uniqueId from './unique-id';
 class AdLoader {
   constructor({
     adFields = { adUnit: '/5805113/basic', dimensions: [300, 250] },
+    globalMappings = {
+      banner: [[[768, 130], [[728, 90]]]],
+    },
     attributePrefix = 'dv-gpt-',
     gptSrc = 'https://www.googletagservices.com/tag/js/gpt.js',
     idPrefix = 'dv-gpt-',
@@ -14,6 +17,7 @@ class AdLoader {
     targetingValue,
   } = {}) {
     this.adFields = adFields;
+    this.globalMappings = globalMappings;
     this.attributePrefix = attributePrefix;
     this.gptSrc = gptSrc;
     this.idPrefix = idPrefix;
@@ -67,6 +71,7 @@ class AdLoader {
 
   createAds() {
     const { adUnit, dimensions } = this.adFields;
+    const { banner } = this.globalMappings;
 
     this.elements.forEach(element => {
       const matchingAttributes = getMatchingAttributes(
@@ -88,6 +93,8 @@ class AdLoader {
         options.dimensions,
         adElementId
       );
+
+      gptAdUnit.defineSizeMapping(banner);
 
       if (options.targetingKey && options.targetingValue) {
         gptAdUnit.setTargeting(options.targetingKey, options.targetingValue);
