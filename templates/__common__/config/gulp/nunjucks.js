@@ -104,6 +104,8 @@ env.addGlobal('apFormatDate', input => {
   return `${month} ${dayOfMonth}, ${year}`;
 });
 
+env.addGlobal('CURRENT_YEAR', new Date().getFullYear());
+
 env.addGlobal('parseData', parseData);
 
 /*
