@@ -6,15 +6,6 @@
 <p class="copy">{{ value }}</p>
 {% endmacro %}
 
-{% macro ad(value) %}
-<aside class="story-ad story-ad--{{ value.align or 'left' }}">
-  <p class="story-ad__label">The Texas Tribune thanks its sponsors. <a href="https://mediakit.texastribune.org/">Become one</a>.</p>
-  <div class="story-ad__container">
-    <div class="dv-gpt-ad"></div>
-  </div>
-</aside>
-{% endmacro %}
-
 {% macro list(value) %}
 <ul>
   {% for item in value %}

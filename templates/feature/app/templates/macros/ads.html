@@ -1,0 +1,8 @@
+{% macro ad(value) %}
+<aside class="story-ad{% if value.align %} story-ad--{{ value.align }}{% endif %}">
+  <p class="story-ad__label">The Texas Tribune thanks its sponsors. <a href="https://mediakit.texastribune.org/">Become one</a>.</p>
+  <div class="story-ad__container">
+    <div class="dv-gpt-ad"></div>
+  </div>
+</aside>
+{% endmacro %}
