@@ -14,6 +14,7 @@ $ribbon-height: 110px;
   transform: translateY(-$ribbon-height);
   @include transition(transform 200ms $curve-decelerate);
   width: 100vw;
+  z-index: $zindex-fixed;
 
   @include mq($from: m) {
     display: block;
