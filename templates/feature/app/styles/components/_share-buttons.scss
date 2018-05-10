@@ -1,0 +1,4 @@
+.share-buttons {
+  @include make-container(480px, false);
+  margin-bottom: $gutter-double;
+}

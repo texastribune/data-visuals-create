@@ -1,0 +1,9 @@
+// Visibility
+
+@mixin visible {
+  visibility: visible !important;
+}
+
+@mixin invisible {
+  visibility: hidden !important;
+}

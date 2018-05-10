@@ -1,0 +1,39 @@
+// default-link
+@mixin default-link {
+  border-bottom: 1px solid $color-text-link;
+  box-shadow: inset 0 -1px 0 0 $color-text-link;
+  color: currentColor;
+  text-decoration: none;
+
+  &:active,
+  &:hover {
+    border-bottom-color: $color-text-link-active;
+    box-shadow: inset 0 -2px 0 0 $color-text-link-active;
+    @include transition(all 0.8s $curve-standard);
+  }
+}
+
+// default-uppercase-link
+@mixin default-uppercase-link {
+  color: $color-text-link-active;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:active,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin bare-link {
+  color: currentColor;
+  text-decoration: none;
+
+  &:active,
+  &:hover {
+    border-bottom-color: $color-text-link;
+    box-shadow: inset 0 -2px 0 0 $color-text-link;
+    @include transition(all 0.8s $curve-standard);
+  }
+}

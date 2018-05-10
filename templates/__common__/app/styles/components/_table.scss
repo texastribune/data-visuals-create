@@ -18,11 +18,12 @@
   text-align: left;
 }
 
-.dv-table th, .dv-table td {
+.dv-table th,
+.dv-table td {
   border-top: to-rem(1) solid $color-offgrey;
-  font-size: .875em;
+  font-size: 0.875em;
   line-height: $line-height-subtitle;
-  padding: .375em .5em;
+  padding: 0.375em 0.5em;
   text-align: left;
   vertical-align: middle;
 }
@@ -41,10 +42,24 @@
   font-weight: $font-weight-bold;
 }
 
-.dv-table th.numeric-cell, .dv-table td.numeric-cell {
+/*
+HEADS UP! This eventually will go away. It's super specific to tables
+but doesn't need to be.
+
+Use `.text-right` instead from utils/_text.scss.
+*/
+.dv-table th.numeric-cell,
+.dv-table td.numeric-cell {
   text-align: right;
 }
 
-.dv-table th.nowrap-cell, .dv-table td.nowrap-cell {
+/*
+HEADS UP! This eventually will go away. It's super specific to tables
+but doesn't need to be.
+
+Use `.text-nowrap` instead from utils/_text.scss.
+*/
+.dv-table th.nowrap-cell,
+.dv-table td.nowrap-cell {
   white-space: nowrap;
 }

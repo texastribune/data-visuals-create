@@ -1,0 +1,7 @@
+// site-logo-height
+// Calcuates the height of the Tribune logo properly due to the tail
+@mixin site-logo-height($height) {
+  height: $height + px;
+  margin-bottom: -$height * 0.12 + px;
+  vertical-align: bottom;
+}

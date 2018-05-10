@@ -39,7 +39,7 @@
   color: $color-white;
   font-size: to-rem(20);
   text-decoration: none;
-  transition: color 300ms $curve-standard;
+  @include transition(color 300ms $curve-standard);
 
   > svg {
     vertical-align: bottom;

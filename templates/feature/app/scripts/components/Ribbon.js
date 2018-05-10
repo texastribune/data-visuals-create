@@ -2,7 +2,7 @@ import { Component, h } from 'preact';
 
 import getCurrentUrl from '../utils/get-current-url';
 import throttle from '../utils/throttle';
-import { TRENDING_STORIES } from '../utils/feeds';
+import { TRENDING_STORIES_URL } from '../utils/feeds';
 
 class Ribbon extends Component {
   constructor() {
@@ -38,7 +38,7 @@ class Ribbon extends Component {
   componentDidMount() {
     window.addEventListener('scroll', this.throttledOnScroll, false);
 
-    fetch(TRENDING_STORIES)
+    fetch(TRENDING_STORIES_URL)
       .then(res => res.json())
       .then(data => {
         const stories = data.results ? data.results : data;

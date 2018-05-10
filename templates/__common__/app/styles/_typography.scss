@@ -1,5 +1,5 @@
 .article-header {
-  margin-bottom: $gutter-double;
+  margin-bottom: $gutter;
 }
 
 // The article's title.
@@ -8,7 +8,7 @@
   font-size: to-rem(24);
   font-weight: $font-weight-bold;
   line-height: $line-height-title;
-  margin-bottom: .625em;
+  margin-bottom: 0.625em;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
@@ -16,7 +16,7 @@
 
   @include mq($from: s) {
     font-size: to-rem(28);
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
   }
 
   @include mq($from: m) {

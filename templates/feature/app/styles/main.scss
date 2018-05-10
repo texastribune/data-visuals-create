@@ -9,7 +9,7 @@
 // Reset, overrides and utils
 @import 'reset';
 @import 'overrides';
-@import 'utils';
+@import 'utilities';
 @import 'grid';
 @import 'typography';
 @import 'buttons';
@@ -18,7 +18,9 @@
 
 // Components
 @import 'components/masthead';
+@import 'components/share-buttons';
 @import 'components/footer';
 @import 'components/table';
 @import 'components/ads';
+@import 'components/related-content';
 @import 'components/ribbon';

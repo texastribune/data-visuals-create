@@ -1,0 +1,23 @@
+.fixed-top {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $zindex-fixed;
+}
+
+.fixed-bottom {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: $zindex-fixed;
+}
+
+.sticky-top {
+  @supports (position: sticky) {
+    position: sticky;
+    top: 0;
+    z-index: $zindex-sticky;
+  }
+}

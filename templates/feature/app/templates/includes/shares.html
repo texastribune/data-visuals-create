@@ -1,0 +1,27 @@
+{% import "macros/shares.html" as shares %}
+
+<div class="share-buttons">
+  <div class="row">
+    <div class="col">
+      <a class="button button--block button--share button--facebook" href="{{ shares.facebook(CURRENT_PAGE_URL) }}">
+        <svg class="icon icon-facebook">
+          <use xlink:href="#icon-facebook"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="col">
+      <a class="button button--block button--share button--twitter" href="{{ shares.twitter(CURRENT_PAGE_URL, context.tweet_text, '') }}">
+        <svg class="icon icon-twitter">
+          <use xlink:href="#icon-twitter"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="col">
+      <a class="button button--block button--share button--yellow" href="{{ shares.email(context.headline, CURRENT_PAGE_URL) }}">
+        <svg class="icon icon-envelope">
+          <use xlink:href="#icon-envelope"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>

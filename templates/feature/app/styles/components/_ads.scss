@@ -2,13 +2,8 @@
   margin-bottom: $gutter-double;
   margin-left: auto;
   margin-right: auto;
-  margin-top: $gutter;
+  margin-top: $gutter-double;
   width: 300px;
-
-  @include mq($from: s) {
-    margin-bottom: $gutter-double;
-    margin-top: 0;
-  }
 
   @include mq($from: m) {
     width: 728px;

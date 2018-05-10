@@ -1,8 +1,11 @@
 .container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: to-rem(1200);
-  padding-left: $gutter;
-  padding-right: $gutter;
-  position: relative;
+  @include make-container;
+}
+
+.row {
+  @include make-row;
+}
+
+.col {
+  @include make-basic-column;
 }

@@ -12,7 +12,7 @@ $ribbon-height: 110px;
   padding-top: $gutter-half;
   position: fixed;
   transform: translateY(-$ribbon-height);
-  transition: transform 200ms $curve-decelerate;
+  @include transition(transform 200ms $curve-decelerate);
   width: 100vw;
 
   @include mq($from: m) {
@@ -22,7 +22,7 @@ $ribbon-height: 110px;
 
 .ribbon--inactive {
   transform: translateY(0);
-  transition: transform 200ms $curve-accelarate;
+  @include transition(transform 200ms $curve-accelarate);
 }
 
 .ribbon--hidden {

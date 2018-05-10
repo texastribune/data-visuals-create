@@ -1,0 +1,37 @@
+@mixin make-container($width: 1200px, $include-padding: true) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: to-rem($width);
+  width: 100%;
+
+  @if $include-padding {
+    padding-left: $gutter-half;
+    padding-right: $gutter-half;
+  }
+}
+
+@mixin make-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter-half;
+  margin-right: -$gutter-half;
+}
+
+@mixin make-basic-column {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  min-height: 1px;
+  padding-left: $gutter-half;
+  padding-right: $gutter-half;
+  width: 100%;
+}
+
+@mixin make-column($size) {
+  flex: 0 0 percentage($size);
+  max-width: percentage($size);
+  min-height: 1px;
+  padding-left: $gutter-half;
+  padding-right: $gutter-half;
+  width: 100%;
+}

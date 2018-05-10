@@ -17,8 +17,11 @@
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  transition: background-color 300ms $curve-standard,
-    color 300ms $curve-standard, border-color 300ms $curve-standard;
+  @include transition(
+    background-color 300ms $curve-standard,
+    color 300ms $curve-standard,
+    border-color 300ms $curve-standard
+  );
   vertical-align: middle;
   white-space: nowrap;
 }
@@ -29,6 +32,16 @@
   @include mq($from: s) {
     font-size: to-rem(12);
   }
+}
+
+.button--share {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-top: 0.25em;
 }
 
 .button--link {

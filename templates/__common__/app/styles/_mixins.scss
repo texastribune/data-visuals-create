@@ -1,88 +1,12 @@
-// clearfix
-// source: http://cssmojo.com/latest_new_clearfix_so_far/
-@mixin clearfix {
-  &:after {
-    clear: both;
-    content: '';
-    display: table;
-  }
-}
-
-// site-logo-height
-// Calcuates the height of the Tribune logo properly due to the tail
-@mixin site-logo-height($height) {
-  height: $height + px;
-  margin-bottom: -$height * 0.12 + px;
-  vertical-align: bottom;
-}
-
-// default-link
-@mixin default-link {
-  border-bottom: 1px solid $color-text-link;
-  box-shadow: inset 0 -1px 0 0 $color-text-link;
-  color: currentColor;
-  text-decoration: none;
-
-  &:active,
-  &:hover {
-    border-bottom-color: $color-text-link-active;
-    box-shadow: inset 0 -2px 0 0 $color-text-link-active;
-    transition: all 0.8s $curve-standard;
-  }
-}
-
-// default-uppercase-link
-@mixin default-uppercase-link {
-  color: $color-text-link-active;
-  font-weight: $font-weight-bold;
-  text-decoration: none;
-  text-transform: uppercase;
-
-  &:active,
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-@mixin bare-link {
-  color: currentColor;
-  text-decoration: none;
-
-  &:active,
-  &:hover {
-    border-bottom-color: $color-text-link;
-    box-shadow: inset 0 -2px 0 0 $color-text-link;
-    transition: all 0.8s $curve-standard;
-  }
-}
-
-// sr-only
-// prevents content from being visible on the screen, but allows it to still
-// be accessible to screen readers
-@mixin sr-only {
-  border: 0;
-  clip-path: inset(50%);
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-// sr-only-focusable
-// Use in conjunction with .sr-only to only display content when it's focused.
-// Good for "Skip to main content" links.
-@mixin sr-only-focusable {
-  &:active,
-  &:focus {
-    clip-path: none;
-    clip: auto;
-    height: auto;
-    overflow: visible;
-    position: static;
-    white-space: normal;
-    width: auto;
-  }
-}
+@import 'mixins/clearfix';
+@import 'mixins/grid';
+@import 'mixins/hover';
+@import 'mixins/image';
+@import 'mixins/links';
+@import 'mixins/lists';
+@import 'mixins/pill';
+@import 'mixins/resize';
+@import 'mixins/screenreaders';
+@import 'mixins/site-logo-height';
+@import 'mixins/transition';
+@import 'mixins/visibility';

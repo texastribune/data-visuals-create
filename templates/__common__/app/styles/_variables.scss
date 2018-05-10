@@ -29,6 +29,14 @@ $color-chart-purple: hsl(267, 42%, 51%);
 $color-chart-blue: hsl(200, 56%, 40%);
 $color-chart-sea-green: hsl(170, 30%, 37%);
 
+// The yiq lightness value that determines when the lightness of color changes
+// from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 150;
+
+// Customize the light and dark text colors used in YIQ color contrast function.
+$yiq-text-dark: $color-primary;
+$yiq-text-light: $color-white;
+
 // Typography
 $font-size-base: 16;
 
@@ -67,6 +75,20 @@ $gutter-double: $gutter * 2;
 $gutter-quad: $gutter * 4;
 $gutter-octo: $gutter * 8;
 
+// used to generate the helper sizing classes
+$sizes: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+  auto: auto
+);
+
+// Box shadows
+$box-shadow-small: 0 0.125rem 0.25rem rgba($color-primary, 0.075);
+$box-shadow: 0 0.5rem 1rem rgba($color-primary, 0.15);
+$box-shadow-large: 0 1rem 3rem rgba($color-primary, 0.175);
+
 // Animation curves
 
 // best for elements moving on screen
@@ -77,6 +99,19 @@ $curve-accelarate: cubic-bezier(0.4, 0, 1, 1);
 $curve-decelerate: cubic-bezier(0, 0, 0.2, 1);
 // best for elements that may enter at any time (menus, etc.)
 $curve-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They are designed to all work
+// together.
+
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal: 1050;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;
 
 // sass-mq
 $mq-responsive: true;

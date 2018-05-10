@@ -1,0 +1,13 @@
+@mixin pill-variant($background-color) {
+  color: color-yiq($background-color);
+  background-color: $background-color;
+  border-color: $background-color;
+
+  &[href] {
+    @include hover-focus {
+      color: color-yiq($background-color);
+      text-decoration: none;
+      background-color: darken($background-color, 10%);
+    }
+  }
+}
