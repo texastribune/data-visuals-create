@@ -1,4 +1,4 @@
-if (!window.Promise) window.Promise = require('promise-polyfill');
+if (!window.Promise) window.Promise = require('promise-polyfill').default;
 require('unfetch/polyfill');
 
 Object.assign = require('object-assign');
