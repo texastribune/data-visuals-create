@@ -29,7 +29,7 @@
     "copytext": "^2.1.0",
     "date-fns": "^1.28.5",
     "del": "^3.0.0",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^6.0.1",
     "glob": "^7.1.2",
     "glob-promise": "^3.3.0",
     "googleapis": "^19.0.0",
@@ -70,8 +70,8 @@
     "mitt": "^1.1.3",
     "object-assign": "^4.1.1",
     "preact": "^8.2.7",
-    "promise-polyfill": "^7.0.0",
-    "sass-mq": "^4.0.2",
+    "promise-polyfill": "^8.0.0",
+    "sass-mq": "^5.0.0",
     "unfetch": "^3.0.0"
   },
   "prettier": {
