@@ -4,7 +4,7 @@
  * element does not have the JSON MIME type, null is returned instead.
  *
  * @param  {String} elementId the ID of the JSON script element
- * @return {Object}
+ * @return {Object|null}
  */
 export default function loadJsonScript(elementId) {
   const element = document.getElementById(elementId);
