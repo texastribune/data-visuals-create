@@ -25,6 +25,8 @@ const config = {
   resolve: {
     alias: {
       'app-entrypoint': paths.appMain,
+      Assets: paths.appAssets,
+      Data: paths.appData,
     },
     extensions: ['.js', '.json', '.jsx'],
   },
