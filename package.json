@@ -29,8 +29,8 @@
   "homepage": "https://github.com/texastribune/data-visuals-create#readme",
   "devDependencies": {
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.4",
-    "prettier": "^1.11.1",
+    "lint-staged": "^7.1.2",
+    "prettier": "^1.13.3",
     "publish-please": "^2.4.1"
   },
   "prettier": {
@@ -48,10 +48,10 @@
     ]
   },
   "dependencies": {
-    "fast-glob": "^2.2.0",
-    "fs-extra": "^5.0.0",
-    "ora": "^2.0.0",
-    "update-notifier": "^2.4.0"
+    "fast-glob": "^2.2.2",
+    "fs-extra": "^6.0.1",
+    "ora": "^2.1.0",
+    "update-notifier": "^2.5.0"
   },
   "files": [
     "bin/data-visuals-create",
