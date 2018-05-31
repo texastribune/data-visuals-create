@@ -5,7 +5,7 @@ const cacheLookup = require('./cache-lookup');
 const chalk = require('chalk');
 const crypto = require('crypto');
 const fs = require('fs-extra');
-const glob = require('glob-promise');
+const glob = require('fast-glob');
 const https = require('https');
 const mime = require('mime-types');
 const path = require('path');
@@ -90,7 +90,7 @@ async function uploadFiles(dir, opts, cb) {
     opts
   );
 
-  const paths = await glob(path.join(dir, '**', '*'), { nodir: true });
+  const paths = await glob(path.join(dir, '**', '*'));
   return Promise.all(paths.map(p => uploadFile(p, opts)));
 }
 
@@ -119,8 +119,7 @@ async function downloadFile(Key, options) {
       return resolve(localFilePath);
     });
 
-    s3
-      .getObject({ Key })
+    s3.getObject({ Key })
       .createReadStream()
       .pipe(output);
   });
