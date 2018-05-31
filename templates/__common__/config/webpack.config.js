@@ -1,16 +1,30 @@
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const glob = require('fast-glob');
 const path = require('path');
 const webpack = require('webpack');
 
 const paths = require('./paths');
 
+const PROJECT_URL = '/';
 const NODE_ENV = process.env.NODE_ENV;
+
+const entryPacks = glob.sync('*.js', {
+  absolute: true,
+  cwd: paths.appScriptPacks,
+});
+
+const packs = entryPacks.reduce((acc, curr) => {
+  const { name } = path.parse(curr);
+  acc[name] = curr;
+
+  return acc;
+}, {});
 
 const config = {
   devtool: 'cheap-module-source-map',
   context: path.join(paths.appSrc, 'scripts'),
   entry: {
-    main: paths.appMain,
+    ...packs,
     vendor: paths.appPolyfills,
   },
   output: {
@@ -87,6 +101,14 @@ const config = {
 
 if (NODE_ENV === 'development') {
   config.plugins.push(new webpack.NamedModulesPlugin());
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+        PUBLIC_PATH: JSON.stringify(PROJECT_URL),
+      },
+    })
+  );
 }
 
 module.exports = config;

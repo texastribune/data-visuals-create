@@ -8,6 +8,8 @@ const projectConfig = require('../project.config');
 
 const paths = require('./paths');
 
+const PROJECT_URL = `/${projectConfig.folder}/`;
+
 const productionConfig = Object.assign({}, webpackConfig, {
   bail: true,
   devtool: 'source-map',
@@ -28,6 +30,7 @@ productionConfig.plugins.push(
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('production'),
+      PUBLIC_PATH: JSON.stringify(PROJECT_URL),
     },
   }),
   new ManifestPlugin({ basePath: 'scripts/', fileName: 'rev-manifest.json' }),

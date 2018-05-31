@@ -18,6 +18,7 @@ module.exports = {
   appMain: resolveApp('app/scripts/main.js'),
   appNodeModules: resolveApp('node_modules'),
   appPolyfills: resolveApp('config/polyfills.js'),
+  appScriptPacks: resolveApp('app/scripts/packs'),
   appSrc: resolveApp('app'),
   appTmp: resolveApp('.tmp'),
 };

@@ -1,4 +1,4 @@
-import './kickstart';
+import '../kickstart';
 
 /**
  * Your code belongs here.

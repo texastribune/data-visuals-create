@@ -1,5 +1,5 @@
 /* global pym */
-import renderGraphic from './graphic';
+import renderGraphic from '../graphic';
 
 /**
  * Variable for pym instance.
