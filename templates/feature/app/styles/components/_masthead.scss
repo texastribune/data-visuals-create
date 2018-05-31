@@ -24,6 +24,31 @@
   }
 }
 
+.masthead__title {
+  color: $color-white;
+  display: none;
+  font-family: $font-sans-serif;
+  font-weight: $font-weight-bold;
+  font-size: to-rem(14);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-left: $gutter;
+
+  @include mq($from: s) {
+    display: block;
+  }
+
+  > a {
+    color: $color-offwhite;
+    text-decoration: none;
+
+    &:active,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .masthead__actionables {
   align-items: center;
   display: flex;
