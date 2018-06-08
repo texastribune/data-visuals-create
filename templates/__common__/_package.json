@@ -10,7 +10,7 @@
     "predeploy": "npm run build && npm run assets:push",
     "preinstall": "node ./config/build/yarn-check.js",
     "serve": "npm start",
-    "start": "NODE_ENV=development gulp serve"
+    "start": "NODE_ENV=development gulp develop"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.49",
@@ -32,7 +32,7 @@
     "fast-glob": "^2.2.2",
     "fs-extra": "^6.0.1",
     "googleapis": "^19.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-cache": "^1.0.2",
     "gulp-clean-css": "^3.8.0",
     "gulp-htmlmin": "^4.0.0",
@@ -54,7 +54,6 @@
     "postcss-flexbugs-fixes": "^3.3.0",
     "prettier": "^1.12.1",
     "quaff": "^2.0.0",
-    "run-sequence": "^2.2.1",
     "strip-ansi": "^4.0.0",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "vinyl-map": "^1.0.2",

@@ -49,7 +49,7 @@ module.exports = () => {
 
   gulp.watch(
     ['./app/**/*.html', path.join(paths.appData, '*.json')],
-    ['templates']
+    gulp.task('templates')
   );
-  gulp.watch(['./app/styles/**/*.scss'], ['styles']);
+  gulp.watch(['./app/styles/**/*.scss'], gulp.task('styles'));
 };

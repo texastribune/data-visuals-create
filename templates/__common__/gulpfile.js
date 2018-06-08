@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
 
 /*
 Main tasks
@@ -10,27 +9,33 @@ gulp.task('images', require('./config/gulp/images'));
 gulp.task('scripts', require('./config/gulp/scripts'));
 gulp.task('styles', require('./config/gulp/styles'));
 gulp.task('templates', require('./config/gulp/templates'));
+gulp.task('serve', require('./config/gulp/serve'));
 
 /*
 Utility tasks
  */
 gulp.task('clean', require('./config/gulp/clean'));
-gulp.task('serve', ['styles', 'templates'], require('./config/gulp/serve'));
+gulp.task(
+  'develop',
+  gulp.series(gulp.parallel(['styles', 'templates'], 'serve'))
+);
 
 /*
 Build tasks
  */
 gulp.task('rev', require('./config/gulp/rev'));
-gulp.task('rev-replace', ['rev'], require('./config/gulp/rev-replace'));
+gulp.task('rev-replace', require('./config/gulp/rev-replace'));
 
-gulp.task('build', ['clean'], done => {
-  runSequence(
-    ['images'],
-    ['styles'],
-    ['scripts', 'templates'],
-    ['rev-replace'],
-    done
-  );
-});
+gulp.task(
+  'build',
+  gulp.series(
+    'clean',
+    'images',
+    'styles',
+    gulp.parallel('scripts', 'templates'),
+    'rev',
+    'rev-replace'
+  )
+);
 
-gulp.task('default', ['build']);
+gulp.task('default', gulp.task('build'));
