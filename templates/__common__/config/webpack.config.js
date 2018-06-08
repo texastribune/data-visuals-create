@@ -52,18 +52,19 @@ const config = {
         test: /\.(js|jsx)$/,
         include: path.join(paths.appSrc, 'scripts'),
         loader: 'babel-loader',
-        query: {
-          presets: [['babel-preset-env', { modules: false }]],
+        options: {
+          presets: [['@babel/preset-env', { modules: false }]],
           plugins: [
-            'babel-plugin-syntax-dynamic-import',
+            '@babel/plugin-syntax-dynamic-import',
             [
-              'babel-plugin-transform-es2015-classes',
+              '@babel/plugin-transform-classes',
               {
                 loose: true,
               },
             ],
-            ['babel-plugin-transform-react-jsx', { pragma: 'h' }],
+            ['@babel/plugin-transform-react-jsx', { pragma: 'h' }],
           ],
+          cacheDirectory: true,
         },
       },
     ],
