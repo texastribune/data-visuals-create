@@ -81,7 +81,7 @@ $sizes: (
   50: 50%,
   75: 75%,
   100: 100%,
-  auto: auto
+  auto: auto,
 );
 
 // Box shadows
@@ -123,7 +123,7 @@ $mq-breakpoints: (
   l: 992px,
   xl: 1200px,
   header-break: 840px,
-  footer-break: 850px
+  footer-break: 850px,
 );
 
 $mq-media-type: screen;

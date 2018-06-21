@@ -2,7 +2,7 @@
   background-color: $color-primary;
   color: $color-offwhite;
   font-family: $font-sans-serif;
-  font-size: .875rem;
+  font-size: 0.875rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: $gutter-double;
@@ -10,7 +10,7 @@
   width: 100%;
 
   @include mq($from: footer-break) {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 }
 
