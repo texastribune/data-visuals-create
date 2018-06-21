@@ -42,14 +42,12 @@ export default function createBase({
   yAxis.scale(yScale);
 
   const drawAxis = () => {
-    g
-      .append('g')
+    g.append('g')
       .attr('class', 'axis axis--x')
       .attr('transform', `translate(0,${innerHeight + xAxisGap})`)
       .call(xAxis);
 
-    g
-      .append('g')
+    g.append('g')
       .attr('class', 'axis axis--y')
       .call(yAxis);
   };
