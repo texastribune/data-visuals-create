@@ -30,7 +30,7 @@
   "devDependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
-    "prettier": "^1.13.7",
+    "prettier": "^1.14.0",
     "publish-please": "^3.2.0"
   },
   "prettier": {
@@ -49,8 +49,8 @@
   },
   "dependencies": {
     "fast-glob": "^2.2.2",
-    "fs-extra": "^6.0.1",
-    "ora": "^2.1.0",
+    "fs-extra": "^7.0.0",
+    "ora": "^3.0.0",
     "update-notifier": "^2.5.0"
   },
   "files": [
