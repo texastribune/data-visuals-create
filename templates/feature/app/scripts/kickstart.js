@@ -3,11 +3,6 @@ import { h, render } from 'preact';
 // just in case this gets removed
 window.ttData = window.ttData || {};
 
-// analytics
-import(/* webpackChunkName: "analytics" */ '@data-visuals/analytics').then(
-  analytics => analytics.init()
-);
-
 // related content
 const relatedContentContainer = document.getElementById(
   'related-content-container'
