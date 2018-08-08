@@ -1,13 +1,64 @@
 #!/usr/bin/env node
 
+const mri = require('mri');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
+const { highlight, warn } = require('../lib/colors');
 const { createProject } = require('../lib');
 
-updateNotifier({ pkg }).notify();
+const notifier = updateNotifier({
+  pkg,
+  updateCheckInterval: 1000 * 60 * 60 * 6, // 6 hours
+});
+notifier.notify();
+
+const mriConfig = {
+  alias: {
+    h: 'help',
+    v: 'version',
+  },
+  boolean: ['help', 'version'],
+  unknown(flag) {
+    console.log(`The option "${flag}" is unknown.`);
+    process.exit(1);
+  },
+};
+
+const sendHelp = () =>
+  console.log(
+    `\nUsage: ${highlight('data-visuals-create')} [project-type] [slug]`
+  );
 
 async function main(argv_) {
-  const [projectType, slug] = argv_.slice(2);
+  const flags = mri(argv_.slice(2), mriConfig);
+
+  if (flags.version) {
+    console.log(pkg.version);
+    process.exit();
+  }
+
+  if (flags.help) {
+    sendHelp();
+    process.exit();
+  }
+
+  const args = flags._;
+  const numArgs = args.length;
+
+  if (numArgs < 2) {
+    console.log(warn(`Not enough arguments were passed. (${numArgs})`));
+    sendHelp();
+    process.exit(1);
+  }
+
+  if (numArgs > 2) {
+    console.log(warn(`Too many arguments were passed. (${numArgs})`));
+    sendHelp();
+    process.exit(1);
+  }
+
+  const [projectType, slug] = args;
+
   await createProject(projectType, slug);
 }
 
