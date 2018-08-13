@@ -23,7 +23,11 @@ const GEOIP_URL = 'https://geoip.texastribune.org';
  * @returns {void}
  */
 function saveJsonToSessionStorage(value) {
-  sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(value));
+  try {
+    sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(value));
+  } catch (e) {
+    /* likely no support for sessionStorage */
+  }
 }
 
 /**
