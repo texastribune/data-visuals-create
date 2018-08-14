@@ -68,6 +68,7 @@
     "mitt": "^1.1.3",
     "object-assign": "^4.1.1",
     "preact": "^8.2.7",
+    "preact-compat": "^3.18.2",
     "promise-polyfill": "^8.0.0",
     "sass-mq": "^5.0.0",
     "unfetch": "^3.0.0"

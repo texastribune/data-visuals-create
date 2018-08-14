@@ -41,6 +41,8 @@ const config = {
       'app-entrypoint': paths.appMain,
       Assets: paths.appAssets,
       Data: paths.appData,
+      react: 'preact-compat',
+      'react-dom': 'preact-compat',
     },
     extensions: ['.js', '.json', '.jsx'],
   },
