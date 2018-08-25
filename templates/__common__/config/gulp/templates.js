@@ -1,22 +1,22 @@
-'use strict';
+// native
+const path = require('path');
+const url = require('url');
 
+// packages
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
 const htmlmin = require('gulp-htmlmin');
 const map = require('vinyl-map');
-const path = require('path');
 const quaff = require('quaff');
 const rename = require('gulp-rename');
 const size = require('gulp-size');
-const url = require('url');
 
-const bs = require('./browsersync');
-const nunjucksEnv = require('./nunjucks');
-
-const config = require('../../project.config');
-const paths = require('../paths');
-
+// internal
 const { isProductionEnv } = require('../env');
+const bs = require('./browsersync');
+const config = require('../../project.config');
+const nunjucksEnv = require('./nunjucks');
+const paths = require('../paths');
 
 const PROJECT_URL = isProductionEnv
   ? `https://${config.bucket}/${config.folder}/`

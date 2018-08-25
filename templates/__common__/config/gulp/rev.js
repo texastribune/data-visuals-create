@@ -1,12 +1,16 @@
+// native
+const path = require('path');
+
+// packages
 const fs = require('fs-extra');
 const gulp = require('gulp');
-const path = require('path');
 const rev = require('gulp-rev');
 
+// internal
 const paths = require('../paths');
 
 const WEBPACK_MANIFEST = path.join(paths.appDist, 'scripts/rev-manifest.json');
-const REV_MANIFEST = path.join(paths.appDist, 'rev-manifest.json');
+const REV_MANIFEST = paths.appDistManifest;
 
 module.exports = () => {
   if (fs.existsSync(WEBPACK_MANIFEST)) {

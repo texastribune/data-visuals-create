@@ -1,8 +1,8 @@
-'use strict';
-
-const u = require('gulp-util');
+// packages
+const gulpUtil = require('gulp-util');
 const webpack = require('webpack');
 
+// internal
 const { isProductionEnv } = require('../env');
 
 const webpackConfig = isProductionEnv
@@ -12,8 +12,8 @@ const bundle = webpack(webpackConfig);
 
 module.exports = done => {
   bundle.run((err, stats) => {
-    if (err) throw new u.PluginError('webpack', err);
-    u.log('[webpack]', stats.toString({ colors: true }));
+    if (err) throw new gulpUtil.PluginError('webpack', err);
+    gulpUtil.log('[webpack]', stats.toString({ colors: true }));
 
     done();
   });

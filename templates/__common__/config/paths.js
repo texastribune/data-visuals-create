@@ -1,8 +1,10 @@
-'use strict';
-
-const fs = require('fs-extra');
+// native
 const path = require('path');
 
+// packages
+const fs = require('fs-extra');
+
+// internal
 const config = require('../project.config');
 
 const appDirectory = fs.realpathSync(process.cwd());
@@ -15,6 +17,7 @@ module.exports = {
   appAssets: resolveApp('app/assets'),
   appData: resolveApp(config.dataDir || 'data'),
   appDist: resolveApp('dist'),
+  appDistManifest: resolveApp('dist/rev-manifest.json'),
   appMain: resolveApp('app/scripts/main.js'),
   appNodeModules: resolveApp('node_modules'),
   appPolyfills: resolveApp('config/polyfills.js'),

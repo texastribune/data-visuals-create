@@ -1,7 +1,6 @@
-'use strict';
-
-const gulp = require('gulp');
+// packages
 const cache = require('gulp-cache');
+const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
 const size = require('gulp-size');
 

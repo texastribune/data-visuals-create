@@ -1,8 +1,12 @@
+// packages
 const gulp = require('gulp');
 const revReplace = require('gulp-rev-replace');
 
+// internal
+const paths = require('../paths');
+
 module.exports = () => {
-  const manifest = gulp.src('./dist/rev-manifest.json');
+  const manifest = gulp.src(paths.appDistManifest);
 
   return gulp
     .src('./dist/**/*.{css,html}')

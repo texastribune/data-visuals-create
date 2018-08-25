@@ -1,5 +1,4 @@
-'use strict';
-
+// packages
 const browserSync = require('browser-sync');
 
 const client = browserSync.create();

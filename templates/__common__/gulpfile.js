@@ -1,5 +1,4 @@
-'use strict';
-
+// packages
 const gulp = require('gulp');
 
 /*

@@ -1,15 +1,17 @@
-'use strict';
-
-const gulp = require('gulp');
+// native
 const path = require('path');
+
+// packages
+const gulp = require('gulp');
 const stripAnsi = require('strip-ansi');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
+// internal
 const bs = require('./browsersync');
-
 const paths = require('../paths');
 const webpackConfig = require('../webpack.config');
+
 const bundler = webpack(webpackConfig);
 
 bundler.plugin('done', function(stats) {

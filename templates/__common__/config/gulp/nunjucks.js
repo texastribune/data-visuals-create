@@ -1,12 +1,14 @@
-'use strict';
-
-const fs = require('fs');
-const journalize = require('journalize');
-const nunjucks = require('nunjucks');
-const parse = require('date-fns/parse');
+// native
 const path = require('path');
 const url = require('url');
 
+// packages
+const fs = require('fs-extra');
+const journalize = require('journalize');
+const nunjucks = require('nunjucks');
+const parse = require('date-fns/parse');
+
+// internal
 const config = require('../../project.config');
 const customFilters = require('../../custom-filters');
 const parseData = require('../../utils/parse-data');
