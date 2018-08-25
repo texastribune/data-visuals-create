@@ -12,7 +12,7 @@ const autoprefixer = require('autoprefixer');
 
 const bs = require('./browsersync');
 
-const NODE_ENV = process.env.NODE_ENV;
+const { isProductionEnv } = require('../env');
 
 module.exports = () => {
   return gulp
@@ -25,8 +25,8 @@ module.exports = () => {
     )
     .pipe(postcss([postcssFlexbugsFixes, autoprefixer({ flexbox: 'no-2009' })]))
     .pipe(gulp.dest('./.tmp/styles'))
-    .pipe(gulpIf(NODE_ENV === 'production', cleancss()))
-    .pipe(gulpIf(NODE_ENV === 'production', gulp.dest('./dist/styles')))
+    .pipe(gulpIf(isProductionEnv, cleancss()))
+    .pipe(gulpIf(isProductionEnv, gulp.dest('./dist/styles')))
     .pipe(bs.stream({ match: '**/*.css' }))
     .pipe(size({ title: 'styles' }));
 };

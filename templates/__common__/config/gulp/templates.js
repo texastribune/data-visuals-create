@@ -16,12 +16,11 @@ const nunjucksEnv = require('./nunjucks');
 const config = require('../../project.config');
 const paths = require('../paths');
 
-const NODE_ENV = process.env.NODE_ENV;
+const { isProductionEnv } = require('../env');
 
-const PROJECT_URL =
-  NODE_ENV === 'production'
-    ? `https://${config.bucket}/${config.folder}/`
-    : '/';
+const PROJECT_URL = isProductionEnv
+  ? `https://${config.bucket}/${config.folder}/`
+  : '/';
 
 module.exports = () => {
   const data = quaff(paths.appData);
@@ -58,14 +57,14 @@ module.exports = () => {
     .pipe(gulp.dest('./.tmp'))
     .pipe(
       gulpIf(
-        NODE_ENV === 'production',
+        isProductionEnv,
         htmlmin({
           collapseWhitespace: true,
           minifyJS: true,
         })
       )
     )
-    .pipe(gulpIf(NODE_ENV === 'production', gulp.dest('./dist')))
+    .pipe(gulpIf(isProductionEnv, gulp.dest('./dist')))
     .pipe(bs.stream({ once: true }))
     .pipe(size({ title: 'templates', showFiles: true }));
 };

@@ -3,12 +3,11 @@
 const u = require('gulp-util');
 const webpack = require('webpack');
 
-const NODE_ENV = process.env.NODE_ENV;
+const { isProductionEnv } = require('../env');
 
-const webpackConfig =
-  NODE_ENV === 'production'
-    ? require('../webpack.config.prod')
-    : require('../webpack.config');
+const webpackConfig = isProductionEnv
+  ? require('../webpack.config.prod')
+  : require('../webpack.config');
 const bundle = webpack(webpackConfig);
 
 module.exports = done => {

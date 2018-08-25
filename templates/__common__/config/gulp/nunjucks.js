@@ -11,8 +11,8 @@ const config = require('../../project.config');
 const customFilters = require('../../custom-filters');
 const parseData = require('../../utils/parse-data');
 const paths = require('../paths');
+const { isProductionEnv, nodeEnv } = require('../env');
 
-const NODE_ENV = process.env.NODE_ENV;
 const PROJECT_URL = `https://${config.bucket}/${config.folder}/`;
 
 const env = nunjucks.configure('./app/templates', {
@@ -25,13 +25,13 @@ const env = nunjucks.configure('./app/templates', {
 Adds the current runtime state of the project. Good for excluding portions of
 templates that do not need to be there during testing.
  */
-env.addGlobal('ENV', NODE_ENV);
+env.addGlobal('ENV', nodeEnv);
 
 /*
 Adds static function globally. Normalizes file paths for deployment.
  */
 env.addGlobal('static', p => {
-  if (NODE_ENV === 'production') p = path.join(config.folder, p);
+  if (isProductionEnv) p = path.join(config.folder, p);
 
   return url.resolve('/', p);
 });
@@ -55,7 +55,7 @@ Lets you inject the contents of a file into a template. Good for things like
 SVG icons.
  */
 env.addGlobal('inject', p => {
-  if (NODE_ENV === 'production') {
+  if (isProductionEnv) {
     return fs.readFileSync(path.join(paths.appDist, p), 'utf8');
   }
 

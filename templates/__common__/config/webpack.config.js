@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const paths = require('./paths');
 
 const PROJECT_URL = '/';
-const NODE_ENV = process.env.NODE_ENV;
+const { isProductionEnv } = require('./env');
 
 const entryPacks = glob.sync('*.js', {
   absolute: true,
@@ -102,7 +102,7 @@ const config = {
   },
 };
 
-if (NODE_ENV === 'development') {
+if (!isProductionEnv) {
   config.plugins.push(new webpack.NamedModulesPlugin());
   config.plugins.push(
     new webpack.DefinePlugin({
