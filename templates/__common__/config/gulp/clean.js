@@ -1,7 +1,9 @@
-'use strict';
+// packages
+const fs = require('fs-extra');
 
-const del = require('del');
+// internal
+const paths = require('../paths');
 
-module.exports = done => {
-  return del(['./dist', './.tmp'], { dot: true }, done);
+module.exports = async () => {
+  await Promise.all([paths.appDist, paths.appTmp].map(p => fs.remove(p)));
 };

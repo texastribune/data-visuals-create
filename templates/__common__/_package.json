@@ -28,7 +28,6 @@
     "clipboardy": "^1.2.2",
     "copytext": "^2.1.0",
     "date-fns": "^1.28.5",
-    "del": "^3.0.0",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
     "googleapis": "^19.0.0",
