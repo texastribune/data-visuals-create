@@ -1,7 +1,7 @@
 'use strict';
 
 const authorize = require('./authorize');
-const google = require('googleapis');
+const { google } = require('googleapis');
 
 const TYPES = {
   doc: 'text/html',
@@ -38,29 +38,35 @@ function fetch(files, cb) {
 }
 
 function tryExportUntilSuccess(opts, cb) {
-  opts.drive.files.export(opts.req, (err, res) => {
-    if (err) {
-      if (
-        err.code === 403 &&
-        RETRY_WITH_BACKOFF_ERRORS.some(e => e === err.errors[0].reason)
-      ) {
-        if (opts.iteration > MAX_RETRIES)
-          return cb(
-            new Error(
-              `We tried so hard to get \`${opts.req.fileId}\`, but had no luck.`
-            )
+  opts.drive.files.export(
+    opts.req,
+    { responseType: 'arraybuffer' },
+    (err, { data: res }) => {
+      if (err) {
+        if (
+          err.code === 403 &&
+          RETRY_WITH_BACKOFF_ERRORS.some(e => e === err.errors[0].reason)
+        ) {
+          if (opts.iteration > MAX_RETRIES)
+            return cb(
+              new Error(
+                `We tried so hard to get \`${
+                  opts.req.fileId
+                }\`, but had no luck.`
+              )
+            );
+          return setTimeout(
+            () => tryExportUntilSuccess(opts, cb),
+            Math.pow(opts.iteration++, 2) * Math.random()
           );
-        return setTimeout(
-          () => tryExportUntilSuccess(opts, cb),
-          Math.pow(opts.iteration++, 2) * Math.random()
-        );
-      } else {
-        cb(err);
+        } else {
+          cb(err);
+        }
       }
-    }
 
-    cb(null, res, opts.file);
-  });
+      cb(null, res, opts.file);
+    }
+  );
 }
 
 module.exports = fetch;

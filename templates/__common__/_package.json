@@ -30,7 +30,7 @@
     "date-fns": "^1.28.5",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
-    "googleapis": "^19.0.0",
+    "googleapis": "^33.0.0",
     "gulp": "^4.0.0",
     "gulp-cache": "^1.0.2",
     "gulp-clean-css": "^3.8.0",

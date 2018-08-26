@@ -6,7 +6,7 @@ const os = require('os');
 const readline = require('readline');
 
 const chalk = require('chalk');
-const google = require('googleapis');
+const { google } = require('googleapis');
 
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const authorize = require('./authorize');
-const google = require('googleapis');
+const { google } = require('googleapis');
 
 function sheetByRange(spreadsheetId, range, { majorDimension = 'ROWS' } = {}) {
   return new Promise((resolve, reject) => {
