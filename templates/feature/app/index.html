@@ -44,6 +44,5 @@
 {% endblock inline_data %}
 
 {% block scripts %}
-{{ super() }}
-<script defer src="{{ static('scripts/main.js') }}"></script>
+{{ javascriptPack('main') }}
 {% endblock scripts %}

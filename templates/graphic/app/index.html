@@ -24,6 +24,7 @@
 {% endblock inline_data %}
 
 {% block scripts %}
+{# if you do not include this call to super(), pym will not be included from "base.html" #}
 {{ super() }}
-<script defer src="{{ static('scripts/main.js') }}"></script>
+{{ javascriptPack('main') }}
 {% endblock scripts %}

@@ -1,54 +1,55 @@
-const ManifestPlugin = require('webpack-manifest-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// native
 const path = require('path');
-const webpack = require('webpack');
 
-const webpackConfig = require('./webpack.config');
+// packages
+const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+
+// internal
+const { generateBaseConfig } = require('./webpack-utils');
+const paths = require('./paths');
 const projectConfig = require('../project.config');
 
-const paths = require('./paths');
-
 const PROJECT_URL = `/${projectConfig.folder}/`;
+const publicPath = '/' + path.join(projectConfig.folder, '/scripts/');
 
-const productionConfig = Object.assign({}, webpackConfig, {
+const config = Object.assign({}, generateBaseConfig({ PROJECT_URL }), {
+  mode: 'production',
   bail: true,
   devtool: 'source-map',
+  output: {
+    path: path.join(paths.appDist, '/scripts/'),
+    publicPath,
+    filename: '[name].[chunkhash:10].js',
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      name: false,
+    },
+  },
 });
 
-productionConfig.output = {
-  path: path.join(paths.appDist, '/scripts/'),
-  filename: '[name].[chunkhash:10].js',
-  chunkFilename: '[name].[chunkhash:10].chunk.js',
-  publicPath: '/' + path.join(projectConfig.folder, '/scripts/'),
-  devtoolModuleFilenameTemplate: info =>
-    path.relative(paths.appSrc, info.absoluteResourcePath),
-};
-
-productionConfig.plugins.push(
-  new webpack.optimize.ModuleConcatenationPlugin(),
-  new webpack.HashedModuleIdsPlugin(),
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-      PUBLIC_PATH: JSON.stringify(PROJECT_URL),
-    },
-  }),
-  new ManifestPlugin({ basePath: 'scripts/', fileName: 'rev-manifest.json' }),
-  new UglifyJsPlugin({
-    uglifyOptions: {
-      compress: {
-        warnings: false,
-        comparisons: false,
-      },
-      output: {
-        ascii_only: true,
-        comments: false,
-      },
-    },
-    parallel: true,
+// switch the production minifier to Terser
+config.optimization.minimizer = [
+  new TerserPlugin({
     cache: true,
+    parallel: true,
     sourceMap: true,
+  }),
+];
+
+// some additional production plugins on top of what "mode: production" provides
+config.plugins.push(
+  new webpack.HashedModuleIdsPlugin(),
+  new WebpackAssetsManifest({
+    entrypoints: true,
+    output: paths.appDistManifest,
+    publicPath: 'scripts/',
+    writeToDisk: true,
   })
 );
 
-module.exports = productionConfig;
+module.exports = config;

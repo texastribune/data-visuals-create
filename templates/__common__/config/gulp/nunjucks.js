@@ -32,11 +32,13 @@ env.addGlobal('ENV', nodeEnv);
 /*
 Adds static function globally. Normalizes file paths for deployment.
  */
-env.addGlobal('static', p => {
+function static_(p) {
   if (isProductionEnv) p = path.join(config.folder, p);
 
   return url.resolve('/', p);
-});
+}
+
+env.addGlobal('static', static_);
 
 /*
 Creates an absolute path URL.
@@ -109,6 +111,38 @@ env.addGlobal('apFormatDate', input => {
 env.addGlobal('CURRENT_YEAR', new Date().getFullYear());
 
 env.addGlobal('parseData', parseData);
+
+let manifest = null;
+
+env.addGlobal('javascriptPack', (key, shouldDefer = true) => {
+  if (manifest == null && isProductionEnv) {
+    manifest = fs.readJsonSync(paths.appDistManifest);
+  }
+
+  let scripts;
+
+  if (isProductionEnv) {
+    const entrypoints = manifest.entrypoints;
+
+    if (!key in entrypoints)
+      throw new Error(
+        `The "key" provided to javascriptPack is not a valid entrypoint`
+      );
+
+    scripts = manifest.entrypoints[key];
+  } else {
+    scripts = { js: [`scripts/${key}.js`] };
+  }
+
+  return scripts.js
+    .map(
+      src =>
+        `<script ${shouldDefer ? 'defer' : 'async'} src="${static_(
+          src
+        )}"></script>`
+    )
+    .join('\n');
+});
 
 /*
 Add `json_script` filter.

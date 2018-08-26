@@ -10,7 +10,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 // internal
 const bs = require('./browsersync');
 const paths = require('../paths');
-const webpackConfig = require('../webpack.config');
+const webpackConfig = require('../webpack.config.dev');
 
 const bundler = webpack(webpackConfig);
 

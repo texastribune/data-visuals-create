@@ -16,7 +16,7 @@ Utility tasks
 gulp.task('clean', require('./config/gulp/clean'));
 gulp.task(
   'develop',
-  gulp.series('clean', gulp.parallel(['styles', 'templates'], 'serve'))
+  gulp.series('clean', gulp.series(['styles', 'templates'], 'serve'))
 );
 
 /*
@@ -31,7 +31,7 @@ gulp.task(
     'clean',
     'images',
     'styles',
-    gulp.parallel('scripts', 'templates'),
+    gulp.series('scripts', 'templates'),
     'rev',
     'rev-replace'
   )

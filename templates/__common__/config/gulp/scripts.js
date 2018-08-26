@@ -7,7 +7,7 @@ const { isProductionEnv } = require('../env');
 
 const webpackConfig = isProductionEnv
   ? require('../webpack.config.prod')
-  : require('../webpack.config');
+  : require('../webpack.config.dev');
 const bundle = webpack(webpackConfig);
 
 module.exports = done => {
