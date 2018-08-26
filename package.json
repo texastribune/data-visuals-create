@@ -29,8 +29,8 @@
   "homepage": "https://github.com/texastribune/data-visuals-create#readme",
   "devDependencies": {
     "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.14.0",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
     "publish-please": "^3.2.0"
   },
   "prettier": {
