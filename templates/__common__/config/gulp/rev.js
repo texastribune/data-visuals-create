@@ -18,7 +18,7 @@ module.exports = () => {
   }
 
   return gulp
-    .src(['./dist/**/*.css', './dist/assets/images/**/*'], {
+    .src(['./dist/**/*.css', './dist/assets/**/*'], {
       base: paths.appDist,
     })
     .pipe(rev())
