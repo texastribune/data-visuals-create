@@ -29,17 +29,16 @@ const config = Object.assign({}, generateBaseConfig({ PROJECT_URL }), {
       chunks: 'all',
       name: false,
     },
+    // switch the production minifier to Terser
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+    ],
   },
 });
-
-// switch the production minifier to Terser
-config.optimization.minimizer = [
-  new TerserPlugin({
-    cache: true,
-    parallel: true,
-    sourceMap: true,
-  }),
-];
 
 // some additional production plugins on top of what "mode: production" provides
 config.plugins.push(

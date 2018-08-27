@@ -17,6 +17,7 @@ module.exports = {
   appAssets: resolveApp('app/assets'),
   appData: resolveApp(config.dataDir || 'data'),
   appDist: resolveApp('dist'),
+  appDistAssets: resolveApp('dist/assets'),
   appDistManifest: resolveApp('dist/rev-manifest.json'),
   appMain: resolveApp('app/scripts/main.js'),
   appNodeModules: resolveApp('node_modules'),

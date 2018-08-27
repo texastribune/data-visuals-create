@@ -4,6 +4,7 @@ const gulp = require('gulp');
 /*
 Main tasks
  */
+gulp.task('copy', require('./config/gulp/copy'));
 gulp.task('images', require('./config/gulp/images'));
 gulp.task('scripts', require('./config/gulp/scripts'));
 gulp.task('styles', require('./config/gulp/styles'));
@@ -16,7 +17,7 @@ Utility tasks
 gulp.task('clean', require('./config/gulp/clean'));
 gulp.task(
   'develop',
-  gulp.series('clean', gulp.series(['styles', 'templates'], 'serve'))
+  gulp.series('clean', gulp.series('styles', 'templates'), 'serve')
 );
 
 /*
@@ -29,9 +30,8 @@ gulp.task(
   'build',
   gulp.series(
     'clean',
-    'images',
-    'styles',
-    gulp.series('scripts', 'templates'),
+    gulp.parallel('copy', 'images', 'styles', 'scripts'),
+    'templates',
     'rev',
     'rev-replace'
   )
