@@ -44,13 +44,11 @@ const configureBabelLoader = () => {
       ],
       plugins: [
         '@babel/plugin-syntax-dynamic-import',
-        [
-          '@babel/plugin-transform-classes',
-          {
-            loose: true,
-          },
-        ],
         ['@babel/plugin-transform-react-jsx', { pragma: 'h' }],
+        [
+          '@babel/plugin-transform-runtime',
+          { regenerator: false, useESModules: true },
+        ],
         'babel-plugin-macros',
       ],
       cacheDirectory: true,
