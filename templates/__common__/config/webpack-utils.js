@@ -51,6 +51,7 @@ const configureBabelLoader = () => {
           },
         ],
         ['@babel/plugin-transform-react-jsx', { pragma: 'h' }],
+        'babel-plugin-macros',
       ],
       cacheDirectory: true,
     },
