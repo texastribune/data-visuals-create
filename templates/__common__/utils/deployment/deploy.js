@@ -10,6 +10,7 @@ const config = require('../../project.config');
 const paths = require('../../config/paths');
 
 s3.uploadFiles(paths.appDist, {
+  Bucket: config.bucket,
   dest: config.folder,
   isPublicFile: true,
   shouldCache: true,

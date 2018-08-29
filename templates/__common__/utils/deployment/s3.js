@@ -19,12 +19,7 @@ AWS.config.update({
   },
 });
 
-const config = require('../../project.config');
-const s3 = new AWS.S3({
-  params: {
-    Bucket: config.bucket,
-  },
-});
+const s3 = new AWS.S3();
 
 /**
  * Uploads a file to S3. Checks to see if an identical version of the file
@@ -43,10 +38,12 @@ async function uploadFile(filename, options) {
     options
   );
 
-  const Key = path.join(opts.dest, flattenPath(filename, opts.source));
-  const fullS3Path = path.join(config.bucket, Key);
+  const { Bucket } = opts;
 
-  const isIdentical = await isFileIdenticaltoS3File(filename, Key);
+  const Key = path.join(opts.dest, flattenPath(filename, opts.source));
+  const fullS3Path = path.join(Bucket, Key);
+
+  const isIdentical = await isFileIdenticaltoS3File(filename, Bucket, Key);
   if (isIdentical)
     return console.log(chalk.gray(`${fullS3Path}: Has not changed`));
 
@@ -57,6 +54,7 @@ async function uploadFile(filename, options) {
   const params = {
     ACL,
     Body,
+    Bucket,
     ContentType,
     Key,
   };
@@ -82,7 +80,7 @@ async function uploadFile(filename, options) {
  * @param  {String|Array.<String>} dir
  * @param  {Object} opts
  */
-async function uploadFiles(dir, opts, cb) {
+async function uploadFiles(dir, opts) {
   opts = Object.assign(
     {
       source: dir,
@@ -110,6 +108,8 @@ async function downloadFile(Key, options) {
     return localFilePath;
   }
 
+  const { Bucket } = opts;
+
   await fs.ensureDir(path.dirname(localFilePath));
 
   return new Promise(resolve => {
@@ -119,7 +119,7 @@ async function downloadFile(Key, options) {
       return resolve(localFilePath);
     });
 
-    s3.getObject({ Key })
+    s3.getObject({ Bucket, Key })
       .createReadStream()
       .pipe(output);
   });
@@ -135,11 +135,13 @@ async function downloadFiles(s3Dir, options) {
   const Prefix = s3Dir;
 
   const params = {
+    Bucket: options.Bucket,
     Prefix,
   };
 
   // TODO: Support more than 1000 files
   const data = await s3.listObjectsV2(params).promise();
+
   return Promise.all(
     data.Contents.map(o => {
       const Key = o.Key;
@@ -209,8 +211,9 @@ function md5HashFile(filename) {
  * @param  {String} Key
  * @return  {Promise}
  */
-async function getS3ObjectETag(Key) {
+async function getS3ObjectETag(Bucket, Key) {
   const params = {
+    Bucket,
     Key,
   };
 
@@ -234,7 +237,7 @@ async function getS3ObjectETag(Key) {
  * @param  {String} md5
  * @param  {Function} callback
  */
-async function isFileIdenticalToMD5(filename, md5, callback) {
+async function isFileIdenticalToMD5(filename, md5) {
   try {
     const fileETag = await md5HashFile(filename);
     return fileETag === null || md5 === null ? false : fileETag === md5;
@@ -252,9 +255,9 @@ async function isFileIdenticalToMD5(filename, md5, callback) {
  * @param  {String} Key
  * @return {Promise}
  */
-async function isFileIdenticaltoS3File(filename, Key) {
+async function isFileIdenticaltoS3File(filename, Bucket, Key) {
   try {
-    const S3ETag = await getS3ObjectETag(Key);
+    const S3ETag = await getS3ObjectETag(Bucket, Key);
     return await isFileIdenticalToMD5(filename, S3ETag);
   } catch (err) {
     throw err;
