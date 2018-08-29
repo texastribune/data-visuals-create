@@ -51,6 +51,7 @@
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
     "mri": "^1.1.1",
+    "nanoid": "^1.2.2",
     "ora": "^3.0.0",
     "update-notifier": "^2.5.0"
   },
