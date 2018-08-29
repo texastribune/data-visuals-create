@@ -7,10 +7,13 @@ const s3 = require('./s3');
 const config = require('../../project.config');
 const paths = require('../../config/paths');
 
+const Bucket = 'data-visuals-raw-assets';
+
 (async () => {
   const assetFiles = await s3.downloadFiles(
-    path.join(config.folder, 'raw_assets'),
+    path.join(config.id, 'raw_assets'),
     {
+      Bucket,
       dest: paths.appAssets,
     }
   );
@@ -22,12 +25,10 @@ const paths = require('../../config/paths');
   } complete.
   `);
 
-  const dataFiles = await s3.downloadFiles(
-    path.join(config.folder, 'raw_data'),
-    {
-      dest: paths.appData,
-    }
-  );
+  const dataFiles = await s3.downloadFiles(path.join(config.id, 'raw_data'), {
+    Bucket,
+    dest: paths.appData,
+  });
 
   const numData = dataFiles.length;
   console.log(`

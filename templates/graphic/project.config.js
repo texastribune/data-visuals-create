@@ -1,4 +1,5 @@
 module.exports = {
+  id: '<<id>>',
   projectType: 'graphic',
   bucket: 'graphics.texastribune.org',
   folder: 'graphics/<<slug>>-<<year>>-<<month>>',
