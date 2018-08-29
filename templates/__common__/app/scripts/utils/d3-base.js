@@ -16,7 +16,6 @@ export default function createBase({
   margin = Object.assign({ top: 20, right: 20, bottom: 20, left: 20 }, margin);
 
   margin.bottom += xAxisGap;
-  console.log(container);
 
   const parent = container.node();
 
