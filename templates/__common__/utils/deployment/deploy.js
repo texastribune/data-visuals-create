@@ -9,6 +9,8 @@ const s3 = require('./s3');
 const config = require('../../project.config');
 const paths = require('../../config/paths');
 
+const projectType = config.projectType;
+
 s3.uploadFiles(paths.appDist, {
   Bucket: config.bucket,
   dest: config.folder,
@@ -23,15 +25,13 @@ s3.uploadFiles(paths.appDist, {
   console.log(`
 Upload of ${chalk.yellow(numFiles)} file${numFiles === 1 ? '' : 's'} complete.
 
-Good work! The main page of this project can be found at ${chalk.blue.underline(
-    mainPath
-  )}. (This has been copied to your clipboard.)
+Good work! The primary page of this project can be found at:
+${chalk.blue.underline(mainPath)} (This has been copied to your clipboard.)`);
 
-If you are deploying a graphic in a CMS story, this is likely all you need:
-${chalk.yellow(`<div data-pym-src="${mainPath}">Loading...</div>`)}
-
-Don't forget to uncheck the Facebook Instant and AMP boxes in the CMS! This
-prevents the story from being pulled into those systems, where our graphics
-do not work.
-    `);
+  if (projectType === 'graphic') {
+    console.log(`
+If you are deploying a graphic in a CMS story, you'll need to add
+this in the HTML section of a Raw Plugin:
+${chalk.yellow(`<div data-pym-src="${mainPath}">Loading...</div>`)}`);
+  }
 });
