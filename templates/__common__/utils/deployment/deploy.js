@@ -30,8 +30,23 @@ ${chalk.blue.underline(mainPath)} (This has been copied to your clipboard.)`);
 
   if (projectType === 'graphic') {
     console.log(`
-If you are deploying a graphic in a CMS story, you'll need to add
-this in the HTML section of a Raw Plugin:
-${chalk.yellow(`<div data-pym-src="${mainPath}">Loading...</div>`)}`);
+If you are deploying a graphic in a CMS story, there are a few steps. First,
+add this in the Content section of the Raw Plugin:
+${chalk.yellow(
+      `<div class="dv201808-graphic dv201808-graphic--centered dv201808-graphic--centered-narrow" data-pym-src="${mainPath}">Loading...</div>`
+    )}`);
+
+    console.log(`
+Next, add the markup found in this gist to the CSS content section of the Raw Plugin:
+(Assign different classes to the placeholder <div> to get different alignments.)
+${chalk.yellow(
+      'https://gist.github.com/rdmurphy/8b137477dce63b8e9c507f9f7369b2f5'
+    )}`);
+
+    console.log(`
+Then, add this line to the JavaScript content section of the Raw Plugin:
+${chalk.yellow(
+      '<script defer src="https://pym.nprapps.org/pym.v1.min.js"></script>'
+    )}`);
   }
 });
