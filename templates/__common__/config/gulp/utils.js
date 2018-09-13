@@ -18,4 +18,24 @@ const validImageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
 const isImagePath = filepath =>
   validImageExtensions.includes(path.extname(filepath));
 
-module.exports = { isImagePath, validImageExtensions };
+/**
+ * Helper to swap out a file path's extension.
+ *
+ * @param {String} npath
+ * @param {String} ext
+ * @returns {String}
+ */
+const replaceExtension = (npath, ext) => {
+  if (typeof npath !== 'string') {
+    return npath;
+  }
+
+  if (npath.length === 0) {
+    return npath;
+  }
+
+  var nFileName = path.basename(npath, path.extname(npath)) + ext;
+  return path.join(path.dirname(npath), nFileName);
+};
+
+module.exports = { isImagePath, replaceExtension, validImageExtensions };
