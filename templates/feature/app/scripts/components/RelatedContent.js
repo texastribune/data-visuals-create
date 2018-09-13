@@ -26,7 +26,9 @@ class RelatedContent extends Component {
       <section class="related-stories">
         <p class="related-content__title">{title}</p>
         <nav class="stories">
-          {stories.map(story => <Story key={story.id} {...story} />)}
+          {stories.map(story => (
+            <Story key={story.id} {...story} />
+          ))}
         </nav>
       </section>
     );
