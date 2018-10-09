@@ -169,14 +169,6 @@ env.addFilter('jsonScript', (value, elementId) => {
 });
 
 /*
-Add `widont` filter.
- */
-const nbsp = '\xA0';
-const widontRegex = new RegExp(/\s+([^\s]*)\s*$/);
-
-env.addFilter('widont', value => value.replace(widontRegex, `${nbsp}$1`));
-
-/*
 Set up `journalize`.
  */
 for (let key in journalize) {
