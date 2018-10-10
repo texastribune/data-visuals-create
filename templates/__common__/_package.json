@@ -49,7 +49,7 @@
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-optipng": "^5.2.1",
     "imagemin-svgo": "^7.0.0",
-    "journalize": "^2.0.0",
+    "journalize": "^2.1.0",
     "mime-types": "^2.1.17",
     "mkdirp": "^0.5.1",
     "nunjucks": "^3.0.1",
