@@ -1,0 +1,27 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "ReportageNewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ CURRENT_PAGE_URL }}"
+    },
+    "headline": "{{ context.seo_headline }}",
+    "description": "{{ context.summary }}",
+    "inLanguage": "en_US",
+    "image": "{{ staticAbsolute('assets/images/share-art.jpg', true) }}",
+    "dateCreated": "{{ context.pub_date }}",
+    "datePublished": "{{ context.pub_date }}",
+    {% if context.update_date %}"dateModified": "{{ context.update_date }}",
+    {% endif -%}
+    "isAccessibleForFree": "True",
+    "publisher": {
+      "@type": "NewsMediaOrganization",
+      "name": "The Texas Tribune",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.texastribune.org/static/images/amp-carousel.114a9bc257b2.png"
+      }
+    }
+  }
+</script>
