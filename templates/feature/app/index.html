@@ -3,14 +3,22 @@
 {% from 'macros/ads.html' import ad %}
 
 {% set context = data.text %}
+{% set authorComma = joiner() %}
 
 {% block content %}
 <div class="container">
   <header class="article-header text-center">
-    <h1 class="article-title">The only member-supported, digital-first, nonpartisan media organization</h1>
+    <h1 class="article-title">{% context.title or 'The only member-supported, digital-first, nonpartisan media organization' %}</h1>
     <p class="article-byline">
-      <span class="article-author">By <a href="#">Super Cool Corgi</a></span>
+      <span class="article-author">By {%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
+      {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} {{ author }}
+      {%- endfor -%}
+      </span>
+      {% if context.update_date %}
+      <span class="article-pub-date">Updated: <time datetime="{{ context.update_date }}">{{ apFormatDate(context.update_date) }}</time></span>
+      {% else %}
       <span class="article-pub-date"><time datetime="{{ context.pub_date }}">{{ apFormatDate(context.pub_date) }}</time></span>
+      {% endif %}
     </p>
   </header>
 

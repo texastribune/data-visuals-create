@@ -11,7 +11,9 @@
 <meta property="og:title" content="{{ context.headline|escape }}">
 <meta property="og:type" content="article">
 <meta property="article:publisher" content="https://www.facebook.com/texastribune">
-<meta property="article:published_time" content="{{ context.pub_date }}">
+<meta property="article:published" itemprop="datePublished" content="{{ context.pub_date }}">
+{% if context.update_date %}<meta property="article:modified" itemprop="dateModified" content="{{ context.update_date }}">
+{% endif %}
 <meta property="og:description" content="{{ context.summary }}">
 <meta property="og:site_name" content="The Texas Tribune">
 <meta property="og:image" content="{{ staticAbsolute('assets/images/share-art.jpg', true) }}">
