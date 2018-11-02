@@ -28,10 +28,10 @@
   },
   "homepage": "https://github.com/texastribune/data-visuals-create#readme",
   "devDependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^7.3.0",
+    "husky": "^1.1.3",
+    "lint-staged": "^8.0.4",
     "prettier": "^1.14.3",
-    "publish-please": "^3.2.0"
+    "publish-please": "^5.1.1"
   },
   "prettier": {
     "bracketSpacing": true,
@@ -41,8 +41,13 @@
     "tabWidth": 2,
     "trailingComma": "es5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "*.{js,md}": [
+    "*.{css.js,json,md}": [
       "prettier --write",
       "git add"
     ]
@@ -51,7 +56,7 @@
     "fast-glob": "^2.2.3",
     "fs-extra": "^7.0.0",
     "mri": "^1.1.1",
-    "nanoid": "^1.3.1",
+    "nanoid": "^1.3.3",
     "ora": "^3.0.0",
     "update-notifier": "^2.5.0"
   },
