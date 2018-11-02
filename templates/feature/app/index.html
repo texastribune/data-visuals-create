@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
   <header class="article-header text-center">
-    <h1 class="article-title">{% context.title or 'The only member-supported, digital-first, nonpartisan media organization' %}</h1>
+    <h1 class="article-title">{{ context.title or 'The only member-supported, digital-first, nonpartisan media organization' }}</h1>
     <p class="article-byline">
       <span class="article-author">By {%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
       {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} {{ author }}
