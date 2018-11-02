@@ -10,10 +10,11 @@ const webpack = require('webpack');
 const paths = require('./paths');
 const { nodeEnv } = require('./env');
 
-const jsRegex = /\.(js|jsx)$/;
+const jsRegex = /\.(js|jsx|ts|tsx)$/;
+const jsxPragma = 'h';
 
 const getEntryPacks = ({ includePolyfills = true } = {}) => {
-  const entryPacks = glob.sync('*.js', {
+  const entryPacks = glob.sync('*.(js|jsx|ts|tsx)', {
     absolute: true,
     cwd: paths.appScriptPacks,
   });
@@ -41,10 +42,11 @@ const configureBabelLoader = () => {
             modules: false,
           },
         ],
+        ['@babel/preset-typescript', { jsxPragma }],
       ],
       plugins: [
         '@babel/plugin-syntax-dynamic-import',
-        ['@babel/plugin-transform-react-jsx', { pragma: 'h' }],
+        ['@babel/plugin-transform-react-jsx', { pragma: jsxPragma }],
         [
           '@babel/plugin-transform-runtime',
           { regenerator: false, useESModules: true },
@@ -68,6 +70,7 @@ const generateBaseConfig = ({ PROJECT_URL }) => {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
       },
+      extensions: ['.wasm', '.mjs', '.js', '.json', '.ts', '.tsx'],
     },
     module: {
       strictExportPresence: true,
