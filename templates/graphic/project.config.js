@@ -27,4 +27,16 @@ module.exports = {
       return originalData;
     },
   },
+
+  /**
+   * `createAPI` makes it possible to bake out a series of JSON files that get
+   * deployed with your project. This is a great way to break up data that users
+   * only need a small slice of based on choices they make. The toolkit expects
+   * this to return an array of objects. Each object should have a "key" and
+   * a "value" - the "key" determines the URL, the "value" is what is saved at
+   * that URL.
+   */
+  createAPI(data) {
+    return null;
+  },
 };

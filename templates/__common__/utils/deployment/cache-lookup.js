@@ -20,7 +20,7 @@ const lookup = [
     ],
   },
   {
-    control: 'max-age=3600', // 1 hour
+    control: 'max-age=300', // 5 minutes
     types: ['application/json'],
   },
 ];

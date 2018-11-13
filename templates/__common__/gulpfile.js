@@ -10,6 +10,7 @@ gulp.task('scripts', require('./config/gulp/scripts'));
 gulp.task('styles', require('./config/gulp/styles'));
 gulp.task('templates', require('./config/gulp/templates'));
 gulp.task('serve', require('./config/gulp/serve'));
+gulp.task('api', require('./config/gulp/api'));
 
 /*
 Utility tasks
@@ -17,7 +18,7 @@ Utility tasks
 gulp.task('clean', require('./config/gulp/clean'));
 gulp.task(
   'develop',
-  gulp.series('clean', gulp.series('styles', 'templates'), 'serve')
+  gulp.series('clean', gulp.series('api', 'styles', 'templates'), 'serve')
 );
 
 /*
@@ -30,7 +31,7 @@ gulp.task(
   'build',
   gulp.series(
     'clean',
-    gulp.parallel('copy', 'images', 'styles', 'scripts'),
+    gulp.parallel('api', 'copy', 'images', 'styles', 'scripts'),
     'templates',
     'rev',
     'rev-replace'
