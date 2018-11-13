@@ -2,6 +2,7 @@
 {% from 'macros/prose.html' import prose %}
 {% from 'macros/ads.html' import ad %}
 
+{% set jsPackName = 'main' %}
 {% set context = data.text %}
 {% set authorComma = joiner() %}
 
@@ -50,7 +51,3 @@
   };
 </script>
 {% endblock inline_data %}
-
-{% block scripts %}
-{{ javascriptPack('main') }}
-{% endblock scripts %}

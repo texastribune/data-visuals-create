@@ -10,10 +10,10 @@ const webpack = require('webpack');
 const paths = require('./paths');
 const { nodeEnv } = require('./env');
 
-const jsRegex = /\.(js|jsx|ts|tsx)$/;
+const jsRegex = /\.(mjs|js|jsx|ts|tsx)$/;
 const jsxPragma = 'h';
 
-const getEntryPacks = ({ includePolyfills = true } = {}) => {
+const getEntryPacks = ({ esModules = false } = {}) => {
   const entryPacks = glob.sync('*.(js|jsx|ts|tsx)', {
     absolute: true,
     cwd: paths.appScriptPacks,
@@ -21,7 +21,10 @@ const getEntryPacks = ({ includePolyfills = true } = {}) => {
 
   const packs = entryPacks.reduce((acc, curr) => {
     const { name } = path.parse(curr);
-    acc[name] = [includePolyfills && paths.appPolyfills, curr].filter(Boolean);
+    acc[name] = [
+      esModules ? paths.appModernPolyfills : paths.appLegacyPolyfills,
+      curr,
+    ];
 
     return acc;
   }, {});
@@ -29,39 +32,45 @@ const getEntryPacks = ({ includePolyfills = true } = {}) => {
   return packs;
 };
 
-const configureBabelLoader = () => {
+const configureBabelLoader = ({ esModules = false }) => {
+  const presetEnvOptions = {
+    modules: false,
+    exclude: ['transform-regenerator', 'transform-async-to-generator'],
+  };
+
+  if (esModules) {
+    presetEnvOptions.targets = { esmodules: true };
+  }
+
   return {
     test: jsRegex,
     include: path.join(paths.appSrc, 'scripts'),
     loader: 'babel-loader',
     options: {
       presets: [
-        [
-          '@babel/preset-env',
-          {
-            modules: false,
-          },
-        ],
+        ['@babel/preset-env', presetEnvOptions],
         ['@babel/preset-typescript', { jsxPragma }],
       ],
       plugins: [
         '@babel/plugin-syntax-dynamic-import',
+        '@babel/plugin-proposal-class-properties',
         ['@babel/plugin-transform-react-jsx', { pragma: jsxPragma }],
         [
           '@babel/plugin-transform-runtime',
           { regenerator: false, useESModules: true },
         ],
+        !esModules && ['module:fast-async', { spec: true }],
         'babel-plugin-macros',
-      ],
+      ].filter(Boolean),
       cacheDirectory: true,
     },
   };
 };
 
-const generateBaseConfig = ({ PROJECT_URL }) => {
+const generateBaseConfig = ({ PROJECT_URL, esModules = false }) => {
   return {
     entry: {
-      ...getEntryPacks(),
+      ...getEntryPacks({ esModules }),
     },
     resolve: {
       alias: {
@@ -74,7 +83,10 @@ const generateBaseConfig = ({ PROJECT_URL }) => {
     },
     module: {
       strictExportPresence: true,
-      rules: [{ parser: { requireEnsure: false } }, configureBabelLoader()],
+      rules: [
+        { parser: { requireEnsure: false } },
+        configureBabelLoader({ esModules }),
+      ],
     },
     plugins: [
       new webpack.DefinePlugin({

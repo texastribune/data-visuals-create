@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% set jsPackName = 'main' %}
 {% set context = data.text %}
 
 {% block content %}
@@ -22,9 +23,3 @@
 </script>
 {% endif %}
 {% endblock inline_data %}
-
-{% block scripts %}
-{# if you do not include this call to super(), pym will not be included from "base.html" #}
-{{ super() }}
-{{ javascriptPack('main') }}
-{% endblock scripts %}

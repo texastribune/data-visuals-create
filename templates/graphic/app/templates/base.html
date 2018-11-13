@@ -21,6 +21,10 @@
   <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
   <!-- End fonts -->
   <link rel="stylesheet" href="{{ static('styles/main.css') }}">
+  {% block head_scripts %}
+  <script defer src="https://pym.nprapps.org/pym.v1.min.js"></script>
+  {{ javascriptPack(jsPackName, { mjs: true }) }}
+  {% endblock head_scripts %}
 </head>
 <body>
 
@@ -28,8 +32,10 @@
 
 {% block inline_data %}{% endblock inline_data %}
 
+{% include 'includes/nomodule-shim.html' %}
+
 {% block scripts %}
-<script defer src="https://pym.nprapps.org/pym.v1.min.js"></script>
+{{ javascriptPack(jsPackName) }}
 {% endblock scripts %}
 
 {% if ENV == 'production' %}

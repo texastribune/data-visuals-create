@@ -20,6 +20,9 @@
   <!-- End fonts -->
   <link rel="stylesheet" href="{{ static('styles/main.css') }}">
   {% include 'includes/ldjson.html' %}
+  {% block head_scripts %}
+  {{ javascriptPack(jsPackName, { mjs: true }) }}
+  {% endblock head_scripts %}
 </head>
 <body>
 
@@ -35,7 +38,11 @@
 
 {% block inline_data %}{% endblock inline_data %}
 
-{% block scripts %}{% endblock scripts %}
+{% include 'includes/nomodule-shim.html' %}
+
+{% block scripts %}
+{{ javascriptPack(jsPackName) }}
+{% endblock scripts %}
 
 {% if ENV == 'production' %}
 <!-- Google Tag Manager -->

@@ -31,7 +31,8 @@ gulp.task(
   'build',
   gulp.series(
     'clean',
-    gulp.parallel('api', 'copy', 'images', 'styles', 'scripts'),
+    'scripts',
+    gulp.parallel('api', 'copy', 'images', 'styles'),
     'templates',
     'rev',
     'rev-replace'

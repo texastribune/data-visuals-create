@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
@@ -33,6 +34,7 @@
     "clipboardy": "^1.2.2",
     "copytext": "^2.1.0",
     "date-fns": "^1.28.5",
+    "fast-async": "^7.0.6",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
     "googleapis": "^34.0.0",

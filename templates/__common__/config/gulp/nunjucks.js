@@ -114,36 +114,47 @@ env.addGlobal('parseData', parseData);
 
 let manifest = null;
 
-env.addGlobal('javascriptPack', (key, shouldDefer = true) => {
-  if (manifest == null && isProductionEnv) {
-    manifest = fs.readJsonSync(paths.appDistManifest);
+env.addGlobal(
+  'javascriptPack',
+  (key, { mjs = false, shouldDefer = true } = {}) => {
+    let scripts;
+
+    if (!isProductionEnv) {
+      if (mjs) {
+        scripts = { mjs: [`scripts/${key}.mjs`] };
+      } else {
+        return []; // noop the non MJS pack in development
+      }
+    } else {
+      if (manifest == null) {
+        manifest = fs.readJsonSync(paths.appDistManifest);
+      }
+      const entrypoints = manifest[mjs ? 'mjs:entrypoints' : 'js:entrypoints'];
+
+      if (!key in entrypoints)
+        throw new Error(
+          `The "key" provided to javascriptPack is not a valid entrypoint`
+        );
+
+      scripts = entrypoints[key];
+    }
+
+    if (mjs) {
+      return scripts.mjs
+        .map(src => `<script type="module" src="${static_(src)}"></script>`)
+        .join('\n');
+    } else {
+      return scripts.js
+        .map(
+          src =>
+            `<script nomodule ${shouldDefer ? 'defer' : 'async'} src="${static_(
+              src
+            )}"></script>`
+        )
+        .join('\n');
+    }
   }
-
-  let scripts;
-
-  if (isProductionEnv) {
-    const entrypoints = manifest.entrypoints;
-
-    if (!key in entrypoints)
-      throw new Error(
-        `The "key" provided to javascriptPack is not a valid entrypoint`
-      );
-
-    scripts = manifest.entrypoints[key];
-  } else {
-    scripts = { js: [`scripts/${key}.js`] };
-  }
-
-  return scripts.js
-    .map(
-      src =>
-        `<script ${shouldDefer ? 'defer' : 'async'} src="${static_(
-          src
-        )}"></script>`
-    )
-    .join('\n');
-});
-
+);
 /*
 Add `json_script` filter.
  */

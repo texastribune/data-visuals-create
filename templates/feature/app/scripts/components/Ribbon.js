@@ -1,4 +1,5 @@
 import { Component, h } from 'preact';
+import { widont } from 'journalize';
 
 import getCurrentUrl from '../utils/get-current-url';
 import throttle from '../utils/throttle';
@@ -83,7 +84,7 @@ class Ribbon extends Component {
                 ga-event-action={story.url}
                 ga-event-label="trending"
               >
-                <a href={story.url}>{story.headline}</a>
+                <a href={story.url}>{widont(story.headline)}</a>
               </li>
             );
           })}
