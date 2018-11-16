@@ -11,6 +11,7 @@ const paths = require('./paths');
 const { nodeEnv } = require('./env');
 
 const jsRegex = /\.(mjs|js|jsx|ts|tsx)$/;
+const jsRegexDependencies = /\.(mjs|js)$/;
 const jsxPragma = 'h';
 
 const getEntryPacks = ({ esModules = false } = {}) => {
@@ -36,11 +37,10 @@ const configureBabelLoader = ({ esModules = false }) => {
   const presetEnvOptions = {
     modules: false,
     exclude: ['transform-regenerator', 'transform-async-to-generator'],
+    ignoreBrowserslistConfig: true,
+    targets: esModules ? { esmodules: true } : { ie: '11' },
+    useBuiltIns: false,
   };
-
-  if (esModules) {
-    presetEnvOptions.targets = { esmodules: true };
-  }
 
   return {
     test: jsRegex,
@@ -57,12 +57,49 @@ const configureBabelLoader = ({ esModules = false }) => {
         ['@babel/plugin-transform-react-jsx', { pragma: jsxPragma }],
         [
           '@babel/plugin-transform-runtime',
-          { regenerator: false, useESModules: true },
+          {
+            corejs: false,
+            helpers: true,
+            regenerator: false,
+            useESModules: true,
+          },
         ],
         !esModules && ['module:fast-async', { spec: true }],
         'babel-plugin-macros',
       ].filter(Boolean),
       cacheDirectory: true,
+    },
+  };
+};
+
+const configureBabelDependenciesLoader = ({ esModules = false }) => {
+  const presetEnvOptions = {
+    modules: false,
+    exclude: ['transform-regenerator', 'transform-async-to-generator'],
+    ignoreBrowserslistConfig: true,
+    targets: esModules ? { esmodules: true } : { ie: '11' },
+    useBuiltIns: false,
+  };
+
+  return {
+    test: jsRegexDependencies,
+    exclude: /@babel(?:\/|\\{1,2})runtime/,
+    loader: 'babel-loader',
+    options: {
+      sourceType: 'unambiguous',
+      presets: [['@babel/preset-env', presetEnvOptions]],
+      plugins: [
+        '@babel/plugin-syntax-dynamic-import',
+        [
+          '@babel/plugin-transform-runtime',
+          {
+            corejs: false,
+            helpers: true,
+            regenerator: false,
+            useESModules: true,
+          },
+        ],
+      ],
     },
   };
 };
@@ -85,7 +122,12 @@ const generateBaseConfig = ({ PROJECT_URL, esModules = false }) => {
       strictExportPresence: true,
       rules: [
         { parser: { requireEnsure: false } },
-        configureBabelLoader({ esModules }),
+        {
+          oneOf: [
+            configureBabelLoader({ esModules }),
+            configureBabelDependenciesLoader({ esModules }),
+          ],
+        },
       ],
     },
     plugins: [
