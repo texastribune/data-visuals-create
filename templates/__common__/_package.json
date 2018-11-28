@@ -37,7 +37,7 @@
     "fast-async": "^7.0.6",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
-    "googleapis": "^34.0.0",
+    "googleapis": "^35.0.0",
     "gulp": "^4.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^2.0.1",
