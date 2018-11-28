@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 
+// packages
+const { prompt } = require('enquirer');
 const mri = require('mri');
-const updateNotifier = require('update-notifier');
-const pkg = require('../package.json');
-const { highlight, warn } = require('../lib/colors');
-const { createProject } = require('../lib');
+const checkForUpdate = require('update-check');
 
-const notifier = updateNotifier({
-  pkg,
-  updateCheckInterval: 1000 * 60 * 60 * 6, // 6 hours
-});
-notifier.notify();
+// internal
+const pkg = require('../package.json');
+const { createProject } = require('../lib');
+const { alert, highlight, warn } = require('../lib/colors');
+
+// 1000 milliseconds * 60 seconds * 60 minutes * 6 hours
+const sixHours = 1000 * 60 * 60 * 6;
 
 const mriConfig = {
   alias: {
@@ -32,14 +33,59 @@ const sendHelp = () =>
 async function main(argv_) {
   const flags = mri(argv_.slice(2), mriConfig);
 
+  if (flags.help) {
+    sendHelp();
+    process.exit();
+  }
+
   if (flags.version) {
     console.log(pkg.version);
     process.exit();
   }
 
-  if (flags.help) {
-    sendHelp();
-    process.exit();
+  const { isTTY } = process.stdout;
+
+  let update = null;
+
+  try {
+    update = await checkForUpdate(pkg, {
+      interval: sixHours,
+      distTag: 'latest',
+    });
+  } catch (err) {
+    console.error(warn('Checking for updates failed.'));
+  }
+
+  if (update && isTTY) {
+    console.log(
+      `\n${alert(
+        'UPDATE AVAILABLE'
+      )} The latest version of @data-visuals/create is ${highlight(
+        update.latest
+      )}`
+    );
+    console.log(`> npm install -g @data-visuals/create@${update.latest}`);
+    console.log();
+
+    const { stopHere } = await prompt({
+      type: 'confirm',
+      name: 'stopHere',
+      message: `Would you like to update ${highlight(
+        'data-visuals-create'
+      )} before creating your project?\n  This ensures you have all the latest features and bug fixes.`,
+      initial: false,
+    });
+
+    if (stopHere) {
+      console.log(
+        `\nGood call! Run the update command above, then run ${highlight(
+          'data-visuals-create'
+        )} again.`
+      );
+      process.exit();
+    } else {
+      console.log();
+    }
   }
 
   const args = flags._;

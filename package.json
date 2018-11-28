@@ -53,13 +53,14 @@
     ]
   },
   "dependencies": {
+    "ansi-colors": "^3.2.1",
+    "enquirer": "^2.0.8",
     "fs-extra": "^7.0.1",
-    "kleur": "^3.0.0",
     "mri": "^1.1.1",
     "nanoid": "^2.0.0",
     "ora": "^3.0.0",
     "tiny-glob": "^0.2.3",
-    "update-notifier": "^2.5.0"
+    "update-check": "^1.5.2"
   },
   "files": [
     "bin/data-visuals-create",
