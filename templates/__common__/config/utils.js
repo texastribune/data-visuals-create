@@ -38,4 +38,28 @@ const replaceExtension = (npath, ext) => {
   return path.join(path.dirname(npath), nFileName);
 };
 
-module.exports = { isImagePath, replaceExtension, validImageExtensions };
+/**
+ * Helper to make sure a path either does or does not end in a slash.
+ *
+ * @param {string} inputPath
+ * @param {boolean} needsSlash
+ * @returns {string}
+ */
+const ensureSlash = (inputPath, needsSlash = true) => {
+  const hasSlash = inputPath.endsWith('/');
+
+  if (hasSlash && !needsSlash) {
+    return inputPath.substr(0, inputPath.length - 1);
+  } else if (!hasSlash && needsSlash) {
+    return `${inputPath}/`;
+  } else {
+    return inputPath;
+  }
+};
+
+module.exports = {
+  ensureSlash,
+  isImagePath,
+  replaceExtension,
+  validImageExtensions,
+};

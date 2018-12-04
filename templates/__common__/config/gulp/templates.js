@@ -1,70 +1,89 @@
 // native
 const path = require('path');
-const url = require('url');
 
 // packages
-const gulp = require('gulp');
-const gulpIf = require('gulp-if');
-const htmlmin = require('gulp-htmlmin');
-const map = require('vinyl-map');
+const fs = require('fs-extra');
+const glob = require('fast-glob');
+const { minify } = require('html-minifier');
 const quaff = require('quaff');
-const rename = require('gulp-rename');
-const size = require('gulp-size');
 
 // internal
 const { isProductionEnv } = require('../env');
 const bs = require('./browsersync');
-const config = require('../../project.config');
+const { ensureSlash } = require('./utils');
 const nunjucksEnv = require('./nunjucks');
 const paths = require('../paths');
 
-const PROJECT_URL = isProductionEnv
-  ? `https://${config.bucket}/${config.folder}/`
-  : '/';
+const processTemplate = async (filepath, data) => {
+  // grab the path relative to the source directory
+  const relativePath = path.relative(paths.appSrc, filepath);
 
-module.exports = () => {
+  // pull the relative path's extension and name
+  const { ext, name } = path.parse(relativePath);
+
+  // we always use "pretty" URLs, so we alter the pathname if it is index.html
+  const pathname =
+    name === 'index'
+      ? relativePath.replace('index.html', '')
+      : relativePath.replace(ext, '');
+
+  // get the raw string of HTML
+  const rawHtmlString = await fs.readFile(filepath, 'utf8');
+
+  // use `pathname` from above to tell nunjucks what the current page URL will be
+  nunjucksEnv.addGlobal(
+    'CURRENT_PAGE_URL',
+    ensureSlash(`${paths.appProjectUrl}${pathname}`)
+  );
+
+  // compile the HTML!
+  let compiledHtml = nunjucksEnv.renderString(rawHtmlString, { data });
+
+  // if we're in production mode, minify the HTML
+  if (isProductionEnv) {
+    compiledHtml = minify(compiledHtml, {
+      collapseWhitespace: true,
+      minifyJS: true,
+    });
+  }
+
+  // determine if we need to go to the tmp or dist directory
+  const baseDistOrTmp = isProductionEnv ? paths.appDist : paths.appTmp;
+
+  // build the output path
+  const outputPath = path.join(baseDistOrTmp, pathname, 'index.html');
+
+  // write the file!
+  await fs.outputFile(outputPath, compiledHtml);
+
+  // return the path of the output file
+  return {
+    inputPath: filepath,
+    outputPath,
+    relativePath,
+    modifiedRelativePath: pathname,
+  };
+};
+
+module.exports = async () => {
+  // load all the data in the data directory with quaff for use in templating
   const data = quaff(paths.appData);
 
-  const nunjuckify = map((buffer, filePath) => {
-    const relPath = path.relative(paths.appSrc, filePath);
-
-    const extName = path.extname(relPath);
-    const baseName = path.basename(relPath, extName);
-    const dirName =
-      baseName === 'index'
-        ? relPath.replace('index.html', '')
-        : relPath.replace(extName, '');
-
-    nunjucksEnv.addGlobal(
-      'CURRENT_PAGE_URL',
-      `${url.resolve(PROJECT_URL, dirName)}${dirName && '/'}`
-    );
-
-    return nunjucksEnv.renderString(buffer.toString(), { data });
+  // find all the HTML files in the source directory, excluding ones in templates and scripts
+  const files = await glob('**/*.html', {
+    absolute: true,
+    cwd: paths.appSrc,
+    ignore: ['templates/**', 'scripts/**'],
   });
 
-  return gulp
-    .src(['./app/**/*.html', '!./app/templates/**', '!./app/scripts/**'])
-    .pipe(nunjuckify)
-    .pipe(
-      rename(file => {
-        if (file.basename !== 'index') {
-          file.dirname = path.join(file.dirname, file.basename);
-          file.basename = 'index';
-        }
-      })
-    )
-    .pipe(gulp.dest('./.tmp'))
-    .pipe(
-      gulpIf(
-        isProductionEnv,
-        htmlmin({
-          collapseWhitespace: true,
-          minifyJS: true,
-        })
-      )
-    )
-    .pipe(gulpIf(isProductionEnv, gulp.dest('./dist')))
-    .pipe(bs.stream({ once: true }))
-    .pipe(size({ title: 'templates', showFiles: true }));
+  console.log(
+    await Promise.all(files.map(filepath => processTemplate(filepath, data)))
+  );
+
+  // if we're not in production, attempt to reload browsersync
+  if (!isProductionEnv) {
+    bs.reload();
+  }
+
+  return Promise.resolve();
 };

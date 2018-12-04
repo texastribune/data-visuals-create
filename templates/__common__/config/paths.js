@@ -13,6 +13,17 @@ function resolveApp(relativePath) {
   return path.resolve(appDirectory, relativePath);
 }
 
+function getPublicPath() {
+  return ensureSlash(`https://${config.bucket}/${config.folder}`);
+}
+
+function getServedPath() {
+  const publicUrl = getPublicPath();
+  const servedUrl = url.parse(publicUrl).pathname;
+
+  return servedUrl;
+}
+
 module.exports = {
   appAssets: resolveApp('app/assets'),
   appData: resolveApp(config.dataDir || 'data'),
@@ -28,6 +39,9 @@ module.exports = {
   appScriptPacks: resolveApp('app/scripts/packs'),
   appSrc: resolveApp('app'),
   appStyles: resolveApp('app/styles'),
+  appTemplates: resolveApp('app/templates'),
   appTmp: resolveApp('.tmp'),
   appTmpStyles: resolveApp('.tmp/styles'),
+  appProjectUrl: getPublicPath(),
+  appServedPath: getServedPath(),
 };

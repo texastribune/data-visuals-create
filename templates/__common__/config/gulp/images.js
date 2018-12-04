@@ -11,7 +11,7 @@ const optipng = require('imagemin-optipng');
 const svgo = require('imagemin-svgo');
 
 // internal
-const { validImageExtensions } = require('./utils');
+const { validImageExtensions } = require('../utils');
 const paths = require('../paths');
 
 // default set of plugins for imagemin

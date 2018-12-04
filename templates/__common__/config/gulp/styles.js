@@ -14,7 +14,7 @@ const sass = require('sass');
 const bs = require('./browsersync');
 const paths = require('../paths');
 const { isProductionEnv } = require('../env');
-const { replaceExtension } = require('./utils');
+const { replaceExtension } = require('../utils');
 
 const postcssInstance = postcss([
   postcssFlexbugsFixes,

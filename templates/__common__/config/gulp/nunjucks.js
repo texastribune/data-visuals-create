@@ -30,6 +30,16 @@ templates that do not need to be there during testing.
 env.addGlobal('ENV', nodeEnv);
 
 /*
+The project's current full URL.
+ */
+env.addGlobal('PROJECT_URL', paths.appProjectUrl);
+
+/*
+The project's current served path.
+ */
+env.addGlobal('SERVED_PATH', paths.appServedPath);
+
+/*
 Adds static function globally. Normalizes file paths for deployment.
  */
 function static_(p) {
