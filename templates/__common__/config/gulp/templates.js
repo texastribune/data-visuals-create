@@ -10,7 +10,7 @@ const quaff = require('quaff');
 // internal
 const { isProductionEnv } = require('../env');
 const bs = require('./browsersync');
-const { ensureSlash } = require('./utils');
+const { ensureSlash } = require('../utils');
 const nunjucksEnv = require('./nunjucks');
 const paths = require('../paths');
 
@@ -76,8 +76,8 @@ module.exports = async () => {
     ignore: ['templates/**', 'scripts/**'],
   });
 
-  console.log(
-    await Promise.all(files.map(filepath => processTemplate(filepath, data)))
+  const feedback = Promise.all(
+    files.map(filepath => processTemplate(filepath, data))
   );
 
   // if we're not in production, attempt to reload browsersync
@@ -85,5 +85,5 @@ module.exports = async () => {
     bs.reload();
   }
 
-  return Promise.resolve();
+  return feedback;
 };

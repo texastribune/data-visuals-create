@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 
 // internal
-const { isImagePath } = require('./utils');
+const { isImagePath } = require('../utils');
 const paths = require('../paths');
 
 module.exports = async () => {

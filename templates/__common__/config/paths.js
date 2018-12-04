@@ -1,11 +1,13 @@
 // native
 const path = require('path');
+const url = require('url');
 
 // packages
 const fs = require('fs-extra');
 
 // internal
 const config = require('../project.config');
+const { ensureSlash } = require('./utils');
 
 const appDirectory = fs.realpathSync(process.cwd());
 
