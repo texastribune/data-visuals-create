@@ -49,6 +49,8 @@ app/assets/*
 !app/assets/.gitkeep
 data/*
 !data/.gitkeep
+workspace/*
+!workspace/README.md
 
 # VS Code
 .vscode

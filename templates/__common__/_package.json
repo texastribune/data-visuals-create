@@ -10,7 +10,9 @@
     "predeploy": "npm run build && npm run assets:push",
     "preinstall": "node ./config/build/yarn-check.js",
     "serve": "npm start",
-    "start": "NODE_ENV=development gulp develop"
+    "start": "NODE_ENV=development gulp develop",
+    "workspace:pull": "node ./utils/deployment/pull-workspace.js",
+    "workspace:push": "node ./utils/deployment/push-workspace.js"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

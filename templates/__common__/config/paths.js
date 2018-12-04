@@ -46,4 +46,5 @@ module.exports = {
   appTmpStyles: resolveApp('.tmp/styles'),
   appProjectUrl: getPublicPath(),
   appServedPath: getServedPath(),
+  appWorkspace: resolveApp('workspace'),
 };
