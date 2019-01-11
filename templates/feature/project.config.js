@@ -7,7 +7,7 @@ module.exports = {
     {
       fileId: '1ehh3ISrwq5lHNQS-eEs_i30Wi7UAF9txWgYTo56NFBI',
       type: 'doc',
-      name: 'story',
+      name: 'text',
     },
     {
       fileId: '1EACmSpajC1V7nJtwIxfA9aR-HAbTSDugSjStSSKWEaE',
