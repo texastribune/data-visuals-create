@@ -4,7 +4,7 @@ const path = require('path');
 // packages
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
+const AssetsWebpackPlugin = require('assets-webpack-plugin');
 
 // internal
 const { generateBaseConfig } = require('./webpack-utils');
@@ -75,31 +75,24 @@ const legacyConfig = Object.assign(
   }
 );
 
-const assets = Object.create(null);
+const assetsWebpackPluginInstance = new AssetsWebpackPlugin({
+  filename: 'webpack-assets.json',
+  path: paths.appDistScripts,
+  entrypoints: true,
+  fileTypes: ['js', 'mjs'],
+  fullPath: false,
+  update: true,
+});
 
 // some additional production plugins on top of what "mode: production" provides
 modernConfig.plugins.push(
   new webpack.HashedModuleIdsPlugin(),
-  new WebpackAssetsManifest({
-    assets,
-    entrypoints: true,
-    entrypointsKey: 'mjs:entrypoints',
-    output: paths.appDistManifest,
-    publicPath: 'scripts/',
-    writeToDisk: true,
-  })
+  assetsWebpackPluginInstance
 );
 
 legacyConfig.plugins.push(
   new webpack.HashedModuleIdsPlugin(),
-  new WebpackAssetsManifest({
-    assets,
-    entrypoints: true,
-    entrypointsKey: 'js:entrypoints',
-    output: paths.appDistManifest,
-    publicPath: 'scripts/',
-    writeToDisk: true,
-  })
+  assetsWebpackPluginInstance
 );
 
 module.exports = [modernConfig, legacyConfig];

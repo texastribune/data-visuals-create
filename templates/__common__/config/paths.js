@@ -32,6 +32,7 @@ module.exports = {
   appDist: resolveApp('dist'),
   appDistAssets: resolveApp('dist/assets'),
   appDistManifest: resolveApp('dist/rev-manifest.json'),
+  appDistScripts: resolveApp('dist/scripts'),
   appDistStyles: resolveApp('dist/styles'),
   appMain: resolveApp('app/scripts/main.js'),
   appNodeModules: resolveApp('node_modules'),

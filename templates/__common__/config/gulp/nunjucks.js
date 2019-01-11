@@ -131,30 +131,31 @@ env.addGlobal(
 
     if (!isProductionEnv) {
       if (mjs) {
-        scripts = { mjs: [`scripts/${key}.mjs`] };
+        scripts = [`scripts/${key}.mjs`];
       } else {
         return []; // noop the non MJS pack in development
       }
     } else {
       if (manifest == null) {
-        manifest = fs.readJsonSync(paths.appDistManifest);
+        manifest = fs.readJsonSync(
+          path.join(paths.appDistScripts, 'webpack-assets.json')
+        );
       }
-      const entrypoints = manifest[mjs ? 'mjs:entrypoints' : 'js:entrypoints'];
 
-      if (!key in entrypoints)
+      if (!key in manifest)
         throw new Error(
           `The "key" provided to javascriptPack is not a valid entrypoint`
         );
 
-      scripts = entrypoints[key];
+      scripts = manifest[key][mjs ? 'mjs' : 'js'];
     }
 
     if (mjs) {
-      return scripts.mjs
+      return scripts
         .map(src => `<script type="module" src="${static_(src)}"></script>`)
         .join('\n');
     } else {
-      return scripts.js
+      return scripts
         .map(
           src =>
             `<script nomodule ${shouldDefer ? 'defer' : 'async'} src="${static_(
