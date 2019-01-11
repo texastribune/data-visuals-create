@@ -60,7 +60,7 @@
     "nanoid": "^2.0.0",
     "ora": "^3.0.0",
     "tiny-glob": "^0.2.6",
-    "update-check": "^1.5.2"
+    "update-check": "^1.5.3"
   },
   "files": [
     "bin/data-visuals-create",
