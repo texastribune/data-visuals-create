@@ -131,7 +131,7 @@ env.addGlobal(
 
     if (!isProductionEnv) {
       if (mjs) {
-        scripts = [`scripts/${key}.mjs`];
+        scripts = [`/scripts/${key}.mjs`];
       } else {
         return []; // noop the non MJS pack in development
       }
@@ -152,15 +152,15 @@ env.addGlobal(
 
     if (mjs) {
       return scripts
-        .map(src => `<script type="module" src="${static_(src)}"></script>`)
+        .map(src => `<script type="module" src="${src}"></script>`)
         .join('\n');
     } else {
       return scripts
         .map(
           src =>
-            `<script nomodule ${shouldDefer ? 'defer' : 'async'} src="${static_(
-              src
-            )}"></script>`
+            `<script nomodule ${
+              shouldDefer ? 'defer' : 'async'
+            } src="${src}"></script>`
         )
         .join('\n');
     }

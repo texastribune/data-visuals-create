@@ -80,7 +80,6 @@ const assetsWebpackPluginInstance = new AssetsWebpackPlugin({
   path: paths.appDistScripts,
   entrypoints: true,
   fileTypes: ['js', 'mjs'],
-  fullPath: false,
   update: true,
 });
 
