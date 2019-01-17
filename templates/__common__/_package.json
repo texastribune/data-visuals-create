@@ -7,6 +7,7 @@
     "build": "NODE_ENV=production gulp build",
     "deploy": "node ./utils/deployment/deploy.js",
     "data:fetch": "node ./utils/fetch/get-data.js",
+    "git-pre-commit": "precise-commits",
     "predeploy": "npm run build && npm run assets:push",
     "preinstall": "node ./config/build/yarn-check.js",
     "serve": "npm start",
@@ -88,10 +89,5 @@
     "tabWidth": 2,
     "trailingComma": "es5"
   },
-  "browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"],
-  "husky": {
-    "hooks": {
-      "pre-commit": "precise-commits"
-    }
-  }
+  "browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"]
 }
