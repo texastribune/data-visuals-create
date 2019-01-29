@@ -14,7 +14,7 @@ module.exports = async () => {
   // skip this all if there's no createAPI function declared in project config
   if (!createAPI) return;
 
-  const data = quaff(paths.appData);
+  const data = await quaff(paths.appData);
   const output = createAPI(data);
 
   // if we get nothing meaningful back, stop here

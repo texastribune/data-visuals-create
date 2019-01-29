@@ -21,7 +21,7 @@ function fetch(files, cb) {
   if (!Array.isArray(files)) files = [files];
 
   authorize(auth => {
-    const drive = google.drive({ auth, version: 'v3', encoding: null });
+    const drive = google.drive({ auth, version: 'v3' });
 
     files.forEach(file => {
       // skip everything if it's a google sheet, we use a different API in `get-data`
@@ -41,7 +41,7 @@ function tryExportUntilSuccess(opts, cb) {
   opts.drive.files.export(
     opts.req,
     { responseType: 'arraybuffer' },
-    (err, { data: res }) => {
+    (err, res) => {
       if (err) {
         if (
           err.code === 403 &&
@@ -64,7 +64,9 @@ function tryExportUntilSuccess(opts, cb) {
         }
       }
 
-      cb(null, res, opts.file);
+      const data = Buffer.from(res.data);
+
+      cb(null, data, opts.file);
     }
   );
 }

@@ -67,7 +67,7 @@ const processTemplate = async (filepath, data) => {
 
 module.exports = async () => {
   // load all the data in the data directory with quaff for use in templating
-  const data = quaff(paths.appData);
+  const data = await quaff(paths.appData);
 
   // find all the HTML files in the source directory, excluding ones in templates and scripts
   const files = await glob('**/*.html', {
