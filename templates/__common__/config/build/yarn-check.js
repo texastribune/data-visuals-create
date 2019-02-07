@@ -8,14 +8,15 @@ function check() {
   if (process.env.npm_execpath.includes('yarn')) {
     console.log(
       yellow(`
-Hey! It looks like you're using yarn to install your dependencies. As of
-January 2018 we've moved back to using npm to install packages. Nothing is gonna
-prevent you from doing this (yet), but please use \`npm install\` in the future.
+Hey! It looks like you're trying to use \`yarn\` to install your dependencies.
+To keep everyone on the same page, the Data Visuals team has moved to exclusively
+using \`npm\` to install dependencies. Please use the following instead:
 
-If you'd like to do this now, \`rm -r node_modules\` and run \`npm install\`
-instead to ensure you're getting all the benefits of using npm. Thank you!
+> npm install
     `)
     );
+
+    return 1;
   }
 
   return 0;
