@@ -108,4 +108,4 @@ async function main(argv_) {
   await createProject(projectType, slug);
 }
 
-main(process.argv);
+main(process.argv).catch(console.error);
