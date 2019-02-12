@@ -7,7 +7,7 @@ const s3 = require('./s3');
 const config = require('../../project.config');
 const paths = require('../../config/paths');
 
-const Bucket = 'data-visuals-raw-assets';
+const Bucket = config.assetsBucket;
 
 (async () => {
   const assetFiles = await s3.downloadFiles(

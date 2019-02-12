@@ -3,6 +3,7 @@ module.exports = {
   projectType: 'graphic',
   bucket: 'graphics.texastribune.org',
   folder: 'graphics/<<slug>>-<<year>>-<<month>>',
+  assetsBucket: 'data-visuals-raw-assets',
   files: [
     {
       fileId: '1ehh3ISrwq5lHNQS-eEs_i30Wi7UAF9txWgYTo56NFBI',
