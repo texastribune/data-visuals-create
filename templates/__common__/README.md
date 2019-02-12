@@ -28,6 +28,14 @@ This pushes all the raw files found in the `app/assets` directory to S3 to a `ra
 
 Pulls any raw assets that have been pushed to S3 back down to the project's `app/assets` directory. Good for ensuring you have the same files as anyone else who is working on the project.
 
+#### `npm run workspace:push`
+
+The `workspace` directory is for storing all of your analysis, production and raw data files. It's important to use this directory for these files (instead of `assets` or `data`) so we can keep them out of GitHub. This command will push the contents of the `workspace` directory to S3.
+
+#### `npm run workspace:pull`
+
+Pulls any `workspace` files that have been pushed to S3 back down to the project's local `workspace` directory. This is helpful for ensuring you're in sync with another developer.
+
 ## License
 
 MIT
