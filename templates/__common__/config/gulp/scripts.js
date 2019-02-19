@@ -1,5 +1,6 @@
 // packages
-const gulpUtil = require('gulp-util');
+const fancyLog = require('fancy-log');
+const PluginError = require('plugin-error');
 const webpack = require('webpack');
 
 // internal
@@ -12,8 +13,8 @@ const bundle = webpack(webpackConfig);
 
 module.exports = done => {
   bundle.run((err, stats) => {
-    if (err) throw new gulpUtil.PluginError('webpack', err);
-    gulpUtil.log('[webpack]', stats.toString({ colors: true }));
+    if (err) throw new PluginError('webpack', err);
+    fancyLog('[webpack]', stats.toString({ colors: true }));
 
     done();
   });
