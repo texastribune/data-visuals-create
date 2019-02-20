@@ -10,12 +10,13 @@ const parse = require('date-fns/parse');
 
 // internal
 const config = require('../../project.config');
-const customFilters = require('../../custom-filters');
 const parseData = require('../../utils/parse-data');
 const paths = require('../paths');
 const { isProductionEnv, nodeEnv } = require('../env');
 
 const PROJECT_URL = `https://${config.bucket}/${config.folder}/`;
+
+const customFilters = config.customFilters;
 
 const env = nunjucks.configure('./app/templates', {
   autoescape: false,

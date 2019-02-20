@@ -20,14 +20,17 @@ module.exports = {
    * The dataMutators option makes it possible to modify what's returned by
    * the data fetchers. This is a good place to restructure the raw data, or
    * to do joins with other data you may have.
-   */
-  dataMutators: {
-    // the function name should match one of the `name` values in `files`
-    votes(originalData) {
-      // what you return in this function is what ends up in the JSON file
-      return originalData;
-    },
+   *
+   * Example:
+   * dataMutators: {
+   *   // the function name should match one of the `name` values in `files`
+   *   votes(originalData) {
+   *   // what you return in this function is what ends up in the JSON file
+   *   return originalData;
+   * },
   },
+   */
+  dataMutators: {},
 
   /**
    * `createAPI` makes it possible to bake out a series of JSON files that get
@@ -40,4 +43,21 @@ module.exports = {
   createAPI(data) {
     return null;
   },
+
+  /**
+   * Where custom filters for Nunjucks can be added. Each key should be the
+   * name of the filter, and each value should be a function it will call.
+   *
+   * (journalize comes built in and does not need to be added manually.)
+   *
+   * Example:
+   * customFilters: {
+   *   square: (val) => val * val;
+   * };
+   *
+   * Then in your templates:
+   * {{ num|square }}
+   *
+   */
+  customFilters: {},
 };

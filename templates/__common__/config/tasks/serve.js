@@ -2,14 +2,16 @@
 const path = require('path');
 
 // packages
-const gulp = require('gulp');
 const stripAnsi = require('strip-ansi');
+const watch = require('glob-watcher');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // internal
 const bs = require('./browsersync');
 const paths = require('../paths');
+const styles = require('./styles');
+const templates = require('./templates');
 const webpackConfig = require('../webpack.config.dev');
 
 const bundler = webpack(webpackConfig);
@@ -49,9 +51,9 @@ module.exports = () => {
     },
   });
 
-  gulp.watch(
-    ['./app/**/*.html', path.join(paths.appData, '*.json')],
-    gulp.task('templates')
+  watch(
+    [path.join(paths.appSrc, '**/*.html'), path.join(paths.appData, '*.json')],
+    templates
   );
-  gulp.watch(['./app/styles/**/*.scss'], gulp.task('styles'));
+  watch([path.join(paths.appStyles, '/**/*.scss')], styles);
 };

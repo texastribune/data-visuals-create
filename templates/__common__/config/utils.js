@@ -2,7 +2,7 @@
 const path = require('path');
 
 /**
- * List of image file extensions for use in gulp tasks.
+ * List of image file extensions for use in tasks.
  *
  * @type {String[]}
  */
@@ -57,9 +57,31 @@ const ensureSlash = (inputPath, needsSlash = true) => {
   }
 };
 
+/**
+ * Helper to run a collection of Promise-returning functions in parallel.
+ *
+ * @param {Array<Function>} fns
+ * @returns {Function}
+ */
+const parallel = fns => () => Promise.all(fns.map(fn => fn()));
+
+/**
+ * Helper to run a series of Promise-returning functions in a series.
+ *
+ * @param {Array<Function>} fns
+ * @returns {void}
+ */
+const series = async fns => {
+  for (const fn of fns) {
+    await fn();
+  }
+};
+
 module.exports = {
   ensureSlash,
   isImagePath,
+  parallel,
   replaceExtension,
+  series,
   validImageExtensions,
 };

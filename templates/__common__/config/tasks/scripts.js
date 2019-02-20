@@ -1,6 +1,4 @@
 // packages
-const fancyLog = require('fancy-log');
-const PluginError = require('plugin-error');
 const webpack = require('webpack');
 
 // internal
@@ -11,11 +9,13 @@ const webpackConfig = isProductionEnv
   : require('../webpack.config.dev');
 const bundle = webpack(webpackConfig);
 
-module.exports = done => {
-  bundle.run((err, stats) => {
-    if (err) throw new PluginError('webpack', err);
-    fancyLog('[webpack]', stats.toString({ colors: true }));
+module.exports = () => {
+  return new Promise((resolve, reject) => {
+    bundle.run((err, stats) => {
+      if (err) reject(new Error(err));
+      console.log(stats.toString({ colors: true }));
 
-    done();
+      resolve();
+    });
   });
 };
