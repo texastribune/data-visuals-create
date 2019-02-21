@@ -23,7 +23,7 @@ module.exports = async () => {
 
   for (const original of matches) {
     const revPath = await revFile(original);
-    await fs.copy(original, revPath, { dereference: true });
+    await fs.move(original, revPath);
 
     manifest[relativeToDist(original)] = relativeToDist(revPath);
   }

@@ -1,6 +1,6 @@
 'use strict';
 
-const chalk = require('chalk');
+const colors = require('ansi-colors');
 const path = require('path');
 const s3 = require('./s3');
 
@@ -18,7 +18,7 @@ const Bucket = config.assetsBucket;
   const numFiles = workspaceFiles.length;
 
   console.log(`
-  Upload of ${chalk.yellow(numFiles)} workspace file${
+  Upload of ${colors.yellow(numFiles)} workspace file${
     numFiles === 1 ? '' : 's'
   } complete.
     `);

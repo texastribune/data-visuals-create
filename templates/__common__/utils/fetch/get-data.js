@@ -1,6 +1,6 @@
 'use strict';
 
-const chalk = require('chalk');
+const colors = require('ansi-colors');
 const fs = require('fs-extra');
 const path = require('path');
 
@@ -49,5 +49,5 @@ fetch(config.files, (err, data, file) => {
 });
 
 function logDownload(fileName, fileId, color) {
-  console.log(chalk[color](`Downloaded \`${fileName}\` (${fileId})`));
+  console.log(colors[color](`Downloaded \`${fileName}\` (${fileId})`));
 }

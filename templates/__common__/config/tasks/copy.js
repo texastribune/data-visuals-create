@@ -1,5 +1,5 @@
 // packages
-const chalk = require('chalk');
+const colors = require('ansi-colors');
 const fs = require('fs-extra');
 
 // internal
@@ -13,6 +13,6 @@ module.exports = async () => {
       filter: src => !isImagePath(src),
     });
   } else {
-    console.warn(chalk.grey`No "assets" directory found, skipping copy task.`);
+    console.warn(colors.grey`No "assets" directory found, skipping copy task.`);
   }
 };

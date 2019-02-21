@@ -5,7 +5,7 @@ const path = require('path');
 const os = require('os');
 const readline = require('readline');
 
-const chalk = require('chalk');
+const colors = require('ansi-colors');
 const { google } = require('googleapis');
 
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
@@ -28,7 +28,7 @@ try {
 } catch (e) {
   if (e.code === 'ENOENT') {
     console.log(
-      chalk.red(
+      colors.red(
         "Could not find the client secrets file at `%s`. Are you sure it's there?"
       ),
       CLIENT_SECRETS_FILE
@@ -42,7 +42,7 @@ try {
   secrets = JSON.parse(secretsFile).installed;
 } catch (e) {
   console.log(
-    chalk.red(
+    colors.red(
       'Your client secrets file was found, but the JSON could not be parsed. Try validating the JSON in `%s`.'
     ),
     CLIENT_SECRETS_FILE
@@ -81,11 +81,11 @@ function getGoogleToken(client, callback) {
   });
 
   console.log(
-    chalk.bold(
+    colors.bold(
       "You do not have an authorization token from Google! Let's get one or else this won't work."
     )
   );
-  console.log(chalk.bold('Visit this URL:\n' + chalk.yellow(url)));
+  console.log(colors.bold('Visit this URL:\n' + colors.yellow(url)));
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -93,7 +93,7 @@ function getGoogleToken(client, callback) {
   });
 
   rl.question(
-    chalk.bold('Enter your success code from that page here:\n'),
+    colors.bold('Enter your success code from that page here:\n'),
     function(code) {
       rl.close();
 
@@ -126,7 +126,7 @@ function saveToken(token) {
     if (err) {
       return console.error('Error attempting to save access token file', err);
     }
-    console.log(chalk.bold('Token saved at: ' + GOOGLE_TOKEN_FILE));
+    console.log(colors.bold('Token saved at: ' + GOOGLE_TOKEN_FILE));
   });
 }
 

@@ -2,7 +2,7 @@
 
 const AWS = require('aws-sdk');
 const cacheLookup = require('./cache-lookup');
-const chalk = require('chalk');
+const colors = require('ansi-colors');
 const crypto = require('crypto');
 const fs = require('fs-extra');
 const glob = require('fast-glob');
@@ -45,7 +45,7 @@ async function uploadFile(filename, options) {
 
   const isIdentical = await isFileIdenticaltoS3File(filename, Bucket, Key);
   if (isIdentical)
-    return console.log(chalk.gray(`${fullS3Path}: Has not changed`));
+    return console.log(colors.gray(`${fullS3Path}: Has not changed`));
 
   const Body = fs.createReadStream(filename);
   const ContentType = mime.lookup(filename) || 'application/octet-stream';
@@ -66,7 +66,7 @@ async function uploadFile(filename, options) {
 
   try {
     const data = await s3.putObject(params).promise();
-    console.log(chalk.green(`Uploaded: ${fullS3Path}`));
+    console.log(colors.green(`Uploaded: ${fullS3Path}`));
     return data;
   } catch (err) {
     throw err;
@@ -104,7 +104,7 @@ async function downloadFile(Key, options) {
 
   const isIdentical = await isFileIdenticalToMD5(localFilePath, opts.ETag);
   if (isIdentical) {
-    console.log(chalk.gray(`${localFilePath}: File already present`));
+    console.log(colors.gray(`${localFilePath}: File already present`));
     return localFilePath;
   }
 
@@ -115,7 +115,7 @@ async function downloadFile(Key, options) {
   return new Promise(resolve => {
     const output = fs.createWriteStream(localFilePath);
     output.on('finish', () => {
-      console.log(chalk.green(`Downloaded: ${localFilePath}`));
+      console.log(colors.green(`Downloaded: ${localFilePath}`));
       return resolve(localFilePath);
     });
 

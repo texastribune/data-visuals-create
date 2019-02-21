@@ -1,6 +1,6 @@
 'use strict';
 
-const chalk = require('chalk');
+const colors = require('ansi-colors');
 const path = require('path');
 const s3 = require('./s3');
 
@@ -21,7 +21,7 @@ const Bucket = config.assetsBucket;
   const numFiles = workspaceFiles.length;
 
   console.log(`
-  Download of ${chalk.yellow(numFiles)} asset file${
+  Download of ${colors.yellow(numFiles)} asset file${
     numFiles === 1 ? '' : 's'
   } complete.
   `);
