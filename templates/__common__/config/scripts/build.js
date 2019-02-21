@@ -1,6 +1,9 @@
 // internal
 const { parallel, series } = require('../utils');
 
+// packages
+const colors = require('ansi-colors');
+
 // tasks
 const api = require('../tasks/api');
 const clean = require('../tasks/clean');
