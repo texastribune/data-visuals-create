@@ -3,7 +3,10 @@ const path = require('path');
 
 // packages
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const colors = require('ansi-colors');
 const glob = require('fast-glob');
+const stripAnsi = require('strip-ansi');
+const table = require('text-table');
 const webpack = require('webpack');
 
 // internal
@@ -104,6 +107,70 @@ const configureBabelDependenciesLoader = ({ esModules = false }) => {
   };
 };
 
+const isEslintError = message => {
+  if (message.fatal || message.severity === 2) {
+    return true;
+  }
+  return false;
+};
+
+const eslintFormatter = results => {
+  let output = '\n';
+  let hasErrors = false;
+
+  results.forEach(result => {
+    let messages = result.messages;
+    if (messages.length === 0) {
+      return;
+    }
+
+    messages = messages.map(message => {
+      let messageType;
+      if (isEslintError(message)) {
+        messageType = 'error';
+        hasErrors = true;
+      } else {
+        messageType = 'warn';
+      }
+
+      let line = message.line || 0;
+      if (message.column) {
+        line += ':' + message.column;
+      }
+      let position = colors.bold('Line ' + line + ':');
+      return [
+        '',
+        position,
+        messageType,
+        message.message.replace(/\.$/, ''),
+        colors.underline(message.ruleId || ''),
+      ];
+    });
+
+    // if there are error messages, we want to show only errors
+    if (hasErrors) {
+      messages = messages.filter(m => m[2] === 'error');
+    }
+
+    // add color to rule keywords
+    messages.forEach(m => {
+      m[4] = m[2] === 'error' ? colors.yellow(m[4]) : colors.yellow(m[4]);
+      m.splice(2, 1);
+    });
+
+    let outputTable = table(messages, {
+      align: ['l', 'l', 'l'],
+      stringLength(str) {
+        return stripAnsi(str).length;
+      },
+    });
+
+    output += `${outputTable}\n\n`;
+  });
+
+  return output;
+};
+
 const generateBaseConfig = ({ PROJECT_URL, esModules = false }) => {
   return {
     entry: {
@@ -122,6 +189,16 @@ const generateBaseConfig = ({ PROJECT_URL, esModules = false }) => {
       strictExportPresence: true,
       rules: [
         { parser: { requireEnsure: false } },
+        {
+          test: /\.(mjs|js|jsx)$/,
+          enforce: 'pre',
+          loader: 'eslint-loader',
+          include: paths.appScripts,
+          options: {
+            formatter: eslintFormatter,
+            emitWarning: true,
+          },
+        },
         {
           oneOf: [
             configureBabelLoader({ esModules }),

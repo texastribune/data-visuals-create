@@ -52,7 +52,7 @@ class Ribbon extends Component {
     window.removeEventListener('scroll', this.throttledOnScroll, false);
   }
 
-  render({}, { loadSucceeded, scrollingDown, stories }) {
+  render(_, { loadSucceeded, scrollingDown, stories }) {
     let navClass = scrollingDown ? 'ribbon ribbon--inactive' : 'ribbon';
 
     if (!loadSucceeded) {

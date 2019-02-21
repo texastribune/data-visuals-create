@@ -80,18 +80,18 @@ module.exports = () => {
 
         // there are errors
         if (messages.errors.length) {
-          console.log(colors.red('Failed to compile.'));
-          console.log();
+          console.log(colors.red('Failed to compile.\n'));
+          console.log(messages.errors.join('\n\n'));
 
-          messages.errors.forEach(e => console.error(e));
+          return;
         }
 
         // there are warnings
         if (messages.warnings.length) {
-          console.log(colors.yellow('Compiled with warnings.'));
-          console.log();
+          console.log(colors.yellow('Compiled with warnings.\n'));
+          console.log(messages.warnings.join('\n\n'));
 
-          messages.warnings.forEach(w => console.warn(w));
+          printInstructions({ local, external });
 
           bs.reload();
         }

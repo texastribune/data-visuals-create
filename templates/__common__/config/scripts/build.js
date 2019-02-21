@@ -26,4 +26,19 @@ async function build() {
   await runner();
 }
 
-build().catch(console.error);
+function logErrorMessage(err) {
+  const message = err != null && err.message;
+
+  console.log((message || err) + '\n\n');
+}
+
+build()
+  .then(() => {
+    console.log(colors.bold.green('The build was a success!'));
+  })
+  .catch(err => {
+    console.log(
+      colors.bold.red("Build failed. Here's what possibly went wrong:\n")
+    );
+    logErrorMessage(err);
+  });
