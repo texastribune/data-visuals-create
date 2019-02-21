@@ -60,11 +60,11 @@
     "quaff": "^4.0.0",
     "rev-file": "^3.0.0",
     "sass": "^1.13.4",
-    "strip-ansi": "^5.0.0",
     "terser-webpack-plugin": "^1.0.2",
     "typescript": "^3.1.6",
     "webpack": "^4.17.1",
-    "webpack-dev-middleware": "^3.2.0"
+    "webpack-dev-middleware": "^3.2.0",
+    "webpack-format-messages": "^2.0.5"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
