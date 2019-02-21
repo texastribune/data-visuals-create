@@ -60,7 +60,8 @@ const processSass = async filepath => {
   // output compiled file
   await fs.outputFile(newPath, css);
 
-  if (!isProductionEnv) {
+  // if browsersync is active, reload it
+  if (bs.active) {
     bs.reload(relativePath);
   }
 };

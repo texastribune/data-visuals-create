@@ -13,7 +13,7 @@ const styles = require('../tasks/styles');
 const templates = require('../tasks/templates');
 
 async function build() {
-  await series([
+  const runner = series([
     clean,
     scripts,
     parallel([api, images, styles]),
@@ -22,6 +22,8 @@ async function build() {
     rev,
     revReplace,
   ]);
+
+  await runner();
 }
 
 build().catch(console.error);

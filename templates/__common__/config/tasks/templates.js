@@ -80,8 +80,8 @@ module.exports = async () => {
     files.map(filepath => processTemplate(filepath, data))
   );
 
-  // if we're not in production, attempt to reload browsersync
-  if (!isProductionEnv) {
+  // if browsersync is running, reload it
+  if (bs.active) {
     bs.reload();
   }
 
