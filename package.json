@@ -3,11 +3,7 @@
   "version": "0.36.0",
   "description": "Create graphics and features the Data Visuals way.",
   "scripts": {
-    "git-pre-commit": "precise-commits",
-    "precommit": "lint-staged",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "publish-please": "publish-please",
-    "prepublishOnly": "publish-please guard"
+    "git-pre-commit": "precise-commits"
   },
   "bin": {
     "data-visuals-create": "bin/data-visuals-create"
@@ -41,8 +37,7 @@
   "devDependencies": {
     "@zeit/git-hooks": "^0.1.4",
     "precise-commits": "^1.0.2",
-    "prettier": "^1.16.4",
-    "publish-please": "^5.4.3"
+    "prettier": "^1.16.4"
   },
   "prettier": {
     "bracketSpacing": true,
