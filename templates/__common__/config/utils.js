@@ -90,7 +90,7 @@ const clearConsole = () =>
 
 const printInstructions = ({ external, local } = {}) => {
   console.log();
-  console.log('You can now view your project in the browser!');
+  console.log('You can view your project in the browser!');
   console.log();
 
   if (local) {
@@ -104,10 +104,17 @@ const printInstructions = ({ external, local } = {}) => {
   console.log();
 };
 
+const logErrorMessage = err => {
+  const message = err != null && err.message;
+
+  console.log(`${message || err}\n\n`);
+};
+
 module.exports = {
   clearConsole,
   ensureSlash,
   isImagePath,
+  logErrorMessage,
   parallel,
   printInstructions,
   replaceExtension,

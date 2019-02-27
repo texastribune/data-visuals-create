@@ -4,6 +4,9 @@ const { parallel, series } = require('../utils');
 // packages
 const colors = require('ansi-colors');
 
+// intenral
+const { logErrorMessage } = require('../utils');
+
 // tasks
 const api = require('../tasks/api');
 const clean = require('../tasks/clean');
@@ -27,12 +30,6 @@ async function build() {
   ]);
 
   await runner();
-}
-
-function logErrorMessage(err) {
-  const message = err != null && err.message;
-
-  console.log((message || err) + '\n\n');
 }
 
 build()

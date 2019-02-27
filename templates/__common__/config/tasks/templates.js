@@ -38,7 +38,7 @@ const processTemplate = async (filepath, data) => {
   try {
     compiledHtml = nunjucksEnv.render(filepath, { data });
   } catch (err) {
-    throw err.message;
+    throw err;
   }
 
   // if we're in production mode, minify the HTML
