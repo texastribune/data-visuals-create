@@ -9,7 +9,6 @@ const quaff = require('quaff');
 
 // internal
 const { isProductionEnv } = require('../env');
-const bs = require('./browsersync');
 const { ensureSlash } = require('../utils');
 const nunjucksEnv = require('./nunjucks');
 const paths = require('../paths');
