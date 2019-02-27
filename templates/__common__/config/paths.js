@@ -48,4 +48,5 @@ module.exports = {
   appProjectUrl: getPublicPath(),
   appServedPath: getServedPath(),
   appWorkspace: resolveApp('workspace'),
+  appDirectory,
 };

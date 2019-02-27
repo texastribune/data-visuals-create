@@ -18,7 +18,7 @@ const PROJECT_URL = `https://${config.bucket}/${config.folder}/`;
 
 const customFilters = config.customFilters;
 
-const env = nunjucks.configure('./app/templates', {
+const env = nunjucks.configure([paths.appTemplates, paths.appSrc], {
   autoescape: false,
   noCache: true,
   trimBlocks: true,

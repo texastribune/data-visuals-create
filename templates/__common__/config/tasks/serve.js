@@ -2,6 +2,7 @@
 const path = require('path');
 
 // packages
+const browserSync = require('browser-sync');
 const colors = require('ansi-colors');
 const formatMessages = require('webpack-format-messages');
 const watch = require('glob-watcher');
@@ -9,16 +10,19 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // internal
-const bs = require('./browsersync');
 const paths = require('../paths');
 const styles = require('./styles');
 const templates = require('./templates');
 const { clearConsole, printInstructions } = require('../utils');
 const webpackConfig = require('../webpack.config.dev');
 
-const bundler = webpack(webpackConfig);
-
 module.exports = () => {
+  // create the browser-sync client
+  const bs = browserSync.create();
+
+  // prep the webpack bundle
+  const bundler = webpack(webpackConfig);
+
   bs.init(
     {
       logConnections: true,

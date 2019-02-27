@@ -11,7 +11,6 @@ const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const sass = require('sass');
 
 // internal
-const bs = require('./browsersync');
 const paths = require('../paths');
 const { isProductionEnv } = require('../env');
 const { replaceExtension } = require('../utils');
@@ -23,11 +22,21 @@ const postcssInstance = postcss([
 
 const processSass = async filepath => {
   // compile the sass file
-  const compiled = sass.renderSync({
-    file: filepath,
-    includePaths: ['node_modules'],
-    precision: 10,
-  });
+  let compiled;
+
+  try {
+    compiled = sass.renderSync({
+      file: filepath,
+      includePaths: ['node_modules'],
+    });
+  } catch (err) {
+    throw {
+      source: 'sass',
+      type: 'error',
+      file: path.relative(paths.appDirectory, err.file),
+      message: err.formatted,
+    };
+  }
 
   // prep out the CSS
   let css = compiled.css;
@@ -60,10 +69,7 @@ const processSass = async filepath => {
   // output compiled file
   await fs.outputFile(newPath, css);
 
-  // if browsersync is active, reload it
-  if (bs.active) {
-    bs.reload(relativePath);
-  }
+  return { inputPath: filepath, relativePath };
 };
 
 module.exports = async () => {
@@ -73,5 +79,5 @@ module.exports = async () => {
     ignore: ['_*'],
   });
 
-  await Promise.all(files.map(processSass));
+  return await Promise.all(files.map(processSass));
 };

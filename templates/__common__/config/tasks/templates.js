@@ -27,9 +27,6 @@ const processTemplate = async (filepath, data) => {
       ? relativePath.replace('index.html', '')
       : relativePath.replace(ext, '');
 
-  // get the raw string of HTML
-  const rawHtmlString = await fs.readFile(filepath, 'utf8');
-
   // use `pathname` from above to tell nunjucks what the current page URL will be
   nunjucksEnv.addGlobal(
     'CURRENT_PAGE_URL',
@@ -37,7 +34,13 @@ const processTemplate = async (filepath, data) => {
   );
 
   // compile the HTML!
-  let compiledHtml = nunjucksEnv.renderString(rawHtmlString, { data });
+  let compiledHtml;
+
+  try {
+    compiledHtml = nunjucksEnv.render(filepath, { data });
+  } catch (err) {
+    throw err.message;
+  }
 
   // if we're in production mode, minify the HTML
   if (isProductionEnv) {
@@ -79,11 +82,6 @@ module.exports = async () => {
   const feedback = Promise.all(
     files.map(filepath => processTemplate(filepath, data))
   );
-
-  // if browsersync is running, reload it
-  if (bs.active) {
-    bs.reload();
-  }
 
   return feedback;
 };
