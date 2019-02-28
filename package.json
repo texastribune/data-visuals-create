@@ -1,6 +1,6 @@
 {
   "name": "@data-visuals/create",
-  "version": "0.36.0",
+  "version": "1.0.0-alpha",
   "description": "Create graphics and features the Data Visuals way.",
   "scripts": {
     "git-pre-commit": "precise-commits",
