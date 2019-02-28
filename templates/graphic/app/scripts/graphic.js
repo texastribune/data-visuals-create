@@ -17,12 +17,7 @@ const getFrameWidth = () => container.node().offsetWidth;
  * @return {void}
  */
 export default function renderGraphic(pymChild) {
-  // immediately clear the container on each render
-  clearContainer();
-
-  // get the width of the container
-  const frameWidth = getFrameWidth();
-
-  // Any code neccessary to render your graphic should be placed here - this
-  // function is what is called in main.js by Pym
+  // uncomment these two lines if you're creating a coded graphic
+  // clearContainer(); // clears the container
+  // const frameWidth = getFrameWidth(); // calcuates the width on each render
 }
