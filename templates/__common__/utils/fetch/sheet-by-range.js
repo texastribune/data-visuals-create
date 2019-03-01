@@ -1,27 +1,23 @@
-'use strict';
-
-const authorize = require('./authorize');
 const { google } = require('googleapis');
 
-function sheetByRange(spreadsheetId, range, { majorDimension = 'ROWS' } = {}) {
-  return new Promise((resolve, reject) => {
-    authorize(auth => {
-      const sheets = google.sheets({ auth, version: 'v4' });
-
-      sheets.spreadsheets.values.get(
-        {
-          majorDimension,
-          range,
-          spreadsheetId,
-        },
-        (err, res) => {
-          if (err) return reject(err);
-
-          resolve(res.values);
-        }
-      );
-    });
+async function sheetByRange({
+  auth,
+  spreadsheetId,
+  options: { majorDimension = 'ROWS', range },
+}) {
+  // create sheets client
+  const sheets = google.sheets({
+    version: 'v4',
+    auth,
   });
+
+  const { data } = await sheets.spreadsheets.values.get({
+    majorDimension,
+    range,
+    spreadsheetId,
+  });
+
+  return data.values;
 }
 
-module.exports = sheetByRange;
+module.exports = { sheetByRange };

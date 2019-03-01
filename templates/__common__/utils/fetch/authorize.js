@@ -1,133 +1,121 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
+// native
 const os = require('os');
+const path = require('path');
 const readline = require('readline');
 
+// packages
 const colors = require('ansi-colors');
+const fs = require('fs-extra');
 const { google } = require('googleapis');
 
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 
-let CLIENT_SECRETS_FILE;
+async function getSecrets() {
+  const clientSecretsFile =
+    process.env.CLIENT_SECRETS_FILE ||
+    path.join(os.homedir(), '.tt_kit_google_client_secrets.json');
 
-if (process.env.CLIENT_SECRETS_FILE) {
-  CLIENT_SECRETS_FILE = process.env.CLIENT_SECRETS_FILE;
-} else {
-  CLIENT_SECRETS_FILE = path.join(
-    os.homedir(),
-    '.tt_kit_google_client_secrets.json'
-  );
-}
+  let secrets;
 
-var secrets, secretsFile;
-
-try {
-  secretsFile = fs.readFileSync(CLIENT_SECRETS_FILE, 'utf8');
-} catch (e) {
-  if (e.code === 'ENOENT') {
-    console.log(
-      colors.red(
-        "Could not find the client secrets file at `%s`. Are you sure it's there?"
-      ),
-      CLIENT_SECRETS_FILE
-    );
-  } else {
-    throw e;
-  }
-}
-
-try {
-  secrets = JSON.parse(secretsFile).installed;
-} catch (e) {
-  console.log(
-    colors.red(
-      'Your client secrets file was found, but the JSON could not be parsed. Try validating the JSON in `%s`.'
-    ),
-    CLIENT_SECRETS_FILE
-  );
-}
-
-const GOOGLE_CLIENT_ID = secrets.client_id;
-const GOOGLE_CLIENT_SECRET = secrets.client_secret;
-const GOOGLE_REDIRECT_URI = secrets.redirect_uris[0];
-const GOOGLE_TOKEN_FILE = process.env.GOOGLE_TOKEN_FILE
-  ? process.env.GOOGLE_TOKEN_FILE
-  : path.join(os.homedir(), '.google_drive_fetch_token');
-
-function authorize(callback) {
-  const OAuth2 = google.auth.OAuth2;
-  const client = new OAuth2(
-    GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET,
-    GOOGLE_REDIRECT_URI
-  );
-
-  fs.readFile(GOOGLE_TOKEN_FILE, function(err, token) {
-    if (err) {
-      getGoogleToken(client, callback);
-    } else {
-      client.setCredentials(JSON.parse(token));
-      callback(client);
-    }
-  });
-}
-
-function getGoogleToken(client, callback) {
-  const url = client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-  });
-
-  console.log(
-    colors.bold(
-      "You do not have an authorization token from Google! Let's get one or else this won't work."
-    )
-  );
-  console.log(colors.bold('Visit this URL:\n' + colors.yellow(url)));
-
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  rl.question(
-    colors.bold('Enter your success code from that page here:\n'),
-    function(code) {
-      rl.close();
-
-      client.getToken(code, function(err, token) {
-        if (err) {
-          return console.error(
-            'Error while trying to retrieve access token',
-            err
-          );
-        }
-
-        client.setCredentials(token);
-        saveToken(token);
-        callback(client);
-      });
-    }
-  );
-}
-
-function saveToken(token) {
   try {
-    fs.mkdirSync(path.dirname(GOOGLE_TOKEN_FILE));
+    const data = await fs.readJson(clientSecretsFile);
+    secrets = data.installed;
   } catch (err) {
-    if (err.code !== 'EEXIST') {
+    if (err.code === 'ENOENT') {
+      throw new Error(
+        colors.red`Could not find the client secrets file at "${CLIENT_SECRETS_FILE}". Are you sure it is there?`
+      );
+    } else {
       throw err;
     }
   }
 
-  fs.writeFile(GOOGLE_TOKEN_FILE, JSON.stringify(token), function(err) {
-    if (err) {
-      return console.error('Error attempting to save access token file', err);
-    }
-    console.log(colors.bold('Token saved at: ' + GOOGLE_TOKEN_FILE));
+  const googleClientId = secrets.client_id;
+  const googleClientSecret = secrets.client_secret;
+  const googleRedirectUri = secrets.redirect_uris[0];
+  const googleTokenFile =
+    process.env.GOOGLE_TOKEN_FILE ||
+    path.join(os.homedir(), '.google_drive_fetch_token');
+
+  return {
+    googleClientId,
+    googleClientSecret,
+    googleRedirectUri,
+    googleTokenFile,
+  };
+}
+
+async function getAuth() {
+  const OAuth2 = google.auth.OAuth2;
+
+  const {
+    googleClientId,
+    googleClientSecret,
+    googleRedirectUri,
+    googleTokenFile,
+  } = await getSecrets();
+
+  const auth = new OAuth2(
+    googleClientId,
+    googleClientSecret,
+    googleRedirectUri
+  );
+
+  let token;
+
+  try {
+    token = await fs.readJson(googleTokenFile);
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+
+    token = await getGoogleToken(auth, googleTokenFile);
+  }
+
+  auth.setCredentials(token);
+
+  return auth;
+}
+
+function getGoogleToken(auth, googleTokenFile) {
+  return new Promise((resolve, reject) => {
+    const url = auth.generateAuthUrl({
+      access_type: 'offline',
+      scope: SCOPES,
+    });
+
+    console.log(
+      colors.bold(
+        "You do not have an authorization token from Google! Let's get one or else this won't work."
+      )
+    );
+    console.log(colors.bold(`Visit this URL:\n${colors.yellow(url)}`));
+
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.question(
+      colors.bold('Enter your success code from that page here:\n'),
+      async code => {
+        rl.close();
+
+        let tokens;
+
+        try {
+          const data = await auth.getToken(code);
+          tokens = data.tokens;
+        } catch (err) {
+          reject(new Error(`Error while trying to retrieve access token.`));
+        }
+
+        await fs.outputJson(googleTokenFile, tokens);
+        console.log(colors.bold(`Token saved at: ${googleTokenFile}`));
+
+        resolve(tokens);
+      }
+    );
   });
 }
 
-module.exports = authorize;
+module.exports = { getAuth };
