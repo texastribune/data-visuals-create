@@ -20,7 +20,7 @@ function readParagraphElement(element) {
   }
 }
 
-function readElements(elements) {
+function readElements(document) {
   // prepare the text holder
   let text = '';
 
@@ -29,7 +29,7 @@ function readElements(elements) {
   if (!document.body.content) return text;
 
   // loop through each content element in the body
-  elements.body.content.forEach(element => {
+  document.body.content.forEach(element => {
     if (element.paragraph) {
       const paragraph = element.paragraph;
 
