@@ -57,8 +57,8 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
 ## Getting started
 
 ```sh
-npx @data-visuals/create <project-type> <slug>
-cd <slug>
+npx @data-visuals/create feature my-great-project
+cd my-great-project
 npm start
 ```
 
