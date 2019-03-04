@@ -2,6 +2,58 @@
 
 A tool for generating the scaffolding needed to create a graphic or feature the Data Visuals way.
 
+## Key features
+
+- 📐 **HTML templating with a familiar, easy Jinja2-esque format** via a modified instance of a [Nunjucks](https://github.com/mozilla/nunjucks) environment that comes with all the functionality of [`journalize`](https://github.com/rdmurphy/journalize) by default.
+- 🎨 **Supports SCSS syntax** for styles compiled with the super fast reference implementation of Sass via [`dart-sass`](https://github.com/sass/dart-sass). All CSS is passed through [`autoprefixer`](https://github.com/postcss/autoprefixer) and minified with [`clean-css`](https://github.com/jakubpawlowicz/clean-css) in production.
+- 📦 A **configured instance of Webpack ready to go** and optimized for a [two-path modern/legacy bundle approach](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/). Ship lean ES2015+ code to modern browsers, and a functional polyfilled/transpiled bundle to the rest!
+- 📑 Full-support for **[ArchieML](http://archieml.org/) formatted Google Docs and key/value or table formatted Google Sheets**. Use data you've collaborated on with reporters and editors directly in your templates.
+- 🎊 And so, so, so much more!
+
+## Table of contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Getting started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Folder structure](#folder-structure)
+    - [config/](#config)
+    - [data/](#data)
+    - [workspace/](#workspace)
+    - [project.config.js](#projectconfigjs)
+    - [app/](#app)
+    - [app/index.html](#appindexhtml)
+    - [app/templates/](#apptemplates)
+    - [app/scripts/](#appscripts)
+    - [app/styles/](#appstyles)
+    - [app/assets/](#appassets)
+- [Supported browsers](#supported-browsers)
+- [How to work with Google Doc and Google Sheet files](#how-to-work-with-google-doc-and-google-sheet-files)
+  - [Google Docs](#google-docs)
+  - [Google Sheets](#google-sheets)
+- [How do JavaScript packs work?](#how-do-javascript-packs-work)
+  - [Creating a new entrypoint](#creating-a-new-entrypoint)
+  - [Connecting an entrypoint to an HTML file](#connecting-an-entrypoint-to-an-html-file)
+- [Available commands](#available-commands)
+    - [`npm start` or `npm run serve`](#npm-start-or-npm-run-serve)
+    - [`npm run deploy`](#npm-run-deploy)
+    - [`npm run data:fetch`](#npm-run-datafetch)
+    - [`npm run assets:push`](#npm-run-assetspush)
+    - [`npm run assets:pull`](#npm-run-assetspull)
+    - [`npm run workspace:push`](#npm-run-workspacepush)
+    - [`npm run workspace:pull`](#npm-run-workspacepull)
+- [Environment variables and authentication](#environment-variables-and-authentication)
+  - [AWS](#aws)
+  - [Google](#google)
+    - [CLIENT_SECRETS_FILE](#client_secrets_file)
+    - [GOOGLE_TOKEN_FILE](#google_token_file)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Getting started
 
 ```sh
@@ -54,6 +106,7 @@ your-project/
   README.md
   node_modules/
   config/
+  data/
   workspace/
   package.json
   project.config.js
@@ -71,9 +124,13 @@ Here are the highlights of what each file/directory represents:
 
 This is the directory of all the configuration and tasks that power the kit. You probably do not need to ever go in here! (And eventually this will be abstracted away.)
 
+#### data/
+
+Where data downloaded and processed with `npm run data:fetch` ends up. You are also free to manually (or via your own scripts!) put data files here - they will get pulled in too! Be aware that the only compatible data files that belong here are ones that [`quaff`](https://github.com/rdmurphy/quaff) knows how to consume, otherwise it will ignore them.
+
 #### workspace/
 
-The `workspace` directory is for storing all of your analysis, production and raw data files. It's important to use this directory for these files (instead of `assets` or `data`) so we can keep them out of GitHub. You interact with it using the `npm run workspace:push` and `npm run workspace:pull` commands.
+The `workspace` directory is for storing all of your analysis, production and raw data files. It's important to use this directory for these files (instead of `app/assets/` or `data/`) so we can keep them out of GitHub and away from other parts of the kit. You interact with it using the `npm run workspace:push` and `npm run workspace:pull` commands.
 
 #### project.config.js
 
@@ -98,6 +155,76 @@ Where all of our JavaScript files live. Within this folder there are a number of
 #### app/styles/
 
 All the SCSS files that are used to compile the CSS files live here. This includes all of our house styles and variables (`app/styles/_variables.scss`). `app/styles/main.scss` is the primary entrypoint - any changes you make will either need to be in this file or be imported into it.
+
+#### app/assets/
+
+Where all other assets should live. This includes images, font files, any JSON or CSV files you want to directly interact with in your JavaScript - these files are post-processed and deployed along with the other production files. Be aware, **anything in this directory will technically be public on deploy**. Use `workspace/` or `data/` instead for things that shouldn't be public.
+
+## Supported browsers
+
+`@data-visuals/create` projects use a two-prong JavaScript bundling method to ship a lean, modern bundle for evergreen browsers and and a polyfilled, larger bundle for legacy browsers. It uses the methods promoted in Philip Walton's [Deploying ES2015+ Code in Production Today](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) blog post and determines browser support based on whether a browser understands ES Module syntax. If a browser does, it gets the **modern** bundle. If it doesn't, it gets the **legacy** bundle.
+
+In practice this means you mostly do not have to worry about it - as long as you're using the [JavaScript packs correctly](#how-do-javascript-packs-work) everything should just work. In terms of actual browsers, while we do still currently do a courtesy check of how things look in _Internet Explorer 11_, it's not considered a dealbreaker if a complicated feature or graphic does not work there and would require extensive work to ensure compatibility.
+
+For CSS we currently pass the following to [`autoprefixer`](https://github.com/postcss/autoprefixer).
+
+```json
+"browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"]
+```
+
+## How to work with Google Doc and Google Sheet files
+
+`@data-visuals/create` projects support downloading ArchieML-formatted Google Docs and correctly-formatted Google Sheets directly from Google Drive for use within your templates. All files you want to use in your projects should be listed in `project.config.js` under the `files` key. You are not limited to one of each, either! (Our current record is **seven** Google Docs and **two** Google Sheets in a single project.)
+
+```js
+{ // ...
+  /**
+    * Any Google Doc and Google Sheet files to be synced with this project.
+    */
+  files: [
+    {
+      fileId: '<the-document-id-from-the-url>',
+      type: 'doc',
+      name: 'text',
+    },
+    {
+      fileId: '<the-sheet-id-from-the-url>',
+      type: 'sheet',
+      name: 'data',
+    },
+  // ...
+}
+```
+
+Each object representing a file needs three things:
+
+**fileId**
+
+The `fileId` key represents the ID of a Google Doc or Google Sheet. This is most easily found in the URL of a document when you have it open in your browser.
+
+**type**
+
+The `type` key is used to denote whether this is a Google Doc (`doc`) or a Google Sheet (`sheet`). This controls how it gets processed.
+
+**name**
+
+The `name` key controls what filename it will receive once it's put in the `data/` directory. So if the `name` is `hello`, it'll be saved to `data/hello.json`.
+
+### Google Docs
+
+ArchieML Google Docs work as documented on the [ArchieML](http://archieml.org/) site. This includes the automatic conversion of links to `<a>` tags!
+
+### Google Sheets
+
+Google Sheets processed by `@data-visuals/create` may potentially require some additional configuration. Each sheet (or tab) in a Google Sheet is converted separately by the kit, and keyed-off in the output object by the _name of the sheet_.
+
+By default it treats every sheet in a Google Sheet as being formatted as a `table`. In other words, every _row_ is considered an item, and the _header row_ determines the key of each value in a _column_.
+
+The Google Sheets processor also supports a `key-value` format as popularized by [`copytext`](https://github.com/nprapps/copytext) ([and its Node.js counterpart](https://github.com/rdmurphy/node-copytext)). This treats everything in the _first column_ as the key, and everything in the _second column_ as the value matched to its key. Every other column is _ignored_.
+
+To activate the `key-value` format, add `:kv` to the end of a sheet's filename. (For consistency you can also use `:table` to tell the processor to treat a sheet as a `table`, but it is not required due to it being the default.)
+
+If there are any sheets you want to exclude from being processed, you can do it via two ways: hide them using the native _hide_ mechanism in Google Sheets, or add `:skip` to the end of the sheet name.
 
 ## How do JavaScript packs work?
 
@@ -124,7 +251,6 @@ Set `jsPackName` anywhere in the HTML file to the name of your entrypoint (__wit
 ```
 
 Pack entrypoints can be used multiple times across multiple pages, so if your code allows for it feel free to add an entrypoint to multiple pages. (You can also add `jsPackName` to the base `app/templates/base.html` file and have it inserted in every page that inherits from it).
-
 
 ## Available commands
 
