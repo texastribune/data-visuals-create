@@ -33,10 +33,10 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
   - [Other directories you may see](#other-directories-you-may-see)
     - [.tmp/](#tmp)
     - [dist/](#dist)
-- [Supported browsers](#supported-browsers)
 - [How to work with Google Doc and Google Sheet files](#how-to-work-with-google-doc-and-google-sheet-files)
   - [Google Docs](#google-docs)
   - [Google Sheets](#google-sheets)
+- [Supported browsers](#supported-browsers)
 - [How do JavaScript packs work?](#how-do-javascript-packs-work)
   - [Creating a new entrypoint](#creating-a-new-entrypoint)
   - [Connecting an entrypoint to an HTML file](#connecting-an-entrypoint-to-an-html-file)
@@ -173,18 +173,6 @@ This is a temporary folder where files compiled during development will be place
 
 This is the compiled project and the result of running `npm run build`.
 
-## Supported browsers
-
-`@data-visuals/create` projects use a two-prong JavaScript bundling method to ship a lean, modern bundle for evergreen browsers and and a polyfilled, larger bundle for legacy browsers. It uses the methods promoted in Philip Walton's [Deploying ES2015+ Code in Production Today](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) blog post and determines browser support based on whether a browser understands ES Module syntax. If a browser does, it gets the **modern** bundle. If it doesn't, it gets the **legacy** bundle.
-
-In practice this means you mostly do not have to worry about it - as long as you're using the [JavaScript packs correctly](#how-do-javascript-packs-work) everything should just work. In terms of actual browsers, while we do still currently do a courtesy check of how things look in _Internet Explorer 11_, it's not considered a dealbreaker if a complicated feature or graphic does not work there and would require extensive work to ensure compatibility.
-
-For CSS we currently pass the following to [`autoprefixer`](https://github.com/postcss/autoprefixer).
-
-```json
-"browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"]
-```
-
 ## How to work with Google Doc and Google Sheet files
 
 `@data-visuals/create` projects support downloading ArchieML-formatted Google Docs and correctly-formatted Google Sheets directly from Google Drive for use within your templates. All files you want to use in your projects should be listed in `project.config.js` under the `files` key. You are not limited to one of each, either! (Our current record is **seven** Google Docs and **two** Google Sheets in a single project.)
@@ -238,6 +226,18 @@ The Google Sheets processor also supports a `key-value` format as popularized by
 To activate the `key-value` format, add `:kv` to the end of a sheet's filename. (For consistency you can also use `:table` to tell the processor to treat a sheet as a `table`, but it is not required due to it being the default.)
 
 If there are any sheets you want to exclude from being processed, you can do it via two ways: hide them using the native _hide_ mechanism in Google Sheets, or add `:skip` to the end of the sheet name.
+
+## Supported browsers
+
+`@data-visuals/create` projects use a two-prong JavaScript bundling method to ship a lean, modern bundle for evergreen browsers and and a polyfilled, larger bundle for legacy browsers. It uses the methods promoted in Philip Walton's [Deploying ES2015+ Code in Production Today](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) blog post and determines browser support based on whether a browser understands ES Module syntax. If a browser does, it gets the **modern** bundle. If it doesn't, it gets the **legacy** bundle.
+
+In practice this means you mostly do not have to worry about it - as long as you're using the [JavaScript packs correctly](#how-do-javascript-packs-work) everything should just work. In terms of actual browsers, while we do still currently do a courtesy check of how things look in _Internet Explorer 11_, it's not considered a dealbreaker if a complicated feature or graphic does not work there and would require extensive work to ensure compatibility.
+
+For CSS we currently pass the following to [`autoprefixer`](https://github.com/postcss/autoprefixer).
+
+```json
+"browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"]
+```
 
 ## How do JavaScript packs work?
 
