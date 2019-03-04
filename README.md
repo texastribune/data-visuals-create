@@ -30,6 +30,9 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
     - [app/scripts/](#appscripts)
     - [app/styles/](#appstyles)
     - [app/assets/](#appassets)
+  - [Other directories you may see](#other-directories-you-may-see)
+    - [.tmp/](#tmp)
+    - [dist/](#dist)
 - [Supported browsers](#supported-browsers)
 - [How to work with Google Doc and Google Sheet files](#how-to-work-with-google-doc-and-google-sheet-files)
   - [Google Docs](#google-docs)
@@ -159,6 +162,16 @@ All the SCSS files that are used to compile the CSS files live here. This includ
 #### app/assets/
 
 Where all other assets should live. This includes images, font files, any JSON or CSV files you want to directly interact with in your JavaScript - these files are post-processed and deployed along with the other production files. Be aware, **anything in this directory will technically be public on deploy**. Use `workspace/` or `data/` instead for things that shouldn't be public.
+
+### Other directories you may see
+
+#### .tmp/
+
+This is a temporary folder where files compiled during development will be placed. You can safely ignore it.
+
+#### dist/
+
+This is the compiled project and the result of running `npm run build`.
 
 ## Supported browsers
 
