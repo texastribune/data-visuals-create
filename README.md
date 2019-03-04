@@ -68,7 +68,7 @@ npm start
 
 ## Installation
 
-While we recommend using the `npx` method above, you can also install the tool globally.
+While we recommend using the `npx` method, you can also install the tool globally. If you do, replace all instances of `npx @data-visuals/create` you see with `data-visuals-create`.
 
 ```sh
 npm install -g @data-visuals/create
