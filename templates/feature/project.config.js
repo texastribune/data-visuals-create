@@ -1,9 +1,28 @@
 module.exports = {
+  /**
+   * A unique identifier that's generated when a project is created.Used to
+   * sync up asset and workspace deploys.
+   */
   id: '<<id>>',
+  /**
+   * What project type was passed in on creation.
+   */
   projectType: 'feature',
+  /**
+   * The destination S3 bucket for a deploy.
+   */
   bucket: 'moose.texastribune.org',
+  /**
+   * The folder (or "Key" in S3 lingo) to deploy the project into.
+   */
   folder: 'features/<<year>>/<<slug>>',
+  /**
+   * The S3 bucket that's used to store raw asset and workspace files.
+   */
   assetsBucket: 'data-visuals-raw-assets',
+  /**
+   * Any Google Doc and Google Sheet files to be synced with this project.
+   */
   files: [
     {
       fileId: '1ehh3ISrwq5lHNQS-eEs_i30Wi7UAF9txWgYTo56NFBI',

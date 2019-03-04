@@ -2,28 +2,34 @@
 
 A tool for generating the scaffolding needed to create a graphic or feature the Data Visuals way.
 
+## Getting started
+
+```sh
+npx @data-visuals/create <project-type> <slug>
+cd <slug>
+npm start
+```
+
+> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version.
+
 ## Installation
+
+While we recommend using the `npx` method above, you can also install the tool globally.
 
 ```sh
 npm install -g @data-visuals/create
 ```
 
-This should also be usable via `npx` if that's your style.
-
-```sh
-npx @data-visuals/create <opts>
-```
-
 ## Usage
 
 ```sh
-data-visuals-create <project-type> <slug>
+npx @data-visuals/create <project-type> <slug>
 ```
 
 Currently there are two project types available — `graphic` and `feature`.
 
 ```sh
-data-visuals-create graphic school-funding
+npx @data-visuals/create graphic school-funding
 ```
 
 This will create a directory for you, copy in the files, install the dependencies, and do your first `git commit`.
@@ -38,6 +44,87 @@ graphic-school-funding-2018-01
 ```
 
 This is to ensure consistent naming of our directories!
+
+## Folder structure
+
+After creation, your project directory should look something like this:
+
+```
+your-project/
+  README.md
+  node_modules/
+  config/
+  workspace/
+  package.json
+  project.config.js
+  app/
+    index.html
+    templates/
+    styles/
+    scripts/
+    assets/
+```
+
+Here are the highlights of what each file/directory represents:
+
+#### config/
+
+This is the directory of all the configuration and tasks that power the kit. You probably do not need to ever go in here! (And eventually this will be abstracted away.)
+
+#### workspace/
+
+The `workspace` directory is for storing all of your analysis, production and raw data files. It's important to use this directory for these files (instead of `assets` or `data`) so we can keep them out of GitHub. You interact with it using the `npm run workspace:push` and `npm run workspace:pull` commands.
+
+#### project.config.js
+
+Where all the configuration for a project belongs. This is where you can change the S3 deploy parameters, manage the Google Drive documents that sync with this project, set up a bespoke API or add custom filters to Nunjucks.
+
+#### app/
+
+Where you'll spend most of your time! Here are where all the assets that go into building your project live.
+
+#### app/index.html
+
+The starter HTML page that's provided by the kit. If your project is only a single page (or graphic), this will likely be where you do all your HTML work. No special configuration is required to create new HTML files - just creating a new `.html` file in in the `app` directory (but _not_ within `app/scripts/` or `/app/templates/` - HTML files have special meanings in those directories) is enough to tell the kit about new pages it should compile.
+
+#### app/templates/
+
+Where all the Nunjucks templates (including the `base.html` template that `app/index.html` inherits from), includes and macros live.
+
+#### app/scripts/
+
+Where all of our JavaScript files live. Within this folder there are a number of helpful utilities and scripts we've created across tons of projects. JavaScript imports work as you'd expect, but the `app/scripts/packs/` directory is special - learn more about it in the [How do JavaScript packs work?](#how-do-javascript-packs-work) section.
+
+#### app/styles/
+
+All the SCSS files that are used to compile the CSS files live here. This includes all of our house styles and variables (`app/styles/_variables.scss`). `app/styles/main.scss` is the primary entrypoint - any changes you make will either need to be in this file or be imported into it.
+
+## How do JavaScript packs work?
+
+Projects created with `@data-visuals/create` borrow a Webpack approach from [`rails/webpacker`](https://github.com/rails/webpacker) to manage JavaScript entrypoints without configuration. To get the right scripts into the right pages, you have to do two things.
+
+### Creating a new entrypoint
+
+By default every project will come with an entrypoint file located at `app/scripts/packs/main.js`, but you're not required to only use that if it makes sense to have different sets of scripts for different pages. **Any** JavaScript file that exists within `app/scripts/packs/` is considered a Webpack entrypoint.
+
+```sh
+touch app/scripts/packs/maps.js
+# Now the build task will create a new entrypoint called `maps`! Don't forget to add your code.
+```
+
+### Connecting an entrypoint to an HTML file
+
+Because there's a lot more going on behind the scenes than just adding a `<script>` tag, you have to set a special variable in a template in order to get the right entrypoint into the right HTML file.
+
+Set `jsPackName` anywhere in the HTML file to the name of your entrypoint (__without__ the extension) to route the right JavaScript files to it.
+
+```html
+{% set jsPackName = 'map' %}
+{# This is now using the new entrypoint we created above #}
+```
+
+Pack entrypoints can be used multiple times across multiple pages, so if your code allows for it feel free to add an entrypoint to multiple pages. (You can also add `jsPackName` to the base `app/templates/base.html` file and have it inserted in every page that inherits from it).
+
 
 ## Available commands
 
