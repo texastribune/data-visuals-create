@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/texastribune/data-visuals-create#readme",
   "dependencies": {
-    "ansi-colors": "^3.2.3",
+    "ansi-colors": "^3.2.4",
     "enquirer": "^2.3.0",
     "fs-extra": "^7.0.1",
     "mri": "^1.1.4",
     "nanoid": "^2.0.1",
-    "ora": "^3.1.0",
+    "ora": "^3.2.0",
     "tiny-glob": "^0.2.6",
     "update-check": "^1.5.3"
   },
