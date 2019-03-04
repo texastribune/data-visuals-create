@@ -10,13 +10,22 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
 - 📑 Full-support for **[ArchieML](http://archieml.org/) formatted Google Docs and key/value or table formatted Google Sheets**. Use data you've collaborated on with reporters and editors directly in your templates.
 - 🎊 And so, so, so much more!
 
+## Getting started
+
+```sh
+npx @data-visuals/create feature my-great-project
+cd my-great-project
+npm start
+```
+
+> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version.
+
 ## Table of contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Getting started](#getting-started)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Folder structure](#folder-structure)
@@ -56,16 +65,6 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Getting started
-
-```sh
-npx @data-visuals/create feature my-great-project
-cd my-great-project
-npm start
-```
-
-> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version.
 
 ## Installation
 
