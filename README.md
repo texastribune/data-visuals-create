@@ -21,7 +21,7 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
 
 ```sh
 npx @data-visuals/create feature my-great-project
-cd my-great-project
+cd feature-my-great-project-YYYY-MM # the four digit year and two digit month
 npm start
 ```
 
