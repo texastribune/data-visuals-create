@@ -1,42 +1,26 @@
-/* global pym */
-import renderGraphic from '../graphic';
+import * as d3 from 'd3';
+import { pymLoader } from '../embeds/pym';
+
+// a reference to the default graphic container, change if needed
+const container = d3.select('#graphic');
+
+// a helper function to clear the container of its contents
+const clearContainer = () => container.html('');
+
+// a helper function to grab the container's width
+const getFrameWidth = () => container.node().offsetWidth;
 
 /**
- * Variable for pym instance.
- */
-let pymChild;
-
-/**
- * Called to render the graphic on the page once pym has initialized.
+ * This function is called to render a graphic by Pym.js. The frame's width and
+ * a reference to the Pym instance is provided.
  *
- * Your code goes here!
- *
- * @param  {Number} frameWidth The width of the embedded iframe
+ * @param  {Object} pymChild         A reference to the iframe's Pym instance
  * @return {void}
  */
-function render(frameWidth) {
-  renderGraphic(frameWidth || 600, pymChild);
-
-  if (pymChild) {
-    pymChild.sendHeight();
-  }
+export default function renderGraphic(pymChild) {
+  // uncomment these two lines if you're creating a coded graphic
+  // clearContainer(); // clears the container
+  //const frameWidth = getFrameWidth(); // calcuates the width on each render
 }
 
-/**
- * Called via `onDocumentReady` or `onDocumentComplete` once the embed
- * is ready for pym to be set up and build the graphic.
- *
- * @return {void}
- */
-function onLoad() {
-  pymChild = new pym.Child({
-    renderCallback: render,
-  });
-
-  // let the parent page know that the embed has loaded
-  pymChild.sendMessage('childLoaded', 'ready');
-}
-
-// The `onLoad` function is called once the child page's HTML/DOM, stylesheets
-// and images have finished loading.
-window.onload = onLoad;
+pymLoader(renderGraphic).catch(console.error);
