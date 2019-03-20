@@ -39,8 +39,15 @@ function readElements(document) {
       // all values in the element
       const values = paragraph.elements;
 
-      values.forEach(value => {
-        text += `${needsBullet ? '* ' : ''}${readParagraphElement(value)}`;
+      values.forEach((value, idx) => {
+        // we only need to add a bullet to the first value, so we check
+        const isFirstValue = idx === 0;
+
+        // prepend an asterisk if this is a list item
+        const prefix = needsBullet && isFirstValue ? '* ' : '';
+
+        // concat the text
+        text += `${prefix}${readParagraphElement(value)}`;
       });
     }
   });
