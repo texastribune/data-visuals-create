@@ -32,7 +32,7 @@ module.exports = () => {
       logConnections: true,
       logLevel: 'silent',
       logPrefix: 'data-visuals-create',
-      https: process.env.HTTPS === 'true' ? true : false,
+      https: process.env.HTTPS === 'true',
       middleware: [
         webpackDevMiddleware(bundler, {
           logLevel: 'silent',
