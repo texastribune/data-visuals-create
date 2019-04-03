@@ -25,14 +25,14 @@ module.exports = {
    */
   files: [
     {
-      fileId: '1ehh3ISrwq5lHNQS-eEs_i30Wi7UAF9txWgYTo56NFBI',
+      fileId: '1p1ptvRmWtk0VDJz9ChgnPnwXND-IkzJdwu4x9eCHwKI',
       type: 'doc',
       name: 'text',
     },
     {
-      fileId: '1EACmSpajC1V7nJtwIxfA9aR-HAbTSDugSjStSSKWEaE',
+      fileId: '17to7r_NkbAXQCOaLrIQyAgqWsAFCoF_SKlt0RnUG2VA',
       type: 'sheet',
-      name: 'meta',
+      name: 'data',
     },
   ],
   /**
