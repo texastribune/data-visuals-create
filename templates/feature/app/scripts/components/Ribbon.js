@@ -79,10 +79,9 @@ class Ribbon extends Component {
               <li
                 key={story.id}
                 class={storyClass}
-                ga-on="click"
-                ga-event-category="Related link"
-                ga-event-action={story.url}
-                ga-event-label="trending"
+                ga-event-category="read more"
+                ga-event-action="trending"
+                ga-event-label="apps page"
               >
                 <a href={story.url}>{widont(story.headline)}</a>
               </li>
