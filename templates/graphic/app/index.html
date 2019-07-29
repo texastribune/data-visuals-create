@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="app">
-  <h1 class="graphic-title">{{ context.title }}</h1>
+  <h1 class="graphic-title">{{ context.title | widont }}</h1>
   <p class="graphic-prose">{{ context.prose }}</p>
   <div id="graphic" class="graphic"></div>
   <ul class="graphic-footer">
