@@ -165,6 +165,8 @@ Where all of our JavaScript files live. Within this folder there are a number of
 
 All the SCSS files that are used to compile the CSS files live here. This includes all of our house styles and variables (`app/styles/_variables.scss`). `app/styles/main.scss` is the primary entrypoint - any changes you make will either need to be in this file or be imported into it.
 
+For example, if you want to style a chart with the default styling, add `@import 'components/chart'` to the `app/styles/main.scss` file. Style files are named by what element the styling is applied to.
+
 #### app/assets/
 
 Where all other assets should live. This includes images, font files, any JSON or CSV files you want to directly interact with in your JavaScript - these files are post-processed and deployed along with the other production files. Be aware, **anything in this directory will technically be public on deploy**. Use `workspace/` or `data/` instead for things that shouldn't be public.
