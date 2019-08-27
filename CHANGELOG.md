@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added `widont` tag to graphic and feature templates #11
+- Added a CHANGELOG #13
+- Added a subheader example to the feature template #14
+- Added a subheader macro #14
+- Added styling for a subheader #14
 
 ## [1.1.1] - 2019-05-08
 * Change GA event tags
