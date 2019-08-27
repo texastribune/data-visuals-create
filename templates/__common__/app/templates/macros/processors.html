@@ -13,3 +13,7 @@
   {% endfor %}
 </ul>
 {% endmacro %}
+
+{% macro subhead(value) %}
+  <h2 class="article-subheader copy">{{ value | widont }}</h2>
+{% endmacro %}
