@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [1.1.2] - 
+## [1.2.0] - 
 ### Fixed
 - Fixed security vulnerability introduced by `lodash` #10
 
