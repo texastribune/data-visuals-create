@@ -106,6 +106,10 @@ graphic-school-funding-2018-01
 
 This is to ensure consistent naming of our directories!
 
+## Development and testing
+
+If you make changes locally to `@data-visuals/create` and want to test them, you can run `data-visuals-create/bin/data-visuals-create <project-type> <slug>` to generate a graphic or feature and see if your changes were included. Run the command one level above this repo, or you'll create a graphic or feature within `data-visuals-create`.
+
 ## Folder structure
 
 After creation, your project directory should look something like this:
@@ -164,8 +168,6 @@ Where all of our JavaScript files live. Within this folder there are a number of
 #### app/styles/
 
 All the SCSS files that are used to compile the CSS files live here. This includes all of our house styles and variables (`app/styles/_variables.scss`). `app/styles/main.scss` is the primary entrypoint - any changes you make will either need to be in this file or be imported into it.
-
-For example, if you want to style a chart with the default styling, add `@import 'components/chart'` to the `app/styles/main.scss` file. Style files are named by what element the styling is applied to.
 
 #### app/assets/
 

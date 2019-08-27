@@ -105,3 +105,17 @@
     @include default-link;
   }
 }
+
+.article-subtitle {
+  font-weight: $font-weight-bold;
+  font-size: 1.4rem;
+  line-height: $line-height-subtitle;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  max-width: 24em;
+
+  @include mq($from: m) {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+}
