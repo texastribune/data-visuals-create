@@ -48,8 +48,6 @@ Then, add this line to the JavaScript content section of the Raw Plugin:
 ${colors.yellow(
   '<script src="https://cdn.texastribune.org/lib/@newswire/frames@0.3.1/index.umd.js"></script>'
 )}
-${colors.yellow(
-  '<script>newswireFrames.autoInitFrames();</script>'
-)}`);
+${colors.yellow('<script>newswireFrames.autoInitFrames();</script>')}`);
   }
 });
