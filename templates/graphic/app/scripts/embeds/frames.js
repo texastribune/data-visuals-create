@@ -11,6 +11,9 @@ import debounce from '../utils/debounce';
  */
 export function frameLoader(fn) {
   // activate the frame
+  // 1. Sends the initial frame's content height
+  // 2. Sets up an one-time listener to send the height on load
+  // 3. Sets up a listener to send the height every time the frame resizes
   initFrame();
 
   // only needed if a function was provided
