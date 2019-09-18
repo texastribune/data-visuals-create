@@ -37,11 +37,9 @@ ${colors.yellow(
 )}`);
 
     console.log(`
-Next, add the markup found in this gist to the CSS content section of the Raw Plugin:
-(Assign different classes to the placeholder <div> to get different alignments.)
-${colors.yellow(
-  'https://gist.github.com/rdmurphy/8b137477dce63b8e9c507f9f7369b2f5'
-)}`);
+Next, add the style code snippet found in ${colors.yellow(
+  'app/styles/raw-plugin-styles.html'
+)} to the CSS content section of the Raw Plugin`);
 
     console.log(`
 Then, add this line to the JavaScript content section of the Raw Plugin:
