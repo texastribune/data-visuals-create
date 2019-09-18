@@ -38,8 +38,8 @@ ${colors.yellow(
 
     console.log(`
 Next, add the style code snippet found in ${colors.yellow(
-  'app/styles/raw-plugin-styles.html'
-)} to the CSS content section of the Raw Plugin`);
+      'app/styles/raw-plugin-styles.html'
+    )} to the CSS content section of the Raw Plugin`);
 
     console.log(`
 Then, add this line to the JavaScript content section of the Raw Plugin:
