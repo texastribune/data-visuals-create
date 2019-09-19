@@ -25,7 +25,7 @@ export function frameLoader(fn) {
       fn();
       resolve(sendFrameHeight());
     }).catch(err => {
-      console.log(`Error: ${err}. Are you passing in an unnecessary function?`);
+      console.log(`Error: ${err}`);
     });
   }
 }
