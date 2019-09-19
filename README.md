@@ -106,6 +106,10 @@ graphic-school-funding-2018-01
 
 This is to ensure consistent naming of our directories!
 
+## Development and testing
+
+If you make changes locally to `@data-visuals/create` and want to test them, you can run `data-visuals-create/bin/data-visuals-create <project-type> <slug>` to generate a graphic or feature and see if your changes were included. Run the command one level above this repo, or you'll create a graphic or feature within `data-visuals-create`.
+
 ## Folder structure
 
 After creation, your project directory should look something like this:
