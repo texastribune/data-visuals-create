@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Switched from using Pym to `frames` library #17
 
+### Removed
+- `app/scripts/embeds/pym.js`
+
 ## [1.2.0] - 2019-09-19
 ### Fixed
 - Fixed security vulnerability introduced by `lodash` #10
