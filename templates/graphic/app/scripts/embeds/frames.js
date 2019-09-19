@@ -24,8 +24,6 @@ export function frameLoader(fn) {
     new Promise(resolve => {
       fn();
       resolve(sendFrameHeight());
-    }).catch(err => {
-      console.log(`Error: ${err}`);
     });
   }
 }
