@@ -5,18 +5,11 @@ import { initFrame } from '@newswire/frames';
 import debounce from '../utils/debounce';
 
 /**
- * Sets up an instance of a frame.
+ * Sets up an instance of a frame and executes a function, i.e. a function to render the graphic.
  *
- * @param {Function} [fn] An optional function to be called on resize
+ * @param {Function} [fn] An optional function to be called on load and resize
  */
 export function frameLoader(fn) {
-  // activate the frame
-  // 1. Sends the initial frame's content height
-  // 2. Sets up an one-time listener to send the height on load
-  // 3. Sets up a listener to send the height every time the frame resizes
-  initFrame();
-
-  // only needed if a function was provided
   if (fn) {
     // set up a debounced version
     const debouncedFn = debounce(fn, 300);
@@ -24,7 +17,11 @@ export function frameLoader(fn) {
     // resize listener
     window.addEventListener('resize', debouncedFn);
 
-    // initial kickoff
-    debouncedFn();
+    // if fn() renders a graphic, it needs to come before initFrame() so the correct frame height is set
+    fn();
+    initFrame();
+  } else {
+    // if no function was passed, initialize the frame anyway
+    initFrame();
   }
 }
