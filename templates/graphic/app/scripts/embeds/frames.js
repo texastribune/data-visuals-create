@@ -18,8 +18,14 @@ export function frameLoader(fn) {
     window.addEventListener('resize', debouncedFn);
 
     // if fn() renders a graphic, it needs to come before initFrame() so the correct frame height is set
-    fn();
-    initFrame();
+    new Promise((resolve, reject) => {
+      fn();
+      resolve(initFrame());
+    }).catch(err => {
+      console.log(
+        `Function failed with error ${err}. Are you passing in an unnecessary function?`
+      );
+    });
   } else {
     // if no function was passed, initialize the frame anyway
     initFrame();
