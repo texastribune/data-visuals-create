@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.0.0] -
+### Added
+- `app/styles/raw-plugin-styles.html` - add styles snippet that goes into the CSS content section of Raw Plugins
+
+### Changed
+- Switched from using Pym to `frames` library #17
+
 ## [1.2.0] - 2019-09-19
 ### Fixed
 - Fixed security vulnerability introduced by `lodash` #10
