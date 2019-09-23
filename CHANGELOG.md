@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0] -
 ### Added
 - `app/styles/raw-plugin-styles.html` - add styles snippet that goes into the CSS content section of Raw Plugins
+- `app/ai.html` - template for non-scripted graphics
+- `app/scripts/main-ai.html` - pack for non-scripted graphics
 
 ### Changed
 - Switched from using Pym to `frames` library #17
