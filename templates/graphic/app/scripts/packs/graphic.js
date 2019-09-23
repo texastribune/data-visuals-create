@@ -12,15 +12,14 @@ const clearContainer = () => container.html('');
 const getFrameWidth = () => container.node().offsetWidth;
 
 /**
- * This function is called to render a graphic by the frame loader.
+ * This function is called to render a graphic, using d3 or a library of your choice.
  *
  * @return {void}
  */
 export default function renderGraphic() {
-  // uncomment these two lines if you're creating a coded graphic
   // pass the recalculated frameWidth to parts of your chart (like an axis) that change with resize!
-  // we clear the container and redraw because there's a slight delay between redraws
   //
+  // UNCOMMENT THESE TWO LINES IF YOU'RE SCRIPTNG A GRAPHIC
   // clearContainer();
   // const frameWidth = getFrameWidth();
   //

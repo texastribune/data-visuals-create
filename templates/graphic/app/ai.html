@@ -1,15 +1,18 @@
-{# Template for any scripted graphics #}
+{# Template for any non-scripted graphics, like pure HTML or Illustrator graphics #}
 
 {% extends 'base.html' %}
 
-{% set jsPackName = 'main' %}
+{% set jsPackName = 'main-ai' %}
 {% set context = data.text %}
 
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
   <p class="graphic-prose">{{ context.prose }}</p>
-  <div id="graphic" class="graphic"></div>
+
+  {% set ai2html = "" %} {# <-- add the name of your ai2html file here #}
+  {% include "ai2html-output/" + ai2html + ".html" %}
+
   <ul class="graphic-footer">
     {% if context.note %}<li>Note: {{ context.note }}</li>{% endif %}
     {% if context.source %}<li>Source: {{ context.source }}</li>{% endif %}

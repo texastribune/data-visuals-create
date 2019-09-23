@@ -1,6 +1,7 @@
 import { frameLoader } from '../embeds/frames';
 import renderGraphic from './graphic';
 
-// This JS pack is included by default, so our graphics can be wrapped in AMP-compatible iframes
+// index.html includes this pack by default
+// initiates frame so your graphic is wrapped in an AMP-compatible iframe
 // renderGraphic() renders a coded graphic on load and on resize
 frameLoader(renderGraphic);
