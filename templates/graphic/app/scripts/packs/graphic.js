@@ -11,6 +11,10 @@ const clearContainer = () => container.html('');
 // a helper function to grab the container's width
 const getFrameWidth = () => container.node().offsetWidth;
 
+// import data by getting the window variable, OR by importing the filepath
+// let data = window.DATA;
+// import data from '../../data/data.json';
+
 /**
  * This function is called to render a graphic, using d3 or a library of your choice.
  *

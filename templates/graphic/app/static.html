@@ -1,15 +1,19 @@
 {# Template for any non-scripted graphics, i.e. Illustrator graphics or HTML tables #}
 {% extends 'base.html' %}
 
+{# set pack that provides JS #}
 {% set jsPackName = 'static' %}
+
+{# data.text --> data/text.json #}
 {% set context = data.text %}
+{% set data = data.data %}
 
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
   <p class="graphic-prose">{{ context.prose }}</p>
 
-  {# add the name of your ai2html file here #}
+  {# add name of your ai2html file here #}
   {# {% set ai2html = "" %}
   {% include "ai2html-output/" + ai2html + ".html" %} #}
 
@@ -20,11 +24,3 @@
   </ul>
 </div>
 {% endblock content %}
-
-{% block inline_data %}
-{% if data.data %}
-<script>
-  window.DATA = {{ data.data|dump }};
-</script>
-{% endif %}
-{% endblock inline_data %}

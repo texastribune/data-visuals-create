@@ -1,14 +1,20 @@
 {# Template for any scripted graphics, i.e. D3 charts #}
 {% extends 'base.html' %}
 
+{# set pack that provides JS #}
 {% set jsPackName = 'main' %}
+
+{# data.text --> data/text.json #}
 {% set context = data.text %}
 
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
   <p class="graphic-prose">{{ context.prose }}</p>
+
+  {# container that JS is attached to #}
   <div id="graphic" class="graphic"></div>
+
   <ul class="graphic-footer">
     {% if context.note %}<li>Note: {{ context.note }}</li>{% endif %}
     {% if context.source %}<li>Source: {{ context.source }}</li>{% endif %}
@@ -17,6 +23,7 @@
 </div>
 {% endblock content %}
 
+{# set data/data.json as a window variable #}
 {% block inline_data %}
 {% if data.data %}
 <script>
