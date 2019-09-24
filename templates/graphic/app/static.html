@@ -1,19 +1,21 @@
-{# Template for any scripted graphics, i.e. D3 charts #}
+{# Template for any non-scripted graphics, i.e. Illustrator graphics or HTML tables #}
 {% extends 'base.html' %}
 
 {# set pack that provides JS #}
-{% set jsPackName = 'main' %}
+{% set jsPackName = 'static' %}
 
 {# data.text --> data/text.json #}
 {% set context = data.text %}
+{% set data = data.data %}
 
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
   <p class="graphic-prose">{{ context.prose }}</p>
 
-  {# container that JS is attached to #}
-  <div id="graphic" class="graphic"></div>
+  {# add name of your ai2html file here #}
+  {# {% set ai2html = "" %}
+  {% include "ai2html-output/" + ai2html + ".html" %} #}
 
   <ul class="graphic-footer">
     {% if context.note %}<li>Note: {{ context.note }}</li>{% endif %}
@@ -22,12 +24,3 @@
   </ul>
 </div>
 {% endblock content %}
-
-{# set data/data.json as a window variable #}
-{% block inline_data %}
-{% if data.data %}
-<script>
-  window.DATA = {{ data.data|dump }};
-</script>
-{% endif %}
-{% endblock inline_data %}
