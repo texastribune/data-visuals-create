@@ -9,8 +9,9 @@
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
   <p class="graphic-prose">{{ context.prose }}</p>
 
-  {% set ai2html = "" %} {# <-- add the name of your ai2html file here #}
-  {% include "ai2html-output/" + ai2html + ".html" %}
+  {# add the name of your ai2html file here #}
+  {# {% set ai2html = "" %}
+  {% include "ai2html-output/" + ai2html + ".html" %} #}
 
   <ul class="graphic-footer">
     {% if context.note %}<li>Note: {{ context.note }}</li>{% endif %}

@@ -155,7 +155,7 @@ Where you'll spend most of your time! Here are where all the assets that go into
 
 #### app/index.html, app/static.html
 
-The starter HTML pages provided by the kit. `index.html` is for scripted graphics that require additional JavaScript, and `static.html` is for graphics, like Illustrator embeds, that do not.
+The starter HTML pages provided by the kit. `index.html` is for scripted graphics that require additional JavaScript, and `static.html` is for graphics that do not, like Illustrator embeds. Feel free to rename them!
 
 If your project is only a single page (or graphic), you can pick one of them where you do all your HTML work. No special configuration is required to create new HTML files - just creating a new `.html` file in in the `app` directory (but _not_ within `app/scripts/` or `/app/templates/` - HTML files have special meanings in those directories) is enough to tell the kit about new pages it should compile.
 
