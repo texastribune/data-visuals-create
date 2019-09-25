@@ -22,10 +22,8 @@ const getFrameWidth = () => container.node().offsetWidth;
  */
 export default function renderGraphic() {
   // pass the recalculated frameWidth to parts of your chart (like an axis) that change with resize!
-  //
-  // UNCOMMENT THESE TWO LINES IF YOU'RE SCRIPTNG A GRAPHIC
-  // clearContainer();
-  // const frameWidth = getFrameWidth();
+  clearContainer();
+  const frameWidth = getFrameWidth();
   //
   // rest of your code goes here
   // use createBase() to create the base of an d3 chart

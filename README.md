@@ -159,6 +159,8 @@ The starter HTML pages provided by the kit. `index.html` is for scripted graphic
 
 If your project is only a single page (or graphic), you can pick one of them where you do all your HTML work. No special configuration is required to create new HTML files - just creating a new `.html` file in in the `app` directory (but _not_ within `app/scripts/` or `/app/templates/` - HTML files have special meanings in those directories) is enough to tell the kit about new pages it should compile.
 
+When embedding graphics other than `index.html`, remember to add the name of the template to the end of the embed link. The default link points to `index`.
+
 #### app/templates/
 
 Where all the Nunjucks templates (including the `base.html` template that `app/index.html` inherits from), includes and macros live.
