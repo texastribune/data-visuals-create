@@ -2,6 +2,8 @@
 
 This `<<type>>` was created using [`data-visuals-create`](https://github.com/texastribune/data-visuals-create) <<createVersion>> on <<year>>-<<month>>-<<day>>.
 
+<!-- ONLY EDIT BELOW THIS LINE -->
+
 ## Available commands
 
 All project templates share the same build commands.
