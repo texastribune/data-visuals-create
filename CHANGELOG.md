@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [2.0.0] -
+## [2.0.0] - 2019-09-25
 ### Added
 - `app/styles/raw-plugin-styles.html` - add styles snippet that goes into the CSS content section of Raw Plugins
 - `app/static.html` - template for non-scripted graphics
