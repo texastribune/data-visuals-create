@@ -33,20 +33,19 @@ ${colors.blue.underline(mainPath)} (This has been copied to your clipboard.)`);
 If you are deploying a graphic in a CMS story, there are a few steps. First,
 add this in the Content section of the Raw Plugin:
 ${colors.yellow(
-  `<div class="dv201808-graphic dv201808-graphic--centered dv201808-graphic--centered-narrow" data-pym-src="${mainPath}">Loading...</div>`
+  `<div class="dv201808-graphic dv201808-graphic--centered dv201808-graphic--centered-narrow" data-frame-src="${mainPath}" data-frame-sandbox="allow-scripts allow-same-origin"></div>`
 )}`);
 
     console.log(`
-Next, add the markup found in this gist to the CSS content section of the Raw Plugin:
-(Assign different classes to the placeholder <div> to get different alignments.)
-${colors.yellow(
-  'https://gist.github.com/rdmurphy/8b137477dce63b8e9c507f9f7369b2f5'
-)}`);
+Next, add the style code snippet found in ${colors.yellow(
+      'app/styles/raw-plugin-styles.html'
+    )} to the CSS content section of the Raw Plugin`);
 
     console.log(`
 Then, add this line to the JavaScript content section of the Raw Plugin:
 ${colors.yellow(
-  '<script defer src="https://pym.nprapps.org/pym.v1.min.js"></script>'
-)}`);
+  '<script src="https://cdn.texastribune.org/lib/@newswire/frames@0.3.1/index.umd.js"></script>'
+)}
+${colors.yellow('<script>newswireFrames.autoInitFrames();</script>')}`);
   }
 });
