@@ -1,5 +1,12 @@
 const fs = require('fs');
 
+// return part of URL based on data type
+function dataType(type) {
+  if (type === 'doc') return 'document';
+  if (type === 'sheet' || type === 'gsheet') return 'spreadsheets';
+}
+
+// update readme with project link and links to data sources
 let updateReadMe = async (paths, mainPath, files) => {
   // read README and split it by line breaks
   let readMe = fs
@@ -26,9 +33,9 @@ let updateReadMe = async (paths, mainPath, files) => {
 
     // if link exists, update it
     if (readMe[i] != '') {
-      readMe[i] = `[Link to your ${
-        files[i - (startLine + 1)].type
-      }](${dataLink})`;
+      readMe[
+        i
+      ] = `[Link to your ${files[i - (startLine + 1)].type}](${dataLink})`;
     } else {
       // insert data link
       readMe.splice(
@@ -39,16 +46,10 @@ let updateReadMe = async (paths, mainPath, files) => {
     }
   }
 
-  // return part of URL based on data type
-  function dataType(type) {
-    if (type === 'doc') return 'document';
-    if (type === 'sheet' || type === 'gsheet') return 'spreadsheets';
-  }
-
   // write updated text to the README
   fs.writeFile(`${paths.appDirectory}/README.md`, readMe.join('\n'), err => {
     if (err) return console.log(err);
   });
 };
 
-module.exports = updateReadMe;
+module.exports = { updateReadMe, dataType };
