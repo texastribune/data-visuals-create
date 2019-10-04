@@ -13,6 +13,10 @@ module.exports = {
    */
   projectType: 'feature',
   /**
+   * Slug of the project
+   */
+  slug: '<<slug>>',
+  /**
    * The destination S3 bucket for a deploy.
    */
   bucket: 'moose.texastribune.org',

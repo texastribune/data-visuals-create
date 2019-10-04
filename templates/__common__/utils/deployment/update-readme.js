@@ -33,9 +33,9 @@ let updateReadMe = async (paths, mainPath, files) => {
 
     // if link exists, update it
     if (readMe[i] != '') {
-      readMe[i] = `[Link to your ${
-        files[i - (startLine + 1)].type
-      }](${dataLink})`;
+      readMe[
+        i
+      ] = `[Link to your ${files[i - (startLine + 1)].type}](${dataLink})`;
     } else {
       // insert data link
       readMe.splice(

@@ -13,6 +13,10 @@ module.exports = {
    */
   projectType: 'graphic',
   /**
+   * Slug of the project
+   */
+  slug: '<<slug>>',
+  /**
    * The destination S3 bucket for a deploy.
    */
   bucket: 'graphics.texastribune.org',

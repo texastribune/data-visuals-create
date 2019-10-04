@@ -3,7 +3,14 @@ import { h } from 'preact';
 const Story = ({ headline, url, lead_art, readable_pub_date }) => {
   return (
     <article class="story">
-      <a class="story-link dim" href={url} target="_blank" ga-event-category="read more" ga-event-action="automated by tag" ga-event-label="apps page">
+      <a
+        class="story-link dim"
+        href={url}
+        target="_blank"
+        ga-event-category="read more"
+        ga-event-action="automated by tag"
+        ga-event-label="apps page"
+      >
         <div class="story-media">
           <div class="story-art">
             <img src={lead_art.thumbnails.letterbox} alt={headline} />

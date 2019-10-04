@@ -85,7 +85,7 @@ let updateLogSheet = async (mainPath, config) => {
               mainPath,
               '',
               '',
-              config.folder.replace(/graphics/gi, 'newsapps-dailies'),
+              repoName,
               getFileLink(config.files, 'sheet'),
               getFileLink(config.files, 'doc'),
               '',
