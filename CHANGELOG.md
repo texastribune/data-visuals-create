@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `_common_/utils/deployment/deploy.js` - change deploy function to update log sheet and README #20
 - `_common_/utils/fetch/authorize.js`- change SCOPES to include write permissions #20
+- `project.config.js` for graphics and features - add `createDate` and `slug` property
 
 ### Added
 - `_common_/utils/deployment/update-log-sheet.js` - add utility file for adding to data visuals log sheet #20

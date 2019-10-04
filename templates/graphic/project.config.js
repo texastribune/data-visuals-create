@@ -13,7 +13,7 @@ module.exports = {
    */
   projectType: 'graphic',
   /**
-   * Slug of the project
+   * Slug of the project.
    */
   slug: '<<slug>>',
   /**

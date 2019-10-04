@@ -13,7 +13,7 @@ module.exports = {
    */
   projectType: 'feature',
   /**
-   * Slug of the project
+   * Slug of the project.
    */
   slug: '<<slug>>',
   /**
