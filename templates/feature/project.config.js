@@ -5,6 +5,10 @@ module.exports = {
    */
   id: '<<id>>',
   /**
+   * Date that the project was created.
+   */
+  createDate: '<<year>>-<<month>>',
+  /**
    * What project type was passed in on creation.
    */
   projectType: 'feature',

@@ -24,13 +24,15 @@ let updateLogSheet = async (mainPath, config) => {
 
   // id of data visuals work spreadsheet
   const spreadsheetId = '13xpogQKMcA_5rHxs7TAWP4mG9KSF8t_3C4TaeHW-I1M';
-  let sheetName;
+  let sheetName, repoName;
 
   if (config.projectType === 'graphic') {
     sheetName = 'Embedded Test';
+    repoName = `newsapps-dailies/${config.slug}-${config.createDate}`;
   }
   if (config.projectType === 'feature') {
     sheetName = 'Feature Test';
+    repoName = `feature-${config.slug}-${config.createDate}`;
   }
 
   // pull the data out of the spreadsheet
@@ -58,7 +60,7 @@ let updateLogSheet = async (mainPath, config) => {
               mainPath,
               '',
               '',
-              config.folder.replace(/graphics/gi, 'newsapps-dailies'),
+              repoName,
               getFileLink(config.files, 'sheet'),
               getFileLink(config.files, 'doc'),
               '',
