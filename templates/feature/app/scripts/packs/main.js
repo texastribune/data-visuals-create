@@ -1,5 +1,3 @@
+// import JS files
 import '../kickstart';
-
-/**
- * Your code belongs here.
- */
+import './graphic';
