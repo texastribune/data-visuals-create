@@ -5,9 +5,17 @@ module.exports = {
    */
   id: '<<id>>',
   /**
+   * Date that the project was created.
+   */
+  createDate: '<<year>>-<<month>>',
+  /**
    * What project type was passed in on creation.
    */
   projectType: 'feature',
+  /**
+   * Slug of the project.
+   */
+  slug: '<<slug>>',
   /**
    * The destination S3 bucket for a deploy.
    */

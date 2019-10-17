@@ -3,6 +3,8 @@
 const colors = require('ansi-colors');
 const path = require('path');
 const { write } = require('clipboardy');
+const { updateReadMe } = require('./update-readme');
+const { updateLogSheet } = require('./update-log-sheet');
 
 const s3 = require('./s3');
 
@@ -21,6 +23,8 @@ s3.uploadFiles(paths.appDist, {
   const mainPath = 'https://' + path.join(config.bucket, config.folder, '/');
 
   await write(mainPath);
+  await updateReadMe(paths, mainPath, config.files);
+  await updateLogSheet(mainPath, config);
 
   console.log(`
 Upload of ${colors.yellow(numFiles)} file${numFiles === 1 ? '' : 's'} complete.

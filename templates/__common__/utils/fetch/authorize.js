@@ -8,7 +8,7 @@ const colors = require('ansi-colors');
 const fs = require('fs-extra');
 const { google } = require('googleapis');
 
-const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
 async function getSecrets() {
   const clientSecretsFile =

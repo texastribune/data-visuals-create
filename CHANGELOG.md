@@ -10,17 +10,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.1.0] - 2019-10-17
+### Changed
+- `_common_/utils/deployment/deploy.js` - change deploy function to update log sheet and README #20
+- `_common_/utils/fetch/authorize.js`- change SCOPES to include write permissions #20
+- `project.config.js` for graphics and features - add `createDate` and `slug` property
+
+### Added
+- `_common_/utils/deployment/update-log-sheet.js` - add utility file for adding to data visuals log sheet #20
+- `_common_/utils/deployment/update-readme.js` - add utility file for adding links to README #20
+
 ## [2.0.0] - 2019-09-25
 ### Added
-- `app/styles/raw-plugin-styles.html` - add styles snippet that goes into the CSS content section of Raw Plugins
-- `app/static.html` - template for non-scripted graphics
-- `app/scripts/static.js` - pack for non-scripted graphics
+- `graphic/app/styles/raw-plugin-styles.html` - add styles snippet that goes into the CSS content section of Raw Plugins
+- `graphic/app/static.html` - template for non-scripted graphics
+- `graphic/app/scripts/static.js` - pack for non-scripted graphics
 
 ### Changed
 - Switched from using Pym to `frames` library #17
 
 ### Removed
-- `app/scripts/embeds/pym.js`
+- `graphic/app/scripts/embeds/pym.js`
 
 ## [1.2.0] - 2019-09-19
 ### Fixed

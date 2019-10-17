@@ -9,15 +9,13 @@ const relatedContentContainer = document.getElementById(
 );
 
 if (relatedContentContainer && window.ttData.gutenTag) {
-  import(/* webpackChunkName: "RelatedContent" */ './components/RelatedContent').then(
-    ({ default: RelatedContent }) =>
-      render(
-        <RelatedContent
-          title={'Read more'}
-          gutenTag={window.ttData.gutenTag}
-        />,
-        relatedContentContainer
-      )
+  import(
+    /* webpackChunkName: "RelatedContent" */ './components/RelatedContent'
+  ).then(({ default: RelatedContent }) =>
+    render(
+      <RelatedContent title={'Read more'} gutenTag={window.ttData.gutenTag} />,
+      relatedContentContainer
+    )
   );
 }
 
