@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [2.1.0] -
+## [2.1.0] - 2019-10-17
 ### Changed
 - `_common_/utils/deployment/deploy.js` - change deploy function to update log sheet and README #20
 - `_common_/utils/fetch/authorize.js`- change SCOPES to include write permissions #20
