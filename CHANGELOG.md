@@ -10,6 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.2.0] - 2019-10-17
+### Added
+- `__common__/app/templates/macros/processors.html` - add ad macro to processors file #16
+- `feature/app/scripts/packs/graphic.js` - add graphic pack for code in a feature with resize() function #22
+
+### Changed
+- `feature/app/index.html` - import ad from processors file #16
+- `feature/app/scripts/packs/main.js` - import new graphic pack
+- `graphic/app/scripts/packs/graphic.js` - fixed data path
+
+### Removed
+- `feature/app/templates/macros/ads.html` - remove special ad macro from feature #16
+
 ## [2.1.0] - 2019-10-17
 ### Changed
 - `_common_/utils/deployment/deploy.js` - change deploy function to update log sheet and README #20
