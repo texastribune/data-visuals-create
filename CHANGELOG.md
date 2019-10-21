@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.2.1] -
+### Fixed
+- `__common__/utils/deployment/update-log-sheet.js` - handle cases when there are no files specified in the config file
+
 ## [2.2.0] - 2019-10-17
 ### Added
 - `__common__/app/templates/macros/processors.html` - add ad macro to processors file #16
