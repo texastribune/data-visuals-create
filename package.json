@@ -1,6 +1,6 @@
 {
   "name": "@data-visuals/create",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Create graphics and features the Data Visuals way.",
   "scripts": {
     "build:docs": "doctoc README.md --github",
