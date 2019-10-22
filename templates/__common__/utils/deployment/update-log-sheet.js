@@ -6,11 +6,13 @@ const { dataType } = require('./update-readme');
 function getFileLink(files, type) {
   let desiredFile = files.find(file => file.type == type);
 
-  let desiredLink = `https://docs.google.com/${dataType(desiredFile.type)}/d/${
-    desiredFile.fileId
-  }`;
+  if (desiredFile) {
+    let desiredLink = `https://docs.google.com/${dataType(
+      desiredFile.type
+    )}/d/${desiredFile.fileId}`;
 
-  return desiredLink;
+    return desiredLink;
+  } else return '';
 }
 
 // update log of past data visuals works with project info
@@ -43,7 +45,8 @@ let updateLogSheet = async (mainPath, config) => {
 
   // safety check for values in that range
   if (data.values) {
-    if (data.values.find(value => value[0] == config.id)) {
+    let foundId = data.values.find(value => value[0] == config.id);
+    if (foundId) {
       let index = data.values.findIndex(value => value[0] == config.id);
       // if id exists, update it
       sheets.spreadsheets.values.update({
