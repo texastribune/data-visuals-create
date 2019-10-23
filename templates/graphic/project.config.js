@@ -5,9 +5,9 @@ module.exports = {
    */
   id: '<<id>>',
   /**
-   * Date that the project was created.
+   * Month that the project was created.
    */
-  createDate: '<<year>>-<<month>>',
+  createMonth: '<<month>>',
   /**
    * Year that the project was created.
    */
