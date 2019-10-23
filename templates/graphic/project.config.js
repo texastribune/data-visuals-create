@@ -9,6 +9,10 @@ module.exports = {
    */
   createDate: '<<year>>-<<month>>',
   /**
+   * Year that the project was created.
+   */
+  createYear: '<<year>>',
+  /**
    * What project type was passed in on creation.
    */
   projectType: 'graphic',

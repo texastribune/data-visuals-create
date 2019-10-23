@@ -30,7 +30,9 @@ let updateLogSheet = async (mainPath, config) => {
 
   if (config.projectType === 'graphic') {
     sheetName = 'Embedded';
-    repoName = `newsapps-dailies/${config.slug}-${config.createDate}`;
+    repoName = `newsapps-dailies/${config.createYear}/${config.slug}-${
+      config.createDate
+    }`;
   }
   if (config.projectType === 'feature') {
     sheetName = 'Feature';
