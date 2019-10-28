@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.3.0] - 2019-10-28
+### Changed
+- `feature/app/templates/components/simple-masthead.html` - switch out normal logo for 10th anniversary logo
+
 ## [2.2.1] - 2019-10-22
 ### Fixed
 - `__common__/utils/deployment/update-log-sheet.js` - handle cases when there are no files specified in the config file
