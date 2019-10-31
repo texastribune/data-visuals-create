@@ -10,9 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [2.4.0]
+## [2.3.1]
 ### Added 
-### Changed
+### Fixed
 - `deploy.js` - add property to iframe sandbox so user can click to other pages #25
 - `project.config.js` - change default archieML doc to be the one we actually use #26
 - `update-log-sheet.js` - add year to repo name for `newsapps-dailies` graphics (post reorganization of our dailies)
