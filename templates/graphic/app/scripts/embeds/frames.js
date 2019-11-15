@@ -1,8 +1,5 @@
 // packages
-import { initFrame, sendFrameHeight } from '@newswire/frames';
-
-// local
-import debounce from '../utils/debounce';
+import { initFrame } from '@newswire/frames';
 
 /**
  * Sets up an instance of a frame and executes a function, i.e. a function to render the graphic.
@@ -10,20 +7,13 @@ import debounce from '../utils/debounce';
  * @param {Function} [fn] An optional function to be called on load and resize
  */
 export function frameLoader(fn) {
-  // initialize the frame no matter what
+  // initialize frame no matter what
+  // sends height to parent container
   initFrame();
 
   if (fn) {
-    // set up a debounced version
-    const debouncedFn = debounce(fn, 300);
-
     // resize listener
-    window.addEventListener('resize', debouncedFn);
-
-    // if fn() renders a graphic, it needs to come before the frame height is sent
-    new Promise(resolve => {
-      fn();
-      resolve(sendFrameHeight());
-    });
+    window.addEventListener('resize', fn);
+    fn();
   }
 }
