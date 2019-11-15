@@ -30,11 +30,15 @@ let updateLogSheet = async (mainPath, config) => {
 
   if (config.projectType === 'graphic') {
     sheetName = 'Embedded';
-    repoName = `newsapps-dailies/${config.slug}-${config.createDate}`;
+    repoName = `newsapps-dailies/${config.createYear}/${config.slug}-${
+      config.createYear
+    }-${config.createMonth}`;
   }
   if (config.projectType === 'feature') {
     sheetName = 'Feature';
-    repoName = `feature-${config.slug}-${config.createDate}`;
+    repoName = `feature-${config.slug}-${config.createYear}-${
+      config.createMonth
+    }`;
   }
 
   // pull the data out of the spreadsheet

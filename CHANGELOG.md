@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.3.1] - 2019-11-15
+### Fixed
+- `deploy.js` - add property to iframe sandbox so user can click to other pages #25
+- `project.config.js` - change default archieML doc to be the one we actually use #26
+- `update-log-sheet.js` - add year to repo name for `newsapps-dailies` graphics (post reorganization of our dailies)
+
 ## [2.3.0] - 2019-10-28
 ### Changed
 - `feature/app/templates/components/simple-masthead.html` - switch out normal logo for 10th anniversary logo

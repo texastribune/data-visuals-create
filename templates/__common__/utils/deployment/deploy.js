@@ -37,7 +37,7 @@ ${colors.blue.underline(mainPath)} (This has been copied to your clipboard.)`);
 If you are deploying a graphic in a CMS story, there are a few steps. First,
 add this in the Content section of the Raw Plugin:
 ${colors.yellow(
-  `<div class="dv201808-graphic dv201808-graphic--centered dv201808-graphic--centered-narrow" data-frame-src="${mainPath}" data-frame-sandbox="allow-scripts allow-same-origin"></div>`
+  `<div class="dv201808-graphic dv201808-graphic--centered dv201808-graphic--centered-narrow" data-frame-src="${mainPath}" data-frame-sandbox="allow-scripts allow-same-origin allow-top-navigation-by-user-activation allow-top-navigation"></div>`
 )}`);
 
     console.log(`
