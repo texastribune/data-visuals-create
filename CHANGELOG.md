@@ -10,8 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [2.3.1]
-### Added 
+## [2.3.1] - 2019-11-15
 ### Fixed
 - `deploy.js` - add property to iframe sandbox so user can click to other pages #25
 - `project.config.js` - change default archieML doc to be the one we actually use #26
