@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.3.2] - 2019-11-26
+### Changed
+- `graphic/app/scripts/embeds/frames.js` - don't pass debounced function to resize listener, simplify code #29
+
 ## [2.3.1] - 2019-11-15
 ### Fixed
 - `deploy.js` - add property to iframe sandbox so user can click to other pages #25
