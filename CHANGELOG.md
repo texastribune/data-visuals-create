@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [2.3.2]
+## [2.3.2] - 2019-11-26
 ### Changed
 - `graphic/app/scripts/embeds/frames.js` - don't pass debounced function to resize listener, simplify code #29
 
