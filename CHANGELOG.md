@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-
 ## [2.4.1]
 ### Changed
 - `update-log-sheet.js` - change sheet to new 2020 data visuals work sheet
@@ -25,7 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `package.json` - pull assets and push to workspace on predeploy, which is run automatically before deploy #31
 - `feature/app/styles/components/_related-content.scss`, `feature/app/styles/components/_ads.scss`, 
 `processors.html` - update appearance of ads 
-
 
 ## [2.3.2] - 2019-11-26
 ### Changed
