@@ -19,10 +19,16 @@
 {% endmacro %}
 
 {% macro ad(value) %}
-<aside class="story-ad{% if value.align %} story-ad--{{ value.align }}{% endif %}">
-  <p class="story-ad__label">The Texas Tribune thanks its sponsors. <a href="https://mediakit.texastribune.org/">Become one</a>.</p>
-  <div class="story-ad__container">
-    <div class="dv-gpt-ad"></div>
+<div class="plugin plugin--centered">
+  <div class="c-ad-flex">
+    <div class="c-ad-flex__inner">
+      <p class="c-ad-flex__thanks">The Texas Tribune thanks its sponsors. 
+        <a href="https://mediakit.texastribune.org/"><strong>Become one</strong></a>.
+      </p>
+      <div class="c-ad-flex__unit">
+        <div class="dv-gpt-ad"></div>
+      </div>
+    </div>
   </div>
-</aside>
+</div>
 {% endmacro %}
