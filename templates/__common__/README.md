@@ -4,6 +4,60 @@ This `<<type>>` was created using [`data-visuals-create`](https://github.com/tex
 
 <!-- ONLY EDIT BELOW THIS LINE -->
 
+## Project launch checklist
+
+This is a running list of things you should do before you launch any project on one of our apps pages. It's compiled by the data visuals team and uses Markdown. It can be copied and pasted into a MD file and put into [the project's repo](https://github.com/texastribune/redistricting-CD27/blob/master/checklist.md).
+
+Our process for pitching and executing projects (which should happen before all of this) can be found on [this doc](https://docs.google.com/document/d/1E7QE8gp29h20EAafzSui8VjQ_9TG5-XhR33tbAP0hBA/edit).
+
+### Editing checklist
+- [ ] Data visuals editor
+- [ ] Story reporter
+- [ ] Story editor
+- [ ] Secret DV team channel
+- [ ] Secret design feedback channel
+- [ ] Copy editor
+
+### Headline
+- [ ] Get a headline by submitting the story's budget line to the Headline Hoedown Slack channel
+
+### Article
+- [ ] Add ads (three is typically the minimum; add more if longer)
+- [ ] Make sure it has related articles
+- [ ] Check Facebook debugger after deploy
+- [ ] Check Parsely validation after deploy
+- [ ] Add share art to top of the page
+- [ ] Get social buttons showing on mobile
+
+### Social
+- [ ] Check with social team about promotion
+- [ ] Review Bobby’s promo materials (he likes to make gifs and other cool things)
+- [ ] Review social blasts (Tweet storms, Facebook posts, etc.)
+
+### Browser testing
+A full list of browsers we support is available on this Confluence page. Please go through the list and test all devices listed:
+- [ ] Mobile: Safari
+- [ ] Mobile: Chrome
+- [ ] Mobile: Facebook
+- [ ] Desktop: Chrome
+- [ ] Desktop: Safari
+- [ ] Desktop: Edge
+- [ ] Desktop: Firefox
+- [ ] Tablet: Safari
+
+### Post-deploy tasks
+- [ ] Make sure everything works on live url
+
+### Media partners
+If we have media partners, we need to make sure they have everything they need to post our content on their set
+- [ ] Get Google doc set up for partners
+- [ ] Pull text of story into Google doc
+- [ ] Get art to take screenshots of the charts and put them into the Google doc (if necessary)
+- [ ] Send Illustrator files of graphics to their team (if necessary)
+
+### Other
+- [ ] Make an embed for stories
+
 ## Available commands
 
 All project templates share the same build commands.
