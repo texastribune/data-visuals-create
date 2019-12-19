@@ -50,6 +50,19 @@ module.exports = {
     },
   ],
   /**
+   * Tags that will be plugged in via the graphics plugin. This an array of each tag's slug, not the tag names.
+   */
+  tags: [
+    'subject-budget',
+    'subject-education'
+  ],
+  /**
+   * Files that will be embedded via the graphics plugin.
+   */
+  embeddedFiles: [
+    'index.html'
+  ],
+  /**
    * The dataMutators option makes it possible to modify what's returned by
    * the data fetchers. This is a good place to restructure the raw data, or
    * to do joins with other data you may have.
