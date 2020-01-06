@@ -25,7 +25,7 @@ let updateLogSheet = async (mainPath, config) => {
   });
 
   // id of data visuals work spreadsheet
-  const spreadsheetId = '13xpogQKMcA_5rHxs7TAWP4mG9KSF8t_3C4TaeHW-I1M';
+  const spreadsheetId = '12CvXDGLJZfTPnaZQjwgaQzyD0qufWWkXd1kACKziBrw';
   let sheetName, repoName;
 
   if (config.projectType === 'graphic') {
