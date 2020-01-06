@@ -1,0 +1,184 @@
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @include mq($from: s) {
+    margin-left: -$gutter-half;
+    margin-right: -$gutter-half;
+  }
+}
+
+.chart-container-cell {
+  @include sized-flex-column(100%);
+
+  @include mq($from: s) {
+    @include sized-flex-column(50%);
+    padding-left: $gutter-half;
+    padding-right: $gutter-half;
+  }
+}
+
+.full-cell {
+  @include sized-flex-column(97%);
+
+  @include mq($from: s) {
+    @include sized-flex-column(100%);
+  }
+}
+
+.table-chart {
+  border-collapse: collapse;
+  margin-bottom: $gutter;
+  max-width: 100%;
+  width: 100%;
+}
+
+.table-chart caption,
+.chart-container-cell p {
+  font-size: to-rem(14);
+  font-weight: $font-weight-bold;
+  line-height: $line-height-subtitle;
+  margin-bottom: $gutter-half;
+  text-align: left;
+}
+
+.table-chart caption.hidden {
+  @include sr-only;
+}
+
+.table-chart-row {
+  border-bottom: $gutter-quarter solid transparent;
+
+  &:last-child {
+    border-bottom: 0 solid transparent;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+}
+
+.table-chart-label {
+  font-size: to-rem(14);
+  padding-right: $gutter-half;
+  text-align: right;
+  width: 1%;
+  white-space: nowrap;
+}
+
+.table-chart-label--allow-wrap {
+  line-height: $line-height-title;
+  white-space: normal;
+  width: 20%;
+}
+
+.table-chart-data {
+  position: relative;
+}
+
+.table-chart-bar {
+  border-bottom: $gutter + $gutter-quarter solid $color-grey;
+  float: left;
+  height: $gutter + $gutter-quarter;
+  line-height: $gutter + $gutter-quarter;
+  padding-right: $gutter-quarter;
+
+  .table-chart--rep & {
+    border-bottom-color: $color-republican;
+  }
+
+  .table-chart--rep-subset & {
+    border-bottom-color: $color-republican-subset;
+  }
+
+  .table-chart--dem & {
+    border-bottom-color: $color-democrat;
+  }
+
+  .table-chart--neutral & {
+    border-bottom-color: $color-neutral;
+  }
+
+  .table-chart--ind & {
+    border-bottom-color: $color-independent;
+  }
+  
+}
+
+.table-chart-bar--no-border {
+  border-bottom-width: 0;
+  height: 0;
+}
+
+// where the styles for bar colors live
+.table-chart-bar--rep {
+  border-bottom-color: $color-republican;
+}
+
+.table-chart-bar--rep-subset {
+  border-bottom-color: $color-republican-subset;
+}
+
+.table-chart-bar--dem {
+  border-bottom-color: $color-democrat;
+}
+
+.table-chart-bar--lib {
+  border-bottom-color: $color-libertarian;
+}
+
+.table-chart-bar--positive {
+  border-bottom-color: $color-positive;
+}
+
+.table-chart-bar--men {
+  border-bottom-color: $color-men;
+}
+
+.table-chart-bar--women {
+  border-bottom-color: $color-women;
+}
+
+.table-chart-bar--national {
+  border-bottom-color: $color-national;
+}
+
+.table-chart-bar--state {
+  border-bottom-color: $color-state; 
+}
+
+.table-chart-bar--neutral {
+  border-bottom-color: $color-neutral;
+}
+
+.table-chart-bar--oth {
+  border-bottom-color: $color-grey;
+}
+
+.table-chart-bar--negative {
+  border-bottom-color: $color-negative;
+}
+
+.table-chart-bar__text {
+  color: $color-white;
+  float: right;
+  font-size: to-rem(12);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.table-chart-bar__text-outside {
+  font-size: to-rem(12);
+  letter-spacing: 0.05em;
+  line-height: $gutter + $gutter-quarter;
+  margin-left: $gutter-quarter;
+}
+
+.table-chart-bar__text-outside--zero {
+  margin-left: 0;
+}
+
+.hidden {
+  display: none !important;
+}
