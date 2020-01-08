@@ -18,13 +18,18 @@ const processTemplate = async (filepath, data) => {
   const relativePath = path.relative(paths.appSrc, filepath);
 
   // pull the relative path's extension and name
-  const { ext, name } = path.parse(relativePath);
+  const { dir, ext, name } = path.parse(relativePath);
 
   // we always use "pretty" URLs, so we alter the pathname if it is index.html
   const pathname =
     name === 'index'
       ? relativePath.replace('index.html', '')
       : relativePath.replace(ext, '');
+
+  
+  // use `dir` and `name` to get the page folder structure
+  // used in poll graphics
+  nunjucksEnv.addGlobal('PAGE_BASE_NAME', path.join(dir, name));
 
   // use `pathname` from above to tell nunjucks what the current page URL will be
   nunjucksEnv.addGlobal(

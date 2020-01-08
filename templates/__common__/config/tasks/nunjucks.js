@@ -7,6 +7,7 @@ const fs = require('fs-extra');
 const journalize = require('journalize');
 const nunjucks = require('nunjucks');
 const parse = require('date-fns/parse');
+const { scaleLinear } = require('d3-scale');
 
 // internal
 const config = require('../../project.config');
@@ -122,6 +123,19 @@ env.addGlobal('apFormatDate', input => {
 env.addGlobal('CURRENT_YEAR', new Date().getFullYear());
 
 env.addGlobal('parseData', parseData);
+
+env.addGlobal(
+  'createScale',
+  (values, { range = [0, 100], getter = null } = {}) => {
+    if (getter) values = values.map(v => v[getter]);
+
+    return scaleLinear()
+      .domain([0, Math.max(...values)])
+      .range(range);
+  }
+);
+
+env.addFilter('makeArray', input => (Array.isArray(input) ? input : [input]));
 
 let manifest = null;
 

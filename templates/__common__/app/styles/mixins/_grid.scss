@@ -35,3 +35,20 @@
   padding-right: $gutter-half;
   width: 100%;
 }
+
+@mixin flex-column {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+@mixin flex-column-auto {
+  flex: 0 0 auto;
+  max-width: none;
+  width: auto;
+}
+
+@mixin sized-flex-column($width) {
+  flex: 0 0 $width;
+  max-width: $width;
+}

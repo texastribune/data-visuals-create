@@ -14,6 +14,17 @@
   text-align: left;
 }
 
+.graphic-category {
+  color: $color-grey;
+  font-weight: $font-weight-bold;
+  font-size: to-rem(12);
+  line-height: $line-height-subtitle;
+  letter-spacing: 0.05em;
+  margin-bottom: $gutter-eighth;
+  text-align: left;
+  text-transform: uppercase;
+}
+
 .graphic-prose {
   font-size: to-rem(14);
   line-height: $line-height-body;
