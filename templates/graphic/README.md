@@ -4,60 +4,18 @@ This `<<type>>` was created using [`data-visuals-create`](https://github.com/tex
 
 <!-- ONLY EDIT BELOW THIS LINE -->
 
-## Project launch checklist
+## Final editing checklist
 
-This is a running list of things you should do before you launch any project on one of our apps pages.
+Before your embedded graphic or feature goes live, here's the editing steps you need to take: 
 
-Our process for pitching and executing projects (which should happen before all of this) can be found on [this doc](https://docs.google.com/document/d/1E7QE8gp29h20EAafzSui8VjQ_9TG5-XhR33tbAP0hBA/edit).
-
-### Editing checklist
-- [ ] Data visuals editor
-- [ ] Story reporter
-- [ ] Story editor
-- [ ] Secret DV team channel
-- [ ] Secret design feedback channel
+- [ ] Spell check and self-edit — does everything make sense? 
+- [ ] Data visuals editor for a visual edit
+- [ ] Design feedback channel (optional for more complex graphics or apps)
+- [ ] Story reporter, if a collaboration 
+- [ ] Story or beat editor for a line edit to check facts
+- [ ] DV team in the secret channel (for a final gut check) 
 - [ ] Copy editor
-
-### Headline
-- [ ] Get a headline by submitting the story's budget line to the Headline Hoedown Slack channel
-
-### Article
-- [ ] Add ads (three is typically the minimum; add more if longer)
-- [ ] Make sure there's related articles
-- [ ] Check Facebook debugger after deploy
-- [ ] Check Parsely validation after deploy
-- [ ] Add share art to top of the page
-- [ ] Get social buttons showing on mobile
-
-### Social
-- [ ] Check with social team about promotion
-- [ ] Review social media editor's promo materials (could include GIF's, promo images, etc.)
-- [ ] Review social blasts (Tweet storms, Facebook posts, etc.)
-
-### Browser testing
-A full list of browsers we support is available on this Confluence page. Please go through the list and test all devices listed:
-- [ ] Mobile: Safari
-- [ ] Mobile: Chrome
-- [ ] Mobile: Facebook
-- [ ] Desktop: Chrome
-- [ ] Desktop: Safari
-- [ ] Desktop: Edge
-- [ ] Desktop: Firefox
-- [ ] Tablet: Safari
-
-### Post-deploy tasks
-- [ ] Make sure everything works on the live url
-
-### Media partners
-If we have media partners, we need to make sure they have everything they need to post our content on their set.
-
-- [ ] Get Google doc set up for partners
-- [ ] Pull text of story into a Google Doc
-- [ ] Get art to take screenshots of the charts and put them into the Google Doc (if necessary)
-- [ ] Send Illustrator files of graphics to the partner's team (if necessary)
-
-### Other
-- [ ] Make an embed for stories
+- [ ] Be available the night before publication for any last-minute changes, or let other DV teammates know how to make edits
 
 ## Available commands
 
