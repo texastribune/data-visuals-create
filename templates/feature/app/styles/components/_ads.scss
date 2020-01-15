@@ -6,11 +6,17 @@
   }
 }
 
-.c-ad-flex {
+.c-ad-flex_bg--gray {
   align-items: center;
   background-color: #fbfbfb;
   display: flex;
   height: 320px;
+  justify-content: center;
+}
+
+.c-ad-flex_bg--none {
+  align-items: center;
+  display: flex;
   justify-content: center;
 }
 

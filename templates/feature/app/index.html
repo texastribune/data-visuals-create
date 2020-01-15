@@ -24,7 +24,9 @@
   </header>
 
   {% include 'includes/shares.html' %}
+</div>
 
+<div class="container">
   <div class="intro-prose">
     {{ prose(context.prose, context, data) }}
     <p class="copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
@@ -37,7 +39,16 @@
   </div>
 </div>
 
-{{ ad() }}
+{# use 'none' as the value if the ad shoud not have a gray background #}
+{{ ad('gray') }}
+
+<div class="container">
+  <p class="copy">Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
+
+  <p class="copy">Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
+</div>
+
+{{ ad('gray') }}
 
 <div class="related-content" id="related-content-container"></div>
 
