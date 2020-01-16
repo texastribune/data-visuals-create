@@ -8,7 +8,7 @@
     "deploy": "node ./utils/deployment/deploy.js",
     "data:fetch": "node ./utils/fetch/get-data.js",
     "git-pre-commit": "precise-commits",
-    "predeploy": "npm run build && npm run assets:push",
+    "predeploy": "npm run assets:pull && npm run build && npm run assets:push && npm run workspace:push",
     "preinstall": "node ./config/build/yarn-check.js",
     "serve": "npm start",
     "start": "NODE_ENV=development node ./config/scripts/develop.js",

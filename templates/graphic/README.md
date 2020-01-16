@@ -4,6 +4,19 @@ This `<<type>>` was created using [`data-visuals-create`](https://github.com/tex
 
 <!-- ONLY EDIT BELOW THIS LINE -->
 
+## Final editing checklist
+
+Before your embedded graphic or feature goes live, here's the editing steps you need to take: 
+
+- [ ] Spell check and self-edit — does everything make sense? 
+- [ ] Data visuals editor for a visual edit
+- [ ] Design feedback channel (optional for more complex graphics or apps)
+- [ ] Story reporter, if a collaboration 
+- [ ] Story or beat editor for a line edit to check facts
+- [ ] DV team in the secret channel (for a final gut check) 
+- [ ] Copy editor
+- [ ] Be available the night before publication for any last-minute changes, or let other DV teammates know how to make edits
+
 ## Available commands
 
 All project templates share the same build commands.
