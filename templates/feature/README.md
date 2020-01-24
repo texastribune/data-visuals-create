@@ -27,8 +27,9 @@ Before your embedded graphic or feature goes live, here's the editing steps you 
 
 ### Article
 - [ ] Add ads (three is typically the minimum; add more if longer)
-- [ ] Make sure there's related articles
-- [ ] Add share art to top of the page. THE IMAGE NEEDS TO BE SIZED SMALLER SO IT SHOWS UP ON SOCIAL. Complete the following checks and resize as needed.
+- [ ] Make sure there's related articles (powered by the `guten_tag` property in the feature's ArchieML doc)
+- [ ] Add any sigs, icons, or lead art
+- [ ] Add share art. Our apps reference `share-art.jpg` in the `assets/images/` folder, so the image should be saved as that. THE IMAGE NEEDS TO BE SIZED SMALLER SO IT SHOWS UP ON SOCIAL. Complete the following checks and resize as needed.
 - [ ] Check [Twitter's card validator](https://cards-dev.twitter.com/validator) after deploy. If no share art shows up, it's too large.
 - [ ] Check [Facebook debugger](https://developers.facebook.com/tools/debug/) after deploy. If no share art shows up, it's too large.
 - [ ] Check Parsely validation after deploy
