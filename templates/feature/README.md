@@ -28,9 +28,10 @@ Before your embedded graphic or feature goes live, here's the editing steps you 
 ### Article
 - [ ] Add ads (three is typically the minimum; add more if longer)
 - [ ] Make sure there's related articles
-- [ ] Check Facebook debugger after deploy
+- [ ] Add share art to top of the page. THE IMAGE NEEDS TO BE SIZED SMALLER SO IT SHOWS UP ON SOCIAL. Complete the following checks and resize as needed.
+- [ ] Check [Twitter's card validator](https://cards-dev.twitter.com/validator) after deploy. If no share art shows up, it's too large.
+- [ ] Check [Facebook debugger](https://developers.facebook.com/tools/debug/) after deploy. If no share art shows up, it's too large.
 - [ ] Check Parsely validation after deploy
-- [ ] Add share art to top of the page
 - [ ] Get social buttons showing on mobile
 
 ### Social
