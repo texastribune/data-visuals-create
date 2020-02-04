@@ -30,7 +30,15 @@ s3.uploadFiles(paths.appDist, {
 Upload of ${colors.yellow(numFiles)} file${numFiles === 1 ? '' : 's'} complete.
 
 Good work! The primary page of this project can be found at:
-${colors.blue.underline(mainPath)} (This has been copied to your clipboard.)`);
+${colors.blue.underline(mainPath)} (This has been copied to your clipboard.)
+
+Did you run ${colors.yellow(`npm run data:fetch`)} before deploying to get the latest data?`);
+
+  if (projectType === 'feature') {
+    console.log(`
+If you are deploying a feature, check Facebook/Twitter/other social platforms to make sure the 
+share image shows up.`);
+  }
 
   if (projectType === 'graphic') {
     console.log(`
