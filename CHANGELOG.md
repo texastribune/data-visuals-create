@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.4.3] - 2020-02-11
+### Fixed
+- `package.json` - removed `npm run assets:pull` from the `predeploy` command #39
+
 ## [2.4.2] - 2020-01-15
 ### Changed
 - `package.json` - pull assets and push to workspace on predeploy, which is run automatically before deploy #31
