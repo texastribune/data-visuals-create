@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.5.3] - 2020-04-21
+### Added
+- `_variables.scss` - add elections color palette 
+- `deploy.js` - add reminder to check social media for features and fetch the latest data
+- `README.md` - update feature README with more publication reminders
+
 ## [2.4.3] - 2020-02-11
 ### Fixed
 - `package.json` - removed `npm run assets:pull` from the `predeploy` command #39
