@@ -26,9 +26,9 @@ async function build() {
     parallel([api, images, styles]),
     copy,
     templates,
+    unusedCSS,
     rev,
     revReplace,
-    unusedCSS,
   ]);
 
   await runner();

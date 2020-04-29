@@ -191,7 +191,7 @@ module.exports = () => {
         [
           path.join(paths.appTmpStyles, '/*.css'),
           path.join(paths.appTmp, '/**/*.html'),
-          path.join(paths.appSrc, 'scripts', 'components', '/**/*.js'),
+          path.join(paths.appSrc, 'scripts', '/**/*.js'),
         ],
         cleanUnusedCSS
       );
