@@ -9,7 +9,7 @@ const CleanCSS = require('clean-css');
 // internal
 const paths = require('../paths');
 const { isProductionEnv } = require('../env');
-const { logErrorMessage, replaceExtension } = require('../utils');
+const { replaceExtension } = require('../utils');
 
 // output locations
 const stylesFolder = isProductionEnv ? paths.appDistStyles : paths.appTmpStyles;
@@ -26,14 +26,14 @@ const parseCSS = async () => {
       ],
       css: [`${stylesFolder}/*.css`],
     });
-  } catch (error) {
-    logErrorMessage(error);
+  } catch (err) {
+    throw err;
   }
   // [{css: parsedCSS, file: path/to/original/css-file}]
   return result;
 };
 
-const writeCSS = async (result) => {
+const writeCSS = async result => {
   let { file, css } = result;
 
   // get the path relative to its source location
