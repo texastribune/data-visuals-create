@@ -62,6 +62,7 @@
     "postcss": "^7.0.2",
     "postcss-flexbugs-fixes": "^4.1.0",
     "prettier": "^1.12.1",
+    "purgecss": "^2.1.2",
     "quaff": "^4.0.0",
     "rev-file": "^3.0.0",
     "sass": "^1.13.4",

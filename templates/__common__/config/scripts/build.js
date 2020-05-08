@@ -17,6 +17,7 @@ const revReplace = require('../tasks/rev-replace');
 const scripts = require('../tasks/scripts');
 const styles = require('../tasks/styles');
 const templates = require('../tasks/templates');
+const unusedCSS = require('../tasks/unused-css');
 
 async function build() {
   const runner = series([
@@ -25,6 +26,7 @@ async function build() {
     parallel([api, images, styles]),
     copy,
     templates,
+    unusedCSS,
     rev,
     revReplace,
   ]);

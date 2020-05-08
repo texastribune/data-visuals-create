@@ -13,6 +13,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const paths = require('../paths');
 const styles = require('./styles');
 const templates = require('./templates');
+const unusedCSS = require('../tasks/unused-css');
 const {
   clearConsole,
   logErrorMessage,
@@ -59,6 +60,7 @@ module.exports = () => {
       let stylesError = null;
       let scriptsError = null;
       let scriptsWarning = null;
+      let unusedCSSError = null;
 
       console.log(colors.yellow('Starting initial serve...'));
 
@@ -101,6 +103,11 @@ module.exports = () => {
           onWarning('Scripts', scriptsWarning);
         }
 
+        if (unusedCSSError) {
+          hadError = true;
+          onError('Unused CSS check', unusedCSSError);
+        }
+
         if (!hadError) {
           console.log(colors.green('Project compiled successfully!'));
           printInstructions({ local, external });
@@ -141,6 +148,23 @@ module.exports = () => {
         logStatus();
       };
 
+      const cleanUnusedCSS = async () => {
+        try {
+          const paths = await unusedCSS();
+
+          // if browsersync is active, reload it
+          if (bs.active) {
+            paths.forEach(({ relativePath }) => bs.reload(relativePath));
+          }
+
+          unusedCSSError = null;
+        } catch (err) {
+          unusedCSSError = err;
+        }
+
+        logStatus();
+      };
+
       // initial compile of templates
       await compileTemplates();
 
@@ -158,6 +182,19 @@ module.exports = () => {
 
       // styles watching
       watch([path.join(paths.appStyles, '/**/*.scss')], compileStyles);
+
+      // initial CSS cleanup
+      await cleanUnusedCSS();
+
+      // watch template-related files
+      watch(
+        [
+          path.join(paths.appTmpStyles, '/*.css'),
+          path.join(paths.appTmp, '/**/*.html'),
+          path.join(paths.appSrc, 'scripts', '/**/*.js'),
+        ],
+        cleanUnusedCSS
+      );
 
       // scripts watching
       bundler.hooks.done.tap('done', stats => {

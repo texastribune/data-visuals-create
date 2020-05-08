@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.6.0] - 2020-05-08
+### Added
+- `templates/__common__/config/tasks/unused-css.js` - A step that looks at the CSS file linked in any .html file, parses that CSS, and writes new CSS based only on what the HTML needs through the magic of this wonderful tool, [purgecss](https://github.com/FullHuman/purgecss)
+
+### Changed
+- `templates/__common__/config/scripts/build.js` - This cleanup step will now run right after the HTML of the templates compile and before the file revving step
+- `templates/__common__/config/tasks/serve.js` - New watchers added mostly in the build output folder to re-run the CSS cleanup step after the build
+- `templates/__common__/_package.json` - Adds purgecss as a dev dependency
+
 ## [2.5.3] - 2020-04-21
 ### Added
 - `_variables.scss` - add elections color palette 
