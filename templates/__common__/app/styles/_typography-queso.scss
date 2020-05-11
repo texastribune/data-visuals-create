@@ -1,0 +1,32 @@
+.t-headline {
+    font-size: to-rem(24);
+    margin-top: 1em;
+    @include mq($from: s) {
+        font-size: to-rem(28);
+    }
+    @include mq($from: m) {
+        font-size: to-rem(32);
+    }
+}
+
+.t-byline {
+    &__item {
+        display: block;
+        margin-bottom: $size-tiny;
+        // custom line-height
+        line-height: 1.3;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    @include mq($until: bp-s) {
+        &__item {
+            margin-right: 0;
+        }
+    }
+    @include mq($from: bp-s) {
+        &__item {
+            display: inline-block;
+        }
+    }
+}

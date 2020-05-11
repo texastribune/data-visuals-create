@@ -1,0 +1,28 @@
+{% import "macros/shares.html" as shares %}
+
+<div class="c-share t-align-center l-container l-container--share">
+  <a class="c-button c-button--outline c-button--standard has-text-facebook has-bg-facebook has-text-hover-facebook l-align-center-children"
+    href="{{ shares.facebook(CURRENT_PAGE_URL) }}" aria-label="Share on Facebook">
+    <span class="c-button__inner c-icon t-size-s">
+      <svg aria-hidden="true">
+        <use xlink:href="#icon-facebook"></use>
+      </svg>
+    </span>
+  </a>
+  <a class="c-button c-button--outline c-button--standard has-text-twitter has-bg-twitter has-text-hover-twitter l-align-center-children"
+    href="{{ shares.twitter(CURRENT_PAGE_URL, context.tweet_text, '') }}" aria-label="Share on Twitter">
+    <span class="c-button__inner c-icon t-size-s">
+      <svg aria-hidden="true">
+        <use xlink:href="#icon-twitter"></use>
+      </svg>
+    </span>
+  </a>
+  <a class="c-button c-button--outline c-button--standard has-text-yellow has-bg-yellow has-text-hover-yellow l-align-center-children"
+    href="{{ shares.email(context.headline, CURRENT_PAGE_URL) }}" aria-label="Share this story by email">
+    <span class="c-button__inner c-icon t-size-s">
+      <svg aria-hidden="true">
+        <use xlink:href="#icon-envelope"></use>
+      </svg>
+    </span>
+  </a>
+</div>

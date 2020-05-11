@@ -1,0 +1,51 @@
+.plugin--centered {
+  margin: 2.5rem auto;
+}
+
+.c-ad-flex_bg--gray {
+  background-color: #fbfbfb;
+  height: 320px;
+}
+
+.c-ad-flex__thanks {
+  line-height: $line-height-subtitle;
+  a {
+    color: #347d90;
+  }
+}
+
+.c-ad-flex__unit {
+  background-color: $color-offwhite;
+
+  @include mq($from: m) {
+    height: 90px;
+  }
+}
+
+.story-ad {
+  margin-bottom: $gutter-double;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: $gutter-double;
+  width: 300px;
+
+  @include mq($from: m) {
+    width: 728px;
+  }
+}
+
+.story-ad--left {
+  @include mq($from: s) {
+    float: left;
+    margin-left: 15%;
+    margin-right: $gutter-double;
+  }
+}
+
+.story-ad--right {
+  @include mq($from: s) {
+    float: right;
+    margin-left: $gutter-double;
+    margin-right: 15%;
+  }
+}

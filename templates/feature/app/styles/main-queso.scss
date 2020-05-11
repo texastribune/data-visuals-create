@@ -1,0 +1,53 @@
+// base (no output)
+@import '@texastribune/queso-ui/assets/scss/1-settings/all';
+@import 'variables';
+@import '@texastribune/queso-ui/assets/scss/2-tools/all';
+@import 'functions';
+@import 'mixins';
+
+// resets and root elements
+@import '@texastribune/queso-ui/assets/scss/3-resets/all';
+@import '@texastribune/queso-ui/assets/scss/4-elements/all';
+
+
+// typography
+@import '@texastribune/queso-ui/assets/scss/5-typography/all';
+@import 'typography-queso';
+
+
+// components
+@import '@texastribune/queso-ui/assets/scss/6-components/button/button';
+@import '@texastribune/queso-ui/assets/scss/6-components/icon/icon';
+@import '@texastribune/queso-ui/assets/scss/6-components/navbar/navbar';
+@import '@texastribune/queso-ui/assets/scss/6-components/share/share';
+@import '@texastribune/queso-ui/assets/scss/6-components/story-block/story-block';
+@import '@texastribune/queso-ui/assets/scss/6-components/story-body/story-body';
+
+@import 'components/ads-queso';
+@import 'components/footer';
+@import 'components/ribbon';
+@import 'components/story-body';
+
+// to add to queso
+.c-navbar {
+  padding-left: $size-xs;
+  padding-right: $size-xs;
+  @include mq($from: bp-m, $until: bp-xl) {
+    padding-left: $size-b;
+    padding-right: $size-b;
+  }
+}
+
+// layout
+@import '@texastribune/queso-ui/assets/scss/7-layout/align';
+@import '@texastribune/queso-ui/assets/scss/7-layout/col-grid';
+@import '@texastribune/queso-ui/assets/scss/7-layout/container';
+@import '@texastribune/queso-ui/assets/scss/7-layout/content-grid';
+@import '@texastribune/queso-ui/assets/scss/7-layout/display';
+@import '@texastribune/queso-ui/assets/scss/7-layout/width';
+
+@import 'layout/container';
+
+
+// utilities
+@import '@texastribune/queso-ui/assets/scss/utilities/all';

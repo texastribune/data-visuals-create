@@ -24,6 +24,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
     "@types/node": "^11.9.4",
+    "@texastribune/queso-ui": "^8.6.1",
     "ansi-colors": "^3.2.3",
     "archieml": "^0.4.1",
     "assets-webpack-plugin": "^3.9.7",

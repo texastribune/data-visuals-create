@@ -6,19 +6,22 @@
 
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {% block google_fonts %}
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Start fonts -->
-  <script>
-  window.WebFontConfig = {
-  google: { families: ['Open Sans:300,400,700', 'PT Serif:400,700'] },
-  timeout: 10000,
-};
-</script>
-  <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+    <!-- Start fonts -->
+    <script>
+    window.WebFontConfig = {
+      google: { families: ['Open Sans:300,400,700', 'PT Serif:400,700'] },
+      timeout: 10000,
+    };
+    </script>
+    <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
   <!-- End fonts -->
-  <link rel="stylesheet" href="{{ static('styles/main.css') }}">
+  {% endblock google_fonts %}
+
+  {% block css_file %}<link rel="stylesheet" href="{{ static('styles/main.css') }}">{% endblock css_file %}
   {% include 'includes/ldjson.html' %}
   {% block head_scripts %}
   {{ javascriptPack(jsPackName, { mjs: true }) }}
@@ -28,11 +31,13 @@
 
 {% include 'includes/svg-defs.html' %}
 
-{% include 'components/simple-masthead.html' %}
+{% block nav %}{% include 'components/simple-masthead.html' %}{% endblock nav %}
 
-<main role="main">
-{% block content %}{% endblock content %}
-</main>
+{% block content_wrap %}
+  <main role="main">
+    {% block content %}{% endblock content %}
+  </main>
+{% endblock content_wrap %}
 
 {% include 'components/footer.html' %}
 

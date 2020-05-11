@@ -24,8 +24,10 @@ class RelatedContent extends Component {
   render({ title }, { stories }) {
     return (
       <section class="related-stories">
-        <p class="related-content__title">{title}</p>
-        <nav class="stories">
+        <p class="related-content__title t-sectionhead t-uppercase t-lsp-b t-weight-bold has-b-btm-marg t-size-b">
+          {title}
+        </p>
+        <nav class="stories l-col-grid l-col-grid--1x1-until-bp-m">
           {stories.map(story => (
             <Story key={story.id} {...story} />
           ))}

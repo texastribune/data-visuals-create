@@ -19,7 +19,7 @@ $color-elections-democrat: #1755c5;
 $color-elections-yellow: #ffc200;
 $color-elections-green: #3cc687;
 $color-elections-gray: #99a0af;
-$color-elections-offwhite: #f7f7f7; 
+$color-elections-offwhite: #f7f7f7;
 $color-elections-navy: #1a2b4b;
 $color-elections-pink: #fcc2b6;
 
@@ -45,7 +45,7 @@ $color-chart-sea-green: hsl(170, 30%, 37%);
 $color-men: hsl(171, 44%, 44%);
 $color-women: hsl(46, 100%, 50%);
 
-$color-national: hsl(171, 44%, 44%); 
+$color-national: hsl(171, 44%, 44%);
 $color-state: hsl(7, 77%, 54%);
 
 // The yiq lightness value that determines when the lightness of color changes
@@ -135,6 +135,16 @@ $zindex-tooltip: 1070;
 // sass-mq
 $mq-responsive: true;
 
+// queso only - breakpoints
+$bp-xs: 320px;
+$bp-s: 520px;
+$bp-m: 650px;
+$bp-l: 845px;
+$bp-xl: 1080px;
+$bp-xxl: 1300px;
+
+$bp-default: 960px;
+
 $mq-breakpoints: (
   xs: 375px,
   s: 544px,
@@ -143,6 +153,19 @@ $mq-breakpoints: (
   xl: 1200px,
   header-break: 840px,
   footer-break: 850px,
+  bp-xs: $bp-xs,
+  bp-s: $bp-s,
+  bp-m: $bp-m,
+  bp-l: $bp-l,
+  bp-xl: $bp-xl,
+  bp-xxl: $bp-xxl,
+  bp-default: $bp-default
 );
 
 $mq-media-type: screen;
+
+
+// queso only - font base
+$font-root: 16px;
+$font-root-tablet: 16px;
+$font-root-mobile: 16px;
