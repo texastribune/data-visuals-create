@@ -1,7 +1,7 @@
 // base (no output)
 @import '@texastribune/queso-ui/assets/scss/1-settings/all';
-@import 'variables';
 @import '@texastribune/queso-ui/assets/scss/2-tools/all';
+@import 'variables';
 @import 'functions';
 @import 'mixins';
 
@@ -9,24 +9,15 @@
 @import '@texastribune/queso-ui/assets/scss/3-resets/all';
 @import '@texastribune/queso-ui/assets/scss/4-elements/all';
 
-
 // typography
 @import '@texastribune/queso-ui/assets/scss/5-typography/all';
 @import 'typography-queso';
 
-
 // components
-@import '@texastribune/queso-ui/assets/scss/6-components/button/button';
-@import '@texastribune/queso-ui/assets/scss/6-components/icon/icon';
-@import '@texastribune/queso-ui/assets/scss/6-components/navbar/navbar';
-@import '@texastribune/queso-ui/assets/scss/6-components/share/share';
-@import '@texastribune/queso-ui/assets/scss/6-components/story-block/story-block';
-@import '@texastribune/queso-ui/assets/scss/6-components/story-body/story-body';
-
-@import 'components/ads-queso';
+@import '@texastribune/queso-ui/assets/scss/6-components/all';
+@import 'components/ads';
 @import 'components/footer';
 @import 'components/ribbon';
-@import 'components/story-body';
 
 // to add to queso
 .c-navbar {
@@ -39,15 +30,8 @@
 }
 
 // layout
-@import '@texastribune/queso-ui/assets/scss/7-layout/align';
-@import '@texastribune/queso-ui/assets/scss/7-layout/col-grid';
-@import '@texastribune/queso-ui/assets/scss/7-layout/container';
-@import '@texastribune/queso-ui/assets/scss/7-layout/content-grid';
-@import '@texastribune/queso-ui/assets/scss/7-layout/display';
-@import '@texastribune/queso-ui/assets/scss/7-layout/width';
-
+@import '@texastribune/queso-ui/assets/scss/7-layout/all';
 @import 'layout/container';
-
 
 // utilities
 @import '@texastribune/queso-ui/assets/scss/utilities/all';

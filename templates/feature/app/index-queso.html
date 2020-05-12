@@ -15,43 +15,36 @@
 
 {% block content_wrap %}
   <main>
-    <article>
+    <article class="has-giant-btm-marg">
       {% block content %}
         <div class="has-page-padding has-giant-btm-marg">
           <header class="t-align-center">
             <h1 class="l-container l-container--m t-headline t-serif t-lh-s has-s-btm-marg">{{ context.title or 'The only member-supported, digital-first, nonpartisan media organization' | widont }}</h1>
             <p class="t-byline t-links t-uppercase t-lsp-m t-size-xs has-text-gray-dark has-b-btm-marg">
-              <span class="t-byline__item">By
-                <a class="l-display-ib" href="https://www.texastribune.org/about/staff/mandi-cai/">Mandi Cai</a>, <a class="l-display-ib" href="https://www.texastribune.org/about/staff/chris-essig/">Chris Essig</a>, <a class="l-display-ib" href="https://www.texastribune.org/about/staff/carla-astudillo/">Carla Astudillo</a> <span class="l-display-ib" >and <a href="https://www.texastribune.org/about/staff/darla-cameron/">Darla Cameron</a></span>
-              <!--
-              {%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
-              {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} {{ author }}
-              {%- endfor -%}
-              -->
+              <span class="t-byline__item">By {%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
+              {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} <span class="l-display-ib">{{ author }}</span>
+              {% endfor %}
               </span>
-              <!--
               {% if context.update_date %}
               <span class="t-byline__item">Updated: <time datetime="{{ context.update_date }}">{{ apFormatDate(context.update_date) }}</time></span>
               {% else %}
               <span class="t-byline__item"><time datetime="{{ context.pub_date }}">{{ apFormatDate(context.pub_date) }}</time></span>
-              {% endif %}-->
-              <span class="t-byline__item"><time datetime="2020-04-07">April 7, 2020</time></span>
+              {% endif %}
             </p>
           </header>
 
           {% include 'components/share.html' %}
         </div>
 
-        <div class="l-container l-container--m c-story-body">
+        <div class="t-serif t-links-underlined has-page-padding">
+          {{ prose(context.prose, context, data) }}
+          <p class="t-copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
 
-            {{ prose(context.prose, context, data) }}
-            <p>Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
+          <h2 class="t-copy t-copy--subheader">{{ 'A cool subhead here' | widont }}</h2>
 
-            <h2>{{ 'A cool subhead here' | widont }}</h2>
+          <p class="t-copy">Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
 
-            <p>Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
-
-            <p>Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
+          <p class="t-copy">Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
 
         </div>
 
@@ -60,10 +53,10 @@
         {{ ad('gray') }}
 
         {# create another container for more prose if the text needs to be split by an ad #}
-        <div class="l-container l-container--m c-story-body">
-          <p>Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
+        <div class="t-serif t-links-underlined has-page-padding">
+          <p class="t-copy">Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
 
-          <p>Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
+          <p class="t-copy">Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
         </div>
 
         {{ ad('gray') }}

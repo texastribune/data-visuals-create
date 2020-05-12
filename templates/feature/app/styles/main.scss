@@ -1,10 +1,11 @@
+// Third-party libraries (includes sass-mq)
+@import '@texastribune/queso-ui/assets/scss/1-settings/all';
+@import '@texastribune/queso-ui/assets/scss/2-tools/all';
+
 // Variables and mixins
 @import 'variables';
 @import 'mixins';
 @import 'functions';
-
-// Third-party libraries
-@import 'node_modules/sass-mq/mq';
 
 // Reset, overrides and utils
 @import 'reset';
