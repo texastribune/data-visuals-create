@@ -1,0 +1,9 @@
+// Align navbar padding with text
+.c-navbar {
+  padding-left: $size-xs;
+  padding-right: $size-xs;
+  @include mq($from: bp-m, $until: bp-xl) {
+    padding-left: $size-b;
+    padding-right: $size-b;
+  }
+}

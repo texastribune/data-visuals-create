@@ -17,17 +17,8 @@
 @import '@texastribune/queso-ui/assets/scss/6-components/all';
 @import 'components/ads';
 @import 'components/footer';
+@import 'components/navbar';
 @import 'components/ribbon';
-
-// to add to queso
-.c-navbar {
-  padding-left: $size-xs;
-  padding-right: $size-xs;
-  @include mq($from: bp-m, $until: bp-xl) {
-    padding-left: $size-b;
-    padding-right: $size-b;
-  }
-}
 
 // layout
 @import '@texastribune/queso-ui/assets/scss/7-layout/all';
