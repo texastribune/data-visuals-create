@@ -38,10 +38,10 @@ const processTemplate = async (filepath, data) => {
 
   // render nunjucks variables in the text
   // option to pass in your own data context
-  nunjucksEnv.addFilter('renderStringWithNunjucks', (str, context = {}) => {
+  nunjucksEnv.addFilter('renderStringWithNunjucks', (str, dataContext = {}) => {
     return nunjucksEnv.renderString(str.toString(), {
       ...data,
-      ...context // values in context take precedence over values in data
+      ...dataContext, // values in data context take precedence over values in data
     });
   });
 

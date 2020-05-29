@@ -3,7 +3,13 @@
 {% from 'macros/processors.html' import ad %}
 
 {% set jsPackName = 'main' %}
+
+{# data.text --> data/text.json #}
 {% set context = data.text %}
+
+{# data.data --> data/data.json #}
+{% set featureData = data.data %}
+
 {% set authorComma = joiner() %}
 
 {% block content %}
@@ -28,7 +34,7 @@
 
 <div class="container">
   <div class="intro-prose">
-    {{ prose(context.prose, context, data) }}
+    {{ prose(context.prose, context, featureData) }}
     <p class="copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
 
     <h2 class="article-subheader copy">{{ 'A cool subhead here' | widont }}</h2>
