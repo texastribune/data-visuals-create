@@ -1,6 +1,7 @@
 import { h } from 'preact';
+import { apdate } from 'journalize';
 
-const Story = ({ headline, url, lead_art, readable_pub_date }) => {
+const Story = ({ headline, url, pub_date, sitewide_image }) => {
   return (
     <article class="story">
       <a
@@ -13,12 +14,15 @@ const Story = ({ headline, url, lead_art, readable_pub_date }) => {
       >
         <div class="story-media">
           <div class="story-art">
-            <img src={lead_art.thumbnails.letterbox} alt={headline} />
+            <img
+              src={sitewide_image.thumbnails.letterbox}
+              alt={sitewide_image.description}
+            />
           </div>
           <div class="story-text">
             <header class="story-header">
               <h4 class="story-headline">{headline}</h4>
-              <p class="story-byline">{readable_pub_date}</p>
+              <p class="story-byline">{apdate(new Date(pub_date))}</p>
             </header>
           </div>
         </div>
