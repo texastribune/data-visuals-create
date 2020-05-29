@@ -7,6 +7,9 @@
 {# data.text --> data/text.json #}
 {% set context = data.text %}
 
+{# data.data --> data/data.json #}
+{% set graphicData = data.data %}
+
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
