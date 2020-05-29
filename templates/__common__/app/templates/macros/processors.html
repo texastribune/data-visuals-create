@@ -1,9 +1,9 @@
 {% macro raw(value) %}
-{{ value }}
+{{ value | renderStringWithNunjucks }}
 {% endmacro %}
 
 {% macro text(value) %}
-<p class="copy">{{ value }}</p>
+<p class="copy">{{ value | renderStringWithNunjucks }}</p>
 {% endmacro %}
 
 {% macro list(value) %}

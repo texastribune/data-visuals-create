@@ -26,7 +26,6 @@ const processTemplate = async (filepath, data) => {
       ? relativePath.replace('index.html', '')
       : relativePath.replace(ext, '');
 
-  
   // use `dir` and `name` to get the page folder structure
   // used in poll graphics
   nunjucksEnv.addGlobal('PAGE_BASE_NAME', path.join(dir, name));
@@ -36,6 +35,15 @@ const processTemplate = async (filepath, data) => {
     'CURRENT_PAGE_URL',
     ensureSlash(`${paths.appProjectUrl}${pathname}`)
   );
+
+  // render nunjucks variables in the text
+  // option to pass in your own data context
+  nunjucksEnv.addFilter('renderStringWithNunjucks', (str, context = {}) => {
+    return nunjucksEnv.renderString(str.toString(), {
+      ...data,
+      ...context // values in context take precedence over values in data
+    });
+  });
 
   // compile the HTML!
   let compiledHtml;
