@@ -1,5 +1,6 @@
 {# Template for any scripted graphics, i.e. D3 charts #}
 {% extends 'base.html' %}
+{% from 'macros/prose.html' import prose %}
 
 {# set pack that provides JS #}
 {% set jsPackName = 'main' %}
@@ -13,7 +14,7 @@
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
-  <p class="graphic-prose">{{ context.prose }}</p>
+  {{ prose(context.prose, context, graphicData) }}
 
   {# container that JS is attached to #}
   <div id="graphic" class="graphic"></div>
