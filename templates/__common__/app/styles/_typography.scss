@@ -58,6 +58,26 @@
   }
 }
 
+.article-pub-update-date {
+  display: block;
+  margin-top: $gutter-quarter;
+
+  time {
+    @include mq($until: s) {
+      display: block;
+      margin-top: $gutter-quarter;
+    }
+
+    &:not(:first-child) {
+      margin-left: .625rem;
+
+      @include mq($until: s) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
 .article-shares {
   display: flex;
   flex-direction: row;
