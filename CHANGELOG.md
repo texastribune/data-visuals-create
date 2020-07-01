@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [2.7.0]
+## [2.7.0] - 2020-07-01
 ### Added
 - `templates/__common__/config/tasks/templates.js` - add renderStringWithNunjucks() filter to process data variables pulled in from a Google Doc #46
 - `templates/graphic/app/templates/macros/processors.html`, `templates/feature/app/templates/macros/processors.html` - separate processors files for graphics and features, add renderStringWithNunjucks() filter to macros #46
