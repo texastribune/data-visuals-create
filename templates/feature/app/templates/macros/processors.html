@@ -1,9 +1,11 @@
-{% macro raw(value) %}
-{{ value }}
+{# for raw and text macros, we can process variables #}
+{# you can pass in a custom data context or use the default data object #}
+{% macro raw(value, context, data) %}
+{{ value | renderStringWithNunjucks(data) }}
 {% endmacro %}
 
-{% macro text(value) %}
-<p class="copy">{{ value }}</p>
+{% macro text(value, context, data) %}
+<p class="copy">{{ value | renderStringWithNunjucks(data) }}</p>
 {% endmacro %}
 
 {% macro list(value) %}

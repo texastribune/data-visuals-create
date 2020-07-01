@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.7.0] - 2020-07-01
+### Added
+- `templates/__common__/config/tasks/templates.js` - add renderStringWithNunjucks() filter to process data variables pulled in from a Google Doc #46
+- `templates/graphic/app/templates/macros/processors.html`, `templates/feature/app/templates/macros/processors.html` - separate processors files for graphics and features, add renderStringWithNunjucks() filter to macros #46
+
+### Changed
+- `templates/feature/app/index.html` - set featureData variable to store data
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - set graphicData variable to store data, render graphic prose with prose macro so we can add data variables
+
+### Removed
+- `templates/__common__/app/templates/macros/processors.html` - remove common processors file
+
 ## [2.6.0] - 2020-05-08
 ### Added
 - `templates/__common__/config/tasks/unused-css.js` - A step that looks at the CSS file linked in any .html file, parses that CSS, and writes new CSS based only on what the HTML needs through the magic of this wonderful tool, [purgecss](https://github.com/FullHuman/purgecss)

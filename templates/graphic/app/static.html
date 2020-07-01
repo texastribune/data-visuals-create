@@ -1,17 +1,20 @@
 {# Template for any non-scripted graphics, i.e. Illustrator graphics or HTML tables #}
 {% extends 'base.html' %}
+{% from 'macros/prose.html' import prose %}
 
 {# set pack that provides JS #}
 {% set jsPackName = 'static' %}
 
 {# data.text --> data/text.json #}
 {% set context = data.text %}
-{% set data = data.data %}
+
+{# data.data --> data/data.json #}
+{% set graphicData = data.data %}
 
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.title | widont }}</h1>
-  <p class="graphic-prose">{{ context.prose }}</p>
+  {{ prose(context.prose, context, graphicData) }}
 
   {# add name of your ai2html file here #}
   {# {% set ai2html = "" %}

@@ -230,6 +230,27 @@ The `name` key controls what filename it will receive once it's put in the `data
 
 ArchieML Google Docs work as documented on the [ArchieML](http://archieml.org/) site. This includes the automatic conversion of links to `<a>` tags!
 
+Our kit can display variables pulled in from Google Docs in the template. This is helpful when we want to show data in our text that is in the `data/` folder. Nunjucks finds the variable syntax (anything in curly braces) in our Google Doc text and displays the corresponding value.
+
+By default, Nunjucks has access to every file in our `data/` folder as an object. For example, if there are two files in the `data/` folder named `data.json` and `text.json` respectively, it will be structured as: 
+
+```json
+{
+  "text": {
+    "title": "Phasellus venenatis dapibus ante, vel sodales sem blandit sed.",
+  },
+  "data": {
+    "keyvalue_sheet": {
+      "key1": "value1",
+    }
+  }
+}
+```
+
+You can then reference values in this data object as a variable, i.e. `{{ data.keyvalue_sheet.key1 }}` in the Google Doc.
+
+You can also pass in your own data object for Nunjucks to reference to the `prose`, `raw` and `text` macros. This will override any values in the default data object.
+
 ### Google Sheets
 
 Google Sheets processed by `@data-visuals/create` may potentially require some additional configuration. Each sheet (or tab) in a Google Sheet is converted separately by the kit, and keyed-off in the output object by the _name of the sheet_.
