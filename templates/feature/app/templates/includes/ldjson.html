@@ -13,7 +13,9 @@
     "dateCreated": "{{ context.pub_date }}",
     "datePublished": "{{ context.pub_date }}",
     {% if context.update_date %}"dateModified": "{{ context.update_date }}",
+    {% elif context.updated_date %}"dateModified": "{{ context.updated_date }}",
     {% endif -%}
+    "author": "Texas Tribune Staff",
     "isAccessibleForFree": "True",
     "publisher": {
       "@type": "NewsMediaOrganization",
