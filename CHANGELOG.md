@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `package.json` - added [Moment.js](https://momentjs.com/) package #56
 
 ### Fixed
-- `templates/feature/app/templates/includes/ldjson.html` - check for updated or update date so the tracker shows up in search on updates, add `author` field
+- `templates/feature/app/templates/includes/ldjson.html` - check for `updated` or `update date` so the tracker shows up in search on updates, add `author` field
 
 ## [2.7.1] - 2020-07-01
 ### Added
