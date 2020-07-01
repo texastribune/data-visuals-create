@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.7.1] - 2020-07-01
+### Added
+- `templates/__common__/app/styles/_typography.scss` - add styling for update date #44
+
+### Changed
+- `templates/feature/app/index.html` - add HTML to handle update date and pub date #44
+
+### Fixed
+- `templates/feature/app/scripts/utils/feeds.js` - switch v1 API urls to v2 API urls #6
+- `templates/feature/app/scripts/components/Story.js` - switch out properties to match v2 API urls #6
+
 ## [2.7.0] - 2020-07-01
 ### Added
 - `templates/__common__/config/tasks/templates.js` - add renderStringWithNunjucks() filter to process data variables pulled in from a Google Doc #46

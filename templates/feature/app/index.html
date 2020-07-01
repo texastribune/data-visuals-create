@@ -22,9 +22,14 @@
       {%- endfor -%}
       </span>
       {% if context.update_date %}
-      <span class="article-pub-date">Updated: <time datetime="{{ context.update_date }}">{{ apFormatDate(context.update_date) }}</time></span>
+      <span class="article-pub-update-date">
+        <time datetime="{{ context.pub_date }}">Published: {{ apFormatDate(context.pub_date) }}</time>
+        <time datetime="{{ context.update_date }}">Updated: {{ apFormatDate(context.update_date) | widont}} </time>
+      </span>
       {% else %}
-      <span class="article-pub-date"><time datetime="{{ context.pub_date }}">{{ apFormatDate(context.pub_date) }}</time></span>
+      <span class="article-pub-date">
+        <time datetime="{{ context.pub_date }}">{{ apFormatDate(context.pub_date) }}</time>
+      </span>
       {% endif %}
     </p>
   </header>
