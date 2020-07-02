@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.7.2] - 2020-07-01
 ### Added
 - `templates/feature/app/scripts/packs/graphic.js` - add useful functions to JS for graphics (functions were already available in feature JS)
-- `package.json` - added [Moment.js](https://momentjs.com/) package #56
 
 ### Fixed
 - `templates/feature/app/templates/includes/ldjson.html` - check for `updated` or `update date` so the tracker shows up in search on updates, add `author` field
