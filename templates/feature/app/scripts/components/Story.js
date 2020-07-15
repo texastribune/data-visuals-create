@@ -17,6 +17,7 @@ const Story = ({ headline, url, pub_date, sitewide_image }) => {
             <img
               src={sitewide_image.thumbnails.letterbox}
               alt={sitewide_image.description}
+              class="l-width-full"
             />
           </div>
           <div class="story-text c-story-block__text">
