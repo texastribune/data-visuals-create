@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ## [2.8.1] - 2020-07-20
+### Fixed
 - `package-lock.json` - bump lodash from 4.17.15 to 4.17.19
 
 ## [2.8.0] - 2020-07-20
