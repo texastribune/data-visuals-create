@@ -1,0 +1,60 @@
+// Overrides of some queso helpers
+// and additional data visuals helpers
+.t-headline {
+  font-size: to-rem(24);
+  margin-top: 1em;
+  @include mq($from: s) {
+    font-size: to-rem(28);
+  }
+  @include mq($from: m) {
+    font-size: to-rem(32);
+  }
+}
+
+.t-byline {
+  &__item {
+    display: block;
+    margin-bottom: $size-tiny;
+    line-height: 1.3;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  @include mq($until: bp-s) {
+    &__item {
+      margin-right: 0;
+    }
+  }
+  @include mq($from: bp-s) {
+    &__item {
+      display: inline-block;
+    }
+  }
+}
+
+// Mirrored from old styles and adapted for queso
+// For most forms of body copy. Takes most of its notes from the main site's
+// body copy. Typically you'll be applying this to each <p> tag directly, NOT
+// to the body copy's container. This makes it easier to float things around
+// individual paragraphs.
+.t-copy {
+  font-size: 1.125rem;
+  line-height: $line-height-body;
+  margin-bottom: 1em; // Ensures spacing below the <p> syncs up with font-size
+  margin-left: auto; // Centers <p> tag within max-width
+  margin-right: auto; // Centers <p> tag within max-width
+  margin-top: 1em; // Ensures spacing above the <p> syncs up with font-size
+  max-width: 34em; // Controls the measure
+
+  &--subheader {
+    font-size: 1.4rem;
+    line-height: $line-height-subtitle;
+    max-width: 27em;
+
+    @include mq($from: m) {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      max-width: 24em;
+    }
+  }
+}

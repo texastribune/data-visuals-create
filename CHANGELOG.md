@@ -10,6 +10,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [2.8.0] - 2020-07-20
+### Added
+- `/feature/app/index-queso.html` - Starter template for queso CSS framework
+- `/feature/app/styles/main-queso.scss` - Starter styles for CSS framework
+- `/__common__/app/styles/_typography-queso.scss` - Extra typography styles not accounted for in queso-ui and data viz specific overrides of existing helpers. Appended `-queso` as to not be confused with current _typography.scss
+- `/feature/app/styles/components/_navbar.scss` - Overrides for queso navbar
+- `feature/app/styles/layout/_container.scss` - Additional container classes
+- `/feature/app/templates/components/navbar.html` - Standard navbar component (used on TT)
+- `/feature/app/templates/components/share.html` - Standard share component (used on TT)
+- `/feature/app/templates/includes/logo.html` - Standard logo include (used on TT)
+
+### Changed
+- `_package.json` - Added queso dependency
+- `_variables.scss` - Added variables required for queso
+- `/feature/app/scripts/components/RelatedContent.js` and `/feature/app/scripts/components/Story.js` - Sprinkled in queso helpers (to be compatible in either starter template)
+- `/feature/app/styles/components/_ads.scss` - Updated teal to match TT site (it's a random darkened-teal for accessibility)
+- `/feature/app/styles/main.scss` - Removed sass-mq because it comes with the queso imports and added just the base queso variables and tools. This doesn't actually add any CSS so it's helpful if you ever want to include queso helpers in this file in your project.
+- `/feature/app/templates/base.html` - Added more blocks so that the queso starter template could vary in those parts. Example: Google fonts isn't needed in the queso started so we override that with an empty block.
+
 ## [2.7.2] - 2020-07-01
 ### Added
 - `templates/feature/app/scripts/packs/graphic.js` - add useful functions to JS for graphics (functions were already available in feature JS)
