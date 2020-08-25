@@ -23,7 +23,7 @@ module.exports = {
   /**
    * The destination S3 bucket for a deploy.
    */
-  bucket: 'moose.texastribune.org',
+  bucket: 'capybara-test.texastribune.org',
   /**
    * The folder (or "Key" in S3 lingo) to deploy the project into.
    */
