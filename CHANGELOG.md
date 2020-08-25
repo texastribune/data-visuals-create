@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `templates/feature/project.config.js` - change destination s3 bucket on deploy
 
+### Fixed
+- `package-lock.json` - bump version of `np` package to resolve security vulnerability
+
 ## [2.8.1] - 2020-07-20
 ### Fixed
 - `package-lock.json` - bump lodash from 4.17.15 to 4.17.19
