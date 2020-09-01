@@ -6,4 +6,9 @@
     padding-left: $size-b;
     padding-right: $size-b;
   }
+
+  &__logo {
+    width: 210px;
+    margin-right: $size-b;
+  }
 }

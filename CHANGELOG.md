@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.1.0]
+### Added
+- `templates/feature/app/styles/components/_navbar.scss` - added masthead title to the nav bar component in the `index-queso.html` template
+- `templates/feature/app/templates/components/navbar.html` - added additional styling for the masthead title
+
 ## [3.0.0] - 2020-08-25
 ### Changed
 - `templates/feature/project.config.js` - change destination s3 bucket on deploy
