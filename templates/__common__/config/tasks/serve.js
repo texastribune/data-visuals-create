@@ -185,6 +185,7 @@ module.exports = () => {
 
       // initial CSS cleanup
       await cleanUnusedCSS();
+      bs.reload();
 
       // watch template-related files
       watch(

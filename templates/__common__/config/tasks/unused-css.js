@@ -22,7 +22,7 @@ const parseCSS = async () => {
     result = await new PurgeCSS().purge({
       content: [
         `${htmlFolder}/**/*.html`,
-        `${paths.appSrc}/scripts/components/**/*.js`,
+        `${paths.appSrc}/**/*.{js,jsx,ts,tsx}`,
       ],
       css: [`${stylesFolder}/*.css`],
     });
