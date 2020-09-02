@@ -1,9 +1,14 @@
 <header class="c-navbar c-navbar--dark">
   <div class="c-navbar__top l-align-center-x">
-    <a href="https://www.texastribune.org" class="c-navbar__logo l-align-center-self">
-      <span class="is-sr-only">The Texas Tribune</span>
-      {% include 'includes/logo.html' %}
-    </a>
+    <div class="c-navbar__branding l-align-center-children">
+      <a href="https://www.texastribune.org" class="c-navbar__logo">
+        <span class="is-sr-only">The Texas Tribune</span>
+        {% include 'includes/logo.html' %}
+      </a>
+      {% if context.masthead_title %}
+        <p class="has-text-white is-hidden-until-bp-m t-weight-bold t-links-underlined-hover-thin">{{ context.masthead_title }}</p>
+      {% endif %}
+    </div>
     <div class="c-navbar__content">
       <div class="c-navbar__items l-align-center-children">
          <a href="https://support.texastribune.org/" class="c-button c-button--standard t-uppercase">

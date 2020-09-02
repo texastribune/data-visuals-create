@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.1.0] - 2020-09-02
+### Added
+- `templates/feature/app/styles/components/_navbar.scss` - added masthead title to the nav bar component in the `index-queso.html` template
+- `templates/feature/app/templates/components/navbar.html` - added additional styling for the masthead title
+
+### Fixed
+- `config/tasks/serve.js` - Adds an extra reload to refresh the page. When you first run npm run start there's a blip of no CSS while the CSS cleanup step runs. This will refresh again after that's finished so that console error referring to that missing CSS clears.
+- `config/tasks/unused-css.js` - Generalizes the gobbing pattern to capture more types of script files and in any folder. Previously CSS classes referenced in JS files weren't making it to the extra-minified CSS file, which is set up to only include classes used in the project.
+
 ## [3.0.0] - 2020-08-25
 ### Changed
 - `templates/feature/project.config.js` - change destination s3 bucket on deploy
