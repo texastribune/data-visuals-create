@@ -124,6 +124,18 @@ env.addGlobal('CURRENT_YEAR', new Date().getFullYear());
 
 env.addGlobal('parseData', parseData);
 
+env.addGlobal('getAuthorLink', input => {
+  const link = input.match(/<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1/);
+  if (link) return link[2];
+  else return '';
+});
+
+env.addGlobal('getAuthor', input => {
+  const author = input.match(/<a [^>]+>([^<]+)<\/a>/);
+  if (author) return author[1];
+  else return input;
+});
+
 env.addGlobal(
   'createScale',
   (values, { range = [0, 100], getter = null } = {}) => {

@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.2.0]
+### Changed
+- `templates/__common__/config/tasks/nunjucks.js` - added getAuthor() and getAuthorLink() to extract author name and author link for structured data schema
+- `templates/feature/app/templates/includes/ldjson.html` - add new structured data attributes
+
 ## [3.1.0] - 2020-09-02
 ### Added
 - `templates/feature/app/styles/components/_navbar.scss` - added masthead title to the nav bar component in the `index-queso.html` template
