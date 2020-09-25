@@ -17,7 +17,7 @@ module.exports = {
    */
   projectType: 'feature',
   /**
-   * What slug was passed in on creation. 
+   * What slug was passed in on creation.
    * Changing this will not change the slug in the url.
    */
   slug: '<<slug>>',
