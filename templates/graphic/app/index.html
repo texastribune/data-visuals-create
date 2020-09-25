@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="app">
-  <h1 class="graphic-title">{{ context.title | widont }}</h1>
+  <h1 class="graphic-title">{{ context.headline | widont }}</h1>
   {{ prose(context.prose, context, graphicData) }}
 
   {# container that JS is attached to #}
