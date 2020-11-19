@@ -10,6 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.3.0]
+### Changed
+- `templates/graphic/project.config.js`, `templates/feature/project.config.js` - comment the slug and folder variables (folder variable should be changed when the URL slug is changed)
+- `templates/feature/app/index-queso.html` - change `{{ context.title }}` to `{{ context.headline }}`, add HTML to include publish and update dates
+- `templates/feature/app/index.html`, `templates/feature/project.config.js`, `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - change `{{ context.title }}` to `{{ context.headline }}`
+- `templates/feature/app/templates/components/simple-masthead.html`, 
+`templates/feature/app/templates/includes/logo.html` - change 10th anniversary logo back to original TT logo
+- `templates/__common__/app/styles/_typography-queso.scss` - add t-subheader styling
+
+### Added
+- `templates/__common__/app/templates/macros/prose-queso.html`, `templates/feature/app/templates/macros/processors-queso.html` - added prose and processors with queso styling
+
+### Fixed
+- `templates/feature/app/index-queso.html`, `templates/feature/app/index.html` - add widont to headline
+
 ## [3.2.0]
 ### Changed
 - `templates/__common__/config/tasks/nunjucks.js` - added getAuthor() and getAuthorLink() to extract author name and author link for structured data schema

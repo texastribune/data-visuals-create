@@ -18,6 +18,7 @@ module.exports = {
   projectType: 'feature',
   /**
    * What slug was passed in on creation.
+   * Changing this will not change the slug in the url.
    */
   slug: '<<slug>>',
   /**
@@ -26,6 +27,7 @@ module.exports = {
   bucket: 'capybara-test.texastribune.org',
   /**
    * The folder (or "Key" in S3 lingo) to deploy the project into.
+   * Change the slug in the URL here.
    */
   folder: 'features/<<year>>/<<slug>>',
   /**
