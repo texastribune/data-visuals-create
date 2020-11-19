@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `templates/graphic/project.config.js`, `templates/feature/project.config.js` - comment the slug and folder variables (folder variable should be changed when the URL slug is changed)
 - `templates/feature/app/index-queso.html` - change `{{ context.title }}` to `{{ context.headline }}`, add HTML to include publish and update dates
 - `templates/feature/app/index.html`, `templates/feature/project.config.js`, `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - change `{{ context.title }}` to `{{ context.headline }}`
-- `templates/feature/app/templates/components/simple-masthead.html` - change 10th anniversary logo back to original TT logo
+- `templates/feature/app/templates/components/simple-masthead.html`, 
+`templates/feature/app/templates/includes/logo.html` - change 10th anniversary logo back to original TT logo
 
 ## [3.2.0]
 ### Changed
