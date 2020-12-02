@@ -109,6 +109,6 @@ module.exports = {
    *
    */
   parserOptions: {
-    appleNewsIgnore: []
+    appleNewsIgnore: [],
   },
 };

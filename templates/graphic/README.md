@@ -6,14 +6,14 @@ This `<<type>>` was created using [`data-visuals-create`](https://github.com/tex
 
 ## Final editing checklist
 
-Before your embedded graphic or feature goes live, here's the editing steps you need to take: 
+Before your embedded graphic or feature goes live, here's the editing steps you need to take:
 
-- [ ] Spell check and self-edit — does everything make sense? 
+- [ ] Spell check and self-edit — does everything make sense?
 - [ ] Data visuals editor for a visual edit
 - [ ] Design feedback channel (optional for more complex graphics or apps)
-- [ ] Story reporter, if a collaboration 
+- [ ] Story reporter, if a collaboration
 - [ ] Story or beat editor for a line edit to check facts
-- [ ] DV team in the secret channel (for a final gut check) 
+- [ ] DV team in the secret channel (for a final gut check)
 - [ ] Copy editor
 - [ ] Be available the night before publication for any last-minute changes, or let other DV teammates know how to make edits
 
@@ -63,6 +63,14 @@ Projects created with `data-visuals-create` support two of the built-in ways tha
 
 The interface with Google Drive within `data-visuals-create` projects currently only supports using Oauth2 credentials to speak to the Google APIs. This requires a set of OAuth2 credentials that will be used to generate and save an access token to your computer. `data-visuals-create` projects have hardcoded locations for the credential file and token file, but you may override those with environmental variables.
 
+### Chrome
+
+The `npm run parse` step will use [Puppeteer](https://github.com/puppeteer/puppeteer) and a local Chrome install to emulate the project in a browser. This will help build metadata based on a graphic's HTML and export image-based previews of the graphic. By default, this process assumes you're using MacOS. To change this for other operating systems, rerun the command with the correct install path variable: `CHROME_INSTALL_PATH="local/path/to/chrome" npm run parse`.
+
+### Apple News
+
+The `npm run parse` step will also generate [Apple News Format JSON](https://developer.apple.com/documentation/apple_news/apple_news_format) for all graphics. This output will be a simple screenshot of the graphic along with any calls to actions if found. To prevent a graphic from being generated in Apple News, add the filename to the `appleNewsIgnore` array in `parserOptions` of the `project.config.js` file. This is recommended for graphics that have too many interactive elements to be properly conveyed in a static image.
+
 #### CLIENT_SECRETS_FILE
 
 **default**: `~/.tt_kit_google_client_secrets.json`
@@ -70,6 +78,10 @@ The interface with Google Drive within `data-visuals-create` projects currently 
 #### GOOGLE_TOKEN_FILE
 
 **default**: `~/.google_drive_fetch_token`
+
+#### CHROME_INSTALL_PATH
+
+**default**: `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`
 
 ## License
 

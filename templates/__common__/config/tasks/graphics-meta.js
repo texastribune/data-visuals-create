@@ -46,7 +46,7 @@ const graphicsMetaTips = {
   missingTitle:
     "\n====\nTo add a missing title, insert {% set graphicTitle = 'Title of graphic' %} above the content block in the HTML of the graphic.\nThis helps identify each graphic for other platforms.\n",
   missingChrome:
-    'Do you have a local version of Chrome installed? \n If so, navigate to chrome://version/ in your Chrome browser and copy the path listed for Executable Path. Then rerun this process with your path:\n\nCHROME_INSTALL_PATH="local/path/to/chrome" npm run build.',
+    'Do you have a local version of Chrome installed? \n If so, navigate to chrome://version/ in your Chrome browser and copy the path listed for Executable Path. Then rerun this process with your path:\n\nCHROME_INSTALL_PATH="local/path/to/chrome" npm run parse.',
 };
 
 const makeImages = async (params = { page: {}, outputPath: '' }) => {
@@ -92,10 +92,12 @@ const makeWarnings = status => {
 // use screenshots to build Apple News JSON
 // https://developer.apple.com/documentation/apple_news/apple_news_format
 const makeAppleNews = graphic => {
-  const { previews, title, desc, links } = graphic;
+  const { previews, title, description, links } = graphic;
   const { small, large } = previews;
   const captions = {
-    accessibilityCaption: desc ? desc : `Graphic depicting ${title}`,
+    accessibilityCaption: description
+      ? description
+      : `Graphic depicting ${title}`,
     caption: title,
   };
   const role = 'figure';
@@ -223,9 +225,8 @@ const parseGraphic = async (
   );
   // look for extra description text if applicable. Used for screenshot alt text.
   try {
-    description = await page.$eval(
-      'meta[name="tt-graphic-description"]',
-      el => el.getAttribute('content')
+    description = await page.$eval('meta[name="tt-graphic-description"]', el =>
+      el.getAttribute('content')
     );
   } catch {
     description = '';
@@ -323,7 +324,7 @@ module.exports = async localURL => {
     recursive: true,
   });
 
-  const status = await Promise.all(
+  const graphics = await Promise.all(
     pages.map(filepath =>
       parseGraphic({
         browser,
@@ -335,27 +336,27 @@ module.exports = async localURL => {
   );
 
   // print some helpful info terminal
-  if (status.length > 0) {
-    console.log(
-      colors.green(`Generated metadata for ${status.length} graphics.`)
-    );
-    status.map(log => {
-      if (log.label) {
-        let logStr = `✓ ${log.label}`;
-        if (log.description.length === 0) {
+  if (graphics.length > 0) {
+    const completed = graphics
+      .filter(graphic => typeof graphic.label === 'string')
+      .map(graphic => {
+        let logStr = `✓ ${graphic.label}`;
+        if (graphic.description.length === 0) {
           logStr = logStr + ' | missing description';
         }
-        if (log.title.length === 0) {
+        if (graphic.title.length === 0) {
           logStr = logStr + ' | missing title';
         }
-        console.warn(logStr);
-      }
-    });
+        console.log(logStr);
+        return graphic;
+      });
+    makeWarnings(completed);
+    console.log(
+      colors.green(`Generated metadata for ${completed.length} graphics`)
+    );
   } else {
     logErrorMessage(missingGraphics);
   }
-
-  makeWarnings(status);
 
   await browser.close();
 };
