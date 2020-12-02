@@ -93,4 +93,22 @@ module.exports = {
    *
    */
   customFilters: {},
+  /**
+   * Where custom settings for parsing graphics can be added.
+   *
+   * appleNewsIgnore
+   * Some graphics are too dynamic to be accurately captured in a screenshot.
+   * Those graphics shouldn't be considered for platforms like Apple News.
+   * Paths are relative to the build folders.
+   *
+   * Example:
+   * appleNewsIgnore: [
+   *  'complex-graphic-folder/index.html',
+   *  'some-other-folder',
+   * ],
+   *
+   */
+  parserOptions: {
+    appleNewsIgnore: [],
+  },
 };

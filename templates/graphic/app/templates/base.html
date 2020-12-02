@@ -7,6 +7,13 @@
   <title>The Texas Tribune</title>
   <base target='_parent'>
 
+  {% if graphicTitle %}
+    <meta name="tt-graphic-title" content="{{ graphicTitle }}" />
+  {% endif %}
+  {% if graphicDesc %}
+    <meta name="tt-graphic-description" content="{{ graphicDesc }}" />
+  {% endif %}
+
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
