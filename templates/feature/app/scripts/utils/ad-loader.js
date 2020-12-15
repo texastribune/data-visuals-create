@@ -1,11 +1,16 @@
-import getMatchingAttributes from './get-matching-attributes';
+import getAttributes from './get-attributes';
 import loadScript from './load-script';
 import selectAll from './select-all';
 import uniqueId from './unique-id';
 
 class AdLoader {
   constructor({
-    adFields = { adUnit: '/5805113/basic', dimensions: [300, 250] },
+    adFields = {
+      // default ad unit path and dimensions, uses these dimensions as a last resort
+      networkCode: '/5805113/',
+      adUnit: 'basic',
+      dimensions: [300, 250],
+    },
     globalMappings = {
       banner: [[[768, 130], [[728, 90]]]],
     },
@@ -70,30 +75,32 @@ class AdLoader {
   }
 
   createAds() {
-    const { adUnit, dimensions } = this.adFields;
+    const { networkCode, adUnit, dimensions } = this.adFields;
     const { banner } = this.globalMappings;
 
     this.elements.forEach(element => {
-      const matchingAttributes = getMatchingAttributes(
-        element,
-        this.attributePrefix
-      );
-
-      const options = Object.assign(
-        {},
-        { adUnit, dimensions },
-        matchingAttributes
-      );
+      const options = Object.assign({}, { networkCode, adUnit, dimensions });
+      const attributes = getAttributes(element);
 
       const adElementId = uniqueId(this.idPrefix);
       element.setAttribute('id', adElementId);
 
+      // specify ad unit path based on type of ad
+      if (attributes.class.includes('dv-gpt-ad-roof')) {
+        options.adUnit = 'TexasTribune_Site_Roofline1_ATF_Leaderboard_728x90';
+      } else if (attributes.class.includes('dv-gpt-ad-footer')) {
+        options.adUnit =
+          'TexasTribune_Content_StoryLanding_BTF_Footer_Leaderboard_728x90';
+      }
+
       const gptAdUnit = window.googletag.defineSlot(
-        options.adUnit,
+        options.networkCode + options.adUnit,
         options.dimensions,
         adElementId
       );
 
+      // overwrites the default fixed size set above
+      // if the ad is a banner ad
       gptAdUnit.defineSizeMapping(banner);
 
       if (options.targetingKey && options.targetingValue) {

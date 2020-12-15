@@ -20,7 +20,8 @@
 <h2 class="t-subheader">{{ value | widont }}</h2>
 {% endmacro %}
 
-{% macro ad(value) %}
+{# set type to roof for roof ads, footer for footer ads #}
+{% macro ad(value, type) %}
 <div class="plugin plugin--centered">
   <div class="c-ad-flex_bg--{{ value }}">
     <div class="c-ad-flex__inner">
@@ -28,7 +29,7 @@
         <a href="https://mediakit.texastribune.org/"><strong>Become one</strong></a>.
       </p>
       <div class="c-ad-flex__unit">
-        <div class="dv-gpt-ad"></div>
+        <div class="dv-gpt-ad dv-gpt-ad-{{ type }}"></div>
       </div>
     </div>
   </div>
