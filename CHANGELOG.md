@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ## [3.4.0]
+### Changed
 - `package.json` - bump `np` to v7.0.0
 - `templates/feature/app/scripts/utils/ad-loader.js` - set correct ad tags for roofline and footer ads
 - `templates/feature/app/styles/main-queso.scss`, `templates/feature/app/styles/main.scss` - add chart and graphic CSS by default
