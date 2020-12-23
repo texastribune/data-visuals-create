@@ -12,6 +12,11 @@ const clearContainer = () => container.html('');
 // a helper function to grab the container's width
 const getFrameWidth = () => container.node().offsetWidth;
 
+// import data by getting the window variable, OR by importing the filepath
+// let data = window.DATA;
+// import data from '../../../data/data.json';
+// import data from 'Data/data.json';
+
 function resize() {
   // code executed on window resize
   // pass the recalculated frameWidth to parts of your chart (like an axis) that change with resize!
