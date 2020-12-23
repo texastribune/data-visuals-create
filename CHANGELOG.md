@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [3.4.0]
+## [3.4.0] - 2020-12-22
 ### Changed
 - `package.json` - bump `np` to v7.0.0
 - `templates/feature/app/scripts/utils/ad-loader.js` - set correct ad tags for roofline and footer ads
@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `templates/feature/app/templates/macros/processors-queso.html`, `templates/feature/app/templates/macros/processors.html` - add option to ad to set it as a roofline or footer ad
 - `templates/feature/app/index.html`, `templates/feature/app/index-queso.html` - add footer option to ad to set ad tag
 
-## [3.3.0]
+## [3.3.0] - 2020-11-19
 ### Changed
 - `templates/graphic/project.config.js`, `templates/feature/project.config.js` - comment the slug and folder variables (folder variable should be changed when the URL slug is changed)
 - `templates/feature/app/index-queso.html` - change `{{ context.title }}` to `{{ context.headline }}`, add HTML to include publish and update dates
@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - `templates/feature/app/index-queso.html`, `templates/feature/app/index.html` - add widont to headline
 
-## [3.2.0]
+## [3.2.0] - 2020-09-15
 ### Changed
 - `templates/__common__/config/tasks/nunjucks.js` - added getAuthor() and getAuthorLink() to extract author name and author link for structured data schema
 - `templates/feature/app/templates/includes/ldjson.html` - add new structured data attributes
