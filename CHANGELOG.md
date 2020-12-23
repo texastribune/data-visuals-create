@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.4.0]
+- `package.json` - bump `np` to v7.0.0
+- `templates/feature/app/scripts/utils/ad-loader.js` - set correct ad tags for roofline and footer ads
+- `templates/feature/app/styles/main-queso.scss`, `templates/feature/app/styles/main.scss` - add chart and graphic CSS by default
+- `templates/feature/app/templates/macros/processors-queso.html`, `templates/feature/app/templates/macros/processors.html` - add option to ad to set it as a roofline or footer ad
+- `templates/feature/app/index.html`, `templates/feature/app/index-queso.html` - add footer option to ad to set ad tag
+
 ## [3.3.0]
 ### Changed
 - `templates/graphic/project.config.js`, `templates/feature/project.config.js` - comment the slug and folder variables (folder variable should be changed when the URL slug is changed)
