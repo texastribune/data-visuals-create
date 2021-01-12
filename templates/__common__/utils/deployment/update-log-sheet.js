@@ -25,20 +25,16 @@ let updateLogSheet = async (mainPath, config) => {
   });
 
   // id of data visuals work spreadsheet
-  const spreadsheetId = '12CvXDGLJZfTPnaZQjwgaQzyD0qufWWkXd1kACKziBrw';
+  const spreadsheetId = '10mQMStMlL333X922Imy-_CY_grOotZ2ZtlmU7DShjPM';
   let sheetName, repoName;
 
   if (config.projectType === 'graphic') {
     sheetName = 'Embedded';
-    repoName = `newsapps-dailies/${config.createYear}/${config.slug}-${
-      config.createYear
-    }-${config.createMonth}`;
+    repoName = `newsapps-dailies/${config.createYear}/${config.slug}-${config.createYear}-${config.createMonth}`;
   }
   if (config.projectType === 'feature') {
     sheetName = 'Feature';
-    repoName = `feature-${config.slug}-${config.createYear}-${
-      config.createMonth
-    }`;
+    repoName = `feature-${config.slug}-${config.createYear}-${config.createMonth}`;
   }
 
   // pull the data out of the spreadsheet
