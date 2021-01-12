@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.5.0] - 2021-01-12
+### Changed
+- `templates/__common__/utils/deployment/update-log-sheet.js` - change ID of the Google sheet to write our projects to
+
 ## [3.4.0] - 2020-12-22
 ### Changed
 - `package.json` - bump `np` to v7.0.0
