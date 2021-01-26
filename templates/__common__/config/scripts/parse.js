@@ -20,6 +20,15 @@ const cleanTemp = async () => {
   await Promise.all([paths.appTmp].map(p => fs.remove(p)));
 };
 
+const cleanAppleNews = async () => {
+  const pages = await glob('**/index-apple-news.json', {
+    absolute: true,
+    cwd: paths.appDist,
+    recursive: true,
+  });
+  await Promise.all(pages.map(p => fs.remove(p)));
+};
+
 async function runParser() {
   const runner = series([parallel([api, images, styles]), templates]);
 
@@ -50,6 +59,7 @@ async function runParser() {
       },
     },
     async () => {
+      await cleanAppleNews();
       await graphicsMeta(bs.getOption('urls').get('local')).catch(e => {
         console.warn(
           `Did not generate project metadata and screenshots:\n\n${e}`
