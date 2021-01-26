@@ -322,6 +322,7 @@ module.exports = async localURL => {
     absolute: true,
     cwd: './.tmp',
     recursive: true,
+    ignore: ['static/index.html'],
   });
 
   const graphics = await Promise.all(
