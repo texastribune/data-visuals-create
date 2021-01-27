@@ -286,13 +286,6 @@ const parseGraphic = async (
     );
   }
 
-  // output main JSON
-  try {
-    await fs.outputJson(`${outputPath}${name}.json`, graphic);
-  } catch (err) {
-    throw new Error(err);
-  }
-
   // all graphic metadata
   return graphic;
 };
@@ -335,6 +328,16 @@ module.exports = async localURL => {
       })
     )
   );
+
+  // output main JSON
+  try {
+    await fs.outputJson(
+      `${paths.appDist}/manifest.json`,
+      graphics.filter(graphic => typeof graphic.title === 'string')
+    );
+  } catch (err) {
+    throw new Error(err);
+  }
 
   // print some helpful info terminal
   if (graphics.length > 0) {
