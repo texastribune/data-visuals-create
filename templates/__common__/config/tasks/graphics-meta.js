@@ -6,7 +6,6 @@ const colors = require('ansi-colors');
 const fs = require('fs-extra');
 const glob = require('fast-glob');
 const puppeteer = require('puppeteer');
-const quaff = require('quaff');
 
 // internal
 const paths = require('../paths');
@@ -49,7 +48,7 @@ const graphicsMetaTips = {
     'Do you have a local version of Chrome installed? \n If so, navigate to chrome://version/ in your Chrome browser and copy the path listed for Executable Path. Then rerun this process with your path:\n\nCHROME_INSTALL_PATH="local/path/to/chrome" npm run parse.',
 };
 
-const makeImages = async (params = { page: {}, outputPath: '' }) => {
+const createPreviews = async (params = { page: {}, outputPath: '' }) => {
   const { page, outputPath } = params;
   const body = await page.$('body');
   if (body) {
@@ -77,7 +76,7 @@ const makeImages = async (params = { page: {}, outputPath: '' }) => {
   }
 };
 
-const makeWarnings = status => {
+const getWarnings = status => {
   const { missingDescription, missingTitle } = graphicsMetaTips;
   const noDesc = status.map(graphic => graphic.description).includes('');
   const noTitle = status.map(graphic => graphic.title).includes('');
@@ -89,85 +88,14 @@ const makeWarnings = status => {
   }
 };
 
-// use screenshots to build Apple News JSON
-// https://developer.apple.com/documentation/apple_news/apple_news_format
-const makeAppleNews = graphic => {
-  const { previews, title, description, links } = graphic;
-  const { small, large } = previews;
-  const captions = {
-    accessibilityCaption: description
-      ? description
-      : `Graphic depicting ${title}`,
-    caption: title,
-  };
-  const role = 'figure';
-  const ctas = links
-    .filter(link => link.isCTA)
-    .map(link => {
-      return {
-        role: 'link_button',
-        URL: link.url,
-        text: `${link.text} \u00bb`,
-        style: { backgroundColor: '#ffc200' },
-        textStyle: {
-          fontSize: 14,
-          fontWeight: 'bold',
-          fontName: 'OpenSans-Bold',
-          textColor: '#222222',
-          textTransform: 'uppercase',
-          tracking: 0.05,
-        },
-        layout: {
-          padding: 9,
-        },
-      };
-    });
-  return {
-    role: 'container',
-    components: [
-      {
-        role,
-        URL: small,
-        ...captions,
-        conditional: [
-          {
-            hidden: true,
-            conditions: [{ minViewportWidth: MOBILE_BREAKPOINT }],
-          },
-        ],
-      },
-      {
-        role,
-        hidden: true,
-        URL: large,
-        ...captions,
-        conditional: [
-          {
-            hidden: false,
-            conditions: [{ minViewportWidth: MOBILE_BREAKPOINT }],
-          },
-        ],
-      },
-      ...ctas,
-    ],
-  };
-};
-
 const parseGraphic = async (
-  params = { browser: {}, filepath: '', localURL: '', projectInfo: {} }
+  params = { browser: {}, filepath: '', localURL: '' }
 ) => {
-  const { browser, filepath, localURL, projectInfo } = params;
-  const { config, data } = projectInfo;
-  const { credit, source } = data;
-  const {
-    bucket,
-    createMonth,
-    createYear,
-    folder,
-    id,
-    parserOptions,
-    slug,
-  } = config;
+  const { browser, filepath, localURL } = params;
+
+  // project config info
+  const { bucket, createMonth, createYear, folder, id, parserOptions } = config;
+
   const name = path.basename(filepath, path.extname(filepath));
   const relativeDir = path.relative('./.tmp', filepath);
   const parentDir = path.parse(relativeDir).dir;
@@ -192,11 +120,8 @@ const parseGraphic = async (
     return false;
   }
 
-  const appleNewsFile = `${name}-apple-news.json`;
-  let description;
+  // look for .graphic-title or title meta tag
   let title;
-  let showInAppleNews = true;
-  // assume title is .graphic-title or reference meta tag
   try {
     title = await page.$eval(
       '.graphic-title, meta[name="tt-graphic-title"]',
@@ -211,6 +136,7 @@ const parseGraphic = async (
   } catch {
     title = '';
   }
+
   // look for links
   const links = await page.$$eval('a', links =>
     links.map(link => {
@@ -223,7 +149,9 @@ const parseGraphic = async (
       };
     })
   );
-  // look for extra description text if applicable. Used for screenshot alt text.
+
+  // look for description meta tag
+  let description;
   try {
     description = await page.$eval('meta[name="tt-graphic-description"]', el =>
       el.getAttribute('content')
@@ -232,13 +160,14 @@ const parseGraphic = async (
     description = '';
   }
 
-  // make screenshots of page
-  const { small, large } = await makeImages({
+  // take screenshots of page
+  const { small, large } = await createPreviews({
     page,
     outputPath,
   });
 
-  //  check for apple news ignore
+  //  check if appleNewsIgnore is specified
+  let showInAppleNews = true;
   if (parserOptions) {
     const { appleNewsIgnore } = parserOptions;
     showInAppleNews =
@@ -246,16 +175,12 @@ const parseGraphic = async (
   }
 
   // all graphic data
-  const graphic = {
-    appleNews: {
-      display: showInAppleNews,
-      url: showInAppleNews ? graphicPath + appleNewsFile : '',
-    },
-    createMonth,
-    createYear,
-    credit,
+  return {
+    title,
     description,
     graphicPath,
+    createMonth,
+    createYear,
     id,
     label,
     links,
@@ -263,38 +188,18 @@ const parseGraphic = async (
       large: graphicPath + large,
       small: graphicPath + small,
     },
-    slug,
-    source,
-    title,
+    showInAppleNews,
   };
-
-  // output apple news JSON
-  if (showInAppleNews) {
-    try {
-      await fs.outputJson(
-        `${outputPath}${appleNewsFile}`,
-        makeAppleNews(graphic)
-      );
-    } catch (err) {
-      throw new Error(err);
-    }
-  } else {
-    console.warn(
-      colors.yellow(
-        `No Apple News JSON generated for ${label}. This is specified in project.config.js.`
-      )
-    );
-  }
-
-  // all graphic metadata
-  return graphic;
 };
 
 module.exports = async localURL => {
-  const data = await quaff(paths.appData);
-
-  // error message helpers
-  const { missingChrome, missingGraphics } = graphicsMetaTips;
+  // find all html pages in project
+  const pages = await glob('**/*.html', {
+    absolute: true,
+    cwd: './.tmp',
+    recursive: true,
+    ignore: ['static/index.html'],
+  });
 
   // spin up headless browser using local chrome
   const browser = await puppeteer
@@ -311,25 +216,19 @@ module.exports = async localURL => {
     });
   console.log(colors.cyan('Parsing graphics in a headless browser...'));
 
-  const pages = await glob('**/*.html', {
-    absolute: true,
-    cwd: './.tmp',
-    recursive: true,
-    ignore: ['static/index.html'],
-  });
-
+  // parse each HTML page
   const graphics = await Promise.all(
     pages.map(filepath =>
       parseGraphic({
         browser,
         filepath,
         localURL,
-        projectInfo: { data, config },
+        config,
       })
     )
   );
 
-  // output main JSON
+  // output JSON of all graphic data
   try {
     await fs.outputJson(
       `${paths.appDist}/manifest.json`,
@@ -339,7 +238,8 @@ module.exports = async localURL => {
     throw new Error(err);
   }
 
-  // print some helpful info terminal
+  // show debug info in terminal
+  const { missingChrome, missingGraphics } = graphicsMetaTips;
   if (graphics.length > 0) {
     const completed = graphics
       .filter(graphic => typeof graphic.label === 'string')
@@ -354,7 +254,7 @@ module.exports = async localURL => {
         console.log(logStr);
         return graphic;
       });
-    makeWarnings(completed);
+    getWarnings(completed);
     console.log(
       colors.green(`Generated metadata for ${completed.length} graphics`)
     );
