@@ -198,7 +198,6 @@ module.exports = async localURL => {
     absolute: true,
     cwd: './.tmp',
     recursive: true,
-    ignore: ['static/index.html'],
   });
 
   // spin up headless browser using local chrome
