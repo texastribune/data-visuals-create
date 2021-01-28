@@ -11,6 +11,10 @@
 {# data.data --> data/data.json #}
 {% set graphicData = data.data %}
 
+{# used by the CMS #}
+{% set graphicTitle = {{ context.headline }} %}
+{% set graphicDesc = 'Description of graphic' %}
+
 {% block content %}
 <div class="app">
   <h1 class="graphic-title">{{ context.headline | widont }}</h1>
