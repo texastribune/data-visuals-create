@@ -5,7 +5,7 @@
 {% endmacro %}
 
 {% macro text(value, context, data) %}
-<p class="copy">{{ value | renderStringWithNunjucks(data) }}</p>
+<p class="t-copy">{{ value | renderStringWithNunjucks(data) }}</p>
 {% endmacro %}
 
 {% macro list(value) %}
@@ -17,7 +17,7 @@
 {% endmacro %}
 
 {% macro subhead(value) %}
-<h2 class="article-subheader copy">{{ value | widont }}</h2>
+<h2 class="t-subheader">{{ value | widont }}</h2>
 {% endmacro %}
 
 {# set type to roof for roof ads, footer for footer ads #}

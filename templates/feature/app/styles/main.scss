@@ -1,29 +1,30 @@
-// Third-party libraries (includes sass-mq)
+// base (no output)
 @import '@texastribune/queso-ui/assets/scss/1-settings/all';
 @import '@texastribune/queso-ui/assets/scss/2-tools/all';
-
-// Variables and mixins
 @import 'variables';
-@import 'mixins';
 @import 'functions';
+@import 'mixins';
 
-// Reset, overrides and utils
-@import 'reset';
-@import 'overrides';
-@import 'utilities';
-@import 'grid';
+// resets and root elements
+@import '@texastribune/queso-ui/assets/scss/3-resets/all';
+@import '@texastribune/queso-ui/assets/scss/4-elements/all';
+
+// typography
+@import '@texastribune/queso-ui/assets/scss/5-typography/all';
 @import 'typography';
-@import 'buttons';
-@import 'icons';
-@import 'pills';
 
-// Components
-@import 'components/masthead';
-@import 'components/share-buttons';
-@import 'components/footer';
-@import 'components/table';
+// components
+@import '@texastribune/queso-ui/assets/scss/6-components/all';
 @import 'components/ads';
-@import 'components/related-content';
+@import 'components/footer';
+@import 'components/navbar';
 @import 'components/ribbon';
 @import 'components/chart';
 @import 'components/graphic';
+
+// layout
+@import '@texastribune/queso-ui/assets/scss/7-layout/all';
+@import 'layout/container';
+
+// utilities
+@import '@texastribune/queso-ui/assets/scss/utilities/all';

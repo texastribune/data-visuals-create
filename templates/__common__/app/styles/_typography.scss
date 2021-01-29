@@ -1,118 +1,58 @@
-.article-header {
-  margin-bottom: $gutter;
-}
-
-// The article's title.
-.article-title {
-  font-family: $font-serif;
+// Overrides of some queso helpers
+// and additional data visuals helpers
+.t-headline {
   font-size: to-rem(24);
-  font-weight: $font-weight-bold;
-  line-height: $line-height-title;
-  margin-bottom: 0.625em;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 1em;
-  max-width: 20em;
-
   @include mq($from: s) {
     font-size: to-rem(28);
-    margin-bottom: 0.25rem;
   }
-
   @include mq($from: m) {
     font-size: to-rem(32);
   }
 }
 
-.article-byline {
-  color: $color-grey;
-  font-family: $font-sans-serif;
-  font-size: to-rem(14);
-  letter-spacing: 0.04em;
-  margin-bottom: 1em;
-  margin-top: 1em;
-  text-transform: uppercase;
-
-  a {
-    @include default-uppercase-link;
-  }
-}
-
-.article-author {
-  display: block;
+.t-subheader {
+  font-weight: $font-weight-bold;
+  font-size: 1.4rem;
   line-height: $line-height-subtitle;
-  margin-bottom: $gutter-quarter;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin: auto;
+  max-width: 24em;
 
-  @include mq($from: s) {
-    display: inline;
-    margin-bottom: 0;
-    margin-right: $gutter;
+  @include mq($from: m) {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
   }
 }
 
-.article-pub-date {
-  display: block;
-
-  @include mq($from: s) {
-    display: inline;
-  }
-}
-
-.article-pub-update-date {
-  display: block;
-  margin-top: $gutter-quarter;
-
-  time {
-    @include mq($until: s) {
-      display: block;
-      margin-top: $gutter-quarter;
+.t-byline {
+  &__item {
+    display: block;
+    margin-bottom: $size-tiny;
+    line-height: 1.3;
+    &:last-child {
+      margin-right: 0;
     }
-
-    &:not(:first-child) {
-      margin-left: .625rem;
-
-      @include mq($until: s) {
-        margin-left: 0;
-      }
+  }
+  @include mq($until: bp-s) {
+    &__item {
+      margin-right: 0;
+    }
+  }
+  @include mq($from: bp-s) {
+    &__item {
+      display: inline-block;
     }
   }
 }
 
-.article-shares {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: $gutter;
-  margin-top: $gutter;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: to-rem(300);
-}
-
-.article-shares-button {
-  display: block;
-  flex-basis: 0;
-  flex-grow: 1;
-  font-size: 1rem;
-  max-width: 100%;
-  text-align: center;
-
-  > svg {
-    vertical-align: bottom;
-  }
-}
-
-.article-shares-button + .article-shares-button {
-  margin-left: $gutter-half;
-}
-
+// Mirrored from old styles and adapted for queso
 // For most forms of body copy. Takes most of its notes from the main site's
 // body copy. Typically you'll be applying this to each <p> tag directly, NOT
 // to the body copy's container. This makes it easier to float things around
 // individual paragraphs.
-.copy {
-  font-family: $font-serif;
+.t-copy {
   font-size: 1.125rem;
   line-height: $line-height-body;
   margin-bottom: 1em; // Ensures spacing below the <p> syncs up with font-size
@@ -121,22 +61,15 @@
   margin-top: 1em; // Ensures spacing above the <p> syncs up with font-size
   max-width: 34em; // Controls the measure
 
-  > a {
-    @include default-link;
-  }
-}
+  &--subheader {
+    font-size: 1.4rem;
+    line-height: $line-height-subtitle;
+    max-width: 27em;
 
-.article-subheader {
-  font-weight: $font-weight-bold;
-  font-size: 1.4rem;
-  line-height: $line-height-subtitle;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  max-width: 27em;
-
-  @include mq($from: m) {
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    max-width: 24em;
+    @include mq($from: m) {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      max-width: 24em;
+    }
   }
 }
