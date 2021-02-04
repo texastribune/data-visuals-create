@@ -36,18 +36,6 @@ const captureScreenshotOfElement = async (element, imagePath) => {
   }
 };
 
-// various messages
-const graphicsMetaTips = {
-  missingGraphics:
-    'Could not find any "graphic-" prefixed CSS classes referenced in this project.',
-  missingDescription:
-    "\n====\nTo add a missing description, insert {% set graphicDesc = 'Description of graphic' %} above the content block in the HTML of the graphic.\nThis is used by external tools with accessibility features.\n",
-  missingTitle:
-    "\n====\nTo add a missing title, insert {% set graphicTitle = 'Title of graphic' %} above the content block in the HTML of the graphic.\nThis helps identify each graphic for other platforms.\n",
-  missingChrome:
-    'Do you have a local version of Chrome installed? \n If so, navigate to chrome://version/ in your Chrome browser and copy the path listed for Executable Path. Then rerun this process with your path:\n\nCHROME_INSTALL_PATH="local/path/to/chrome" npm run parse.',
-};
-
 const createPreviews = async (params = { page: {}, outputPath: '' }) => {
   const { page, outputPath } = params;
   const body = await page.$('body');
@@ -76,16 +64,24 @@ const createPreviews = async (params = { page: {}, outputPath: '' }) => {
   }
 };
 
-const getWarnings = status => {
-  const { missingDescription, missingTitle } = graphicsMetaTips;
-  const noDesc = status.map(graphic => graphic.description).includes('');
-  const noTitle = status.map(graphic => graphic.title).includes('');
-  if (noDesc) {
-    console.log(missingDescription);
+const getText = async (params = { key: '', page: {}, label: '' }) => {
+  const { key, page, label } = params;
+  let value = '';
+  try {
+    value = await page.$eval(
+      `[data-${key}], meta[name="tt-graphic-${key}"]`,
+      el => {
+        if (el.hasAttribute('content')) {
+          return el.getAttribute('content');
+        } else {
+          return el.textContent;
+        }
+      }
+    );
+  } catch {
+    console.log(colors.yellow(`Missing ${key} in ${label}`));
   }
-  if (noTitle) {
-    console.log(missingTitle);
-  }
+  return value;
 };
 
 const parseGraphic = async (
@@ -111,33 +107,31 @@ const parseGraphic = async (
   const label = `${parentDir}/${name}.html`;
   const graphicPath = ensureSlash(`https://${bucket}/${folder}/${parentDir}`);
 
-  // only consider HTML with graphics CSS classes
+  // only consider HTML with data-graphic attribute present
   try {
-    await page.waitForSelector('[class^="graphic-"]', {
+    await page.waitForSelector('[data-graphic]', {
       timeout: 5000,
     });
   } catch (e) {
     return false;
   }
 
-  // look for .graphic-title or title meta tag
-  let title;
-  try {
-    title = await page.$eval(
-      '.graphic-title, meta[name="tt-graphic-title"]',
-      el => {
-        if (el.hasAttribute('content')) {
-          return el.getAttribute('content');
-        } else {
-          return el.textContent;
-        }
-      }
-    );
-  } catch {
-    title = '';
+  // get text from page
+  const context = { page, label };
+  const title = await getText({ key: 'title', ...context });
+  const description = await getText({ key: 'description', ...context });
+  const source = await getText({ key: 'source', ...context });
+  let credits = await getText({ key: 'credit', ...context });
+
+  // create array from credits
+  if (credits.length > 0) {
+    // separate by commas or and
+    credits = credits.replace('Credit: ', '').split(/, *| and */g);
+  } else {
+    credits = [];
   }
 
-  // look for links
+  // find all links
   const links = await page.$$eval('a', links =>
     links.map(link => {
       return {
@@ -149,16 +143,6 @@ const parseGraphic = async (
       };
     })
   );
-
-  // look for description meta tag
-  let description;
-  try {
-    description = await page.$eval('meta[name="tt-graphic-description"]', el =>
-      el.getAttribute('content')
-    );
-  } catch {
-    description = '';
-  }
 
   // take screenshots of page
   const { small, large } = await createPreviews({
@@ -181,6 +165,7 @@ const parseGraphic = async (
     graphicPath,
     createMonth,
     createYear,
+    credits,
     id,
     label,
     links,
@@ -189,6 +174,7 @@ const parseGraphic = async (
       small: graphicPath + small,
     },
     showInAppleNews,
+    source,
   };
 };
 
@@ -209,7 +195,7 @@ module.exports = async localURL => {
       logErrorMessage(err);
       throw new Error(
         colors.yellow(
-          `Could not find the chrome installed at '${CHROME_INSTALL_PATH}'.\n${missingChrome}\n`
+          `Could not find the chrome installed at '${CHROME_INSTALL_PATH}'.\nDo you have a local version of Chrome installed? \n If so, navigate to chrome://version/ in your Chrome browser and copy the path listed for Executable Path. Then rerun this process with your path:\n\nCHROME_INSTALL_PATH="local/path/to/chrome" npm run parse.\n`
         )
       );
     });
@@ -227,38 +213,35 @@ module.exports = async localURL => {
     )
   );
 
+  // filter skipped HTML files
+  const filtered = graphics.filter(
+    graphic => typeof graphic.title === 'string'
+  );
+
+  // output path
+  const manifest = `${paths.appDist}/manifest.json`;
+
   // output JSON of all graphic data
   try {
-    await fs.outputJson(
-      `${paths.appDist}/manifest.json`,
-      graphics.filter(graphic => typeof graphic.title === 'string')
-    );
+    await fs.outputJson(manifest, filtered);
   } catch (err) {
     throw new Error(err);
   }
 
-  // show debug info in terminal
-  const { missingChrome, missingGraphics } = graphicsMetaTips;
-  if (graphics.length > 0) {
-    const completed = graphics
-      .filter(graphic => typeof graphic.label === 'string')
-      .map(graphic => {
-        let logStr = `✓ ${graphic.label}`;
-        if (graphic.description.length === 0) {
-          logStr = logStr + ' | missing description';
-        }
-        if (graphic.title.length === 0) {
-          logStr = logStr + ' | missing title';
-        }
-        console.log(logStr);
-        return graphic;
-      });
-    getWarnings(completed);
+  // print output info in terminal
+  if (filtered.length > 0) {
     console.log(
-      colors.green(`Generated metadata for ${completed.length} graphics`)
+      colors.green(`Generated metadata for ${filtered.length} graphic(s)`)
     );
+    console.log(`✓ ${manifest}`);
   } else {
-    logErrorMessage(missingGraphics);
+    console.log(
+      colors.red(
+        `Generated metadata for ${
+          filtered.length
+        } graphics. Could not find the data-graphic attribute in any HTML files.`
+      )
+    );
   }
 
   await browser.close();

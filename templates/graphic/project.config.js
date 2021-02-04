@@ -57,12 +57,6 @@ module.exports = {
     'subject-education'
   ],
   /**
-   * Files that will be embedded via the graphics plugin.
-   */
-  embeddedFiles: [
-    'index.html'
-  ],
-  /**
    * The dataMutators option makes it possible to modify what's returned by
    * the data fetchers. This is a good place to restructure the raw data, or
    * to do joins with other data you may have.
