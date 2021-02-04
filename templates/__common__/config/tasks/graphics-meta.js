@@ -27,6 +27,8 @@ const viewportOpts = size => {
 const CHROME_INSTALL_PATH =
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
+const DESC_PLACEHOLDER = 'Description of graphic';
+
 const captureScreenshotOfElement = async (element, imagePath) => {
   try {
     await element.screenshot({ path: imagePath });
@@ -67,6 +69,7 @@ const createPreviews = async (params = { page: {}, outputPath: '' }) => {
 const getText = async (params = { key: '', page: {}, label: '' }) => {
   const { key, page, label } = params;
   let value = '';
+  let selectorFound = true;
   try {
     value = await page.$eval(
       `[data-${key}], meta[name="tt-graphic-${key}"]`,
@@ -79,8 +82,18 @@ const getText = async (params = { key: '', page: {}, label: '' }) => {
       }
     );
   } catch {
-    console.log(colors.yellow(`Missing ${key} in ${label}`));
+    selectorFound = false;
   }
+  if (!selectorFound) {
+    console.log(colors.yellow(`Missing ${key} in ${label}`));
+  } else if (value.length === 0) {
+    console.log(colors.yellow(`Empty ${key} in ${label}`));
+  } else if (key === 'description' && value === DESC_PLACEHOLDER) {
+    console.log(
+      colors.yellow(`Placeholder text still used for ${key} in ${label}`)
+    );
+  }
+
   return value;
 };
 
