@@ -63,14 +63,6 @@ Projects created with `data-visuals-create` support two of the built-in ways tha
 
 The interface with Google Drive within `data-visuals-create` projects currently only supports using Oauth2 credentials to speak to the Google APIs. This requires a set of OAuth2 credentials that will be used to generate and save an access token to your computer. `data-visuals-create` projects have hardcoded locations for the credential file and token file, but you may override those with environmental variables.
 
-### Chrome
-
-The `npm run parse` step will use [Puppeteer](https://github.com/puppeteer/puppeteer) and a local Chrome install to emulate the project in a browser. This will help build metadata based on a graphic's HTML and export image-based previews of the graphic. By default, this process assumes you're using MacOS. To change this for other operating systems, rerun the command with the correct install path variable: `CHROME_INSTALL_PATH="local/path/to/chrome" npm run parse`.
-
-### Apple News
-
-The `npm run parse` step will also generate [Apple News Format JSON](https://developer.apple.com/documentation/apple_news/apple_news_format) for all graphics. This output will be a simple screenshot of the graphic along with any calls to actions if found. To prevent a graphic from being generated in Apple News, add the filename to the `appleNewsIgnore` array in `parserOptions` of the `project.config.js` file. This is recommended for graphics that have too many interactive elements to be properly conveyed in a static image.
-
 #### CLIENT_SECRETS_FILE
 
 **default**: `~/.tt_kit_google_client_secrets.json`

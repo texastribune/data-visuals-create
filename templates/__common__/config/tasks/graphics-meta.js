@@ -90,7 +90,15 @@ const parseGraphic = async (
   const { browser, filepath, localURL } = params;
 
   // project config info
-  const { bucket, createMonth, createYear, folder, id, tags, parserOptions } = config;
+  const {
+    bucket,
+    createMonth,
+    createYear,
+    folder,
+    id,
+    tags,
+    parserOptions,
+  } = config;
 
   const name = path.basename(filepath, path.extname(filepath));
   const relativeDir = path.relative('./.tmp', filepath);
