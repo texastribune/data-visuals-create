@@ -30,6 +30,7 @@ const CHROME_INSTALL_PATH =
 const DESC_PLACEHOLDER = 'Description of graphic';
 
 const captureScreenshotOfElement = async (element, imagePath) => {
+  await fs.ensureDir(path.dirname(imagePath));
   try {
     await element.screenshot({ path: imagePath });
     return path.basename(imagePath);

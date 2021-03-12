@@ -41,7 +41,7 @@ async function runParser() {
       ],
       notify: false,
       open: false,
-      port: 3000,
+      port: 5000,
       server: {
         baseDir: ['./.tmp', './app'],
         routes: {
