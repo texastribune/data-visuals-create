@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - ` templates/__common__/_.npmrc`- This tells puppeteer to skip downloading chrome each time we create a new project. Saves us some storage on our machines.
 - `templates/__common__/config/scripts/parse.js ` - Task runner that spins up a local server and kicks off the graphics-meta.js step.
-- `templates/__common__/config/tasks/graphics-meta.js `- The base for this whole process. At a high level, this will step through the whole project /dist folder and extract all the relevant metadata info we specify. This is also where we build the JSON for Apple News and capture screenshots of graphics.
+- `templates/__common__/config/tasks/graphics-meta.js `- The base for this whole process. At a high level, this will step through the whole project /dist folder and extract all the relevant metadata info we specify. This is also where we capture screenshots of graphics.
 
 How we generate graphic metadata is also documented in `templates/graphic/graphics-meta.md`.
 
