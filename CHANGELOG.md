@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [4.0.0] - 2021-03-16
+### Changed
+- `templates/__common__/_package.json` - bump version of `queso-ui`.
+- `templates/feature/app/index.html` - changed ad inputs, added comments, set variable for feature data
+- `templates/feature/app/templates/macros/processors.html` - added CSS classes to list component, fixed ad component inputs (to allow us to process ads fetched in the ArchieML text)
+
+### Removed
+- Old common `typography.scss` and `prose.html`, feature `index.html`, `main.scss` and `processors.html` files were replaced by the `queso-ui` versions.
+
 ## [3.7.0] - 2021-03-16
 ### Changed
 - `templates/graphic/project.config.js` - Adds new key for adding customization to the parsing step. For now the only one there is one to ignore Apple News for specified files. Adds some placeholder tags to tag our graphics also. (Tags will be included in the graphic metadata.)
