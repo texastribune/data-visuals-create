@@ -11,18 +11,24 @@
 {# data.data --> data/data.json #}
 {% set graphicData = data.data %}
 
+{# used by the CMS for accessibility #}
+{% set graphicDesc = 'Description of graphic' %}
+
 {% block content %}
-<div class="app">
-  <h1 class="graphic-title">{{ context.headline | widont }}</h1>
+{# data-graphic signifies that this can be embedded in the CMS #}
+<div class="app" data-graphic>
+  {# data-title is used to grab the title in the CMS #}
+  <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
   {{ prose(context.prose, context, graphicData) }}
 
   {# container that JS is attached to #}
   <div id="graphic" class="graphic"></div>
 
+  {# data-source and data-credit are also used in the CMS #}
   <ul class="graphic-footer">
     {% if context.note %}<li>Note: {{ context.note }}</li>{% endif %}
-    {% if context.source %}<li>Source: {{ context.source }}</li>{% endif %}
-    {% if context.credit %}<li>Credit: {{ context.credit }}</li>{% endif %}
+    {% if context.source %}<li data-source>Source: {{ context.source }}</li>{% endif %}
+    {% if context.credit %}<li data-credit>Credit: {{ context.credit }}</li>{% endif %}
   </ul>
 </div>
 {% endblock content %}

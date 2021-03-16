@@ -50,6 +50,13 @@ module.exports = {
     },
   ],
   /**
+   * Tags that will be plugged in via the graphics plugin. This an array of each tag's slug, not the tag names.
+   */
+  tags: [
+    'subject-budget',
+    'subject-education'
+  ],
+  /**
    * The dataMutators option makes it possible to modify what's returned by
    * the data fetchers. This is a good place to restructure the raw data, or
    * to do joins with other data you may have.
@@ -93,4 +100,22 @@ module.exports = {
    *
    */
   customFilters: {},
+  /**
+   * Where custom settings for parsing graphics can be added.
+   *
+   * appleNewsIgnore
+   * Some graphics are too dynamic to be accurately captured in a screenshot.
+   * Those graphics shouldn't be considered for platforms like Apple News.
+   * Paths are relative to the build folders.
+   *
+   * Example:
+   * appleNewsIgnore: [
+   *  'complex-graphic-folder/index.html',
+   *  'some-other-folder',
+   * ],
+   *
+   */
+  parserOptions: {
+    appleNewsIgnore: [],
+  },
 };
