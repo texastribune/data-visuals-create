@@ -79,7 +79,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@newswire/frames": "^0.3.1",
-    "@texastribune/queso-ui": "^9.6.0",
+    "@texastribune/queso-ui": "^10.0.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.7",
     "d3": "^5.0.0",

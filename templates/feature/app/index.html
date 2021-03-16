@@ -2,8 +2,15 @@
 {% from 'macros/prose.html' import prose %}
 {% from 'macros/processors.html' import ad %}
 
+{# set pack that provides JS #}
 {% set jsPackName = 'main' %}
+
+{# data.text --> data/text.json #}
 {% set context = data.text %}
+
+{# data.data --> data/data.json #}
+{% set featureData = data.data %}
+
 {% set authorComma = joiner() %}
 
 {% block google_fonts %}{# queso fonts found in CSS #}{% endblock google_fonts %}
@@ -23,7 +30,7 @@
             <p class="t-byline t-links t-uppercase t-lsp-m t-size-xs has-text-gray-dark has-b-btm-marg">
               <span class="t-byline__item">By {%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
               {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} <span class="l-display-ib">{{ author }}</span>
-              {% endfor %}
+              {%- endfor -%}
               </span>
 
               {% if context.update_date %}
@@ -41,7 +48,7 @@
         </div>
 
         <div class="t-serif t-links-underlined has-page-padding">
-          {{ prose(context.prose, context, data) }}
+          {{ prose(context.prose, context, featureData) }}
           <p class="t-copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
 
           <h2 class="t-copy t-copy--subheader">{{ 'A cool subhead here' | widont }}</h2>
@@ -51,18 +58,17 @@
           <p class="t-copy">Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
         </div>
 
-        {# use 'none' as the value if the ad shoud not have a gray background #}
-        {# do not put ads inside a container div #}
-        {{ ad('gray') }}
+        {# use 'none' as the background if the ad shoud not have a gray background #}
+        {# use 'header', 'footer' or '' as the type, depending on where the ad is placed #}
+        {{ ad({background: 'gray', type: ''}) }}
 
-        {# create another container for more prose if the text needs to be split by an ad #}
         <div class="t-serif t-links-underlined has-page-padding">
           <p class="t-copy">Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
 
           <p class="t-copy">Nam ornare ante eget erat egestas, eget pulvinar diam tincidunt. Nunc eget ligula ac mi facilisis tempus. Proin molestie nisl at urna pharetra commodo. Praesent tincidunt vestibulum purus, id dictum tortor aliquet ac. Pellentesque semper scelerisque justo ac luctus. Nullam malesuada urna a magna fringilla bibendum. Mauris quis hendrerit nisl, a lacinia lectus.</p>
         </div>
 
-        {{ ad('gray', 'footer') }}
+        {{ ad({background: 'gray', type: 'footer'}) }}
       {% endblock content %}
     </article>
   </main>
