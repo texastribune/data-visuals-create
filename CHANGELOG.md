@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `templates/__common__/_package.json` - Adds puppeteer and a new `npm run parse` step. Add `npm run parse` to `npm run build` so the parse step runs automatically on deploy.
 - `templates/graphic/README.md` - Adds default Chrome install path, required in the parse step.
 - `templates/graphic/app/templates/base.html` - New meta tags on graphics to be used internally.
-- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - Add variables to set for graphic metadata, plus data attributes that pull metadata from existing HTML.
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - Add variables to set for graphic metadata, plus data attributes that allow the parser to pull metadata from existing HTML as a fallback.
 
 ### Added
 - ` templates/__common__/_.npmrc`- This tells puppeteer to skip downloading chrome each time we create a new project. Saves us some storage on our machines.
