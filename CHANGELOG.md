@@ -10,6 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.7.0] - 2021-03-16
+### Changed
+- `templates/graphic/project.config.js` - Adds new key for adding customization to the parsing step. For now the only one there is one to ignore Apple News for specified files. Adds some placeholder tags to tag our graphics also. (Tags will be included in the graphic metadata.)
+- `templates/__common__/_package.json` - Adds puppeteer and a new `npm run parse` step. Add `npm run parse` to `npm run build` so the parse step runs automatically on deploy.
+- `templates/graphic/README.md` - Adds default Chrome install path, required in the parse step.
+- `templates/graphic/app/templates/base.html` - New meta tags on graphics to be used internally.
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - Add variables to set for graphic metadata, plus data attributes that pull metadata from existing HTML.
+
+### Added
+- ` templates/__common__/_.npmrc`- This tells puppeteer to skip downloading chrome each time we create a new project. Saves us some storage on our machines.
+- `templates/__common__/config/scripts/parse.js ` - Task runner that spins up a local server and kicks off the graphics-meta.js step.
+- `templates/__common__/config/tasks/graphics-meta.js `- The base for this whole process. At a high level, this will step through the whole project /dist folder and extract all the relevant metadata info we specify. This is also where we build the JSON for Apple News and capture screenshots of graphics.
+
+How we generate graphic metadata is also documented in `templates/graphic/graphics-meta.md`.
+
 ## [3.6.0] - 2021-01-21
 ### Changed
 - `templates/feature/app/templates/includes/ldjson.html` - change some of our attributes in our structured data schema
