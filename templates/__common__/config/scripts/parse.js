@@ -13,6 +13,7 @@ const paths = require('../paths');
 const api = require('../tasks/api');
 const images = require('../tasks/images');
 const styles = require('../tasks/styles');
+const unusedCSS = require('../tasks/unused-css');
 const templates = require('../tasks/templates');
 const graphicsMeta = require('../tasks/graphics-meta');
 
@@ -21,7 +22,11 @@ const cleanTemp = async () => {
 };
 
 async function runParser() {
-  const runner = series([parallel([api, images, styles]), templates]);
+  const runner = series([
+    parallel([api, images, styles]),
+    templates,
+    unusedCSS,
+  ]);
 
   await runner();
   const bs = browserSync.create();
