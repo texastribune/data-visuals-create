@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>The Texas Tribune</title>
+  <base target='_parent'>
+
+  {% if graphicTitle %}
+    <meta name="tt-graphic-title" content="{{ graphicTitle }}" />
+  {% endif %}
+  {% if graphicDesc %}
+    <meta name="tt-graphic-description" content="{{ graphicDesc }}" />
+  {% endif %}
+  {% if graphicSource %}
+    <meta name="tt-graphic-source" content="{{ graphicSource }}" />
+  {% endif %}
+  {% if graphicCredit %}
+    <meta name="tt-graphic-credit" content="{{ graphicCredit }}" />
+  {% endif %}
+
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Start fonts -->
+  <script>
+  window.WebFontConfig = {
+  google: { families: ['Open Sans:300,400,700'] },
+  timeout: 10000,
+};
+</script>
+  <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+  <!-- End fonts -->
+  <link rel="stylesheet" href="{{ static('styles/main.css') }}">
+  {% block head_scripts %}
+  {{ javascriptPack(jsPackName, { mjs: true }) }}
+  {% endblock head_scripts %}
+</head>
+<body>
+
+{% block content %}{% endblock content %}
+
+{% block inline_data %}{% endblock inline_data %}
+
+{% include 'includes/nomodule-shim.html' %}
+
+{% block scripts %}
+{{ javascriptPack(jsPackName) }}
+{% endblock scripts %}
+</body>
+</html>
