@@ -5,11 +5,11 @@
 {% endmacro %}
 
 {% macro text(value, context, data) %}
-<p class="copy">{{ value | renderStringWithNunjucks(data) }}</p>
+<p class="t-copy">{{ value | renderStringWithNunjucks(data) }}</p>
 {% endmacro %}
 
 {% macro list(value) %}
-<ul>
+<ul class="c-list t-copy">
   {% for item in value %}
   <li>{{ item }}</li>
   {% endfor %}
@@ -17,19 +17,18 @@
 {% endmacro %}
 
 {% macro subhead(value) %}
-<h2 class="article-subheader copy">{{ value | widont }}</h2>
+<h2 class="t-subheader">{{ value | widont }}</h2>
 {% endmacro %}
 
-{# set type to roof for roof ads, footer for footer ads #}
-{% macro ad(value, type) %}
+{% macro ad(value) %}
 <div class="plugin plugin--centered">
-  <div class="c-ad-flex_bg--{{ value }}">
+  <div class="c-ad-flex_bg--{{ value.background }}">
     <div class="c-ad-flex__inner">
       <p class="c-ad-flex__thanks">The Texas Tribune thanks its sponsors.
         <a href="https://mediakit.texastribune.org/"><strong>Become one</strong></a>.
       </p>
       <div class="c-ad-flex__unit">
-        <div class="dv-gpt-ad {% if type %}dv-gpt-ad-{{ type }}{% endif %}"></div>
+        <div class="dv-gpt-ad {% if value.type %}dv-gpt-ad-{{ value.type }}{% endif %}"></div>
       </div>
     </div>
   </div>
