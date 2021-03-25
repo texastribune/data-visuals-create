@@ -142,6 +142,7 @@ const parseGraphic = async (
   const context = { page, label };
   const title = await getText({ key: 'title', ...context });
   const description = await getText({ key: 'description', ...context });
+  const note = await getText({ key: 'note', ...context });
   const source = await getText({ key: 'source', ...context });
   let credits = await getText({ key: 'credit', ...context });
 
@@ -195,6 +196,7 @@ const parseGraphic = async (
       large: graphicPath + large,
       small: graphicPath + small,
     },
+    note,
     showInAppleNews,
     source,
     tags,
