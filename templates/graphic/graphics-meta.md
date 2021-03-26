@@ -8,6 +8,7 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 | `[data-graphic]` | If present, the HTML of the page will be parsed for metadata and surfaced in the CMS | `<div class="app" data-graphic>` | N/A - If no `[data-graphic]` selector is found, the graphic won't output in manifest. |
 | `{{ graphicTitle }}` or `[data-title]` | The title of the graphic in the CMS | `{% set  graphicTitle = 'Some title' %}` or `<h1 class="graphic-title" data-title>Some title</h1>` | `title: string` |
 | `{{ graphicDesc }}` | The description of the graphic in the CMS. This will also be read by screenreaders in platforms like Apple News. | `{% set graphicDesc = 'This is a bar chart showing xyz' %}` | `description: string` |
+| `{{ graphicNote }}` or `[data-note]` | Note or disclaimer attached to the graphic. | `{% set graphicNote = 'Important disclaimer about this graphic.' %}` or `<li data-note>Note: Important disclaimer about this graphic.</li>` | `note: string` |
 | `{{ graphicSource }}` or `[data-source]` | The source of the graphic in the CMS | `{% set  graphicSource = 'TXDOT' %}` or `<li data-source>Source: TXDOT</li>` | `source: string` |
 | `{{ graphicCredit }}` or `[data-credit]` | The author names for the graphic in the CMS. | `{% set  graphicCredit = 'Trib Tribington, Super Cool Corgi' %}` or `<li data-credit>Trib Tribington and Super Cool Corgi</li>`  | `credits: array` |
 
@@ -22,7 +23,7 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 	{{ prose(context.prose, context, graphicData) }}
 	<div id="graphic" class="graphic"></div>
 	<ul class="graphic-footer">
-		<li>Note: {{ context.note }}</li>
+		<li data-note>Note: {{ context.note }}</li>
 		<li data-source>Source: {{ context.source }}</li>
 		<li data-credit>Credit: {{ context.credit }}</li>
 	</ul>
@@ -38,6 +39,7 @@ For Illustrator graphics, we typically set the title and other info in the Illus
 {% set context = data.text %}
 {% set graphicTitle = 'Headline from AI graphic' %}
 {% set graphicDesc = 'Description of graphic' %}
+{% set graphicNote = 'Note from AI graphic' %}
 {% set graphicSource = 'Source from AI graphic' %}
 {% set graphicCredit = 'Credit from AI graphic' %}
 {% block  content %}
@@ -47,7 +49,7 @@ For Illustrator graphics, we typically set the title and other info in the Illus
 	{% set ai2html = "border-map-full" %}
 	{% include "ai2html-output/" + ai2html + ".html" %}
 	<ul class="graphic-footer">
-		<li>Note: {{ context.note }}</li>
+		<li data-note>Note: {{ context.note }}</li>
 		<li data-source>Source: {{ context.source }}</li>
 		<li data-credit>Credit: {{ context.credit }}</li>
 	</ul>
@@ -87,6 +89,7 @@ Project config keys output in `manifest.json`
         "isCTA": true
       }
     ],
+    "note": "Note: Texas Department of State Health Services was missing data last year.",
     "previews": {
       "large": "https://graphics.texastribune.org/graphics/new-test-2-2021-02/static/preview-large.png",
       "small": "https://graphics.texastribune.org/graphics/new-test-2-2021-02/static/preview-small.png"

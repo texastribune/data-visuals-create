@@ -206,11 +206,11 @@ const parseGraphic = async (
     id,
     label,
     links,
+    note,
     previews: {
       large: graphicPath + large,
       small: graphicPath + small,
     },
-    note,
     showInAppleNews,
     source,
     tags,
