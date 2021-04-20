@@ -28,6 +28,7 @@ const CHROME_INSTALL_PATH =
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const DESC_PLACEHOLDER = 'Description of graphic';
+const TAGS_PLACEHOLDER = ['subject-budget', 'subject-education'];
 
 const captureScreenshotOfElement = async (element, imagePath) => {
   await fs.ensureDir(path.dirname(imagePath));
@@ -84,6 +85,10 @@ const getText = async (params = { key: '', page: {}, label: '' }) => {
     );
   } catch {
     selectorFound = false;
+  }
+  // notes not required; no warning needed
+  if (key === 'note') {
+    return value;
   }
   if (!selectorFound) {
     console.log(colors.yellow(`Missing ${key} in ${label}`));
@@ -142,6 +147,7 @@ const parseGraphic = async (
   const context = { page, label };
   const title = await getText({ key: 'title', ...context });
   const description = await getText({ key: 'description', ...context });
+  const note = await getText({ key: 'note', ...context });
   const source = await getText({ key: 'source', ...context });
   let credits = await getText({ key: 'credit', ...context });
 
@@ -172,6 +178,15 @@ const parseGraphic = async (
     outputPath,
   });
 
+  // check if default tags are used
+  if (JSON.stringify(tags) === JSON.stringify(TAGS_PLACEHOLDER)) {
+    console.log(
+      colors.yellow(
+        `Placeholder tags still used in ${label}. See tags in project.config.js`
+      )
+    );
+  }
+
   //  check if appleNewsIgnore is specified
   let showInAppleNews = true;
   if (parserOptions) {
@@ -191,6 +206,7 @@ const parseGraphic = async (
     id,
     label,
     links,
+    note,
     previews: {
       large: graphicPath + large,
       small: graphicPath + small,
