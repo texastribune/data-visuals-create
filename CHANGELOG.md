@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [3.8.0] - 2021-04-20
+### Changed
+- `templates/__common__/config/tasks/graphics-meta.js` - Adds a graphic note to the manifest file. Also now logs a warning to the terminal if you don't update the tags in the project config.
+- ` templates/graphic/app/index.html`, 
+`templates/graphic/app/static.html`, 
+` templates/graphic/app/templates/base.html` - Adds all the proper template attributes to surface notes to the parsing task
+` templates/graphic/graphics-meta.md` - Documents the new key
+
 ## [3.7.0] - 2021-03-16
 ### Changed
 - `templates/graphic/project.config.js` - Adds new key for adding customization to the parsing step. For now the only one there is one to ignore Apple News for specified files. Adds some placeholder tags to tag our graphics also. (Tags will be included in the graphic metadata.)
