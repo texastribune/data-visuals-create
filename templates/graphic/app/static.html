@@ -14,7 +14,9 @@
 {# used by the CMS #}
 {# if this is an ai2html graphic, fill out these variables #}
 {% set graphicTitle = context.headline %}
-{% set graphicDesc = 'Description of graphic' %}
+{% set graphicCaption = '' %}
+{# graphicDesc is used by the CMS for accessibility #}
+{% set graphicDesc = '' %}
 {% set graphicNote = context.note %}
 {% set graphicSource = context.source %}
 {% set graphicCredit = context.credit %}
@@ -24,7 +26,8 @@
 <div class="app" data-graphic>
   {# data-title is used to grab the title in the CMS #}
   <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
-  {{ prose(context.prose, context, graphicData) }}
+  {# data-caption is used to grab the caption in the CMS #}
+  <span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
 
   {# add name of your ai2html file here #}
   {# {% set ai2html = "" %}

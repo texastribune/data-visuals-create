@@ -110,11 +110,14 @@ const logErrorMessage = err => {
   console.log(`${message || err}\n\n`);
 };
 
+const logMessage = (msg, color = 'yellow') => console.log(colors[color](msg));
+
 module.exports = {
   clearConsole,
   ensureSlash,
   isImagePath,
   logErrorMessage,
+  logMessage,
   parallel,
   printInstructions,
   replaceExtension,

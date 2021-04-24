@@ -70,7 +70,7 @@ module.exports = {
    * Refer to https://www.texastribune.org/admin/guten_tags/tag/ for our guten tag slugs.
    * YOU CAN CHANGE THESE.
    */
-  tags: ['subject-budget', 'subject-education'],
+  tags: ['subject-politics'],
   /**
    * The dataMutators option makes it possible to modify what's returned by
    * the data fetchers. This is a good place to restructure the raw data, or

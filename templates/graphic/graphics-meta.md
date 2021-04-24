@@ -6,8 +6,9 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 | Selector/Variable | Description | Example | Output in manifest.json |
 |--|--|--|--|
 | `[data-graphic]` | If present, the HTML of the page will be parsed for metadata and surfaced in the CMS | `<div class="app" data-graphic>` | N/A - If no `[data-graphic]` selector is found, the graphic won't output in manifest. |
-| `{{ graphicTitle }}` or `[data-title]` | The title of the graphic in the CMS | `{% set  graphicTitle = 'Some title' %}` or `<h1 class="graphic-title" data-title>Some title</h1>` | `title: string` |
+| `{{ graphicTitle }}` or `[data-title]` | The title of the graphic in the CMS. **If this is missing, the graphic will not surface in the CMS.** | `{% set  graphicTitle = 'Some title' %}` or `<h1 class="graphic-title" data-title>Some title</h1>` | `title: string` |
 | `{{ graphicDesc }}` | The description of the graphic in the CMS. This will also be read by screenreaders in platforms like Apple News. | `{% set graphicDesc = 'This is a bar chart showing xyz' %}` | `description: string` |
+| `{{ graphicCaption }}` | The caption of the graphic in the CMS. The text typically below the title. | `{% set graphicCaption = 'Summarizing statement about the values in the graphic.' %}` | `caption: string` |
 | `{{ graphicNote }}` or `[data-note]` | Note or disclaimer attached to the graphic. | `{% set graphicNote = 'Important disclaimer about this graphic.' %}` or `<li data-note>Note: Important disclaimer about this graphic.</li>` | `note: string` |
 | `{{ graphicSource }}` or `[data-source]` | The source of the graphic in the CMS | `{% set  graphicSource = 'TXDOT' %}` or `<li data-source>Source: TXDOT</li>` | `source: string` |
 | `{{ graphicCredit }}` or `[data-credit]` | The author names for the graphic in the CMS. | `{% set  graphicCredit = 'Trib Tribington, Super Cool Corgi' %}` or `<li data-credit>Trib Tribington and Super Cool Corgi</li>`  | `credits: array` |
@@ -20,7 +21,7 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 {% block  content %}
 <div class="app" data-graphic>
 	<h1 class="graphic-title" data-title>{{ context.headline }}</h1>
-	{{ prose(context.prose, context, graphicData) }}
+	<span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
 	<div id="graphic" class="graphic"></div>
 	<ul class="graphic-footer">
 		<li data-note>Note: {{ context.note }}</li>
@@ -39,6 +40,7 @@ For Illustrator graphics, we typically set the title and other info in the Illus
 {% set context = data.text %}
 {% set graphicTitle = 'Headline from AI graphic' %}
 {% set graphicDesc = 'Description of graphic' %}
+{% set graphicCaption = 'Chatter from AI graphic' %}
 {% set graphicNote = 'Note from AI graphic' %}
 {% set graphicSource = 'Source from AI graphic' %}
 {% set graphicCredit = 'Credit from AI graphic' %}
@@ -62,8 +64,10 @@ For Illustrator graphics, we typically set the title and other info in the Illus
 Along with HTML selectors, we also get metadata about graphics through the `project.config.js`. These are global to the whole project and the same for every graphic in the project.
 
 Project config keys output in `manifest.json`
+- `bucket`
 - `createMonth`
 - `createYear`
+- `folder`
 - `id`
 - `tags`
 - `parserOptions`
@@ -76,12 +80,16 @@ Project config keys output in `manifest.json`
   {
     "title": "Title of graphic",
     "description": "Description of graphic",
-    "graphicPath": "https://graphics.texastribune.org/graphics/new-test-2-2021-02/static/",
+    "bucket": "graphics.texastribune.org",
+    "graphicPath": "graphics/new-test-2-2021-02/static",
+    "graphicURL": "https://graphics.texastribune.org/graphics/new-test-2-2021-02/static/",
     "createMonth": "02",
     "createYear": "2021",
     "credits": ["Mandi Cai", "Darla Cameron", "Carla Astudillo", "Chris Essig"],
+    "folder": "graphics/new-test-2-2021-02",
     "id": "uniqueString",
     "label": "static/index.html",
+    "lastBuild": "2021-04-22T19:28:30.269Z",
     "links": [
       {
         "url": "https://www.texastribune.org/series/news-apps-graphics-databases/",

@@ -10,7 +10,7 @@ const puppeteer = require('puppeteer');
 // internal
 const paths = require('../paths');
 const config = require('../../project.config');
-const { ensureSlash, logErrorMessage } = require('../utils');
+const { ensureSlash, logErrorMessage, logMessage } = require('../utils');
 
 // used for screenshots
 const TABLET_BREAKPOINT = process.env.TABLET_BREAKPOINT || 768;
@@ -27,8 +27,7 @@ const viewportOpts = size => {
 const CHROME_INSTALL_PATH =
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
-const DESC_PLACEHOLDER = 'Description of graphic';
-const TAGS_PLACEHOLDER = ['subject-budget', 'subject-education'];
+const TAGS_PLACEHOLDER = ['subject-politics'];
 
 const captureScreenshotOfElement = async (element, imagePath) => {
   await fs.ensureDir(path.dirname(imagePath));
@@ -68,10 +67,9 @@ const createPreviews = async (params = { page: {}, outputPath: '' }) => {
   }
 };
 
-const getText = async (params = { key: '', page: {}, label: '' }) => {
-  const { key, page, label } = params;
+const getText = async (params = { key: '', page: {} }) => {
+  const { key, page } = params;
   let value = '';
-  let selectorFound = true;
   try {
     value = await page.$eval(
       `[data-${key}], meta[name="tt-graphic-${key}"]`,
@@ -84,23 +82,31 @@ const getText = async (params = { key: '', page: {}, label: '' }) => {
       }
     );
   } catch {
-    selectorFound = false;
-  }
-  // notes not required; no warning needed
-  if (key === 'note') {
-    return value;
-  }
-  if (!selectorFound) {
-    console.log(colors.yellow(`Missing ${key} in ${label}`));
-  } else if (value.length === 0) {
-    console.log(colors.yellow(`Empty ${key} in ${label}`));
-  } else if (key === 'description' && value === DESC_PLACEHOLDER) {
-    console.log(
-      colors.yellow(`Placeholder text still used for ${key} in ${label}`)
-    );
+    value = '';
   }
 
   return value;
+};
+
+const printWarnings = graphics => {
+  const { tags } = config;
+  const requiredKeys = ['description', 'credits', 'source'];
+
+  // default tags used
+  if (JSON.stringify(tags) === JSON.stringify(TAGS_PLACEHOLDER)) {
+    logMessage(`Default tags used in project.config.js`);
+  }
+
+  for (const graphic of graphics) {
+    const { label } = graphic;
+    // loop through keys and warn accordingly
+    for (const [key, value] of Object.entries(graphic)) {
+      // missing values
+      if (requiredKeys.includes(key) && value.length === 0) {
+        logMessage(`Empty ${key} in ${label}`, 'red');
+      }
+    }
+  }
 };
 
 const parseGraphic = async (
@@ -131,8 +137,9 @@ const parseGraphic = async (
       ? `${localURL}`
       : `${localURL}/${parentDir}/${name}.html`;
   await page.goto(url, { waitUntil: 'load' });
-  const label = `${parentDir}/${name}.html`;
-  const graphicPath = ensureSlash(`https://${bucket}/${folder}/${parentDir}`);
+  const label = path.join(parentDir, `${name}.html`);
+  const graphicPath = path.join(folder, parentDir);
+  const graphicURL = ensureSlash(`https://${bucket}/${folder}/${parentDir}`);
 
   // only consider HTML with data-graphic attribute present
   try {
@@ -144,12 +151,18 @@ const parseGraphic = async (
   }
 
   // get text from page
-  const context = { page, label };
-  const title = await getText({ key: 'title', ...context });
-  const description = await getText({ key: 'description', ...context });
-  const note = await getText({ key: 'note', ...context });
-  const source = await getText({ key: 'source', ...context });
-  let credits = await getText({ key: 'credit', ...context });
+  const title = await getText({ key: 'title', page });
+  const caption = await getText({ key: 'caption', page });
+  const description = await getText({ key: 'description', page });
+  const note = await getText({ key: 'note', page });
+  const source = await getText({ key: 'source', page });
+  let credits = await getText({ key: 'credit', page });
+
+  // ignore graphics with no title
+  if (title.length === 0) {
+    logMessage(`${label} was skipped because no graphic was title set.`);
+    return false;
+  }
 
   // create array from credits
   if (credits.length > 0) {
@@ -178,15 +191,6 @@ const parseGraphic = async (
     outputPath,
   });
 
-  // check if default tags are used
-  if (JSON.stringify(tags) === JSON.stringify(TAGS_PLACEHOLDER)) {
-    console.log(
-      colors.yellow(
-        `Placeholder tags still used in ${label}. See tags in project.config.js`
-      )
-    );
-  }
-
   //  check if appleNewsIgnore is specified
   let showInAppleNews = true;
   if (parserOptions) {
@@ -199,17 +203,22 @@ const parseGraphic = async (
   return {
     title,
     description,
+    bucket,
     graphicPath,
+    graphicURL,
+    caption,
     createMonth,
     createYear,
     credits,
+    folder,
     id,
+    lastBuild: new Date(Date.now()).toISOString(),
     label,
     links,
     note,
     previews: {
-      large: graphicPath + large,
-      small: graphicPath + small,
+      large: graphicURL + large,
+      small: graphicURL + small,
     },
     showInAppleNews,
     source,
@@ -238,7 +247,7 @@ module.exports = async localURL => {
         )
       );
     });
-  console.log(colors.cyan('Parsing graphics in a headless browser...'));
+  logMessage(`Parsing graphics in a headless browser...`, 'cyan');
 
   // parse each HTML page
   const graphics = await Promise.all(
@@ -257,6 +266,8 @@ module.exports = async localURL => {
     graphic => typeof graphic.title === 'string'
   );
 
+  printWarnings(filtered);
+
   // output path
   const manifest = `${paths.appDist}/manifest.json`;
 
@@ -269,17 +280,12 @@ module.exports = async localURL => {
 
   // print output info in terminal
   if (filtered.length > 0) {
-    console.log(
-      colors.green(`Generated metadata for ${filtered.length} graphic(s)`)
-    );
-    console.log(`✓ ${manifest}`);
+    logMessage(`Generated metadata for ${filtered.length} graphic(s)`, 'green');
+    console.log(`✔ ${manifest}`);
   } else {
-    console.log(
-      colors.red(
-        `Generated metadata for ${
-          filtered.length
-        } graphics. Could not find the data-graphic attribute in any HTML files.`
-      )
+    logMessage(
+      `No metadata generated. Could not find the data-graphic attribute in any HTML files.`,
+      'red'
     );
   }
 
