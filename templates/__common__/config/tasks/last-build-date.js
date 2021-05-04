@@ -17,8 +17,8 @@ module.exports = async () => {
 
   // replace the old date with the new updated date
   configFile[lastBuildDateLine] = configFile[lastBuildDateLine].replace(
-    /'(.*?)'/g,
-    `'${new Date().toISOString()}'`
+    /(lastBuildDate:\s)('(.*?)')/g,
+    `$1'${new Date().toISOString()}'`
   );
 
   // write to the config file path
