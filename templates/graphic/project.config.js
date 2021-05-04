@@ -67,6 +67,7 @@ module.exports = {
   /**
    * Tags that will be plugged in via the graphics plugin.
    * This an array of each tag's slug, not the tag names.
+   * Refer to https://www.texastribune.org/admin/guten_tags/tag/ for our guten tag slugs.
    * YOU CAN CHANGE THESE.
    */
   tags: ['subject-budget', 'subject-education'],
