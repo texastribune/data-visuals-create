@@ -1,5 +1,5 @@
 {
-  "name": "<<slug>>",
+  "name": "<<name>>",
   "private": true,
   "scripts": {
     "assets:pull": "node ./utils/deployment/pull-assets.js",

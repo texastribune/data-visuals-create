@@ -1,22 +1,22 @@
 module.exports = {
   /**
    * A unique identifier that's generated when a project is created. Used to
-   * sync up asset and workspace deploys. 
+   * sync up asset and workspace deploys.
    * DO NOT CHANGE.
    */
   id: '<<id>>',
   /**
-   * Month that the project was created. 
+   * Month that the project was created.
    * DO NOT CHANGE.
    */
   createMonth: '<<month>>',
   /**
-   * Year that the project was created. 
+   * Year that the project was created.
    * DO NOT CHANGE.
    */
   createYear: '<<year>>',
   /**
-   * Date that the project was last rebuilt with `build.js`. 
+   * Date that the project was last rebuilt with `build.js`.
    * The lastBuildDate is the created date before the first build.
    * DO NOT CHANGE. Automatically updated.
    */
@@ -42,7 +42,7 @@ module.exports = {
    * This is the slug in the project url.
    * YOU CAN CHANGE THIS.
    */
-  folder: 'graphics/<<slug>>-<<year>>-<<month>>',
+  folder: 'graphics/<<name>>-<<year>>-<<month>>',
   /**
    * The S3 bucket that's used to store raw asset and workspace files.
    * DO NOT CHANGE.
@@ -65,7 +65,7 @@ module.exports = {
     },
   ],
   /**
-   * Tags that will be plugged in via the graphics plugin. 
+   * Tags that will be plugged in via the graphics plugin.
    * This an array of each tag's slug, not the tag names.
    * YOU CAN CHANGE THESE.
    */

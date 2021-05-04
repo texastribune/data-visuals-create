@@ -27,7 +27,7 @@ const mriConfig = {
 
 const sendHelp = () =>
   console.log(
-    `\nUsage: ${highlight('data-visuals-create')} [project-type] [slug]`
+    `\nUsage: ${highlight('data-visuals-create')} [project-type] [project-name]`
   );
 
 async function main(argv_) {
@@ -103,9 +103,9 @@ async function main(argv_) {
     process.exit(1);
   }
 
-  const [projectType, slug] = args;
+  const [projectType, projectName] = args;
 
-  await createProject(projectType, slug);
+  await createProject(projectType, projectName);
 }
 
 main(process.argv).catch(console.error);
