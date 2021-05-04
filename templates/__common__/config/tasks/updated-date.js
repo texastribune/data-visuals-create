@@ -1,11 +1,7 @@
 const paths = require('../../config/paths');
 const fs = require('fs');
 
-const { getDayYearAndMonth } = require('../utils');
-
 module.exports = async () => {
-  const { day, month, year } = getDayYearAndMonth();
-
   // read config file and split it by line breaks
   let configFile = fs
     .readFileSync(`${paths.appDirectory}/project.config.js`)
@@ -22,7 +18,7 @@ module.exports = async () => {
   // replace the old date with the new updated date
   configFile[updateDateLine] = configFile[updateDateLine].replace(
     /'(.*?)'/g,
-    `'${year}-${month}-${day}'`
+    `'${new Date().toISOString()}'`
   );
 
   // write to the config file path

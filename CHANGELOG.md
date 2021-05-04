@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [4.0.0]
+- Possibly a major version bump because we need the updatedDate for future versions of the graphics plugin
+
+### Changed
+- `templates/__common__/config/scripts/build.js` - add script to update the `updatedDate` in `build.js`
+- `templates/feature/project.config.js` - add updatedDate field to feature config
+- `templates/graphic/project.config.js` - add updatedDate field to graphic config
+
+### Added
+- `templates/__common__/config/tasks/updated-date.js` - add script to parse the config file, update the `updatedDate` and write the file back to the filepath
+
 ## [3.8.0] - 2021-04-20
 ### Changed
 - `templates/__common__/config/tasks/graphics-meta.js` - Adds a graphic note to the manifest file. Also now logs a warning to the terminal if you don't update the tags in the project config.
