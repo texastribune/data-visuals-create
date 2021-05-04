@@ -39,7 +39,7 @@ module.exports = {
   bucket: 'capybara-test.texastribune.org',
   /**
    * The folder (or "Key" in S3 lingo) to deploy the project into.
-   * This is the slug in the project url.
+   * This is the slug in the project URL.
    * YOU CAN CHANGE THIS.
    */
   folder: 'features/<<year>>/<<name>>',

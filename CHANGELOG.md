@@ -14,12 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Possibly a major version bump because we need the updatedDate for future versions of the graphics plugin
 
 ### Changed
-- `templates/__common__/config/scripts/build.js` - add script to update the `updatedDate` in `build.js`
-- `templates/feature/project.config.js` - add updatedDate field to feature config
-- `templates/graphic/project.config.js` - add updatedDate field to graphic config
+- `templates/__common__/config/scripts/build.js` - add script to update the `lastBuildTime` in `build.js`
+- `templates/feature/project.config.js` - add `lastBuildTime` field to feature config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
+- `templates/graphic/project.config.js` - add `lastBuildTime` field to graphic config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
+- `bin/data-visuals-create`, `README.md`, `templates/__common__/_package.json`, `templates/__common__/utils/deployment/update-log-sheet.js` - change `slug` to `projectName` to avoid confusion with the slug in our project URL and what we add to the CMS
 
 ### Added
-- `templates/__common__/config/tasks/updated-date.js` - add script to parse the config file, update the `updatedDate` and write the file back to the filepath
+- `templates/__common__/config/tasks/last-build-time.js` - add script to parse the config file, update the `lastBuildTime` and write the file back to the filepath
 
 ## [3.8.0] - 2021-04-20
 ### Changed
