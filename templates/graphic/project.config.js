@@ -16,11 +16,11 @@ module.exports = {
    */
   createYear: '<<year>>',
   /**
-   * Date that the project was last rebuilt with `build.js`.
-   * The lastBuildDate is the created date before the first build.
+   * Time that the project was last rebuilt with `build.js`.
+   * The lastBuildTime is when the project was created before the first build.
    * DO NOT CHANGE. Automatically updated.
    */
-  lastBuildDate: '<<year>>-<<month>>-<<day>>',
+  lastBuildTime: '<<last-build-time>>',
   /**
    * What project type was passed in on creation.
    * DO NOT CHANGE.

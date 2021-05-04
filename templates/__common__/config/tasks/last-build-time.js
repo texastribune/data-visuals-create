@@ -8,16 +8,16 @@ module.exports = async () => {
     .toString()
     .split('\n');
 
-  let lastBuildDateLine;
+  let lastBuildTime;
 
-  // find the line with the lastBuildDate
+  // find the line with the lastBuildTime
   configFile.forEach((line, i) => {
-    if (line.includes('lastBuildDate')) lastBuildDateLine = i;
+    if (line.includes('lastBuildTime')) lastBuildTime = i;
   });
 
   // replace the old date with the new updated date
-  configFile[lastBuildDateLine] = configFile[lastBuildDateLine].replace(
-    /(lastBuildDate:\s)('(.*?)')/g,
+  configFile[lastBuildTime] = configFile[lastBuildTime].replace(
+    /(lastBuildTime:\s)('(.*?)')/g,
     `$1'${new Date().toISOString()}'`
   );
 
@@ -28,7 +28,7 @@ module.exports = async () => {
     err => {
       if (err)
         return console.log(
-          `Error while updating the lastBuildDate: ${err.message}`
+          `Error while updating the lastBuildTime: ${err.message}`
         );
     }
   );
