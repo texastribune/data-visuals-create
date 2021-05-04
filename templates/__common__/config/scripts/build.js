@@ -8,6 +8,7 @@ const colors = require('ansi-colors');
 const { logErrorMessage } = require('../utils');
 
 // tasks
+const updatedDate = require('../tasks/updated-date');
 const api = require('../tasks/api');
 const clean = require('../tasks/clean');
 const copy = require('../tasks/copy');
@@ -21,6 +22,7 @@ const unusedCSS = require('../tasks/unused-css');
 
 async function build() {
   const runner = series([
+    updatedDate,
     clean,
     scripts,
     parallel([api, images, styles]),

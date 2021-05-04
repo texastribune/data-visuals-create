@@ -13,6 +13,10 @@ module.exports = {
    */
   createYear: '<<year>>',
   /**
+   * Date that the project was last rebuilt. The updatedDate is the created date before the first build.
+   */
+  updatedDate: '<<year>>-<<month>>-<<day>>',
+  /**
    * What project type was passed in on creation.
    */
   projectType: 'feature',

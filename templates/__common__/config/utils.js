@@ -110,6 +110,21 @@ const logErrorMessage = err => {
   console.log(`${message || err}\n\n`);
 };
 
+/**
+ * Determines the current day, month and year.
+ *
+ * @returns {Object}
+ */
+ function getDayYearAndMonth() {
+  const date = new Date();
+
+  const day = `0${date.getDate()}`.slice(-2);
+  const year = date.getFullYear();
+  const month = `0${date.getMonth() + 1}`.slice(-2);
+
+  return { day, month, year };
+}
+
 module.exports = {
   clearConsole,
   ensureSlash,
@@ -120,4 +135,5 @@ module.exports = {
   replaceExtension,
   series,
   validImageExtensions,
+  getDayYearAndMonth,
 };
