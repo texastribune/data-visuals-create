@@ -30,7 +30,10 @@ module.exports = async () => {
     `${paths.appDirectory}/project.config.js`,
     configFile.join('\n'),
     err => {
-      if (err) return console.log(`Error while updating the updatedDate: ${err.message}`);
+      if (err)
+        return console.log(
+          `Error while updating the updatedDate: ${err.message}`
+        );
     }
   );
 };

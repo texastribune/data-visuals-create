@@ -56,10 +56,7 @@ module.exports = {
   /**
    * Tags that will be plugged in via the graphics plugin. This an array of each tag's slug, not the tag names.
    */
-  tags: [
-    'subject-budget',
-    'subject-education'
-  ],
+  tags: ['subject-budget', 'subject-education'],
   /**
    * The dataMutators option makes it possible to modify what's returned by
    * the data fetchers. This is a good place to restructure the raw data, or
