@@ -1,4 +1,4 @@
-const paths = require('../../config/paths');
+const paths = require('../paths');
 const fs = require('fs');
 
 module.exports = async () => {
