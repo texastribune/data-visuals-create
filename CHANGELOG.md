@@ -13,9 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [4.0.0] - 2021-05-05
 ### Changed
 - `templates/__common__/config/scripts/build.js` - add script to update the `lastBuildTime` in `build.js`
+- `templates/__common__/config/tasks/graphics-meta.js` - add more keys to manifest.json output; simplify warning logs; ignore graphics with no title
+- `templates/__common__/config/utils.js` - add a `logMessage` function for console logging with colors
 - `templates/feature/project.config.js` - add `lastBuildTime` field to feature config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
-- `templates/graphic/project.config.js` - add `lastBuildTime` field to graphic config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
+- `templates/graphic/project.config.js` - add `lastBuildTime` field to graphic config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed; update default tag to `subject-politics`
 - `bin/data-visuals-create`, `README.md`, `templates/__common__/_package.json`, `templates/__common__/utils/deployment/update-log-sheet.js` - change `slug` to `projectName` to avoid confusion with the slug in our project URL and what we add to the CMS
+- `templates/graphic/app/index.html`,  `templates/graphic/app/static.html`, `templates/graphic/app/templates/base.html` - add caption for graphic context and assume description is for accessibility
+- `templates/graphic/graphics-meta.md` - document the new caption field and rules
 
 ### Added
 - `templates/__common__/config/tasks/last-build-time.js` - add script to parse the config file, update the `lastBuildTime` and write the file back to the filepath
@@ -23,8 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.8.0] - 2021-04-20
 ### Changed
 - `templates/__common__/config/tasks/graphics-meta.js` - Adds a graphic note to the manifest file. Also now logs a warning to the terminal if you don't update the tags in the project config.
-- ` templates/graphic/app/index.html`, 
-`templates/graphic/app/static.html`, 
+- ` templates/graphic/app/index.html`,
+`templates/graphic/app/static.html`,
 ` templates/graphic/app/templates/base.html` - Adds all the proper template attributes to surface notes to the parsing task
 ` templates/graphic/graphics-meta.md` - Documents the new key
 
@@ -64,7 +68,7 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 - `templates/graphic/project.config.js`, `templates/feature/project.config.js` - comment the slug and folder variables (folder variable should be changed when the URL slug is changed)
 - `templates/feature/app/index-queso.html` - change `{{ context.title }}` to `{{ context.headline }}`, add HTML to include publish and update dates
 - `templates/feature/app/index.html`, `templates/feature/project.config.js`, `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - change `{{ context.title }}` to `{{ context.headline }}`
-- `templates/feature/app/templates/components/simple-masthead.html`, 
+- `templates/feature/app/templates/components/simple-masthead.html`,
 `templates/feature/app/templates/includes/logo.html` - change 10th anniversary logo back to original TT logo
 - `templates/__common__/app/styles/_typography-queso.scss` - add t-subheader styling
 
@@ -159,7 +163,7 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 
 ## [2.5.3] - 2020-04-21
 ### Added
-- `_variables.scss` - add elections color palette 
+- `_variables.scss` - add elections color palette
 - `deploy.js` - add reminder to check social media for features and fetch the latest data
 - `README.md` - update feature README with more publication reminders
 
@@ -170,8 +174,8 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 ## [2.4.2] - 2020-01-15
 ### Changed
 - `package.json` - pull assets and push to workspace on predeploy, which is run automatically before deploy #31
-- `feature/app/styles/components/_related-content.scss`, `feature/app/styles/components/_ads.scss`, 
-`processors.html` - update appearance of ads 
+- `feature/app/styles/components/_related-content.scss`, `feature/app/styles/components/_ads.scss`,
+`processors.html` - update appearance of ads
 - `graphic/README.md, feature/README.md` - added project launch checklist
 
 ## [2.4.1]
