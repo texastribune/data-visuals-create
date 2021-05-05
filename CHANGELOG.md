@@ -10,9 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [4.0.0]
-- Possibly a major version bump because we need the updatedDate for future versions of the graphics plugin
-
+## [4.0.0] - 2021-05-05
 ### Changed
 - `templates/__common__/config/scripts/build.js` - add script to update the `lastBuildTime` in `build.js`
 - `templates/feature/project.config.js` - add `lastBuildTime` field to feature config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
