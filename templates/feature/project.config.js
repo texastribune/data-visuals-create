@@ -1,41 +1,56 @@
 module.exports = {
   /**
-   * A unique identifier that's generated when a project is created.Used to
+   * A unique identifier that's generated when a project is created. Used to
    * sync up asset and workspace deploys.
+   * DO NOT CHANGE.
    */
   id: '<<id>>',
   /**
    * Month that the project was created.
+   * DO NOT CHANGE.
    */
   createMonth: '<<month>>',
   /**
    * Year that the project was created.
+   * DO NOT CHANGE.
    */
   createYear: '<<year>>',
   /**
+   * Time that the project was last rebuilt with `build.js`.
+   * The lastBuildTime is when the project was created before the first build.
+   * DO NOT CHANGE. Automatically updated.
+   */
+  lastBuildTime: '<<last-build-time>>',
+  /**
    * What project type was passed in on creation.
+   * DO NOT CHANGE.
    */
   projectType: 'feature',
   /**
-   * What slug was passed in on creation.
-   * Changing this will not change the slug in the url.
+   * What project name was passed in on creation and is part of the repository name.
+   * Project names are passed in as slugs, i.e. 'my-beatiful-project'
+   * DO NOT CHANGE.
    */
-  slug: '<<slug>>',
+  projectName: '<<name>>',
   /**
    * The destination S3 bucket for a deploy.
+   * YOU CAN CHANGE THIS.
    */
   bucket: 'capybara-test.texastribune.org',
   /**
    * The folder (or "Key" in S3 lingo) to deploy the project into.
-   * Change the slug in the URL here.
+   * This is the slug in the project URL.
+   * YOU CAN CHANGE THIS.
    */
-  folder: 'features/<<year>>/<<slug>>',
+  folder: 'features/<<year>>/<<name>>',
   /**
    * The S3 bucket that's used to store raw asset and workspace files.
+   * DO NOT CHANGE.
    */
   assetsBucket: 'data-visuals-raw-assets',
   /**
    * Any Google Doc and Google Sheet files to be synced with this project.
+   * YOU CAN CHANGE THESE.
    */
   files: [
     {
@@ -64,7 +79,6 @@ module.exports = {
   },
    */
   dataMutators: {},
-
   /**
    * `createAPI` makes it possible to bake out a series of JSON files that get
    * deployed with your project. This is a great way to break up data that users
@@ -76,7 +90,6 @@ module.exports = {
   createAPI(data) {
     return null;
   },
-
   /**
    * Where custom filters for Nunjucks can be added. Each key should be the
    * name of the filter, and each value should be a function it will call.

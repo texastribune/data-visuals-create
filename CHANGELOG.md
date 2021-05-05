@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [4.0.0] - 2021-05-05
+### Changed
+- `templates/__common__/config/scripts/build.js` - add script to update the `lastBuildTime` in `build.js`
+- `templates/feature/project.config.js` - add `lastBuildTime` field to feature config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
+- `templates/graphic/project.config.js` - add `lastBuildTime` field to graphic config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
+- `bin/data-visuals-create`, `README.md`, `templates/__common__/_package.json`, `templates/__common__/utils/deployment/update-log-sheet.js` - change `slug` to `projectName` to avoid confusion with the slug in our project URL and what we add to the CMS
+
+### Added
+- `templates/__common__/config/tasks/last-build-time.js` - add script to parse the config file, update the `lastBuildTime` and write the file back to the filepath
+
 ## [3.8.0] - 2021-04-20
 ### Changed
 - `templates/__common__/config/tasks/graphics-meta.js` - Adds a graphic note to the manifest file. Also now logs a warning to the terminal if you don't update the tags in the project config.

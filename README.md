@@ -20,7 +20,7 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
 ## Getting started
 
 ```sh
-npx @data-visuals/create feature my-great-project
+npx @data-visuals/create feature my-great-project # the project name should be passed in as a slug
 cd feature-my-great-project-YYYY-MM # the four digit year and two digit month
 npm start
 ```
@@ -85,10 +85,10 @@ npm install -g @data-visuals/create
 ## Usage
 
 ```sh
-npx @data-visuals/create <project-type> <slug>
+npx @data-visuals/create <project-type> <project-name>
 ```
 
-Currently there are two project types available — `graphic` and `feature`.
+Currently there are two project types available — `graphic` and `feature`. The project name should be passed in as a slug, i.e. `my-beautiful-project`.
 
 ```sh
 npx @data-visuals/create graphic school-funding
@@ -99,7 +99,7 @@ This will create a directory for you, copy in the files, install the dependencie
 The directory name will be formatted like this:
 
 ```
-<project-type>-<slug>-<year>-<month>
+<project-type>-<project-name>-<year>-<month>
 
 Using the example command above, it would be the following:
 graphic-school-funding-2018-01
@@ -109,7 +109,7 @@ This is to ensure consistent naming of our directories!
 
 ## Development and testing
 
-If you make changes locally to `@data-visuals/create` and want to test them, you can run `data-visuals-create/bin/data-visuals-create <project-type> <slug>` to generate a graphic or feature and see if your changes were included. Run the command one level above this repo, or you'll create a graphic or feature within `data-visuals-create`.
+If you make changes locally to `@data-visuals/create` and want to test them, you can run `data-visuals-create/bin/data-visuals-create <project-type> <project-name>` to generate a graphic or feature and see if your changes were included. Run the command one level above this repo, or you'll create a graphic or feature within `data-visuals-create`.
 
 ## Folder structure
 
