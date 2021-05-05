@@ -67,6 +67,7 @@ Project config keys output in `manifest.json`
 - `bucket`
 - `createMonth`
 - `createYear`
+- `lastBuildTime`
 - `folder`
 - `id`
 - `tags`
