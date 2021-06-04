@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [4.0.1] - 2021-06-04
+### Removed
+- `templates/feature/app/scripts/kickstart.js` - remove trending bar from our feature pages because it was getting in the way of other designs
+
 ## [4.0.0] - 2021-05-05
 ### Changed
 - `templates/__common__/config/scripts/build.js` - add script to update the `lastBuildTime` in `build.js`
