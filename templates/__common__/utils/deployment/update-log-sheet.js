@@ -26,6 +26,8 @@ let updateLogSheet = async config => {
 
   if (manifest) {
     const manifestJSON = JSON.parse(manifest); // convert metadata to JSON object
+    
+    // set up auth to connect to Google
     const auth = await getAuth();
     const sheets = google.sheets({
       version: 'v4',
