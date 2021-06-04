@@ -19,6 +19,7 @@ function getFileLink(files, type) {
   } else return '';
 }
 
+// fetch latest data and write new data to sheet
 async function writeToSheet(
   sheets,
   spreadsheetId,
@@ -71,7 +72,7 @@ async function writeToSheet(
 }
 
 // update log of past data visuals works with project info
-let updateLogSheet = async config => {
+let updateLogSheet = async (mainPath, config) => {
   // read manifest file, which has metadata about the project
   const manifest = fs.readFileSync(`${paths.appDist}/manifest.json`, 'utf8');
 
@@ -98,33 +99,43 @@ let updateLogSheet = async config => {
     }
 
     // loop through metadata JSON
-    for (const metadata of manifestJSON) {
-      let metadataInput = [
-        [
-          metadata.id,
-          metadata.graphicURL,
-          metadata.graphicPath,
-          metadata.title,
-          metadata.caption,
-          metadata.description,
-          `${metadata.createYear}-${metadata.createMonth}`,
-          metadata.lastBuildTime,
-          metadata.note,
-          metadata.source,
-          metadata.credits.join(', '),
-          metadata.tags.join(', '),
-          getFileLink(config.files, 'sheet'),
-          getFileLink(config.files, 'doc'),
-        ],
-      ];
-
+    if (manifestJSON.length == 0) {
       await writeToSheet(
         sheets,
         spreadsheetId,
         sheetName,
-        metadata,
-        metadataInput
+        { id: config.id, graphicURL: mainPath },
+        [[config.id, mainPath]]
       );
+    } else {
+      for (const metadata of manifestJSON) {
+        let metadataInput = [
+          [
+            metadata.id,
+            metadata.graphicURL,
+            metadata.graphicPath,
+            metadata.title,
+            metadata.caption,
+            metadata.description,
+            `${metadata.createYear}-${metadata.createMonth}`,
+            metadata.lastBuildTime,
+            metadata.note,
+            metadata.source,
+            metadata.credits.join(', '),
+            metadata.tags.join(', '),
+            getFileLink(config.files, 'sheet'),
+            getFileLink(config.files, 'doc'),
+          ],
+        ];
+
+        await writeToSheet(
+          sheets,
+          spreadsheetId,
+          sheetName,
+          metadata,
+          metadataInput
+        );
+      }
     }
   }
 };

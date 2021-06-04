@@ -24,7 +24,7 @@ s3.uploadFiles(paths.appDist, {
 
   await write(mainPath);
   await updateReadMe(paths, mainPath, config.files);
-  await updateLogSheet(config);
+  await updateLogSheet(mainPath, config);
 
   console.log(`
 Upload of ${colors.yellow(numFiles)} file${numFiles === 1 ? '' : 's'} complete.
