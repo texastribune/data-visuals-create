@@ -19,6 +19,57 @@ function getFileLink(files, type) {
   } else return '';
 }
 
+async function writeToSheet(
+  sheets,
+  spreadsheetId,
+  sheetName,
+  metadata,
+  metadataInput
+) {
+  // pull the data out of the spreadsheet
+  const { data } = await sheets.spreadsheets.values.get({
+    spreadsheetId: spreadsheetId,
+    range: `${sheetName}!A:B`,
+  });
+
+  // safety check for values in that range
+  if (data.values) {
+    // match by ID and graphic URL
+    let foundProject = data.values.find(value => {
+      return value[0] == metadata.id && value[1] == metadata.graphicURL;
+    });
+
+    if (foundProject) {
+      let index = data.values.findIndex(value => {
+        return value[0] == metadata.id && value[1] == metadata.graphicURL;
+      });
+
+      // if id exists, update it
+      sheets.spreadsheets.values.update({
+        spreadsheetId: spreadsheetId,
+        range: `${sheetName}!${index + 1}:${index + 1}`, // DON'T MESS WITH THESE INDICES
+        valueInputOption: 'USER_ENTERED',
+        resource: {
+          // row of values
+          values: metadataInput,
+        },
+      });
+    } else {
+      // if not, append to the end of the file
+      sheets.spreadsheets.values.append({
+        spreadsheetId: spreadsheetId,
+        valueInputOption: 'USER_ENTERED',
+        range: `${sheetName}!${data.values.length + 1}:${data.values.length +
+          1}`, // DON'T MESS WITH THESE INDICES
+        resource: {
+          // row of values
+          values: metadataInput,
+        },
+      });
+    }
+  }
+}
+
 // update log of past data visuals works with project info
 let updateLogSheet = async config => {
   // read manifest file, which has metadata about the project
@@ -26,7 +77,7 @@ let updateLogSheet = async config => {
 
   if (manifest) {
     const manifestJSON = JSON.parse(manifest); // convert metadata to JSON object
-    
+
     // set up auth to connect to Google
     const auth = await getAuth();
     const sheets = google.sheets({
@@ -46,14 +97,8 @@ let updateLogSheet = async config => {
       sheetName = 'Feature';
     }
 
-    // pull the data out of the spreadsheet
-    const { data } = await sheets.spreadsheets.values.get({
-      spreadsheetId: spreadsheetId,
-      range: `${sheetName}!A:B`,
-    });
-
     // loop through metadata JSON
-    manifestJSON.forEach(metadata => {
+    for (const metadata of manifestJSON) {
       let metadataInput = [
         [
           metadata.id,
@@ -73,43 +118,14 @@ let updateLogSheet = async config => {
         ],
       ];
 
-      // safety check for values in that range
-      if (data.values) {
-        // match by ID and graphic URL
-        let foundProject = data.values.find(value => {
-          return value[0] == metadata.id && value[1] == metadata.graphicURL;
-        });
-
-        if (foundProject) {
-          let index = data.values.findIndex(value => {
-            return value[0] == metadata.id && value[1] == metadata.graphicURL;
-          });
-
-          // if id exists, update it
-          sheets.spreadsheets.values.update({
-            spreadsheetId: spreadsheetId,
-            range: `${sheetName}!${index + 1}:${index + 1}`, // DON'T MESS WITH THESE INDICES
-            valueInputOption: 'USER_ENTERED',
-            resource: {
-              // row of values
-              values: metadataInput,
-            },
-          });
-        } else {
-          // if not, append to the end of the file
-          sheets.spreadsheets.values.append({
-            spreadsheetId: spreadsheetId,
-            valueInputOption: 'USER_ENTERED',
-            range: `${sheetName}!${data.values.length + 1}:${data.values
-              .length + 1}`, // DON'T MESS WITH THESE INDICES
-            resource: {
-              // row of values
-              values: metadataInput,
-            },
-          });
-        }
-      }
-    });
+      await writeToSheet(
+        sheets,
+        spreadsheetId,
+        sheetName,
+        metadata,
+        metadataInput
+      );
+    }
   }
 };
 
