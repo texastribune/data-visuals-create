@@ -20,13 +20,13 @@ if (relatedContentContainer && window.ttData.gutenTag) {
 }
 
 // trending ribbon
-const ribbonContainer = document.getElementById('ribbon-container');
+// const ribbonContainer = document.getElementById('ribbon-container');
 
-if (ribbonContainer) {
-  import(/* webpackChunkName: "Ribbon" */ './components/Ribbon').then(
-    ({ default: Ribbon }) => render(<Ribbon />, ribbonContainer)
-  );
-}
+// if (ribbonContainer) {
+//   import(/* webpackChunkName: "Ribbon" */ './components/Ribbon').then(
+//     ({ default: Ribbon }) => render(<Ribbon />, ribbonContainer)
+//   );
+// }
 
 // ads
 import(/* webpackChunkName: "ads" */ './utils/ad-loader').then(
