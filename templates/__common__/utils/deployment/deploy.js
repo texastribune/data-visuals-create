@@ -24,7 +24,7 @@ s3.uploadFiles(paths.appDist, {
 
   await write(mainPath);
   await updateReadMe(paths, mainPath, config.files);
-  await updateLogSheet(mainPath, config);
+  await updateLogSheet(config);
 
   console.log(`
 Upload of ${colors.yellow(numFiles)} file${numFiles === 1 ? '' : 's'} complete.
@@ -32,7 +32,9 @@ Upload of ${colors.yellow(numFiles)} file${numFiles === 1 ? '' : 's'} complete.
 Good work! The primary page of this project can be found at:
 ${colors.blue.underline(mainPath)} (This has been copied to your clipboard.)
 
-Did you run ${colors.yellow(`npm run data:fetch`)} before deploying to get the latest data?`);
+Did you run ${colors.yellow(
+    `npm run data:fetch`
+  )} before deploying to get the latest data?`);
 
   if (projectType === 'feature') {
     console.log(`

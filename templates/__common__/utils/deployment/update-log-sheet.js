@@ -2,6 +2,10 @@ const { google } = require('googleapis');
 const { getAuth } = require('../fetch/authorize');
 const { dataType } = require('./update-readme');
 
+// for reading the manifest file
+const paths = require('../../config/paths');
+const fs = require('fs');
+
 // gets file link for first file of desired type
 function getFileLink(files, type) {
   let desiredFile = files.find(file => file.type == type);
@@ -16,89 +20,94 @@ function getFileLink(files, type) {
 }
 
 // update log of past data visuals works with project info
-let updateLogSheet = async (mainPath, config) => {
-  const auth = await getAuth();
+let updateLogSheet = async config => {
+  // read manifest file, which has metadata about the project
+  const manifest = fs.readFileSync(`${paths.appDist}/manifest.json`, 'utf8');
 
-  const sheets = google.sheets({
-    version: 'v4',
-    auth,
-  });
+  if (manifest) {
+    const manifestJSON = JSON.parse(manifest); // convert metadata to JSON object
+    const auth = await getAuth();
+    const sheets = google.sheets({
+      version: 'v4',
+      auth,
+    });
 
-  // id of data visuals work spreadsheet
-  const spreadsheetId = '10mQMStMlL333X922Imy-_CY_grOotZ2ZtlmU7DShjPM';
-  let sheetName, repoName;
+    // id of data visuals work spreadsheet
+    const spreadsheetId = '18f3xmv1_pwgw7vPvBaX9fnDvH2FlQAuHzmB7F_LH4_I';
+    let sheetName;
 
-  if (config.projectType === 'graphic') {
-    sheetName = 'Embedded';
-    repoName = `newsapps-dailies/${config.createYear}/${config.projectName}-${config.createYear}-${config.createMonth}`;
-  }
-  if (config.projectType === 'feature') {
-    sheetName = 'Feature';
-    repoName = `feature-${config.projectName}-${config.createYear}-${config.createMonth}`;
-  }
-
-  // pull the data out of the spreadsheet
-  const { data } = await sheets.spreadsheets.values.get({
-    spreadsheetId: spreadsheetId,
-    range: `${sheetName}!A1:A`,
-  });
-
-  // safety check for values in that range
-  if (data.values) {
-    let foundId = data.values.find(value => value[0] == config.id);
-    if (foundId) {
-      let index = data.values.findIndex(value => value[0] == config.id);
-      // if id exists, update it
-      sheets.spreadsheets.values.update({
-        spreadsheetId: spreadsheetId,
-        range: `${sheetName}!${index + 1}:${index + 1}`, // DON'T MESS WITH THESE INDICES
-        valueInputOption: 'USER_ENTERED',
-        resource: {
-          // row of values
-          values: [
-            [
-              config.id,
-              '',
-              '',
-              '',
-              '',
-              '',
-              mainPath,
-              repoName,
-              getFileLink(config.files, 'sheet'),
-              getFileLink(config.files, 'doc'),
-              '',
-            ],
-          ],
-        },
-      });
-    } else {
-      // if not, append to the end of the file
-      sheets.spreadsheets.values.append({
-        spreadsheetId: spreadsheetId,
-        valueInputOption: 'USER_ENTERED',
-        range: `${sheetName}!${data.values.length + 1}:${data.values.length +
-          1}`, // DON'T MESS WITH THESE INDICES
-        resource: {
-          // row of values
-          values: [
-            [
-              config.id,
-              '',
-              '',
-              '',
-              '',
-              '',
-              mainPath,
-              repoName,
-              getFileLink(config.files, 'sheet'),
-              getFileLink(config.files, 'doc'),
-              '',
-            ],
-          ],
-        },
-      });
+    // get corresponding sheet
+    if (config.projectType === 'graphic') {
+      sheetName = 'Embedded';
     }
+    if (config.projectType === 'feature') {
+      sheetName = 'Feature';
+    }
+
+    // pull the data out of the spreadsheet
+    const { data } = await sheets.spreadsheets.values.get({
+      spreadsheetId: spreadsheetId,
+      range: `${sheetName}!A:B`,
+    });
+
+    // loop through metadata JSON
+    manifestJSON.forEach(metadata => {
+      let metadataInput = [
+        [
+          metadata.id,
+          metadata.graphicURL,
+          metadata.graphicPath,
+          metadata.title,
+          metadata.caption,
+          metadata.description,
+          `${metadata.createYear}-${metadata.createMonth}`,
+          metadata.lastBuildTime,
+          metadata.note,
+          metadata.source,
+          metadata.credits.join(', '),
+          metadata.tags.join(', '),
+          getFileLink(config.files, 'sheet'),
+          getFileLink(config.files, 'doc'),
+        ],
+      ];
+
+      // safety check for values in that range
+      if (data.values) {
+        // match by ID and graphic URL
+        let foundProject = data.values.find(value => {
+          return value[0] == metadata.id && value[1] == metadata.graphicURL;
+        });
+
+        if (foundProject) {
+          let index = data.values.findIndex(value => {
+            return value[0] == metadata.id && value[1] == metadata.graphicURL;
+          });
+
+          // if id exists, update it
+          sheets.spreadsheets.values.update({
+            spreadsheetId: spreadsheetId,
+            range: `${sheetName}!${index + 1}:${index + 1}`, // DON'T MESS WITH THESE INDICES
+            valueInputOption: 'USER_ENTERED',
+            resource: {
+              // row of values
+              values: metadataInput,
+            },
+          });
+        } else {
+          // if not, append to the end of the file
+          sheets.spreadsheets.values.append({
+            spreadsheetId: spreadsheetId,
+            valueInputOption: 'USER_ENTERED',
+            range: `${sheetName}!${data.values.length + 1}:${data.values
+              .length + 1}`, // DON'T MESS WITH THESE INDICES
+            resource: {
+              // row of values
+              values: metadataInput,
+            },
+          });
+        }
+      }
+    });
   }
 };
 
