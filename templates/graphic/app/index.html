@@ -12,7 +12,7 @@
 {% set graphicData = data.data %}
 
 {# graphicDesc is used by the CMS for accessibility #}
-{% set graphicDesc = '' %}
+{% set graphicDesc = context.description %}
 
 {% block content %}
 {# data-graphic signifies that this can be embedded in the CMS #}
