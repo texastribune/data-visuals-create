@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [5.0.1]
+## Fixed
+- `_common_/app/styles/_functions.scss`, `_common_/app/styles/utilities/_embed.scss` - replace `/` with `math.div` to address Dart Sass warnings #94
+
 ## [5.0.0] - 2021-08-04
 ### Changed
 - `package.json`, `package-lock.json` - bump `assets-webpack-plugin`, `googleapis`, `imagemin`, `imagemin-gifsicle`, `imagemin-jpegtran`, `imagemin-optipng` packages (major version bumps for `imagemin-gifsicle`, `imagemin-jpegtran`, `imagemin-optipng` require Node.js v10)
