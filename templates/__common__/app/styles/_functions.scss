@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // to-rem
 // Converts a value to rem based on the base font size
 @function to-rem($val, $base: $font-size-base) {
@@ -12,12 +14,12 @@
 
   // strip off the px if needed
   @if $val-unit == 'px' {
-    $val: $val / 1px;
+    $val: math.div($val, 1px);
   }
 
   // Calculate rem if units for $val is not rem
   @if $val-unit != 'rem' {
-    $val: ($val / $base) * 1rem;
+    $val: (math.div($val, $base)) * 1rem;
   }
 
   // 0rem into 0
@@ -42,12 +44,12 @@
 
   // strip off the px if needed
   @if $val-unit == 'px' {
-    $val: $val / 1px;
+    $val: math.div($val, 1px);
   }
 
   // Calculate em if units for $val is not em
   @if $val-unit != 'em' {
-    $val: ($val / $base) * 1em;
+    $val: (math.div($val, $base)) * 1em;
   }
 
   // 0em into 0
@@ -64,7 +66,7 @@
   $g: green($color);
   $b: blue($color);
 
-  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+  $yiq: math.div((($r * 299) + ($g * 587) + ($b * 114)), 1000);
 
   @if ($yiq >= $yiq-contrasted-threshold) {
     @return $yiq-text-dark;
