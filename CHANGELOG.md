@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [5.0.1]
+## [5.0.1] - 2021-08-05
 ## Fixed
 - `_common_/app/styles/_functions.scss`, `_common_/app/styles/utilities/_embed.scss` - replace `/` with `math.div` to address Dart Sass warnings #94
 
