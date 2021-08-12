@@ -31,7 +31,7 @@
     "enquirer": "^2.3.0",
     "fs-extra": "^7.0.1",
     "mri": "^1.1.4",
-    "nanoid": "^2.0.1",
+    "nanoid": "^3.1.24",
     "ora": "^3.2.0",
     "tiny-glob": "^0.2.6",
     "update-check": "^1.5.3"
