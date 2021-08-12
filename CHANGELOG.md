@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `templates/__common__/utils/deployment/update-log-sheet.js` - write more metadata from `manifest.json` to the log sheet
 - `templates/__common__/utils/deployment/update-readme.js` - add bullets to links pasted to README
-- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - get alt-text from our Google Doc
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - get alt-text from our [graphic ArchieML template](https://docs.google.com/document/d/1BKQy7bsteC7Od5Jgzt_PX8KRe0pD2Ba1LXEj02uWf4I/edit)
 
 ## [5.0.1] - 2021-08-05
 ## Fixed
