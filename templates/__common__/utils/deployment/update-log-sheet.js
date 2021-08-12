@@ -23,10 +23,20 @@ function getFileLink(files, type) {
 async function writeToSheet(
   sheets,
   spreadsheetId,
-  sheetName,
-  metadata,
+  projectType,
+  projectID,
+  projectURL,
   metadataInput
 ) {
+  // get corresponding sheet
+  let sheetName;
+  if (projectType === 'graphic') {
+    sheetName = 'Embedded';
+  }
+  if (projectType === 'feature') {
+    sheetName = 'Feature';
+  }
+
   // pull the data out of the spreadsheet
   const { data } = await sheets.spreadsheets.values.get({
     spreadsheetId: spreadsheetId,
@@ -36,19 +46,15 @@ async function writeToSheet(
   // safety check for values in that range
   if (data.values) {
     // match by ID and graphic URL
-    let foundProject = data.values.find(value => {
-      return value[0] == metadata.id && value[1] == metadata.graphicURL;
+    let foundProjectIndex = data.values.findIndex(value => {
+      return value[0] == projectID && value[1] == projectURL;
     });
 
-    if (foundProject) {
-      let index = data.values.findIndex(value => {
-        return value[0] == metadata.id && value[1] == metadata.graphicURL;
-      });
-
+    if (foundProjectIndex != -1) {
       // if id exists, update it
       sheets.spreadsheets.values.update({
         spreadsheetId: spreadsheetId,
-        range: `${sheetName}!${index + 1}:${index + 1}`, // DON'T MESS WITH THESE INDICES
+        range: `${sheetName}!${foundProjectIndex + 1}:${foundProjectIndex + 1}`, // DON'T MESS WITH THESE INDICES
         valueInputOption: 'USER_ENTERED',
         resource: {
           // row of values
@@ -87,25 +93,36 @@ let updateLogSheet = async (mainPath, config) => {
     });
 
     // id of data visuals work spreadsheet
-    const spreadsheetId = '18f3xmv1_pwgw7vPvBaX9fnDvH2FlQAuHzmB7F_LH4_I';
-    let sheetName;
-
-    // get corresponding sheet
-    if (config.projectType === 'graphic') {
-      sheetName = 'Embedded';
-    }
-    if (config.projectType === 'feature') {
-      sheetName = 'Feature';
-    }
+    const spreadsheetId = '10mQMStMlL333X922Imy-_CY_grOotZ2ZtlmU7DShjPM';
 
     // loop through metadata JSON
     if (manifestJSON.length == 0) {
+      let metadataInput = [
+        [
+          config.id,
+          mainPath,
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          getFileLink(config.files, 'sheet'),
+          getFileLink(config.files, 'doc'),
+        ],
+      ];
+
       await writeToSheet(
         sheets,
         spreadsheetId,
-        sheetName,
-        { id: config.id, graphicURL: mainPath },
-        [[config.id, mainPath]]
+        config.projectType,
+        config.id,
+        mainPath,
+        metadataInput
       );
     } else {
       for (const metadata of manifestJSON) {
@@ -133,8 +150,9 @@ let updateLogSheet = async (mainPath, config) => {
         await writeToSheet(
           sheets,
           spreadsheetId,
-          sheetName,
-          metadata,
+          config.projectType,
+          metadata.id,
+          metadata.graphicURL,
           metadataInput
         );
       }
