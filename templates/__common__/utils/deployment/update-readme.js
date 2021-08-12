@@ -19,10 +19,10 @@ let updateReadMe = async (paths, mainPath, files) => {
   // add project link
   if (readMe[startLine] != '') {
     // if link exists, update it
-    readMe[startLine] = `[Link to your project](${mainPath})`;
+    readMe[startLine] = `-[Link to your project](${mainPath})`;
   } else {
     // insert project link
-    readMe.splice(startLine, 0, `[Link to your project](${mainPath})`);
+    readMe.splice(startLine, 0, `-[Link to your project](${mainPath})`);
   }
 
   // add data link(s)
@@ -33,7 +33,7 @@ let updateReadMe = async (paths, mainPath, files) => {
 
     // if link exists, update it
     if (readMe[i] != '') {
-      readMe[i] = `[Link to your ${
+      readMe[i] = `-[Link to your ${
         files[i - (startLine + 1)].type
       }](${dataLink})`;
     } else {
@@ -41,7 +41,7 @@ let updateReadMe = async (paths, mainPath, files) => {
       readMe.splice(
         i,
         0,
-        `[Link to your ${files[i - (startLine + 1)].type}](${dataLink})`
+        `-[Link to your ${files[i - (startLine + 1)].type}](${dataLink})`
       );
     }
   }
