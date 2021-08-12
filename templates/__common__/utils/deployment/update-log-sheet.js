@@ -125,6 +125,8 @@ let updateLogSheet = async (mainPath, config) => {
             metadata.tags.join(', '),
             getFileLink(config.files, 'sheet'),
             getFileLink(config.files, 'doc'),
+            metadata.previews.large,
+            metadata.previews.small
           ],
         ];
 
