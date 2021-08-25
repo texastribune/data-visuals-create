@@ -3,11 +3,11 @@
 Graphics intended to be used as embeds in the CMS should have specific selectors present in the HTML. The values for these selectors are parsed and output into a `manifest.json` file which is used by the graphics plugin to organize our graphics inventory.
 
 
-| Selector/Variable | Description | Example | Output in manifest.json |
+| Selector/Variable | Alt Text | Example | Output in manifest.json |
 |--|--|--|--|
 | `[data-graphic]` | If present, the HTML of the page will be parsed for metadata and surfaced in the CMS | `<div class="app" data-graphic>` | N/A - If no `[data-graphic]` selector is found, the graphic won't output in manifest. |
 | `{{ graphicTitle }}` or `[data-title]` | The title of the graphic in the CMS. **If this is missing, the graphic will not surface in the CMS.** | `{% set  graphicTitle = 'Some title' %}` or `<h1 class="graphic-title" data-title>Some title</h1>` | `title: string` |
-| `{{ graphicDesc }}` | The description of the graphic in the CMS. This will also be read by screenreaders in platforms like Apple News. | `{% set graphicDesc = 'This is a bar chart showing xyz' %}` | `description: string` |
+| `{{ graphicAltText }}` | The alt text of the graphic in the CMS. This will also be read by screenreaders in platforms like Apple News. | `{% set graphicAltText = 'This is a bar chart showing xyz' %}` | `altText: string` |
 | `{{ graphicCaption }}` | The caption of the graphic in the CMS. The text typically below the title. | `{% set graphicCaption = 'Summarizing statement about the values in the graphic.' %}` | `caption: string` |
 | `{{ graphicNote }}` or `[data-note]` | Note or disclaimer attached to the graphic. | `{% set graphicNote = 'Important disclaimer about this graphic.' %}` or `<li data-note>Note: Important disclaimer about this graphic.</li>` | `note: string` |
 | `{{ graphicSource }}` or `[data-source]` | The source of the graphic in the CMS | `{% set  graphicSource = 'TXDOT' %}` or `<li data-source>Source: TXDOT</li>` | `source: string` |
@@ -17,7 +17,7 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 ```html
 {% extends 'base.html' %}
 {% set  context = data.text %}
-{% set  graphicDesc = 'Description of graphic' %}
+{% set  graphicAltText = 'Alt text of graphic' %}
 {% block  content %}
 <div class="app" data-graphic>
 	<h1 class="graphic-title" data-title>{{ context.headline }}</h1>
@@ -39,7 +39,7 @@ For Illustrator graphics, we typically set the title and other info in the Illus
 {% extends 'base.html' %}
 {% set context = data.text %}
 {% set graphicTitle = 'Headline from AI graphic' %}
-{% set graphicDesc = 'Description of graphic' %}
+{% set graphicAltText = 'Alt text of graphic' %}
 {% set graphicCaption = 'Chatter from AI graphic' %}
 {% set graphicNote = 'Note from AI graphic' %}
 {% set graphicSource = 'Source from AI graphic' %}
@@ -80,7 +80,7 @@ Project config keys output in `manifest.json`
 [
   {
     "title": "Title of graphic",
-    "description": "Description of graphic",
+    "altText": "Alt text of graphic",
     "bucket": "graphics.texastribune.org",
     "graphicPath": "graphics/new-test-2-2021-02/static",
     "graphicURL": "https://graphics.texastribune.org/graphics/new-test-2-2021-02/static/",

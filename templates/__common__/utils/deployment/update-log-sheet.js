@@ -133,7 +133,7 @@ let updateLogSheet = async (mainPath, config) => {
             metadata.graphicPath,
             metadata.title,
             metadata.caption,
-            metadata.description,
+            metadata.altText,
             `${metadata.createYear}-${metadata.createMonth}`,
             metadata.lastBuildTime,
             metadata.note,
