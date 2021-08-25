@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [6.1.0] - 2021-08-25
+### Changed
+- `templates/__common__/utils/deployment/update-log-sheet.js` - swap out log sheet for [new one](https://docs.google.com/spreadsheets/d/1hCP5zGx8dNxk59gI9wBSFY2juJVM8OFCDY45VnNb2nI/edit#gid=965603489) with complete metadata columns
+
 ## [6.0.0] - 2021-08-12
 ### Changed
 - `templates/__common__/utils/deployment/update-log-sheet.js` - write more metadata from `manifest.json` to the log sheet
