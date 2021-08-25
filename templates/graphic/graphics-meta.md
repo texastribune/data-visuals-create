@@ -16,9 +16,9 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 ### Full example
 ```html
 {% extends 'base.html' %}
-{% set  context = data.text %}
-{% set  graphicAltText = 'Alt text of graphic' %}
-{% block  content %}
+{% set context = data.text %}
+{% set graphicAltText = 'Alt text of graphic' %}
+{% block content %}
 <div class="app" data-graphic>
 	<h1 class="graphic-title" data-title>{{ context.headline }}</h1>
 	<span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
@@ -29,7 +29,7 @@ Graphics intended to be used as embeds in the CMS should have specific selectors
 		<li data-credit>Credit: {{ context.credit }}</li>
 	</ul>
 </div>
-{% endblock  content %}
+{% endblock content %}
 ```
 ### Full example with ai2html graphic
 
