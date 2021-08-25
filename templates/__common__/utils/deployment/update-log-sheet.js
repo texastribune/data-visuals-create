@@ -93,7 +93,7 @@ let updateLogSheet = async (mainPath, config) => {
     });
 
     // id of data visuals work spreadsheet
-    const spreadsheetId = '10mQMStMlL333X922Imy-_CY_grOotZ2ZtlmU7DShjPM';
+    const spreadsheetId = '1hCP5zGx8dNxk59gI9wBSFY2juJVM8OFCDY45VnNb2nI';
 
     // loop through metadata JSON
     if (manifestJSON.length == 0) {
