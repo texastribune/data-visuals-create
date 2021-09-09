@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [6.2.0] - 2021-09-01
+### Changed
+- `templates/__common__/config/tasks/graphics-meta.js`, `templates/__common__/utils/deployment/update-log-sheet.js` - change `description` to `alttext`
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html`, `templates/graphic/app/templates/base.html` - change `description` to `alttext` in HTML templates
+- `templates/graphic/graphics-meta.md` - change `description` to `alttext` in documentation
+
 ## [6.1.0] - 2021-08-25
 ### Changed
 - `templates/__common__/utils/deployment/update-log-sheet.js` - swap out log sheet for [new one](https://docs.google.com/spreadsheets/d/1hCP5zGx8dNxk59gI9wBSFY2juJVM8OFCDY45VnNb2nI/edit#gid=965603489) with complete metadata columns
