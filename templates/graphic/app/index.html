@@ -11,8 +11,8 @@
 {# data.data --> data/data.json #}
 {% set graphicData = data.data %}
 
-{# graphicDesc is used by the CMS for accessibility #}
-{% set graphicDesc = context.description %}
+{# graphicAltText is used by the CMS for accessibility #}
+{% set graphicAltText = context.alttext %}
 
 {% block content %}
 {# data-graphic signifies that this can be embedded in the CMS #}

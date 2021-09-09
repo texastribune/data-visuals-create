@@ -90,7 +90,7 @@ const getText = async (params = { key: '', page: {} }) => {
 
 const printWarnings = graphics => {
   const { tags } = config;
-  const requiredKeys = ['description', 'credits', 'source'];
+  const requiredKeys = ['alt-text', 'credits', 'source'];
 
   // default tags used
   if (JSON.stringify(tags) === JSON.stringify(TAGS_PLACEHOLDER)) {
@@ -154,7 +154,7 @@ const parseGraphic = async (
   // get text from page
   const title = await getText({ key: 'title', page });
   const caption = await getText({ key: 'caption', page });
-  const description = await getText({ key: 'description', page });
+  const altText = await getText({ key: 'alt-text', page });
   const note = await getText({ key: 'note', page });
   const source = await getText({ key: 'source', page });
   let credits = await getText({ key: 'credit', page });
@@ -203,7 +203,7 @@ const parseGraphic = async (
   // all graphic data
   return {
     title,
-    description,
+    altText,
     bucket,
     graphicPath,
     graphicURL,
