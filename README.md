@@ -20,12 +20,12 @@ A tool for generating the scaffolding needed to create a graphic or feature the 
 ## Getting started
 
 ```sh
-npx @data-visuals/create feature my-great-project # the project name should be passed in as a slug
+npx @data-visuals/create@latest feature my-great-project # the project name should be passed in as a slug
 cd feature-my-great-project-YYYY-MM # the four digit year and two digit month
 npm start
 ```
 
-> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version.
+> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version. On `npm` and `npx` versions >= 7.0.0, `@latest` is required to fetch the latest version.
 
 ## Table of contents
 
@@ -75,7 +75,7 @@ npm start
 
 ## Installation
 
-While we recommend using the `npx` method, you can also install the tool globally. If you do, replace all instances of `npx @data-visuals/create` you see with `data-visuals-create`.
+While we recommend using the `npx` method, you can also install the tool globally. If you do, replace all instances of `npx @data-visuals/create@latest` you see with `data-visuals-create` after running the global install below.
 
 ```sh
 npm install -g @data-visuals/create
@@ -84,13 +84,13 @@ npm install -g @data-visuals/create
 ## Usage
 
 ```sh
-npx @data-visuals/create <project-type> <project-name>
+npx @data-visuals/create@latest <project-type> <project-name>
 ```
 
 Currently there are two project types available — `graphic` and `feature`. The project name should be passed in as a slug, i.e. `my-beautiful-project`.
 
 ```sh
-npx @data-visuals/create graphic school-funding
+npx @data-visuals/create@latest graphic school-funding
 ```
 
 This will create a directory for you, copy in the files, install the dependencies, and do your first `git commit`.
