@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [6.2.1] - 2021-09-15
+### Fixed
+- `templates/__common__/_package.json` - downgrade `assets-webpack-plugin` to 6.1.2, v7.0.0 requires webpackv5.0.0 as a peer dependency
+
 ## [6.2.0] - 2021-09-09
 ### Changed
 - `templates/__common__/config/tasks/graphics-meta.js`, `templates/__common__/utils/deployment/update-log-sheet.js` - change `description` to `alttext`

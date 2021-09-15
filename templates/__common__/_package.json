@@ -27,7 +27,7 @@
     "@types/node": "^11.9.4",
     "ansi-colors": "^3.2.3",
     "archieml": "^0.4.1",
-    "assets-webpack-plugin": "^7.0.0",
+    "assets-webpack-plugin": "^6.1.2",
     "autoprefixer": "^9.0.2",
     "aws-sdk": "^2.372.0",
     "babel-eslint": "^10.0.1",
