@@ -25,7 +25,7 @@ cd feature-my-great-project-YYYY-MM # the four digit year and two digit month
 npm start
 ```
 
-> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version.
+> While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version. On `npm` and `npx` versions >= 7.0.0, `@latest` is required to fetch the latest version.
 
 ## Table of contents
 
