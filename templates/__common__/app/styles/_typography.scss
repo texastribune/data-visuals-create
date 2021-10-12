@@ -130,8 +130,10 @@
   font-weight: $font-weight-bold;
   font-size: 1.4rem;
   line-height: $line-height-subtitle;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 1em; // Ensures spacing below the <p> syncs up with font-size
+  margin-left: auto; // Centers <p> tag within max-width
+  margin-right: auto; // Centers <p> tag within max-width
+  margin-top: 1em; // Ensures spacing above the <p> syncs up with font-size
   max-width: 27em;
 
   @include mq($from: m) {

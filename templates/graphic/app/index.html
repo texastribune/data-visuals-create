@@ -4,14 +4,20 @@
 
 {% block content %}
 <div class="app">
-  <h1 class="article-title">Welcome to the Texas Tribune's data visuals graphics kit!</h1>
+  <h1 class="article-subheader">Welcome to The Texas Tribune's data visuals graphics kit!</h1>
   <p class="copy">
     Start creating graphics by copying <span class="font-weight-bold">graphic.html</span> and/or 
     <span class="font-weight-bold">graphic-static.html</span>, both located in the <span class="font-weight-bold">templates/</span> 
-    folder, and pasting it in the <span class="font-weight-bold">app/</span> folder. You can rename the files.
+    folder, and pasting it in the <span class="font-weight-bold">app/</span> folder. You can make as many graphics as you need. 
+    Feel free to rename the files!
   </p>
   <p class="copy"><span class="font-weight-bold">graphic.html</span> is set up for graphics involving JavaScript</p>
   <p class="copy"><span class="font-weight-bold">graphic-static.html</span> is set up for static graphics (HTML tables, Adobe Illustrator graphics)</p>
-  <p class="copy">For more documentation on using the kit, check out the <a href="https://github.com/texastribune/data-visuals-create">README</a>.</p>
+  <p class="copy">All of our graphics are set up to fetch text and other attributes from a Google Doc. 
+  <a href="https://docs.google.com/document/d/1BKQy7bsteC7Od5Jgzt_PX8KRe0pD2Ba1LXEj02uWf4I/edit">Here's the template for that</a>. 
+  You'll need to make a copy of this template and swap out the template's file ID with your copy's file ID in <span class="font-weight-bold">project.config.js</span>, 
+  in the <span class="font-weight-bold">files</span> property.</p>
+  <p class="copy">For more documentation on the kit, check out the <a href="https://github.com/texastribune/data-visuals-create">README</a> and our 
+  <a href="https://github.com/texastribune/data-visuals-guides/blob/master/kit-setup.md#creating-a-feature-story">kit setup guide</a>.</p>
 </div>
 {% endblock content %}
