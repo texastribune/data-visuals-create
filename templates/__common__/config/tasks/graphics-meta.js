@@ -228,11 +228,16 @@ const parseGraphic = async (
 };
 
 module.exports = async localURL => {
+  const {
+    parserOptions,
+  } = config;
+
   // find all html pages in project
   const pages = await glob('**/*.html', {
     absolute: true,
     cwd: './.tmp',
     recursive: true,
+    ignore: parserOptions.graphicsIgnore,
   });
 
   // spin up headless browser using local chrome

@@ -129,6 +129,7 @@ module.exports = {
    *
    */
   parserOptions: {
+    graphicsIgnore: [],
     appleNewsIgnore: [],
   },
 };
