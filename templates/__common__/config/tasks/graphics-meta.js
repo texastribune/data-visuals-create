@@ -122,7 +122,6 @@ const parseGraphic = async (
     lastBuildTime,
     folder,
     id,
-    tags,
     parserOptions,
   } = config;
 
@@ -157,6 +156,7 @@ const parseGraphic = async (
   const altText = await getText({ key: 'alt-text', page });
   const note = await getText({ key: 'note', page });
   const source = await getText({ key: 'source', page });
+  const tags = await (await getText({ key: 'tags', page })).split(',');
   let credits = await getText({ key: 'credit', page });
 
   // ignore graphics with no title
