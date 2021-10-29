@@ -23,17 +23,17 @@ function getFileLink(files, type) {
 async function writeToSheet(
   sheets,
   spreadsheetId,
-  projectType,
   projectID,
   projectURL,
+  metadataType,
   metadataInput
 ) {
   // get corresponding sheet
   let sheetName;
-  if (projectType === 'graphic') {
+  if (metadataType === 'graphic') {
     sheetName = 'Embedded';
   }
-  if (projectType === 'feature') {
+  if (metadataType === 'feature') {
     sheetName = 'Feature';
   }
 
@@ -119,42 +119,49 @@ let updateLogSheet = async (mainPath, config) => {
       await writeToSheet(
         sheets,
         spreadsheetId,
-        config.projectType,
         config.id,
         mainPath,
+        config.projectType,
         metadataInput
       );
     } else {
       for (const metadata of manifestJSON) {
-        let metadataInput = [
-          [
+        // find hostname
+        let urlObj = new URL(metadata.graphicURL);
+
+        // only write metadata for finished graphics published to apps
+        // do not write when capybara-test is the hostname
+        if (urlObj.hostname == 'apps.texastribune.org') {
+          let metadataInput = [
+            [
+              metadata.id,
+              metadata.graphicURL,
+              metadata.graphicPath,
+              metadata.title,
+              metadata.caption,
+              metadata.altText,
+              `${metadata.createYear}-${metadata.createMonth}`,
+              metadata.lastBuildTime,
+              metadata.note,
+              metadata.source,
+              metadata.credits.join(', '),
+              metadata.tags.join(', '),
+              getFileLink(config.files, 'sheet'),
+              getFileLink(config.files, 'doc'),
+              metadata.previews.large,
+              metadata.previews.small,
+            ],
+          ];
+
+          await writeToSheet(
+            sheets,
+            spreadsheetId,
             metadata.id,
             metadata.graphicURL,
-            metadata.graphicPath,
-            metadata.title,
-            metadata.caption,
-            metadata.altText,
-            `${metadata.createYear}-${metadata.createMonth}`,
-            metadata.lastBuildTime,
-            metadata.note,
-            metadata.source,
-            metadata.credits.join(', '),
-            metadata.tags.join(', '),
-            getFileLink(config.files, 'sheet'),
-            getFileLink(config.files, 'doc'),
-            metadata.previews.large,
-            metadata.previews.small,
-          ],
-        ];
-
-        await writeToSheet(
-          sheets,
-          spreadsheetId,
-          config.projectType,
-          metadata.id,
-          metadata.graphicURL,
-          metadataInput
-        );
+            metadata.type,
+            metadataInput
+          );
+        }
       }
     }
   }

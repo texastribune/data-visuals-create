@@ -143,7 +143,7 @@ const parseGraphic = async (
 
   // only consider HTML with data-graphic attribute present
   try {
-    await page.waitForSelector('[data-graphic]', {
+    await page.waitForSelector('[data-graphic], [data-feature]', {
       timeout: 5000,
     });
   } catch (e) {
@@ -158,6 +158,15 @@ const parseGraphic = async (
   const source = await getText({ key: 'source', page });
   const tags = await (await getText({ key: 'tags', page })).split(',');
   let credits = await getText({ key: 'credit', page });
+
+  // determine type of metadata, we get metadata for features and embeddable graphics
+  let type;
+  if (await checkForAttribute({ key: 'feature', page })) {
+    type = 'feature';
+  }
+  if (await checkForAttribute({ key: 'graphic', page })) {
+    type = 'graphic';
+  }
 
   // ignore graphics with no title
   if (title.length === 0) {
@@ -202,6 +211,7 @@ const parseGraphic = async (
 
   // all graphic data
   return {
+    type,
     title,
     altText,
     bucket,
