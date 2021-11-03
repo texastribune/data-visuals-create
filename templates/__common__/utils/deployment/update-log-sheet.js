@@ -126,33 +126,32 @@ let updateLogSheet = async (mainPath, config) => {
       );
     } else {
       for (const metadata of manifestJSON) {
+        let metadataInput = [
+          [
+            metadata.id,
+            metadata.graphicURL,
+            metadata.graphicPath,
+            metadata.title,
+            metadata.caption,
+            metadata.altText,
+            `${metadata.createYear}-${metadata.createMonth}`,
+            metadata.lastBuildTime,
+            metadata.note,
+            metadata.source,
+            metadata.credits.join(', '),
+            metadata.tags.join(', '),
+            getFileLink(config.files, 'sheet'),
+            getFileLink(config.files, 'doc'),
+            metadata.previews.large,
+            metadata.previews.small,
+          ],
+        ];
+
         // find hostname
         let urlObj = new URL(metadata.graphicURL);
 
-        // only write metadata for finished graphics published to apps
         // do not write when capybara-test is the hostname
-        if (urlObj.hostname == 'apps.texastribune.org') {
-          let metadataInput = [
-            [
-              metadata.id,
-              metadata.graphicURL,
-              metadata.graphicPath,
-              metadata.title,
-              metadata.caption,
-              metadata.altText,
-              `${metadata.createYear}-${metadata.createMonth}`,
-              metadata.lastBuildTime,
-              metadata.note,
-              metadata.source,
-              metadata.credits.join(', '),
-              metadata.tags.join(', '),
-              getFileLink(config.files, 'sheet'),
-              getFileLink(config.files, 'doc'),
-              metadata.previews.large,
-              metadata.previews.small,
-            ],
-          ];
-
+        if (urlObj.hostname == 'graphics.texastribune.org' || urlObj.hostname == 'apps.texastribune.org') {
           await writeToSheet(
             sheets,
             spreadsheetId,
