@@ -2,43 +2,22 @@
 {% extends 'base.html' %}
 {% from 'macros/prose.html' import prose %}
 
-{# set pack that provides JS #}
-{% set jsPackName = 'main' %}
-
-{# data.text --> data/text.json #}
-{% set context = data.text %}
-
-{# data.data --> data/data.json #}
-{% set graphicData = data.data %}
-
-{# graphicAltText is used by the CMS for accessibility #}
-{% set graphicAltText = context.alttext %}
-
 {% block content %}
-{# data-graphic signifies that this can be embedded in the CMS #}
-<div class="app" data-graphic>
-  {# data-title is used to grab the title in the CMS #}
-  <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
-  {# data-caption is used to grab the caption in the CMS #}
-  <span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
-
-  {# container that JS is attached to #}
-  <div id="graphic" class="graphic"></div>
-
-  {# data-source, data-credit, and data-note are also used in the CMS #}
-  <ul class="graphic-footer">
-    {% if context.note %}<li data-note>Note: {{ context.note }}</li>{% endif %}
-    {% if context.source %}<li data-source>Source: {{ context.source }}</li>{% endif %}
-    {% if context.credit %}<li data-credit>Credit: {{ context.credit }}</li>{% endif %}
-  </ul>
+<div class="app">
+  <h1 class="article-subheader">Welcome to The Texas Tribune's data visuals graphics kit!</h1>
+  <p class="copy">
+    Start creating graphics by copying <span class="font-weight-bold">graphic.html</span> and/or 
+    <span class="font-weight-bold">graphic-static.html</span>, both located in the <span class="font-weight-bold">templates/</span> 
+    folder, and pasting it in the <span class="font-weight-bold">app/</span> folder at the top level. You can make as many graphics as you need. 
+    Feel free to rename the files!
+  </p>
+  <p class="copy"><span class="font-weight-bold">graphic.html</span> is set up for graphics involving JavaScript</p>
+  <p class="copy"><span class="font-weight-bold">graphic-static.html</span> is set up for static graphics (HTML tables, Adobe Illustrator graphics)</p>
+  <p class="copy">All of our graphics are set up to fetch text and other attributes from a Google Doc. 
+  <a href="https://docs.google.com/document/d/1BKQy7bsteC7Od5Jgzt_PX8KRe0pD2Ba1LXEj02uWf4I/edit">Here's the template for that</a>. 
+  You'll need to make a copy of this template and swap out the template's file ID with your copy's file ID in <span class="font-weight-bold">project.config.js</span>, 
+  in the <span class="font-weight-bold">files</span> property. Then, run <span class="font-weight-bold">npm run data:fetch</span> and you'll see your text in the templates.</p>
+  <p class="copy">For more documentation on the kit, check out the <a href="https://github.com/texastribune/data-visuals-create">README</a> and our 
+  <a href="https://github.com/texastribune/data-visuals-guides/blob/master/kit-setup.md#creating-a-feature-story">kit setup guide</a>.</p>
 </div>
 {% endblock content %}
-
-{# set data/data.json as a window variable #}
-{% block inline_data %}
-{% if data.data %}
-<script>
-  window.DATA = {{ data.data|dump }};
-</script>
-{% endif %}
-{% endblock inline_data %}

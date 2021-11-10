@@ -40,9 +40,12 @@
   <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
   <!-- End fonts -->
   <link rel="stylesheet" href="{{ static('styles/main.css') }}">
-  {% block head_scripts %}
-  {{ javascriptPack(jsPackName, { mjs: true }) }}
-  {% endblock head_scripts %}
+
+  {% if jsPackName %}
+    {% block head_scripts %}
+    {{ javascriptPack(jsPackName, { mjs: true }) }}
+    {% endblock head_scripts %}
+  {% endif %}
 </head>
 <body>
 
@@ -52,8 +55,10 @@
 
 {% include 'includes/nomodule-shim.html' %}
 
-{% block scripts %}
-{{ javascriptPack(jsPackName) }}
-{% endblock scripts %}
+{% if jsPackName %}
+  {% block scripts %}
+  {{ javascriptPack(jsPackName) }}
+  {% endblock scripts %}
+{% endif %}
 </body>
 </html>

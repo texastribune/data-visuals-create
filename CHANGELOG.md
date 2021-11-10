@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [7.0.0] - 2021-11-10 
+### Changed
+- `templates/graphic/app/index.html` - convert `index.html` to a landing page with instructions for how to create graphics from the templates
+- `templates/graphic/app/templates/graphic.html`, `templates/graphic/app/templates/graphic.html` - move graphic templates to `templates` folder so empty, unused templates aren't parsed for metadata and displayed in the graphics plugin
+- `templates/graphic/app/templates/base.html` - check if there is a `jsPackName` variable 
+- `templates/__common__/app/styles/_typography.scss` - typography changes to article subheader
+
 ## [6.2.2] - 2021-09-15 
 ### Fixed
 - `README.md` - updated kit `npx` command for making graphics and features with `@latest` for npm and npx versions >= 7.0.0
