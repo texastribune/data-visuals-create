@@ -2,6 +2,21 @@
 {% extends 'base.html' %}
 {% from 'macros/prose.html' import prose %}
 
+{# set pack that provides JS #}
+{% set jsPackName = 'main' %}
+
+{# data.text --> data/text.json #}
+{% set context = data.text %}
+
+{# data.data --> data/data.json #}
+{% set graphicData = data.data %}
+
+{# graphicAltText is used by the CMS for accessibility #}
+{% set graphicAltText = context.alttext %}
+
+{# graphics will be surfaced in the graphics plugin under these tags #}
+{% set graphicTags = context.guten_tags %}
+
 {% block content %}
 <div class="app">
   <h1 class="article-subheader">Welcome to The Texas Tribune's data visuals graphics kit!</h1>

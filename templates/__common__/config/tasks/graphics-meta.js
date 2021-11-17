@@ -122,7 +122,6 @@ const parseGraphic = async (
     lastBuildTime,
     folder,
     id,
-    tags,
     parserOptions,
   } = config;
 
@@ -157,6 +156,7 @@ const parseGraphic = async (
   const altText = await getText({ key: 'alt-text', page });
   const note = await getText({ key: 'note', page });
   const source = await getText({ key: 'source', page });
+  const tags = await (await getText({ key: 'tags', page })).split(',');
   let credits = await getText({ key: 'credit', page });
 
   // ignore graphics with no title
@@ -228,11 +228,16 @@ const parseGraphic = async (
 };
 
 module.exports = async localURL => {
+  const {
+    parserOptions,
+  } = config;
+
   // find all html pages in project
   const pages = await glob('**/*.html', {
     absolute: true,
     cwd: './.tmp',
     recursive: true,
+    ignore: parserOptions.graphicsIgnore,
   });
 
   // spin up headless browser using local chrome
