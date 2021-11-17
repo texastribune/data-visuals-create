@@ -9,7 +9,7 @@
 {% endmacro %}
 
 {% macro list(value) %}
-<ul>
+<ul class="t-copy c-list">
   {% for item in value %}
   <li>{{ item }}</li>
   {% endfor %}
@@ -17,7 +17,7 @@
 {% endmacro %}
 
 {% macro subhead(value) %}
-<h2 class="t-subheader">{{ value | widont }}</h2>
+<h2 class="t-copy t-copy--subheader">{{ value | widont }}</h2>
 {% endmacro %}
 
 {# set type to roof for roof ads, footer for footer ads #}
