@@ -88,6 +88,23 @@ const getText = async (params = { key: '', page: {} }) => {
   return value;
 };
 
+const checkForAttribute = async (params = { key: '', page: {} }) => {
+  const { key, page } = params;
+  let value;
+  try {
+    value = await page.$eval(
+      `[data-${key}], meta[name="tt-graphic-${key}"]`,
+      () => {
+        return true;
+      }
+    );
+  } catch {
+    value = false;
+  }
+
+  return value;
+};
+
 const printWarnings = graphics => {
   const { tags } = config;
   const requiredKeys = ['alt-text', 'credits', 'source'];
