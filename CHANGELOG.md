@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [7.1.0] - 2021-11-16
+### Changed
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - set tags fetched from the Google Doc as a variable
+- `templates/graphic/app/templates/base.html` - grab tags and add as a metadata attribute on the graphic, metadata parser will fetch tags from here
+- `templates/graphic/project.config.js` - remove `tags` attribute, add `graphicsIgnore` attribute to `parserOptions`
+- `templates/__common__/config/tasks/graphics-meta.js` - change parser to grab metadata from the templates and use the list of graphics to ignore from the config file to ignore certain filepaths when parsing
+
 ## [7.0.0] - 2021-11-10 
 ### Changed
 - `templates/graphic/app/index.html` - convert `index.html` to a landing page with instructions for how to create graphics from the templates
