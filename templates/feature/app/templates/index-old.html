@@ -3,13 +3,11 @@
 {% from 'macros/processors.html' import ad %}
 
 {% set jsPackName = 'main' %}
-
 {# data.text --> data/text.json #}
 {% set context = data.text %}
-
 {# data.data --> data/data.json #}
 {% set featureData = data.data %}
-
+{% set graphicTags = context.guten_tags %}
 {% set authorComma = joiner() %}
 
 {% block content %}
@@ -72,7 +70,7 @@
 {% block inline_data %}
 <script>
   window.ttData = {
-    gutenTag: '{{ context.guten_tag or "subject-politics" }}'
+    gutenTag: '{{ context.related_tag or "subject-politics" }}'
   };
 </script>
 {% endblock inline_data %}

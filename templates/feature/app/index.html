@@ -4,6 +4,7 @@
 
 {% set jsPackName = 'main' %}
 {% set context = data.text %}
+{% set graphicTags = context.guten_tags %}
 {% set authorComma = joiner() %}
 
 {% block google_fonts %}{# queso fonts found in CSS #}{% endblock google_fonts %}
@@ -21,9 +22,9 @@
           <header class="t-align-center">
             <h1 class="l-container l-container--m t-headline t-serif t-lh-s has-s-btm-marg" data-title>{{ context.headline | widont or 'The only member-supported, digital-first, nonpartisan media organization' | widont }}</h1>
             <p class="t-byline t-links t-uppercase t-lsp-m t-size-xs has-text-gray-dark has-b-btm-marg">
-              <span class="t-byline__item">By {%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
+              <span class="t-byline__item">By <span data-credit>{%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
               {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} <span class="l-display-ib">{{ author }}</span>
-              {%- endfor -%}
+              {%- endfor -%}</span>
               </span>
 
               {% if context.update_date %}
@@ -79,7 +80,7 @@
 {% block inline_data %}
 <script>
   window.ttData = {
-    gutenTag: '{{ context.guten_tag or "subject-politics" }}'
+    gutenTag: '{{ context.related_tag or "subject-politics" }}'
   };
 </script>
 {% endblock inline_data %}

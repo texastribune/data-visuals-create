@@ -88,23 +88,6 @@ const getText = async (params = { key: '', page: {} }) => {
   return value;
 };
 
-const checkForAttribute = async (params = { key: '', page: {} }) => {
-  const { key, page } = params;
-  let value;
-  try {
-    value = await page.$eval(
-      `[data-${key}], meta[name="tt-graphic-${key}"]`,
-      () => {
-        return true;
-      }
-    );
-  } catch {
-    value = false;
-  }
-
-  return value;
-};
-
 const printWarnings = graphics => {
   const { tags } = config;
   const requiredKeys = ['alt-text', 'credits', 'source'];
@@ -155,10 +138,10 @@ const parseGraphic = async (
       : `${localURL}/${parentDir}/${name}.html`;
   await page.goto(url, { waitUntil: 'load' });
   const label = path.join(parentDir, `${name}.html`);
-  const graphicPath = path.join(folder, parentDir);
-  const graphicURL = ensureSlash(`https://${bucket}/${folder}/${parentDir}`);
+  const projectPath = path.join(folder, parentDir);
+  const projectURL = ensureSlash(`https://${bucket}/${folder}/${parentDir}`);
 
-  // only consider HTML with data-graphic attribute present
+  // only consider HTML with data-graphic or data-feature attribute present
   try {
     await page.waitForSelector('[data-graphic], [data-feature]', {
       timeout: 5000,
@@ -167,27 +150,20 @@ const parseGraphic = async (
     return false;
   }
 
-  // get text from page
+  // get metadata
   const title = await getText({ key: 'title', page });
-  const caption = await getText({ key: 'caption', page });
-  const altText = await getText({ key: 'alt-text', page });
-  const note = await getText({ key: 'note', page });
-  const source = await getText({ key: 'source', page });
   const tags = await (await getText({ key: 'tags', page })).split(',');
   let credits = await getText({ key: 'credit', page });
 
-  // determine type of metadata, we get metadata for features and embeddable graphics
-  let type;
-  if (await checkForAttribute({ key: 'feature', page })) {
-    type = 'feature';
-  }
-  if (await checkForAttribute({ key: 'graphic', page })) {
-    type = 'graphic';
-  }
+  // determine type of metadata
+  // assume the type is graphic unless data-feature is present
+  const type = (await page.$('[data-feature]')) ? 'feature' : 'graphic';
 
-  // ignore graphics with no title
+  // ignore projects with no title
   if (title.length === 0) {
-    logMessage(`${label} was skipped because no graphic was title set.`);
+    logMessage(
+      `${label} was skipped because no graphic or feature was title set.`
+    );
     return false;
   }
 
@@ -200,64 +176,89 @@ const parseGraphic = async (
   }
 
   // find all links
-  const links = await page.$$eval('a', links =>
-    links.map(link => {
-      return {
-        url: link.getAttribute('href'),
-        text: link.textContent,
-        isCTA:
-          link.classList.contains('button') ||
-          link.classList.contains('.c-button'),
-      };
-    })
-  );
+  if (type == 'graphic') {
+    const caption = await getText({ key: 'caption', page });
+    const altText = await getText({ key: 'alt-text', page });
+    const note = await getText({ key: 'note', page });
+    const source = await getText({ key: 'source', page });
 
-  // take screenshots of page
-  const { small, large } = await createPreviews({
-    page,
-    outputPath,
-  });
+    const links = await page.$$eval('a', links =>
+      links.map(link => {
+        return {
+          url: link.getAttribute('href'),
+          text: link.textContent,
+          isCTA:
+            link.classList.contains('button') ||
+            link.classList.contains('.c-button'),
+        };
+      })
+    );
 
-  //  check if appleNewsIgnore is specified
-  let showInAppleNews = true;
-  if (parserOptions) {
-    const { appleNewsIgnore } = parserOptions;
-    showInAppleNews =
-      !appleNewsIgnore.includes(parentDir) && !appleNewsIgnore.includes(label);
+    // take screenshots of page
+    const { small, large } = await createPreviews({
+      page,
+      outputPath,
+    });
+
+    //  check if appleNewsIgnore is specified
+    let showInAppleNews = true;
+    if (parserOptions) {
+      const { appleNewsIgnore } = parserOptions;
+      showInAppleNews =
+        !appleNewsIgnore.includes(parentDir) &&
+        !appleNewsIgnore.includes(label);
+    }
+
+    // all graphic data
+    return {
+      type,
+      title,
+      altText,
+      bucket,
+      projectPath,
+      projectURL,
+      caption,
+      createMonth,
+      createYear,
+      credits,
+      folder,
+      id,
+      lastBuildTime,
+      label,
+      links,
+      note,
+      previews: {
+        large: projectURL + large,
+        small: projectURL + small,
+      },
+      showInAppleNews,
+      source,
+      tags,
+    };
   }
 
-  // all graphic data
-  return {
-    type,
-    title,
-    altText,
-    bucket,
-    graphicPath,
-    graphicURL,
-    caption,
-    createMonth,
-    createYear,
-    credits,
-    folder,
-    id,
-    lastBuildTime,
-    label,
-    links,
-    note,
-    previews: {
-      large: graphicURL + large,
-      small: graphicURL + small,
-    },
-    showInAppleNews,
-    source,
-    tags,
-  };
+  if (type == 'feature') {
+    // all feature data
+    return {
+      type,
+      title,
+      bucket,
+      projectPath,
+      projectURL,
+      createMonth,
+      createYear,
+      credits,
+      folder,
+      id,
+      lastBuildTime,
+      label,
+      tags,
+    };
+  }
 };
 
 module.exports = async localURL => {
-  const {
-    parserOptions,
-  } = config;
+  const { parserOptions } = config;
 
   // find all html pages in project
   const pages = await glob('**/*.html', {
@@ -304,7 +305,7 @@ module.exports = async localURL => {
   // output path
   const manifest = `${paths.appDist}/manifest.json`;
 
-  // output JSON of all graphic data
+  // output JSON of all metadata
   try {
     await fs.outputJson(manifest, filtered);
   } catch (err) {
@@ -313,11 +314,11 @@ module.exports = async localURL => {
 
   // print output info in terminal
   if (filtered.length > 0) {
-    logMessage(`Generated metadata for ${filtered.length} graphic(s)`, 'green');
+    logMessage(`Generated metadata for ${filtered.length} item(s)`, 'green');
     console.log(`✔ ${manifest}`);
   } else {
     logMessage(
-      `No metadata generated. Could not find the data-graphic attribute in any HTML files.`,
+      `No metadata generated. Could not find the data-graphic or data-feature attribute in any HTML files.`,
       'red'
     );
   }

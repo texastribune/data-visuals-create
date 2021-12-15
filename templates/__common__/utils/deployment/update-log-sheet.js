@@ -151,7 +151,10 @@ let updateLogSheet = async (mainPath, config) => {
         let urlObj = new URL(metadata.graphicURL);
 
         // do not write when capybara-test is the hostname
-        if (urlObj.hostname == 'graphics.texastribune.org' || urlObj.hostname == 'apps.texastribune.org') {
+        if (
+          urlObj.hostname == 'graphics.texastribune.org' ||
+          urlObj.hostname == 'apps.texastribune.org'
+        ) {
           await writeToSheet(
             sheets,
             spreadsheetId,

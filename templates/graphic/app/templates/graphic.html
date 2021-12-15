@@ -14,6 +14,9 @@
 {# graphicAltText is used by the CMS for accessibility #}
 {% set graphicAltText = context.alttext %}
 
+{# graphics will be surfaced in the graphics plugin under these tags #}
+{% set graphicTags = context.guten_tags %}
+
 {% block content %}
 {# data-graphic signifies that this can be embedded in the CMS #}
 <div class="app" data-graphic>
