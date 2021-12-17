@@ -237,7 +237,7 @@ module.exports = async localURL => {
     absolute: true,
     cwd: './.tmp',
     recursive: true,
-    ignore: parserOptions.graphicsIgnore,
+    ignore: parserOptions.metadataIgnore,
   });
 
   // spin up headless browser using local chrome

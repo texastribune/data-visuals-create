@@ -72,6 +72,7 @@ Project config keys output in `manifest.json`
 - `id`
 - `tags`
 - `parserOptions`
+  - `metadataIgnore` - This is an array of files or folders that should not be parsed for metadata and displayed in the CMS graphics plugin. For example, any graphics or features that are created for testing but are not publishable should be added here.
 	- `appleNewsIgnore` - This is an array of files or folders that should be flagged in the CMS as not compatible with Apple News. Use this for graphics that are too dynamic to be accurately captured in a screenshot.
 
 ### Sample `manifest.json` output
