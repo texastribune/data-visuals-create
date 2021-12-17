@@ -106,4 +106,27 @@ module.exports = {
    *
    */
   customFilters: {},
+  /**
+   * Where custom settings for parsing graphics can be added.
+   *
+   * metadataIgnore
+   * Add paths here that you do not want parsed for metadata and shown
+   * in the graphics plugin in the CMS.
+   *
+   * appleNewsIgnore
+   * Some graphics are too dynamic to be accurately captured in a screenshot.
+   * Those graphics shouldn't be considered for platforms like Apple News.
+   *
+   * Paths for metadataIgnore and appleNewsIgnore are relative to the build folders.
+   * Example:
+   * appleNewsIgnore: [
+   *  'complex-graphic-folder/index.html',
+   *  'some-other-folder',
+   * ],
+   *
+   */
+  parserOptions: {
+    metadataIgnore: [],
+    appleNewsIgnore: [],
+  },
 };

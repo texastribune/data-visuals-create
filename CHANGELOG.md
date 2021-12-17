@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [7.1.1] - 2021-12-17
+### Added
+- `templates/feature/project.config.js` - add `parserOptions` to feature config file
+
+### Changed
+- `templates/__common__/config/tasks/graphics-meta.js` - change `graphicsIgnore` -> `metadataIgnore`
+- `templates/graphic/project.config.js` - edit comments, `graphicsIgnore` -> `metadataIgnore`
+- `templates/graphic/graphics-meta.md` - update documentation to include `metadataIgnore`
+
 ## [7.1.0] - 2021-11-16
 ### Changed
 - `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - set tags fetched from the Google Doc as a variable
