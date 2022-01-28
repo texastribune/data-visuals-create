@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [7.1.2] - 2021-01-28
+### Fixed
+- `templates/feature/app/templates/components/footer.html` - corrected links
+
+
 ## [7.1.1] - 2021-12-17
 ### Added
 - `templates/feature/project.config.js` - add `parserOptions` to feature config file
