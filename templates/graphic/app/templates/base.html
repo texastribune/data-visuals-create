@@ -22,10 +22,8 @@
   {% if graphicSource %}
     <meta name="tt-graphic-source" content="{{ graphicSource }}" />
   {% endif %}
-  {% if graphicCredit %}
-    <meta name="tt-graphic-credit" content="{{ graphicCredit }}" />
-  {% endif %}
 
+  <meta name="tt-graphic-credit" content="{{ graphicCredit or 'Texas Tribune Staff'}}" />
   <meta name="tt-graphic-tags" content="{{ graphicTags or ['subject-politics'] }}" />
 
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
