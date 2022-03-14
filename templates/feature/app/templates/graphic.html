@@ -1,0 +1,47 @@
+{# Template for any scripted graphics, i.e. D3 charts #}
+{% extends 'base-graphic.html' %}
+{% from 'macros/prose.html' import prose %}
+
+{# set pack that provides JS #}
+{% set jsPackName = 'main' %}
+
+{# data.text --> data/text.json #}
+{% set context = data.text %}
+
+{# data.data --> data/data.json #}
+{% set graphicData = data.data %}
+
+{# graphicAltText is used by the CMS for accessibility #}
+{% set graphicAltText = context.alttext %}
+
+{# graphics will be surfaced in the graphics plugin under these tags #}
+{% set graphicTags = context.guten_tags %}
+
+{% block content %}
+{# data-graphic signifies that this can be embedded in the CMS #}
+<div class="app" data-graphic>
+  {# data-title is used to grab the title in the CMS #}
+  <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
+  {# data-caption is used to grab the caption in the CMS #}
+  <span data-caption>{{ prose(context.graphic_prose, context, graphicData) }}</span>
+
+  {# container that JS is attached to #}
+  <div id="graphic" class="graphic"></div>
+
+  {# data-source, data-credit, and data-note are also used in the CMS #}
+  <ul class="graphic-footer">
+    {% if context.note %}<li data-note>Note: {{ context.note }}</li>{% endif %}
+    {% if context.source %}<li data-source>Source: {{ context.source }}</li>{% endif %}
+    {% if context.credit %}<li data-credit>Credit: {{ context.credit }}</li>{% endif %}
+  </ul>
+</div>
+{% endblock content %}
+
+{# set data/data.json as a window variable #}
+{% block inline_data %}
+{% if data.data %}
+<script>
+  window.DATA = {{ data.data|dump }};
+</script>
+{% endif %}
+{% endblock inline_data %}
