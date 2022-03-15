@@ -22,7 +22,7 @@
           <header class="t-align-center">
             <h1 class="l-container l-container--m t-headline t-serif t-lh-s has-s-btm-marg" data-title>{{ context.headline | widont or 'The only member-supported, digital-first, nonpartisan media organization' | widont }}</h1>
             <p class="t-byline t-links t-uppercase t-lsp-m t-size-xs has-text-gray-dark has-b-btm-marg">
-              <span class="t-byline__item">By <span data-credit>{%- for author in context.authors or ['Super Cool Corgi', 'Friends'] -%}
+              <span class="t-byline__item">By <span data-credit>{%- for author in context.authors or ['The Texas Tribune Staff'] -%}
               {% if not loop.last %}{{ authorComma() }}{% elif not loop.first %} and{% endif %} <span class="l-display-ib">{{ author }}</span>
               {%- endfor -%}</span>
               </span>
