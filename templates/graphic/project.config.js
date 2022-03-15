@@ -34,7 +34,8 @@ module.exports = {
   projectName: '<<name>>',
   /**
    * The destination S3 bucket for a deploy.
-   * YOU CAN CHANGE THIS.
+   * `capybara-test` is the test bucket.
+   * YOU CAN CHANGE THIS. Change to `graphics.texastribune.org` when publishing.
    */
   bucket: 'capybara-test.texastribune.org',
   /**

@@ -129,8 +129,8 @@ let updateLogSheet = async (mainPath, config) => {
         let metadataInput = [
           [
             metadata.id,
-            metadata.graphicURL,
-            metadata.graphicPath,
+            metadata.projectURL,
+            metadata.projectPath,
             metadata.title,
             metadata.caption,
             metadata.altText,
@@ -148,7 +148,7 @@ let updateLogSheet = async (mainPath, config) => {
         ];
 
         // find hostname
-        let urlObj = new URL(metadata.graphicURL);
+        let urlObj = new URL(metadata.projectURL);
 
         // do not write when capybara-test is the hostname
         if (
@@ -159,7 +159,7 @@ let updateLogSheet = async (mainPath, config) => {
             sheets,
             spreadsheetId,
             metadata.id,
-            metadata.graphicURL,
+            metadata.projectURL,
             metadata.type,
             metadataInput
           );
