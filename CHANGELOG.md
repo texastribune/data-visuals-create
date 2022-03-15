@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
-## [7.2.0]
+## [7.2.0] - 2022-03-15
 ### Changed
 - `templates/__common__/config/tasks/graphics-meta.js` - check for `data-graphic` and `data-feature`, add `checkForAttribute` function to set the type of each template (graphic or feature) in the metadata based on the `data-` attribute
 - `templates/__common__/utils/deployment/update-log-sheet.js` - get the type set in `graphics-meta` to determine the tab in the log sheet to paste metadata to, write metadata to the respective tab unless the hostname is `capybara-test`
