@@ -16,9 +16,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `templates/__common__/utils/deployment/update-log-sheet.js` - get the type set in `graphics-meta` to determine the tab in the log sheet to paste metadata to, write metadata to the respective tab unless the hostname is `capybara-test`
 - `templates/feature/app/index-queso.html` -> `templates/feature/app/index.html`, `templates/feature/app/index.html` -> `templates/feature/app/templates/index-old.html` - make the Queso feature template the default, move the old index.html to the templates folder
 - `templates/feature/app/templates/macros/processors-queso.html`, `templates/feature/app/templates/macros/processors.html` - change styling for lists and subheaders
+- `templates/feature/app/templates/base.html`, `templates/graphic/app/templates/base.html` - add default `subject-politics` metadata tag
+- `templates/feature/app/templates/base-graphic.html`, `templates/graphic/app/templates/base.html` - add default credits metadata
+- `templates/graphic/app/templates/graphic.html` - set tags in graphic embed HTML
+- `templates/feature/project.config.js`, `templates/graphic/project.config.js` - add comments to clarify deploy bucket
+- `templates/graphic/app/index.html` - remove metadata from graphic `index.html` so it's not added to work log
 
 ### Added
 - `templates/feature/project.config.js` - add `parserOptions` to feature config file (it previously was only in the graphics config file)
+- `templates/feature/app/templates/base-graphic.html`, `templates/feature/app/templates/graphic.html` - add templates for graphic embeds in feature
 
 ## [7.1.2] - 2021-01-28
 ### Fixed

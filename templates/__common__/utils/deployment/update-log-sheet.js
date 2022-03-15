@@ -96,6 +96,7 @@ let updateLogSheet = async (mainPath, config) => {
     const spreadsheetId = '1hCP5zGx8dNxk59gI9wBSFY2juJVM8OFCDY45VnNb2nI';
 
     // loop through metadata JSON
+    // if there is no metadata
     if (manifestJSON.length == 0) {
       let metadataInput = [
         [
@@ -126,26 +127,51 @@ let updateLogSheet = async (mainPath, config) => {
       );
     } else {
       for (const metadata of manifestJSON) {
-        let metadataInput = [
-          [
-            metadata.id,
-            metadata.projectURL,
-            metadata.projectPath,
-            metadata.title,
-            metadata.caption,
-            metadata.altText,
-            `${metadata.createYear}-${metadata.createMonth}`,
-            metadata.lastBuildTime,
-            metadata.note,
-            metadata.source,
-            metadata.credits.join(', '),
-            metadata.tags.join(', '),
-            getFileLink(config.files, 'sheet'),
-            getFileLink(config.files, 'doc'),
-            metadata.previews.large,
-            metadata.previews.small,
-          ],
-        ];
+        let metadataInput;
+        if (metadata.type == 'graphic') {
+          metadataInput = [
+            [
+              metadata.id,
+              metadata.projectURL,
+              metadata.projectPath,
+              metadata.title,
+              metadata.caption,
+              metadata.altText,
+              `${metadata.createYear}-${metadata.createMonth}`,
+              metadata.lastBuildTime,
+              metadata.note,
+              metadata.source,
+              metadata.credits.join(', '),
+              metadata.tags.join(', '),
+              getFileLink(config.files, 'sheet'),
+              getFileLink(config.files, 'doc'),
+              metadata.previews.large,
+              metadata.previews.small,
+            ],
+          ];
+        }
+        if (metadata.type == 'feature') {
+          metadataInput = [
+            [
+              metadata.id,
+              metadata.projectURL,
+              metadata.projectPath,
+              metadata.title,
+              '',
+              '',
+              `${metadata.createYear}-${metadata.createMonth}`,
+              metadata.lastBuildTime,
+              '',
+              '',
+              metadata.credits.join(', '),
+              metadata.tags.join(', '),
+              getFileLink(config.files, 'sheet'),
+              getFileLink(config.files, 'doc'),
+              '',
+              '',
+            ],
+          ];
+        }
 
         // find hostname
         let urlObj = new URL(metadata.projectURL);
