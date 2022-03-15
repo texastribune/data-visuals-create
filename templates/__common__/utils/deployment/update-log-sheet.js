@@ -23,17 +23,17 @@ function getFileLink(files, type) {
 async function writeToSheet(
   sheets,
   spreadsheetId,
-  projectType,
   projectID,
   projectURL,
+  metadataType,
   metadataInput
 ) {
   // get corresponding sheet
   let sheetName;
-  if (projectType === 'graphic') {
+  if (metadataType === 'graphic') {
     sheetName = 'Embedded';
   }
-  if (projectType === 'feature') {
+  if (metadataType === 'feature') {
     sheetName = 'Feature';
   }
 
@@ -96,6 +96,7 @@ let updateLogSheet = async (mainPath, config) => {
     const spreadsheetId = '1hCP5zGx8dNxk59gI9wBSFY2juJVM8OFCDY45VnNb2nI';
 
     // loop through metadata JSON
+    // if there is no metadata
     if (manifestJSON.length == 0) {
       let metadataInput = [
         [
@@ -119,42 +120,76 @@ let updateLogSheet = async (mainPath, config) => {
       await writeToSheet(
         sheets,
         spreadsheetId,
-        config.projectType,
         config.id,
         mainPath,
+        config.projectType,
         metadataInput
       );
     } else {
       for (const metadata of manifestJSON) {
-        let metadataInput = [
-          [
-            metadata.id,
-            metadata.graphicURL,
-            metadata.graphicPath,
-            metadata.title,
-            metadata.caption,
-            metadata.altText,
-            `${metadata.createYear}-${metadata.createMonth}`,
-            metadata.lastBuildTime,
-            metadata.note,
-            metadata.source,
-            metadata.credits.join(', '),
-            metadata.tags.join(', '),
-            getFileLink(config.files, 'sheet'),
-            getFileLink(config.files, 'doc'),
-            metadata.previews.large,
-            metadata.previews.small,
-          ],
-        ];
+        let metadataInput;
+        if (metadata.type == 'graphic') {
+          metadataInput = [
+            [
+              metadata.id,
+              metadata.projectURL,
+              metadata.projectPath,
+              metadata.title,
+              metadata.caption,
+              metadata.altText,
+              `${metadata.createYear}-${metadata.createMonth}`,
+              metadata.lastBuildTime,
+              metadata.note,
+              metadata.source,
+              metadata.credits.join(', '),
+              metadata.tags.join(', '),
+              getFileLink(config.files, 'sheet'),
+              getFileLink(config.files, 'doc'),
+              metadata.previews.large,
+              metadata.previews.small,
+            ],
+          ];
+        }
+        if (metadata.type == 'feature') {
+          metadataInput = [
+            [
+              metadata.id,
+              metadata.projectURL,
+              metadata.projectPath,
+              metadata.title,
+              '',
+              '',
+              `${metadata.createYear}-${metadata.createMonth}`,
+              metadata.lastBuildTime,
+              '',
+              '',
+              metadata.credits.join(', '),
+              metadata.tags.join(', '),
+              getFileLink(config.files, 'sheet'),
+              getFileLink(config.files, 'doc'),
+              '',
+              '',
+            ],
+          ];
+        }
 
-        await writeToSheet(
-          sheets,
-          spreadsheetId,
-          config.projectType,
-          metadata.id,
-          metadata.graphicURL,
-          metadataInput
-        );
+        // find hostname
+        let urlObj = new URL(metadata.projectURL);
+
+        // do not write when capybara-test is the hostname
+        if (
+          urlObj.hostname == 'graphics.texastribune.org' ||
+          urlObj.hostname == 'apps.texastribune.org'
+        ) {
+          await writeToSheet(
+            sheets,
+            spreadsheetId,
+            metadata.id,
+            metadata.projectURL,
+            metadata.type,
+            metadataInput
+          );
+        }
       }
     }
   }

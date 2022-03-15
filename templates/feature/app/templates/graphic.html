@@ -1,5 +1,5 @@
 {# Template for any scripted graphics, i.e. D3 charts #}
-{% extends 'base.html' %}
+{% extends 'base-graphic.html' %}
 {% from 'macros/prose.html' import prose %}
 
 {# set pack that provides JS #}
@@ -23,7 +23,7 @@
   {# data-title is used to grab the title in the CMS #}
   <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
   {# data-caption is used to grab the caption in the CMS #}
-  <span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
+  <span data-caption>{{ prose(context.graphic_prose, context, graphicData) }}</span>
 
   {# container that JS is attached to #}
   <div id="graphic" class="graphic"></div>

@@ -22,8 +22,12 @@ const Story = ({ headline, url, pub_date, sitewide_image }) => {
           </div>
           <div class="story-text c-story-block__text">
             <header class="story-header">
-              <h4 class="story-headline t-serif t-size-b t-lh-s has-xxxs-btm-marg">{headline}</h4>
-              <p class="story-byline t-byline t-links t-uppercase t-lsp-m t-size-xs has-text-gray-dark">{apdate(new Date(pub_date))}</p>
+              <h4 class="story-headline t-serif t-size-b t-lh-s has-xxxs-btm-marg">
+                {headline}
+              </h4>
+              <p class="story-byline t-byline t-links t-uppercase t-lsp-m t-size-xs has-text-gray-dark">
+                {apdate(new Date(pub_date))}
+              </p>
             </header>
           </div>
         </div>
