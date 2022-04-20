@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [7.2.1] - 2022-04-20
+### Changed
+- `templates/__common__/_package.json` - update packages to address vulnerabilities
+
 ## [7.2.0] - 2022-03-15
 ### Changed
 - `templates/__common__/config/tasks/graphics-meta.js` - check for `data-graphic` and `data-feature`, add `checkForAttribute` function to set the type of each template (graphic or feature) in the metadata based on the `data-` attribute
