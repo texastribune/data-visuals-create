@@ -1,9 +1,9 @@
 {# Template for any scripted graphics, i.e. D3 charts #}
-{% extends 'base-graphic.html' %}
+{% extends 'base-embed.html' %}
 {% from 'macros/prose.html' import prose %}
 
 {# set pack that provides JS #}
-{% set jsPackName = 'main' %}
+{% set jsPackName = 'main-embed' %}
 
 {# data.text --> data/text.json #}
 {% set context = data.text %}
