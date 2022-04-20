@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ## [7.2.2] - 2022-04-20
+### Changed
 -  `templates/__common__/utils/deployment/deploy.js` - remove instructions for embedding raw plugins in post-deploy message
 
 ## [7.2.1] - 2022-04-20
