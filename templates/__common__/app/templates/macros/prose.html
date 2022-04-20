@@ -1,6 +1,6 @@
 {% import 'macros/processors.html' as processors %}
 
-{% macro prose(content, context, data) %}
+{% macro prose(content, context, data, type) %}
 {% for item in content %}
   {% if processors[item.type] %}
     {{ processors[item.type](item.value, context, data) }}
