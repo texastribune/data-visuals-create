@@ -3,7 +3,7 @@
 {% macro prose(content, context, data, type) %}
 {% for item in content %}
   {% if processors[item.type] %}
-    {{ processors[item.type](item.value, context, data) }}
+    {{ processors[item.type](item.value, context, data, type) }}
   {% else %}
     {{ processors['raw'](item.value, context, data) }}
   {% endif %}
