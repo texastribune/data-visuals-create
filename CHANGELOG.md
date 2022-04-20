@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [7.2.1] - 2022-04-20
 ### Changed
-- `templates/__common__/_package.json` - update packages to address vulerabilities
+- `templates/__common__/_package.json` - update packages to address vulnerabilities
 
 ## [7.2.0] - 2022-03-15
 ### Changed
