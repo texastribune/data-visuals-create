@@ -4,8 +4,12 @@
 {{ value | renderStringWithNunjucks(data) }}
 {% endmacro %}
 
-{% macro text(value, context, data) %}
-<p class="copy">{{ value | renderStringWithNunjucks(data) }}</p>
+{% macro text(value, context, data, type) %}
+  {% if type == 'embed' %}
+    <p class="graphic-prose">{{ value | renderStringWithNunjucks(data) }}</p>
+  {% else %}
+    <p class="copy">{{ value | renderStringWithNunjucks(data) }}</p>
+  {% endif %}
 {% endmacro %}
 
 {% macro list(value) %}

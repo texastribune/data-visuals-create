@@ -1,9 +1,9 @@
 {# Template for any scripted graphics, i.e. D3 charts #}
-{% extends 'base-graphic.html' %}
+{% extends 'base-embed.html' %}
 {% from 'macros/prose.html' import prose %}
 
 {# set pack that provides JS #}
-{% set jsPackName = 'main' %}
+{% set jsPackName = 'main-embed' %}
 
 {# data.text --> data/text.json #}
 {% set context = data.text %}
@@ -23,16 +23,16 @@
   {# data-title is used to grab the title in the CMS #}
   <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
   {# data-caption is used to grab the caption in the CMS #}
-  <span data-caption>{{ prose(context.graphic_prose, context, graphicData) }}</span>
+  <span data-caption>{{ prose(context.embed_prose, context, graphicData, 'embed') }}</span>
 
   {# container that JS is attached to #}
   <div id="graphic" class="graphic"></div>
 
   {# data-source, data-credit, and data-note are also used in the CMS #}
   <ul class="graphic-footer">
-    {% if context.note %}<li data-note>Note: {{ context.note }}</li>{% endif %}
-    {% if context.source %}<li data-source>Source: {{ context.source }}</li>{% endif %}
-    {% if context.credit %}<li data-credit>Credit: {{ context.credit }}</li>{% endif %}
+    {% if context.embed_note %}<li data-note>Note: {{ context.embed_note }}</li>{% endif %}
+    {% if context.embed_source %}<li data-source>Source: {{ context.embed_source }}</li>{% endif %}
+    {% if context.embed_credit %}<li data-credit>Credit: {{ context.embed_credit }}</li>{% endif %}
   </ul>
 </div>
 {% endblock content %}
