@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 
+## [7.2.3] - 2022-04-20
+### Changed
+- `templates/feature/app/templates/base-graphic.html` - only add a meta tag with `graphicCredit` if the variable is set in the HTML template. If `graphicCredit` is set in the HTML, it will take precedent over the credit set in the `data-credit` tag in the generated metadata.
+- `templates/graphic/app/templates/base.html` - Ditto here, but for graphics attached to features.
+
 ## [7.2.2] - 2022-04-20
 ### Changed
 -  `templates/__common__/utils/deployment/deploy.js` - remove instructions for embedding raw plugins in post-deploy message
