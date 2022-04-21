@@ -36,16 +36,16 @@ npm start
 - [Usage](#usage)
 - [Development and testing](#development-and-testing)
 - [Folder structure](#folder-structure)
-    - [config/](#config)
-    - [data/](#data)
-    - [workspace/](#workspace)
-    - [project.config.js](#projectconfigjs)
-    - [app/](#app)
-    - [app/index.html, app/static.html](#appindexhtml-appstatichtml)
-    - [app/templates/](#apptemplates)
-    - [app/scripts/](#appscripts)
-    - [app/styles/](#appstyles)
-    - [app/assets/](#appassets)
+  - [config/](#config)
+  - [data/](#data)
+  - [workspace/](#workspace)
+  - [project.config.js](#projectconfigjs)
+  - [app/](#app)
+  - [app/index.html, app/static.html](#appindexhtml-appstatichtml)
+  - [app/templates/](#apptemplates)
+  - [app/scripts/](#appscripts)
+  - [app/styles/](#appstyles)
+  - [app/assets/](#appassets)
   - [Other directories you may see](#other-directories-you-may-see)
     - [.tmp/](#tmp)
     - [dist/](#dist)
@@ -57,13 +57,13 @@ npm start
   - [Creating a new entrypoint](#creating-a-new-entrypoint)
   - [Connecting an entrypoint to an HTML file](#connecting-an-entrypoint-to-an-html-file)
 - [Available commands](#available-commands)
-    - [`npm start` or `npm run serve`](#npm-start-or-npm-run-serve)
-    - [`npm run deploy`](#npm-run-deploy)
-    - [`npm run data:fetch`](#npm-run-datafetch)
-    - [`npm run assets:push`](#npm-run-assetspush)
-    - [`npm run assets:pull`](#npm-run-assetspull)
-    - [`npm run workspace:push`](#npm-run-workspacepush)
-    - [`npm run workspace:pull`](#npm-run-workspacepull)
+  - [`npm start` or `npm run serve`](#npm-start-or-npm-run-serve)
+  - [`npm run deploy`](#npm-run-deploy)
+  - [`npm run data:fetch`](#npm-run-datafetch)
+  - [`npm run assets:push`](#npm-run-assetspush)
+  - [`npm run assets:pull`](#npm-run-assetspull)
+  - [`npm run workspace:push`](#npm-run-workspacepush)
+  - [`npm run workspace:pull`](#npm-run-workspacepull)
 - [Environment variables and authentication](#environment-variables-and-authentication)
   - [AWS](#aws)
   - [Google](#google)
@@ -87,13 +87,18 @@ npm install -g @data-visuals/create
 npx @data-visuals/create@latest <project-type> <project-name>
 ```
 
-Currently there are two project types available — `graphic` and `feature`. The project name should be passed in as a slug, i.e. `my-beautiful-project`.
+Currently there are two project types available — `graphic` and `feature`.
+
+`graphic` - embeddable graphics, like the [district race lookup embedded in this voter guide](https://www.texastribune.org/2022/01/17/texas-primary-election-2022-voter-guide/)
+`features` - entire page projects, like this [2022 primary ballot page](https://apps.texastribune.org/features/2022/texas-election-results-2022-primary/)
+
+The project name should be passed in as a slug, i.e. `my-beautiful-project`.
 
 ```sh
 npx @data-visuals/create@latest graphic school-funding
 ```
 
-This will create a directory for you, copy in the files, install the dependencies, and do your first `git commit`.
+This will create a directory for you, copy in the files, install the dependencies and do your first `git commit`.
 
 The directory name will be formatted like this:
 
@@ -105,10 +110,6 @@ graphic-school-funding-2018-01
 ```
 
 This is to ensure consistent naming of our directories!
-
-## Development and testing
-
-If you make changes locally to `@data-visuals/create` and want to test them, you can run `data-visuals-create/bin/data-visuals-create <project-type> <project-name>` to generate a graphic or feature and see if your changes were included. Run the command one level above this repo, or you'll create a graphic or feature within `data-visuals-create`.
 
 ## Folder structure
 
@@ -153,17 +154,27 @@ Where all the configuration for a project belongs. This is where you can change 
 
 Where you'll spend most of your time! Here are where all the assets that go into building your project live.
 
-#### app/index.html, app/static.html
+#### app/index.html
 
-The starter HTML pages provided by the kit. `index.html` is for scripted graphics that require additional JavaScript, and `static.html` is for graphics that do not, like Illustrator embeds. Feel free to rename them!
-
-If your project is only a single page (or graphic), you can pick one of them where you do all your HTML work. No special configuration is required to create new HTML files - just creating a new `.html` file in in the `app` directory (but _not_ within `app/scripts/` or `/app/templates/` - HTML files have special meanings in those directories) is enough to tell the kit about new pages it should compile.
-
-When embedding graphics other than `index.html`, remember to add the name of the template to the end of the embed link. The default link points to `index`.
+This is the landing page for graphics and features. For features, this page provides a full-page template to start from. For embeddable graphics, this page has instructions on how to start creating embeddable graphics and which templates in `app/templates/` to clone.
 
 #### app/templates/
 
-Where all the Nunjucks templates (including the `base.html` template that `app/index.html` inherits from), includes and macros live.
+Where all the Nunjucks templates (including the `base.html` template that `app/index.html` inherits from), `includes` and `macros` live.
+
+### Embeddable graphics
+
+- `base.html` - base template used across all graphics
+- `graphic-static.html` - template for static graphics, like Illustrator embeds
+- `graphic.html` - template for graphics using JS, like ones that require D3
+
+### Features
+
+- `base.html` - base template used across all features
+- `base-embed.html` - base template used across all embeddable graphics associated with the feature
+- `embed.html` - template for embeddable graphics associated with the feature
+
+If your project is only a single page (or graphic), you can pick one of them where you do all your HTML work. No special configuration is required to create new HTML files - just creating a new `.html` file in in the `app` directory (but _not_ within `app/scripts/` or `/app/templates/` - HTML files have special meanings in those directories) is enough to tell the kit about new pages it should compile.
 
 #### app/scripts/
 
@@ -231,7 +242,7 @@ ArchieML Google Docs work as documented on the [ArchieML](http://archieml.org/) 
 
 Our kit can display variables pulled in from Google Docs in the template. This is helpful when we want to show data in our text that is in the `data/` folder. Nunjucks finds the variable syntax (anything in curly braces) in our Google Doc text and displays the corresponding value.
 
-By default, Nunjucks has access to every file in our `data/` folder as an object. For example, if there are two files in the `data/` folder named `data.json` and `text.json` respectively, it will be structured as: 
+By default, Nunjucks has access to every file in our `data/` folder as an object. For example, if there are two files in the `data/` folder named `data.json` and `text.json` respectively, it will be structured as:
 
 ```json
 {
@@ -291,7 +302,7 @@ touch app/scripts/packs/maps.js
 
 Because there's a lot more going on behind the scenes than just adding a `<script>` tag, you have to set a special variable in a template in order to get the right entrypoint into the right HTML file.
 
-Set `jsPackName` anywhere in the HTML file to the name of your entrypoint (__without__ the extension) to route the right JavaScript files to it.
+Set `jsPackName` anywhere in the HTML file to the name of your entrypoint (**without** the extension) to route the right JavaScript files to it.
 
 ```html
 {% set jsPackName = 'map' %}
@@ -311,6 +322,14 @@ The main command for development. This will build your HTML pages, prepare your 
 #### `npm run deploy`
 
 The main command for deployment. It will always run `npm run build` first to ensure the compiled version is up-to-date. Use this when you want to put your project online. This will use the `bucket` and `folder` values in the `project.config.js` file to determine where it should be deployed on S3. Make sure those are set the appropriate values!
+
+#### `npm run build`
+
+The main command for compiling files. Stores compiled files in the `dist/` folder. Also runs `npm run parse` which parses project for metadata.
+
+#### `npm run parse`
+
+The main command for parsing metadata from projects. Refer to `project-metadata.md` for more information.
 
 #### `npm run data:fetch`
 
