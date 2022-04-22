@@ -148,7 +148,11 @@ The `workspace` directory is for storing all of your analysis, production and ra
 
 #### project.config.js
 
-Where all the configuration for a project belongs. This is where you can change the S3 deploy parameters, manage the Google Drive documents that sync with this project, set up a bespoke API or add custom filters to Nunjucks.
+Where all the configuration for a project belongs. This is where you can change the S3 deploy parameters, manage the Google Drive documents that sync with this project, format data pulled in Google documents, set up a bespoke API or add custom filters to Nunjucks.
+
+- `dataMutators` - Makes it possible to modify what's returned by the data fetchers. This is a good place to restructure the raw data, or to do joins with other data you may have. [Here's an example from our coronavirus tracker.](https://github.com/texastribune/feature-tx-coronavirus-tracker-2020-03/blob/master/project.config.js#L188)
+- `createAPI` - Makes it possible to bake out a series of JSON files that get deployed with your project. This is a great way to break up data that users only need a small slice of based on choices they make. The toolkit expects this to return an array of objects. Each object should have a "key" and a "value" - the "key" determines the URL, the "value" is what is saved at that URL. [Here's an example from our voter guide.](https://github.com/texastribune/newsapps-dailies/blob/master/2022/graphic-voter-guide-primaries-2022-01/project.config.js#L136)
+- `customFilters` - Where custom filters for Nunjucks can be added. Each key should be the name of the filter, and each value should be a function it will call. (journalize comes built in and does not need to be added manually.) [Here's an example from our voter guide.](https://github.com/texastribune/newsapps-dailies/blob/master/2022/graphic-voter-guide-primaries-2022-01/project.config.js#L405)
 
 #### app/
 
