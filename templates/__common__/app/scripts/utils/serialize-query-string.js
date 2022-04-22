@@ -7,7 +7,7 @@
 const encode = encodeURIComponent;
 
 /**
- * Converts an object of key/value pairs into a encoded query string.
+ * Converts an object of key/value pairs into an encoded query string.
  *
  * @param  {Object} params The params of the query string
  * @return {String}
