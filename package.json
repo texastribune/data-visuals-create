@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/texastribune/data-visuals-create#readme",
   "dependencies": {
-    "ansi-colors": "^3.2.4",
+    "ansi-colors": "^4.1.2",
     "enquirer": "^2.3.0",
     "fs-extra": "^7.0.1",
     "mri": "^1.1.4",
