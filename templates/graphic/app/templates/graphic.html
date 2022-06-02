@@ -21,7 +21,7 @@
 {# data-graphic signifies that this can be embedded in the CMS #}
 <div class="app" data-graphic>
   {# data-title is used to grab the title in the CMS #}
-  <h1 class="graphic-title" data-title>{{ context.headline | widont }}</h1>
+  <h1 class="graphic-title" data-title>{{ context.headline | widont or 'The only member-supported, digital-first, nonpartisan media organization' | widont }}</h1>
   {# data-caption is used to grab the caption in the CMS #}
   <span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
 
