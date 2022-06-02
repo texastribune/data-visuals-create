@@ -13,17 +13,23 @@ Our process for pitching and executing projects (which should happen before all 
 ## Final editing checklist
 Before your embedded graphic or feature goes live, here's the editing steps you need to take:
 
+### Initial steps
 - [ ] Spell check and self-edit — does everything make sense?
-- [ ] Data visuals editor for a visual edit
-- [ ] Design feedback channel (optional for more complex graphics or apps)
 - [ ] Story reporter, if a collaboration
-- [ ] Story or beat editor for a line edit to check facts
-- [ ] DV team in the secret channel (for a final gut check)
-- [ ] Copy editor
+
+### Editing
+Copy editors have a deadline of 5 pm so all editing should be done early afternoon the day before publication (at the lates)
+- [ ] Story or beat editor for a line edit to check facts.
+- [ ] Data visuals editor for edits and/or fact check
+- [ ] DV team in the secret channel (for a final gut check. Darla can also provide visual edits in this channel, if she's available)
+- [ ] Optional: Design feedback channel (can provide design edits)
+
+### Final steps
+- [ ] Copy editor — their deadline is 5 p.m.
 - [ ] Be available the night before publication for any last-minute changes, or let other DV teammates know how to make edits
 
-### Headline
-- [ ] Get a headline by submitting the story's budget line to the Headline Hoedown Slack channel
+### Headline and pointer
+- [ ] If it's an apps page, we need to get the page's headline, slug and summary all approved by an editor. This is done in the team-editors channel. As of June 2022, only the Data Visuals Editor has access to that channel so they will need to hoedown this information for you. Also, it's likely you will need to hoedown a SEO headline as well for the pointer inside the CMS. These are created so a link to the apps page can show up on our website. Here's [an example](https://www.texastribune.org/admin/articles/articlelink/40354/change/) of one we've done.
 
 ### Article
 - [ ] Add ads (three is typically the minimum; add more if longer)
