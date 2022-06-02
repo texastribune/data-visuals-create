@@ -10,21 +10,21 @@ This is a running list of things you should do before you launch any project on 
 
 Our process for pitching and executing projects (which should happen before all of this) can be found on [this doc](https://docs.google.com/document/d/1E7QE8gp29h20EAafzSui8VjQ_9TG5-XhR33tbAP0hBA/edit).
 
-## Final editing checklist
+### Final editing checklist
 Before your embedded graphic or feature goes live, here's the editing steps you need to take:
 
-### Initial steps
+#### Initial steps
 - [ ] Spell check and self-edit — does everything make sense?
 - [ ] Story reporter, if a collaboration
 
-### Editing
-Copy editors have a deadline of 5 pm so all editing should be done early afternoon the day before publication (at the lates)
-- [ ] Story or beat editor for a line edit to check facts.
+#### Editing
+Copy editors have a deadline of 5 pm so all editing should be done early afternoon the day before publication (at the latest)
+- [ ] Story or beat editor for a line edit to check facts
 - [ ] Data visuals editor for edits and/or fact check
 - [ ] DV team in the secret channel (for a final gut check. Darla can also provide visual edits in this channel, if she's available)
 - [ ] Optional: Design feedback channel (can provide design edits)
 
-### Final steps
+#### Final steps
 - [ ] Copy editor — their deadline is 5 p.m.
 - [ ] Be available the night before publication for any last-minute changes, or let other DV teammates know how to make edits
 
@@ -32,6 +32,8 @@ Copy editors have a deadline of 5 pm so all editing should be done early afterno
 - [ ] If it's an apps page, we need to get the page's headline, slug and summary all approved by an editor. This is done in the team-editors channel. As of June 2022, only the Data Visuals Editor has access to that channel so they will need to hoedown this information for you. Also, it's likely you will need to hoedown a SEO headline as well for the pointer inside the CMS. These are created so a link to the apps page can show up on our website. Here's [an example](https://www.texastribune.org/admin/articles/articlelink/40354/change/) of one we've done.
 
 ### Article
+If you're creating an apps page, make sure you complete these.
+
 - [ ] Add ads (three is typically the minimum; add more if longer)
 - [ ] Make sure there's related articles (powered by the `guten_tag` property in the feature's ArchieML doc)
 - [ ] Add any sigs, icons, or lead art
