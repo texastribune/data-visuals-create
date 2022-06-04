@@ -170,7 +170,7 @@ const parseGraphic = async (
   // create array from credits
   if (credits.length > 0) {
     // separate by commas or and
-    credits = credits.replace('Credit: ', '').split(/, *| and */g);
+    credits = credits.split(/, *| and */g);
   } else {
     credits = [];
   }
