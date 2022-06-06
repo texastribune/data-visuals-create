@@ -99,9 +99,13 @@ class AdLoader {
         adElementId
       );
 
-      // overwrites the default fixed size set above
-      // if the ad is a banner ad
-      gptAdUnit.defineSizeMapping(banner);
+      // make ad square if it includes the `dv-gpt-ad-square` class
+      if (attributes.class.includes('dv-gpt-ad-square')) {
+        gptAdUnit.defineSizeMapping([300, 250]);
+      } else {
+        // else use banner dimensions
+        gptAdUnit.defineSizeMapping(banner);
+      }
 
       if (options.targetingKey && options.targetingValue) {
         gptAdUnit.setTargeting(options.targetingKey, options.targetingValue);

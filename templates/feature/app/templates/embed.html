@@ -30,9 +30,9 @@
 
   {# data-source, data-credit, and data-note are also used in the CMS #}
   <ul class="graphic-footer">
-    {% if context.embed_note %}<li data-note>Note: {{ context.embed_note }}</li>{% endif %}
-    {% if context.embed_source %}<li data-source>Source: {{ context.embed_source }}</li>{% endif %}
-    {% if context.embed_credit %}<li data-credit>Credit: {{ context.embed_credit }}</li>{% endif %}
+    {% if context.embed_note %}<li>Note: <span data-note>{{ context.embed_note }}</span></li>{% endif %}
+    {% if context.embed_source %}<li>Source: <span data-source>{{ context.embed_source }}</span></li>{% endif %}
+    {% if context.embed_credit %}<li>Credit: <span data-credit>{{ context.embed_credit }}</span></li>{% endif %}
   </ul>
 </div>
 {% endblock content %}

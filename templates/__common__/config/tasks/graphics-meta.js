@@ -170,7 +170,7 @@ const parseGraphic = async (
   // create array from credits
   if (credits.length > 0) {
     // separate by commas or and
-    credits = credits.replace('Credit: ', '').split(/, *| and */g);
+    credits = credits.split(/, *| and */g);
   } else {
     credits = [];
   }
@@ -180,7 +180,15 @@ const parseGraphic = async (
     const caption = await getText({ key: 'caption', page });
     const altText = await getText({ key: 'alt-text', page });
     const note = await getText({ key: 'note', page });
-    const source = await getText({ key: 'source', page });
+    let source = await getText({ key: 'source', page });
+
+    // create array from source
+    if (source.length > 0) {
+      // separate by commas or and
+      source = source.split(/, *| and */g);
+    } else {
+      source = [];
+    }
 
     const links = await page.$$eval('a', links =>
       links.map(link => {

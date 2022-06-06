@@ -15,6 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.4.0] - 2022-06-06
+
+### Changed
+
+- `templates/__common__/config/tasks/graphics-meta.js` - make sources metadata an array
+- `templates/feature/app/scripts/utils/ad-loader.js` - make ad square if ad has class `dv-gpt-ad-square`
+- `templates/feature/app/templates/embed.html`, `templates/graphic/app/templates/graphic-static.html` - wrap credit, note and source metadata in `data-` tags so "Credit:", "Note:" and "Source:" don't appear in metadata
+- `templates/graphic/app/templates/graphic.html` - add default graphic headline and wrap credit, note and source metadata in `data-` tags
+
 ## [7.3.0] - 2022-04-20
 
 ### Added
