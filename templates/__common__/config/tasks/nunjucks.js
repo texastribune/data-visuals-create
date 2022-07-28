@@ -149,6 +149,25 @@ env.addGlobal(
 
 env.addFilter('makeArray', input => (Array.isArray(input) ? input : [input]));
 
+/*
+ Adds accessibility tags to ai2html output
+ */
+env.addFilter('addA11yAttributes', (html, alttext) => {
+  return html
+    .replace(
+      /<div id="g-(.+)-box" class="ai2html">/,
+      `<div id="g-$1-box" class="ai2html" aria-descrption="${alttext}" role="img">`
+    )
+    .replace(
+      /<div id="g-(.+)-664" class="g-artboard"/,
+      '<div id="g-$1-664" class="g-artboard" aria-hidden="true"'
+    )
+    .replace(
+      /<div id="g-(.+)-360" class="g-artboard"/,
+      '<div id="g-$1-360" class="g-artboard" aria-hidden="true"'
+    );
+});
+
 let manifest = null;
 
 env.addGlobal(
