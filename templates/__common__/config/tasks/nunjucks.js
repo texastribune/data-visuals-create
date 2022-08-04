@@ -156,7 +156,7 @@ env.addFilter('addA11yAttributes', (html, alttext) => {
   return html
     .replace(
       /<div id="g-(.+)-box" class="ai2html">/,
-      `<div id="g-$1-box" class="ai2html" aria-descrption="${alttext}" role="img">`
+      `<div id="g-$1-box" class="ai2html" aria-description="${alttext}" role="img">`
     )
     .replace(
       /<div id="g-(.+)-664" class="g-artboard"/,

@@ -37,7 +37,7 @@ export default function createBase({
       .attr('role', 'img')
       .attr('aria-describedby', 'description')
       .append('desc')
-      .attr('id', 'descrption')
+      .attr('id', 'description')
       .text(alttext);
   }
 
