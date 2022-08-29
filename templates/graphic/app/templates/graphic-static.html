@@ -32,8 +32,12 @@
   <span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
 
   {# add name of your ai2html file here #}
-  {# {% set ai2html = "" %}
-  {% include "ai2html-output/" + ai2html + ".html" %} #}
+  {# remember to uncomment by turning the hashtags into percent signs #}
+
+  {# filter addA11yAttributes(graphicAltText) #}
+  {# set ai2html = "" #}
+  {# include "ai2html-output/" + ai2html + ".html" #}
+  {# endfilter #}
 
   {# data-source and data-credit are also used in the CMS #}
   <ul class="graphic-footer">

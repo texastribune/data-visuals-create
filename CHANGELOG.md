@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.5.0] - 2022-08-12
+
+### Added
+
+- `templates/__common__/app/scripts/utils/d3-base.js` - add `alttext` parameter for `createBase` for screen reader description.
+- `templates/__common__/config/tasks/nunjucks.js` - add Nunjucks filter ai2html graphic screen reader alttext.
+
+### Changed
+
+- `templates/graphic/app/templates/base.html` - change document title to the graphic's title by default.
+- `templates/graphic/app/templates/graphic-static.html` - apply new Nunjucks filter to ai2html graphics.
+
 ## [7.4.0] - 2022-06-06
 
 ### Changed

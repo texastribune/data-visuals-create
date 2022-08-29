@@ -8,6 +8,7 @@ export default function createBase({
   height,
   x,
   y,
+  alttext,
   xAxis = axisBottom(),
   yAxis = axisLeft(),
   xAxisGap = 5,
@@ -28,6 +29,17 @@ export default function createBase({
     .append('svg')
     .attr('width', containerWidth)
     .attr('height', containerHeight);
+
+  if (!alttext) {
+    console.warn('Alternative text was not provided');
+  } else {
+    svg
+      .attr('role', 'img')
+      .attr('aria-describedby', 'description')
+      .append('desc')
+      .attr('id', 'description')
+      .text(alttext);
+  }
 
   const g = svg
     .append('g')
