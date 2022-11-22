@@ -98,7 +98,7 @@ function getGoogleToken(auth, googleTokenFile) {
     });
 
     rl.question(
-      colors.bold("Sign in with your @texastribune.org account and hit 'Allow' to grant access to News Apps Graphics Kit.\nAfter redirected, the page looks broken, but copy the URL and paste it here:\n"),
+      colors.bold("Sign in with your @texastribune.org account and hit 'Allow' to grant access to News Apps Graphics Kit.\nAfter you are redirected, the page will look broken, but copy the URL and paste it here:\n"),
       async url => {
         rl.close();
 
