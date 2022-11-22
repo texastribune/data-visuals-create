@@ -32,7 +32,7 @@ async function getSecrets() {
 
   const googleClientId = secrets.client_id;
   const googleClientSecret = secrets.client_secret;
-  const googleRedirectUri = secrets.redirect_uris[0];
+  const googleRedirectUri = secrets.redirect_uri;
   const googleTokenFile =
     process.env.GOOGLE_TOKEN_FILE ||
     path.join(os.homedir(), '.google_drive_fetch_token');
@@ -79,8 +79,10 @@ async function getAuth() {
 function getGoogleToken(auth, googleTokenFile) {
   return new Promise((resolve, reject) => {
     const url = auth.generateAuthUrl({
-      access_type: 'offline',
       scope: SCOPES,
+      response_type: "code",
+      redirect_uri: auth.redirectUri,
+      client_id: auth._clientId
     });
 
     console.log(
@@ -96,9 +98,11 @@ function getGoogleToken(auth, googleTokenFile) {
     });
 
     rl.question(
-      colors.bold('Enter your success code from that page here:\n'),
-      async code => {
+      colors.bold("Sign in with your @texastribune.org account and hit 'Allow' to grant access to News Apps Graphics Kit.\nAfter you are redirected, the page will look broken, but copy the URL and paste it here:\n"),
+      async url => {
         rl.close();
+
+        const code = url.split(/[?=&]+/)[2];
 
         let tokens;
 
