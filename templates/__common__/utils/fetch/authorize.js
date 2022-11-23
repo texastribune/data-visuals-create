@@ -32,7 +32,7 @@ async function getSecrets() {
 
   const googleClientId = secrets.client_id;
   const googleClientSecret = secrets.client_secret;
-  const googleRedirectUri = secrets.redirect_uri;
+  const googleRedirectUri = secrets.redirect_uris[0];
   const googleTokenFile =
     process.env.GOOGLE_TOKEN_FILE ||
     path.join(os.homedir(), '.google_drive_fetch_token');
