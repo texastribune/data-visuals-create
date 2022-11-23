@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.4.1] - 2022-11-23
+
+### Changed
+- `templates/__common__/utils/fetch/authorize.js` - change parameters to pass to Google OAuth 2.0 authorization URL, tweak terminal languages and string manipulation as a process of out-Of-Band (OOB) flow Migration
+
 ## [7.4.0] - 2022-06-06
 
 ### Changed
