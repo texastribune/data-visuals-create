@@ -15,9 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.4.2] - 2022-12-22
+
+### Changed
+
+- `templates/__common__/config/tasks/graphics-meta.js` - comment out array transformation of a source line to hot fix the issue where the metadata format is not accepted to log a project on our spreadsheet
+
 ## [7.4.1] - 2022-11-23
 
 ### Changed
+
 - `templates/__common__/utils/fetch/authorize.js` - change parameters to pass to Google OAuth 2.0 authorization URL, tweak terminal languages and string manipulation as a process of out-Of-Band (OOB) flow Migration
 
 ## [7.4.0] - 2022-06-06
@@ -187,7 +194,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `templates/feature/project.config.js` - add `lastBuildTime` field to feature config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed
 - `templates/graphic/project.config.js` - add `lastBuildTime` field to graphic config, change `slug` to `projectName`, add comments to clarify which properties should and should not be changed; update default tag to `subject-politics`
 - `bin/data-visuals-create`, `README.md`, `templates/__common__/_package.json`, `templates/__common__/utils/deployment/update-log-sheet.js` - change `slug` to `projectName` to avoid confusion with the slug in our project URL and what we add to the CMS
-- `templates/graphic/app/index.html`,  `templates/graphic/app/static.html`, `templates/graphic/app/templates/base.html` - add caption for graphic context and assume description is for accessibility
+- `templates/graphic/app/index.html`, `templates/graphic/app/static.html`, `templates/graphic/app/templates/base.html` - add caption for graphic context and assume description is for accessibility
 - `templates/graphic/graphics-meta.md` - document the new caption field and rules
 
 ### Added
@@ -200,9 +207,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `templates/__common__/config/tasks/graphics-meta.js` - Adds a graphic note to the manifest file. Also now logs a warning to the terminal if you don't update the tags in the project config.
 - `templates/graphic/app/index.html`,
-`templates/graphic/app/static.html`,
-`templates/graphic/app/templates/base.html` - Adds all the proper template attributes to surface notes to the parsing task
-`templates/graphic/graphics-meta.md` - Documents the new key
+  `templates/graphic/app/static.html`,
+  `templates/graphic/app/templates/base.html` - Adds all the proper template attributes to surface notes to the parsing task
+  `templates/graphic/graphics-meta.md` - Documents the new key
 
 ## [3.7.0] - 2021-03-16
 
@@ -252,7 +259,7 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 - `templates/feature/app/index-queso.html` - change `{{ context.title }}` to `{{ context.headline }}`, add HTML to include publish and update dates
 - `templates/feature/app/index.html`, `templates/feature/project.config.js`, `templates/graphic/app/index.html`, `templates/graphic/app/static.html` - change `{{ context.title }}` to `{{ context.headline }}`
 - `templates/feature/app/templates/components/simple-masthead.html`,
-`templates/feature/app/templates/includes/logo.html` - change 10th anniversary logo back to original TT logo
+  `templates/feature/app/templates/includes/logo.html` - change 10th anniversary logo back to original TT logo
 - `templates/__common__/app/styles/_typography-queso.scss` - add t-subheader styling
 
 ### Added
@@ -304,7 +311,7 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 
 - `/feature/app/index-queso.html` - Starter template for queso CSS framework
 - `/feature/app/styles/main-queso.scss` - Starter styles for CSS framework
-- `/__common__/app/styles/_typography-queso.scss` - Extra typography styles not accounted for in queso-ui and data viz specific overrides of existing helpers. Appended `-queso` as to not be confused with current _typography.scss
+- `/__common__/app/styles/_typography-queso.scss` - Extra typography styles not accounted for in queso-ui and data viz specific overrides of existing helpers. Appended `-queso` as to not be confused with current \_typography.scss
 - `/feature/app/styles/components/_navbar.scss` - Overrides for queso navbar
 - `feature/app/styles/layout/_container.scss` - Additional container classes
 - `/feature/app/templates/components/navbar.html` - Standard navbar component (used on TT)
@@ -393,7 +400,7 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 
 - `package.json` - pull assets and push to workspace on predeploy, which is run automatically before deploy #31
 - `feature/app/styles/components/_related-content.scss`, `feature/app/styles/components/_ads.scss`,
-`processors.html` - update appearance of ads
+  `processors.html` - update appearance of ads
 - `graphic/README.md, feature/README.md` - added project launch checklist
 
 ## [2.4.1]
@@ -497,21 +504,21 @@ How we generate graphic metadata is also documented in `templates/graphic/graphi
 
 ## [1.1.1] - 2019-05-08
 
-* Change GA event tags
+- Change GA event tags
 
 ## [1.1.0] - 2019-04-03
 
-- Redundant ternary  a828d34
-- Better default doc and sheet examples  b8abc16
-- Merge branch 'master' into develop  d82ebed
-- Make https serving an option set with an env variable  1310cdb
+- Redundant ternary a828d34
+- Better default doc and sheet examples b8abc16
+- Merge branch 'master' into develop d82ebed
+- Make https serving an option set with an env variable 1310cdb
 
 <https://github.com/texastribune/data-visuals-create/compare/1.0.1...1.1.0>
 
 ## [1.0.1] - 2019-03-20
 
-- Fix bug in doc-to-archieml parser with lists  6717876
-- Update Getting started with right path  5d24a29
+- Fix bug in doc-to-archieml parser with lists 6717876
+- Update Getting started with right path 5d24a29
 
 <https://github.com/texastribune/data-visuals-create/compare/1.0.0...1.0.1>
 
