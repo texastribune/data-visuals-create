@@ -182,13 +182,14 @@ const parseGraphic = async (
     const note = await getText({ key: 'note', page });
     let source = await getText({ key: 'source', page });
 
-    // create array from source
-    if (source.length > 0) {
-      // separate by commas or and
-      source = source.split(/, *| and */g);
-    } else {
-      source = [];
-    }
+    // commenting this out as a hot fix in December 2022 for issue #158
+    // // create array from source
+    // if (source.length > 0) {
+    //   // separate by commas or and
+    //   source = source.split(/, *| and */g);
+    // } else {
+    //   source = [];
+    // }
 
     const links = await page.$$eval('a', links =>
       links.map(link => {
