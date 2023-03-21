@@ -29,7 +29,7 @@
   "dependencies": {
     "ansi-colors": "^3.2.4",
     "enquirer": "^2.3.0",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^11.1.1",
     "mri": "^1.1.4",
     "nanoid": "^2.0.1",
     "ora": "^3.2.0",
