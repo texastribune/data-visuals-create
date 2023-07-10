@@ -100,5 +100,8 @@
     "tabWidth": 2,
     "trailingComma": "es5"
   },
-  "browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"]
+  "browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"],
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
