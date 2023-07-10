@@ -4,7 +4,7 @@
   "scripts": {
     "assets:pull": "node ./utils/deployment/pull-assets.js",
     "assets:push": "node ./utils/deployment/push-assets.js",
-    "build": "NODE_ENV=production node ./config/scripts/build.js && npm run parse",
+    "build": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS NODE_ENV=production node ./config/scripts/build.js && npm run parse",
     "deploy": "node ./utils/deployment/deploy.js",
     "data:fetch": "node ./utils/fetch/get-data.js",
     "git-pre-commit": "precise-commits",
