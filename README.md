@@ -27,6 +27,8 @@ npm start
 
 > While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version. On `npm` and `npx` versions >= 7.0.0, `@latest` is required to fetch the latest version.
 
+Note that after July 2023, `data-visuals-create` only supports [Node.js version 18 or later](https://nodejs.org/en).
+
 ## Table of contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -251,11 +253,11 @@ By default, Nunjucks has access to every file in our `data/` folder as an object
 ```json
 {
   "text": {
-    "title": "Phasellus venenatis dapibus ante, vel sodales sem blandit sed.",
+    "title": "Phasellus venenatis dapibus ante, vel sodales sem blandit sed."
   },
   "data": {
     "keyvalue_sheet": {
-      "key1": "value1",
+      "key1": "value1"
     }
   }
 }
@@ -309,8 +311,8 @@ Because there's a lot more going on behind the scenes than just adding a `<scrip
 Set `jsPackName` anywhere in the HTML file to the name of your entrypoint (**without** the extension) to route the right JavaScript files to it.
 
 ```html
-{% set jsPackName = 'map' %}
-{# This is now using the new entrypoint we created above #}
+{% set jsPackName = 'map' %} {# This is now using the new entrypoint we created
+above #}
 ```
 
 Pack entrypoints can be used multiple times across multiple pages, so if your code allows for it feel free to add an entrypoint to multiple pages. (You can also add `jsPackName` to the base `app/templates/base.html` file and have it inserted in every page that inherits from it).

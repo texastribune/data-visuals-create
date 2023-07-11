@@ -12,7 +12,7 @@
     "predeploy": "npm run build && npm run assets:push && npm run workspace:push",
     "preinstall": "node ./config/build/yarn-check.js",
     "serve": "npm start",
-    "start": "node ./config/tasks/check-node-versions.js && NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development node ./config/scripts/develop.js"
+    "start": "node ./config/tasks/check-node-versions.js && NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development node ./config/scripts/develop.js",
     "workspace:pull": "node ./utils/deployment/pull-workspace.js",
     "workspace:push": "node ./utils/deployment/push-workspace.js"
   },
