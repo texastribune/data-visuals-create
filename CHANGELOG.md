@@ -19,11 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `templates/__common__/config/tasks/set-node-options.js` - detect node versions and store `NODE_VERSIONS` variable in `templates/__common__/_package.json` file
+- `templates/__common__/config/tasks/check-node-versions.js` - detect node versions and show an error message when version 16 or older is used
 
 ### Changed
 
-- `templates/__common__/config/package.json` - add `set-node-options` to `scripts` object to run `templates/__common__/config/tasks/set-node-options.js`, set `NODE_OPTIONS` environment variable dynamically when running `parse`, `start`, and `build`
+- `templates/__common__/config/package.json` - run `templates/__common__/config/tasks/check-node-versions.js` when running `parse`, `start`, and `build`; add `engines` to specify requirements for node version (18 or later)
+- `templates/__common__/_.npmrc` - add `engine-strict=true` statement to enforce the right engine when the user installs packages
 
 ## [7.4.2] - 2022-12-22
 
