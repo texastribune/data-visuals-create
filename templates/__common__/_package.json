@@ -101,6 +101,6 @@
   },
   "browserslist": ["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=17.0.0"
   }
 }

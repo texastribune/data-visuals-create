@@ -27,7 +27,7 @@ npm start
 
 > While you can install `@data-visuals/create` globally and use the `data-visuals-create` command, we recommend using the `npx` method instead to ensure you are always using the latest version. On `npm` and `npx` versions >= 7.0.0, `@latest` is required to fetch the latest version.
 
-Note that after July 2023, `data-visuals-create` only supports [Node.js version 18 or later](https://nodejs.org/en).
+Note that after July 2023, `data-visuals-create` only supports [Node.js version 17 or later](https://nodejs.org/en). We recommend upgrading to 18 or later, however, because version 17 has reached the end of its life.
 
 ## Table of contents
 
