@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.4.3] - 2023-07-10
+
+### Added
+
+- `templates/__common__/config/tasks/set-node-options.js` - detect node versions and store `NODE_VERSIONS` variable in `templates/__common__/_package.json` file
+
+### Changed
+
+- `templates/__common__/config/package.json` - add `set-node-options` to `scripts` object to run `templates/__common__/config/tasks/set-node-options.js`, set `NODE_OPTIONS` environment variable dynamically when running `parse`, `start`, and `build`
+
 ## [7.4.2] - 2022-12-22
 
 ### Changed
