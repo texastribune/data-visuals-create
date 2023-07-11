@@ -6,7 +6,7 @@ const version = process.version;
 const versionNumeric = Number(process.versions.node.split('.')[0]);
 
 // show this error message if the node version is 16 or older
-if (versionNumeric <= 17) {
+if (versionNumeric <= 16) {
   console.log(
     `\n\n${colors.bgMagenta('ERROR!')} You are using node version ${colors.bold(
       colors.red(version)
