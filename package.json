@@ -39,7 +39,7 @@
   "devDependencies": {
     "@zeit/git-hooks": "^0.1.4",
     "doctoc": "^2.0.1",
-    "np": "^7.5.0",
+    "np": "^8.0.4",
     "precise-commits": "^1.0.2",
     "prettier": "^1.16.4"
   },
