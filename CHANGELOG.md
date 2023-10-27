@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.4.5] - 2023-10-27
+
+### Changed
+
+- Bumped update-check from 1.5.3 to 1.5.4
+- Bumped http-cache-semantics from 4.1.0 to 4.1.1
+- Bumped queso-up from 9.4.2 to 10.3.2
+- Bumped puppeteer from 5.5.0 to 19.4.0
+- `templates/__common__/config/tasks/graphics-meta.js` - added `headless: 'new'` to the `puppeteer.launch()` function following deprecation guidance from `puppeteer`
+
 ## [7.4.4] - 2023-07-10
 
 ### Added
