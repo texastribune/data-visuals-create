@@ -63,7 +63,7 @@
     "postcss": "^8.4.12",
     "postcss-flexbugs-fixes": "^4.1.0",
     "prettier": "^1.12.1",
-    "puppeteer": "^5.5.0",
+    "puppeteer": "^19.4.0",
     "purgecss": "^2.1.2",
     "quaff": "^4.0.0",
     "rev-file": "^3.0.0",
@@ -79,7 +79,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@newswire/frames": "^0.3.1",
-    "@texastribune/queso-ui": "^9.4.2",
+    "@texastribune/queso-ui": "^10.3.2",
     "classnames": "^2.2.5",
     "core-js": "^2.5.7",
     "d3": "^5.0.0",

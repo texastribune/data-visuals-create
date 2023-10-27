@@ -281,6 +281,7 @@ module.exports = async localURL => {
   const browser = await puppeteer
     .launch({
       executablePath: process.env.CHROME_INSTALL_PATH || CHROME_INSTALL_PATH,
+      headless: 'new',
     })
     .catch(err => {
       logErrorMessage(err);
