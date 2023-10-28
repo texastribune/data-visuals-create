@@ -67,7 +67,7 @@
     "purgecss": "^2.1.2",
     "quaff": "^4.0.0",
     "rev-file": "^3.0.0",
-    "sass": "^1.13.4",
+    "sass": "^1.69.4",
     "strip-ansi": "^5.0.0",
     "terser-webpack-plugin": "^1.0.2",
     "text-table": "^0.2.0",
@@ -88,7 +88,7 @@
     "preact": "^8.4.1",
     "preact-compat": "^3.18.4",
     "promise-polyfill": "^8.0.0",
-    "sass-mq": "^5.0.0",
+    "sass-mq": "^6.0.0",
     "whatwg-fetch": "^3.0.0"
   },
   "prettier": {
