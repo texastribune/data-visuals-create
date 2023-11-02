@@ -15,13 +15,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.4.6] - 2023-11-02
+
+### Fixed
+
+- Fixed an issue where Kit is unable to take screenshots, making it not showing up in the CMS
+
+### Changed
+
+- `templates/__common__/config/tasks/graphics-meta.js` - removed `headless: 'new'` from the `puppeteer.launch()` function
+
 ## [7.4.5] - 2023-10-27
 
 ### Changed
 
 - Bumped update-check from 1.5.3 to 1.5.4
 - Bumped http-cache-semantics from 4.1.0 to 4.1.1
-- Bumped queso-up from 9.4.2 to 10.3.2
+- Bumped queso-ui from 9.4.2 to 10.3.2
 - Bumped puppeteer from 5.5.0 to 19.4.0
 - `templates/__common__/config/tasks/graphics-meta.js` - added `headless: 'new'` to the `puppeteer.launch()` function following deprecation guidance from `puppeteer`
 
