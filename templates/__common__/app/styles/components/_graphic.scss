@@ -10,8 +10,9 @@
   font-weight: $font-weight-bold;
   font-size: to-rem(18);
   line-height: $line-height-title;
-  margin-bottom: $gutter-half;
   text-align: left;
+  max-width: 41.5rem;
+  margin: 0 auto $gutter-half;
 }
 
 .graphic-category {
@@ -28,12 +29,15 @@
 .graphic-prose {
   font-size: to-rem(14);
   line-height: $line-height-body;
-  margin-bottom: $gutter-half;
+  max-width: 41.5rem;
+  margin: 0 auto $gutter-half;
 }
 
 .graphic-footer {
   color: $color-grey;
   font-size: to-rem(12);
+  max-width: 41.5rem;;
+  margin: 0 auto $gutter-half;
 }
 
 .graphic-footer li {

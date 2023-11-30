@@ -12,7 +12,7 @@
 {% set graphicData = data.data %}
 
 {# used by the CMS #}
-{# if this is an ai2html graphic, fill out these variables #}
+{# if this is an ai2html or figma2html graphic, fill out these variables #}
 {% set graphicTitle = context.headline %}
 {% set graphicCaption = '' %}
 {# graphicAltText is used by the CMS for accessibility #}
@@ -27,19 +27,23 @@
 {# data-graphic signifies that this can be embedded in the CMS #}
 <div class="app" data-graphic>
   {# data-title is used to grab the title in the CMS #}
-  <h1 class="graphic-title" data-title>{{ context.headline | widont or 'The only member-supported, digital-first, nonpartisan media organization' | widont }}</h1>
+  <h1 class="graphic-title" data-title>{{ context.headline | widont or "The only member-supported, digital-first, nonpartisan media organization" | widont }}</h1>
   {# data-caption is used to grab the caption in the CMS #}
-  <span data-caption>{{ prose(context.prose, context, graphicData) }}</span>
+  <div class="graphic-prose"><span data-caption>{{ prose(context.prose, context, graphicData) | widont or "Graphics chatter goes here" | widont }}</span></div>
 
   {# add name of your ai2html file here #}
   {# {% set ai2html = "" %}
   {% include "ai2html-output/" + ai2html + ".html" %} #}
 
+  {# add name of your figma2html file here #}
+  {# {% set figma2html = "" %}
+  {% include "figma2html-output/" + figma2html + ".html" %} #}
+
   {# data-source and data-credit are also used in the CMS #}
   <ul class="graphic-footer">
-    {% if context.note %}<li>Note: <span data-note>{{ context.note }}</span></li>{% endif %}
-    {% if context.source %}<li>Source: <span data-source>{{ context.source }}</span></li>{% endif %}
-    {% if context.credit %}<li>Credit: <span data-credit>{{ context.credit }}</span></li>{% endif %}
+    {% if context.note %}<li>Note: <span data-note>{{ context.note | widont or "Graphics note goes here" | widont }}</span></li>{% endif %}
+    {% if context.source %}<li>Source: <span data-source>{{ context.source | widont or "Graphics source goes here" | widont }}</span></li>{% endif %}
+    {% if context.credit %}<li>Credit: <span data-credit>{{ context.credit or "YOUR NAME" }}</span></li>{% endif %}
   </ul>
 </div>
 {% endblock content %}
