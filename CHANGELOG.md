@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.5.0] - 2023-11-30
+
+### Added
+
+- `templates/__common__/config/tasks/parse-figma2html.js` - added a script to unzip exported figma2html file and move files to designated directories
+
+### Changed
+
+- `templates/__common__/config/scripts/develop.js` - added `parseFigma2html` function which will run first in the series of promisses
+- `templates/graphic/app/templates/graphic-static.html` - added a description about figma2html and code chunks to insert figma2html's html file, cleaned template
+- `templates/__common__/app/styles/components/_graphic.scss` - cleaned some CSS so the grahic is center aligned and text doesn't get wider than 41.5rem following the styles in CMS
+
 ## [7.4.6] - 2023-11-02
 
 ### Fixed
