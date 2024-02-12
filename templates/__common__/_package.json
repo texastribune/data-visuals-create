@@ -79,7 +79,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@newswire/frames": "^0.3.1",
-    "@texastribune/queso-ui": "^10.3.2",
+    "@texastribune/queso-ui": "^10.4.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.7",
     "d3": "^5.0.0",
@@ -88,7 +88,7 @@
     "preact": "^8.4.1",
     "preact-compat": "^3.18.4",
     "promise-polyfill": "^8.0.0",
-    "sass-mq": "^5.0.0",
+    "sass-mq": "^6.0.0",
     "whatwg-fetch": "^3.0.0"
   },
   "prettier": {
