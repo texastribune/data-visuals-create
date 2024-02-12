@@ -9,7 +9,7 @@
     "data:fetch": "node ./utils/fetch/get-data.js",
     "git-pre-commit": "precise-commits",
     "parse": "node ./config/tasks/check-node-versions.js && NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development node config/scripts/parse.js",
-    "predeploy": "sass-migrator division **/*.scss && npm run build && npm run assets:push && npm run workspace:push",
+    "predeploy": "npm run build && npm run assets:push && npm run workspace:push",
     "preinstall": "node ./config/build/yarn-check.js",
     "serve": "npm start",
     "start": "node ./config/tasks/check-node-versions.js && NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development node ./config/scripts/develop.js",
@@ -88,7 +88,6 @@
     "preact": "^8.4.1",
     "preact-compat": "^3.18.4",
     "promise-polyfill": "^8.0.0",
-    "sass-migrator": "^2.0.2",
     "sass-mq": "^6.0.0",
     "whatwg-fetch": "^3.0.0"
   },
