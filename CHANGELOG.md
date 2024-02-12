@@ -15,6 +15,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.6.1] - 2024-02-12
+
+### Added
+
+- `templates/__common__/_babel.config.json` - added a babel configuration file to ignore warnings
+
+### Changed
+
+- Bumped `queso-ui` from 10.3.2 to 10.4.0
+- Bumped `sass-mq` from 5.0.0 to 6.0.0
+
+Updated markups and styles of feature templates to match new Tribune CMS styles:
+- Changed: `templates/__common__/app/templates/macros/shares.html`, `templates/feature/app/index.html`, `templates/feature/app/templates/components/footer.html`, `templates/feature/app/templates/components/navbar.html`, `templates/feature/app/templates/components/share.html`, `templates/feature/app/templates/includes/shares.html`, `templates/feature/app/templates/includes/svg-defs.html`
+- Changed: `templates/feature/app/styles/components/_navbar.scss`, `templates/feature/app/styles/main-queso.scss`
+- Added: `templates/feature/app/styles/components/_details.scss`
+
+
 ## [7.6.0] - 2023-11-30
 
 ### Added
