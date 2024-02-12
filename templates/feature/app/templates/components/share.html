@@ -1,28 +1,21 @@
 {% import "macros/shares.html" as shares %}
 
-<div class="c-share t-align-center l-container l-container--share">
-  <a class="c-button c-button--outline c-button--standard has-text-facebook has-bg-facebook has-text-hover-facebook l-align-center-children"
-    href="{{ shares.facebook(CURRENT_PAGE_URL) }}" aria-label="Share on Facebook">
-    <span class="c-button__inner c-icon t-size-s">
-      <svg aria-hidden="true">
-        <use xlink:href="#icon-facebook"></use>
-      </svg>
-    </span>
-  </a>
-  <a class="c-button c-button--outline c-button--standard has-text-twitter has-bg-twitter has-text-hover-twitter l-align-center-children"
-    href="{{ shares.twitter(CURRENT_PAGE_URL, context.tweet_text, '') }}" aria-label="Share on Twitter">
-    <span class="c-button__inner c-icon t-size-s">
-      <svg aria-hidden="true">
-        <use xlink:href="#icon-twitter"></use>
-      </svg>
-    </span>
-  </a>
-  <a class="c-button c-button--outline c-button--standard has-text-yellow has-bg-yellow has-text-hover-yellow l-align-center-children"
-    href="{{ shares.email(context.headline, CURRENT_PAGE_URL) }}" aria-label="Share this story by email">
-    <span class="c-button__inner c-icon t-size-s">
-      <svg aria-hidden="true">
-        <use xlink:href="#icon-envelope"></use>
-      </svg>
-    </span>
-  </a>
+<div class="c-details__social-share">
+  <details class="c-social-share">
+      <summary class="c-social-share__btn" id="native-share">
+          <span class="c-details__icon-link t-weight-bold has-text-hover-teal" ga-event-category="social-share" ga-event-action="share-intent">Share
+            <span class="c-icon c-icon--baseline">
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.94 2.11L17.1001 2.13L0.7 18.53L2.17 20L18.5701 3.6L18.5901 9.76L20.68 9.74V0L18.25 0.00999999H10.9501L10.94 2.11Z"></path></svg>
+            </span>
+          </span>
+      </summary>
+        <ul class="c-social-share__dropdown has-border t-titlecase has-text-gray-dark">
+          <li><a class="t-links-unset t-weight-bold has-text-hover-teal" href="" ga-event-category="social-share" ga-event-action="copy-url-intent" aria-label="Copy URL" id="copy-url"><span class="c-icon c-icon--baseline"><svg aria-hidden="true"><use xlink:href="#link"></use></svg></span>
+            <span id="copy-url-text">Copy URL</span></a></li>
+          <li><a class="t-links-unset t-weight-bold has-text-hover-teal" href="{{ shares.twitter(CURRENT_PAGE_URL, context.tweet_text, '') }}" target="_blank" rel="noopener noreferrer" ga-event-category="social-share" ga-event-action="twitter-intent" aria-label="Share on Twitter"><span class="c-icon c-icon--baseline"><svg aria-hidden="true"><use xlink:href="#twitter"></use></svg></span>Twitter</a></li>
+          <li><a class="t-links-unset t-weight-bold has-text-hover-teal" href="{{ shares.facebook(CURRENT_PAGE_URL) }}" target="_blank" rel="noopener noreferrer" ga-event-category="social-share" ga-event-action="facebook-intent" aria-label="Share on Facebook"><span class="c-icon c-icon--baseline"><svg aria-hidden="true"><use xlink:href="#facebook"></use></svg></span>Facebook</a></li>
+          <li><a class="t-links-unset t-weight-bold has-text-hover-teal" href="{{ shares.reddit(CURRENT_PAGE_URL, context.headline ) }}" target="_blank" rel="noopener noreferrer" ga-event-category="social-share" ga-event-action="reddit-intent" aria-label="Share on Reddit"><span class="c-icon c-icon--baseline"><svg aria-hidden="true"><use xlink:href="#reddit"></use></svg></span>Reddit</a></li>
+          <li><a class="t-links-unset t-weight-bold has-text-hover-teal" href="{{ shares.email(context.headline, CURRENT_PAGE_URL) }}" ga-event-category="social-share" ga-event-action="email-intent" aria-label="Share this story by email"><span class="c-icon c-icon--baseline"><svg aria-hidden="true"><use xlink:href="#envelope"></use></svg></span>Email</a></li>
+      </ul>
+  </details>
 </div>

@@ -1,20 +1,42 @@
-<header class="c-navbar c-navbar--dark">
-  <div class="c-navbar__top l-align-center-x">
-    <div class="c-navbar__branding l-align-center-children">
-      <a href="https://www.texastribune.org" class="c-navbar__logo">
-        <span class="is-sr-only">The Texas Tribune</span>
-        {% include 'includes/logo.html' %}
-      </a>
-      {% if context.masthead_title %}
-        <p class="has-text-white is-hidden-until-bp-m t-weight-bold t-links-underlined-hover-thin">{{ context.masthead_title }}</p>
-      {% endif %}
-    </div>
-    <div class="c-navbar__content">
-      <div class="c-navbar__items l-align-center-children">
-         <a href="https://support.texastribune.org/" class="c-button c-button--standard t-uppercase">
-            <span class="t-size-xxs t-lsp-l">Donate</span>
+<header class="gradient-navbar">
+  <div class="inner-navbar">
+    <div class="c-navbar c-navbar--dark">
+      <div class="c-navbar__top l-align-center-x">
+        <div class="c-navbar__branding l-align-center-children">
+          <a href="https://www.texastribune.org" class="c-navbar__logo">
+            <span class="is-sr-only">The Texas Tribune</span>
+          {% include 'includes/logo.html' %}
           </a>
-      </div>
+        {% if context.masthead_title %}
+          <p class="has-text-white is-hidden-until-bp-m t-weight-bold t-links-underlined-hover-thin">{{ context.masthead_title }}</p>
+        {% endif %}
+        </div>
+        <div class="c-navbar__content">
+          <ul class="c-navbar__items t-uppercase t-size-xxs hide_until--l is-hidden-until-bp-l js-toggle-on-search">
+            <li class="c-navbar__item">
+              <a class="c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated " href="https://www.texastribune.org/topics/texas-tribune-investigations/" ga-on="click" ga-event-category="navigation" ga-event-action="top nav click" ga-event-label="investigations">Investigations</a>
+            </li>
+            <li class="c-navbar__item">
+              <a class="c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated " href="https://www.texastribune.org/series/guides/" ga-on="click" ga-event-category="navigation" ga-event-action="top nav click" ga-event-label="guides">Guides</a>
+            </li>
+            <li class="c-navbar__item">
+              <a class="c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated " href="https://www.texastribune.org/newsletters/" ga-on="click" ga-event-category="subscribe intent" ga-event-action="top nav click" ga-event-label="not frontpage">Newsletters</a>
+            </li>
+            <li class="c-navbar__item">
+              <a class="c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated " href="https://www.texastribune.org/events/" ga-on="click" ga-event-category="navigation" ga-event-action="top nav click" ga-event-label="events">Events</a>
+            </li>
+            <li class="c-navbar__item">
+              <a class="c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated " href="https://www.texastribune.org/series/news-apps-graphics-databases/" ga-on="click" ga-event-category="navigation" ga-event-action="top nav click" ga-event-label="data">Data</a>
+            </li>
+            <li class="c-navbar__item">
+              <a class="t-uppercase t-size-xxs c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated " href="https://www.texastribune.org/about/?utm_medium=top-nav-about" ga-on="click" ga-event-category="navigation" ga-event-action="top nav click" ga-event-label="about">About</a>
+            </li>
+            <li class="c-navbar__item">
+              <a class="t-uppercase t-size-xxs c-navbar__item-content c-navbar__clickable c-navbar__clickable--animated" href="https://support.texastribune.org/donate?installmentPeriod=once&amp;amount=100&amp;campaignId=7016f000002Gv2vAAC" ga-on="click" ga-event-category="donations" ga-event-action="membership-intent" ga-event-label="c-navbar"><span class="has-text-yellow">Donate</span></a>
+            </li>
+          </ul>
+        </div>
+        </div>
     </div>
   </div>
 </header>
