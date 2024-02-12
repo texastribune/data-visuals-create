@@ -1,0 +1,118 @@
+.c-details {
+  flex-wrap: wrap;
+  gap: 10px;
+  display: flex;
+  justify-content: space-around; /* ADJUSTMENT */
+  // margin-bottom: 1em; // Ensures spacing below the <p> syncs up with font-size
+  margin-left: auto; // Centers <p> tag within max-width
+  margin-right: auto; // Centers <p> tag within max-width
+  // margin-top: 1em; // Ensures spacing above the <p> syncs up with font-size
+  max-width: 34em; // Controls the measure
+}
+
+.c-details__wrapper {
+  flex: 1 0 auto;
+  display: flex
+}
+
+.c-details__spacer {
+  flex: auto
+}
+
+.c-details__icon-link {
+  cursor: pointer;
+  gap: 6px;
+  display: inline-flex
+}
+
+.c-social-share__dropdown {
+  --dropdown-width: 180px;
+  margin: 10px 0 0 calc(var(--dropdown-width)/1.5*-1);
+  width: var(--dropdown-width);
+  z-index: 3;
+  background: #fbfbfb;
+  border-radius: 6px;
+  position: absolute
+}
+
+.c-social-share__dropdown:before,.c-social-share__dropdown:after {
+  content: " ";
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-width: 0;
+  border-bottom-color: #d0d0d0;
+  margin-left: -10px;
+  position: absolute;
+  top: -10px;
+  left: 80%
+}
+
+@media (max-width: 845px) and (min-height:650px) {
+  .c-social-share__dropdown:before,.c-social-share__dropdown:after {
+      display:none
+  }
+}
+
+.c-social-share__dropdown:after {
+  border-bottom-color: #fbfbfb;
+  top: -9px
+}
+
+@media (max-width: 845px) and (min-height:650px) {
+  .c-social-share__dropdown {
+      width:100%;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      position: fixed;
+      bottom: 0;
+      right: 0
+  }
+}
+
+.c-social-share__dropdown li {
+  border-bottom: 1px solid #d0d0d0;
+  margin: 0;
+  padding: 0
+}
+
+.c-social-share__dropdown li:last-child {
+  border-bottom: none
+}
+
+.c-social-share__dropdown li a {
+  width: 100%;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 0 15px;
+  display: flex
+}
+
+@media (max-width: 845px) and (min-height:650px) {
+  .c-social-share__dropdown li a {
+      width:100%;
+      margin: 0;
+      padding: 20px 15px;
+      font-size: 1rem
+  }
+}
+
+.c-social-share__dropdown li a:hover {
+  text-decoration: none
+}
+
+.c-social-share[open]>.c-social-share__btn:before {
+  content: " ";
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+
+@media (max-width: 845px) and (min-height:650px) {
+  .c-social-share[open]>.c-social-share__btn:before {
+      background-color:rgba(0,0,0,.2)
+  }
+}

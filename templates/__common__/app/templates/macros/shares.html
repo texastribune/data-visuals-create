@@ -9,3 +9,11 @@ https://twitter.com/share?url={{ href|urlencode }}&text={{ text|urlencode }}{% i
 {% macro email(subject, body) %}
 mailto:?subject={{ subject|urlencode }}&body={{ body|urlencode }}
 {% endmacro %}
+
+{% macro copy_link(href) %}
+{{ href|urlencode }}?utm_campaign=trib-social-buttons&utm_source=copy&utm_medium=social
+{% endmacro %}
+
+{% macro reddit(href, text) %}
+https://www.reddit.com/submit?url={{ href|urlencode }}?utm_campaign=trib-social-buttons&utm_source=copy&utm_medium=social%3Futm_campaign%3Dtrib-social-buttons%26utm_source%3Dreddit%26utm_medium%3Dsocial&title={{ text|urlencode }}
+{% endmacro %}
