@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-## [7.6.3] - 2024-04-02
+## [7.6.4] - 2024-04-02
 
 ### Added
 - `templates/__common__/app/templates/includes/figma2html-config.html` - added a script to 1) tweak figma2html output's image sources and 2) resize using CSS media query
