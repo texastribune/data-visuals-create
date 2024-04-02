@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `templates/__common__/app/templates/includes/figma2html-config.html` - added a script to 1) tweak figma2html output's image sources and 2) resize using CSS media query
+- `templates/__common__/workspace/figma2html-exports` - added a directory to save zip files exported from figma2html
 
 ### Changed
 - `templates/graphic/app/templates/graphic-static.html` - added a line to easily insert manual script related to figma2html
