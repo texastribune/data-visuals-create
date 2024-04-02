@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.6.2] - 2024-04-02
+
+### Added
+- `templates/__common__/app/templates/includes/figma2html-config.html` - added a script to 1) tweak figma2html output's image sources and 2) resize using CSS media query
+
+### Changed
+- `templates/graphic/app/templates/graphic-static.html` - added a line to easily insert manual script related to figma2html
+- `templates/__common__/config/tasks/parse-figma2html.js` - refined script to move figma2html files
+- `templates/__common__/app/styles/_typography.scss`, `templates/__common__/app/styles/_typography-queso.scss` - added css style rules to show bold and italic correctly on figma2html graphics
+
 ## [7.6.1] - 2024-02-12
 
 ### Added

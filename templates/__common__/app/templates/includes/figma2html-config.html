@@ -1,0 +1,26 @@
+<script>
+  const figma2html = document.querySelector('.figma2html');
+
+  // Tweak image sources
+  const images = figma2html.querySelectorAll('img.f2h-img');
+  images.forEach(image => {
+    let src = image.getAttribute('data-src');
+    if (!src.includes('../')) {
+      src = '../' + src; 
+    }
+    image.setAttribute('src', src);
+  })
+
+  // add CSS media queries as style text
+  const style = document.createElement('style')
+  figma2html.appendChild(style);
+
+  const frames = figma2html.querySelectorAll('.f2h-frame');
+
+  // dynamically add css styles as text
+  if (frames.length == 2) {
+    style.textContent = '#f2h-frame-664 { display: block !important; } #f2h-frame-320 { display: none !important; } @media (max-width: 664px) { #f2h-frame-664 { display: none !important; } #f2h-frame-320 { display: block !important; }}'
+  } else {
+    style.textContent = '#f2h-frame-1040 { display: block !important; } #f2h-frame-664, #f2h-frame-320 { display: none !important; } @media (max-width: 1040px) { #f2h-frame-1040, #f2h-frame-320 { display: none !important; } #f2h-frame-664 { display: block !important; }} @media (max-width: 664px) { #f2h-frame-1040, #f2h-frame-664 { display: none !important; } #f2h-frame-320 { display: block !important; }}'
+  }
+</script>
