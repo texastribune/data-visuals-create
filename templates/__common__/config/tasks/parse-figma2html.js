@@ -118,13 +118,18 @@ const organizeFiles = async file => {
 
 // main function
 module.exports = async () => {
-  // check if a zip file exists in the workspace directory
-  fs.readdir('workspace/figma2html-exports', (err, files) => {
-    files.forEach(file => {
+  let figma2htmlExports;
+  try {
+    // check if a figma2html-exports directory exists in the workspace directory
+    // if so, extract zip files and move files
+    figma2htmlExports = fs.readdirSync('workspace/figma2html-exports');
+    figma2htmlExports.forEach(file => {
       if (file.includes('.zip')) {
         organizeFiles(file);
       }
-    });
-  });
+    })
+  } catch (err) {
+    return null;
+  }
 };
 
