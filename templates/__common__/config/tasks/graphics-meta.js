@@ -281,6 +281,8 @@ module.exports = async localURL => {
   const browser = await puppeteer
     .launch({
       executablePath: process.env.CHROME_INSTALL_PATH || CHROME_INSTALL_PATH,
+      // Hot fix on puppeteer in Feb 2025
+      headless: false
     })
     .catch(err => {
       logErrorMessage(err);

@@ -37,7 +37,7 @@
   color: $color-grey;
   font-size: to-rem(12);
   max-width: 41.5rem;;
-  margin: 0 auto $gutter-half;
+  margin: $gutter-half auto;
 }
 
 .graphic-footer li {
