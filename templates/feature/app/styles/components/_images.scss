@@ -1,0 +1,19 @@
+figcaption {
+  font-size: 13.5px;
+  max-width: 664px;
+  color: #4a4a4a;
+  margin: 0 auto;
+  padding: calc(0.85rem - 10px) 0 0;
+
+  @media (max-width: 43.5em) {
+    padding: calc(0.85rem - 10px) 0.85rem 0;
+  }
+}
+
+.c-icon svg {
+  position: relative;
+  top: .15em;
+  fill: currentColor;
+  height: 1.1em;
+  width: 1.1em;
+}

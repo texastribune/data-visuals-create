@@ -1,0 +1,53 @@
+<section class="t-copy t-links-underlined is-hidden-print">
+  <br>
+  <h2 class="t-sans t-size-b t-uppercase t-lsp-b has-s-btm-marg">Contributors</h2>
+
+  <div class="c-author-info__container l-flex l-flex-column l-ai-center">
+    <div id="contributor" class="c-author-info__container l-flex l-flex-column">
+      {% for author in context['contributors'] %}
+        <div class="c-author-info__trib-author-container l-flex l-ai-center">
+          {% if author['author_photo'] %}
+            <a class="t-links-unset" href="{{ author['author_link'] }}">
+              <noscript>
+                <img width="68" height="100" alt="{{ author['author_name'] }}’s staff photo" src="{{ author['author_photo'] }}">
+              </noscript>
+              <img alt="{{ author['author_name'] }}’s staff photo" class="l-display-block js-lazy-image has-bg-gray-dark js-lazy-image--loaded" data-src="{{ author['author_photo'] }}" width="68" height="100" src="{{ author['author_photo'] }}">
+            </a>
+          {% endif %}
+          <div>
+            <h3 class="has-xxxs-btm-marg t-weight-bold t-size-m">
+              <a href="{{ author['author_link'] }}">
+                {{ author['author_name'] }}
+              </a>
+            </h3>
+            <h4 class="has-text-gray-dark t-weight-normal has-b-btm-marg t-size-xs t-sans t-lsp-m t-uppercase">{{ author['author_title'] }}</h4>
+            <div class="c-author-info__contacts-container l-flex l-flex-column t-size-xs t-sans">                
+              {% if author['author_email'] %}
+              <p class="l-flex l-ai-center">
+                <a tabindex="-1" href="mailto:{{ author['author_email'] }}" class="c-icon t-links-unset has-text-teal c-author-info__contact-icon">
+                  <span class="c-icon"><svg aria-hidden="true"><use xlink:href="#envelope"></use></svg></span>
+                </a>
+                &nbsp;
+                <a href="mailto:{{ author['author_email'] }}">
+                  {{ author['author_email'] }}
+                </a>
+              </p>
+              {% endif %}
+              {% if author['author_twitter'] %}
+                <p class="l-flex l-ai-center">
+                  <a tabindex="-1" href="https://twitter.com/{{ author['author_twitter'] }}" class="c-icon t-links-unset t-size-xs c-author-info__contact-icon">
+                    <svg aria-hidden="true">
+                      <use xlink:href="#twitter"></use>
+                    </svg>
+                  </a>
+                  &nbsp;
+                  <a href="https://twitter.com/{{ author['author_twitter'] }}">@{{ author['author_twitter'] }}</a>
+                </p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

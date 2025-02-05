@@ -20,6 +20,38 @@
 <h2 class="t-copy t-copy--subheader">{{ value | widont }}</h2>
 {% endmacro %}
 
+{# Simple photo/video embeds here. They will lazy load by default. #}
+{% macro image(type, caption, alt_text, url, thumbnail_url, credit) %}
+  {% if type == 'video' %}
+    <div class="image">
+      <div class="video-container">
+        <video width="100%" preload="none" autoplay loop muted playsinline poster="{{ thumbnail_url }}">Your browser does not support the video tag.
+          <source src="{{ url }}" type="video/mp4">
+          <p>{{ alt_text }}</p>
+        </video></div>
+      <figcaption class="caption">
+        <span>{{ caption }}</span>&nbsp;<span class="c-icon">
+          <svg area-hidden="true">
+            <use xlink:href="#camera"></use>
+          </svg>
+        </span>&nbsp;<span class="credit">{{ credit }}</span>
+      </figcaption>
+    </div>
+  {% elif type == 'photo' %}
+    <div class="image">
+      <div class="photo-container">
+        <img src="{{ url }}" loading="lazy" alt="{{ alt_text }}" width="100%">
+      </div>
+      <figcaption class="caption">
+        <span>{{ caption }}&nbsp;</span><span class="c-icon">
+          <svg area-hidden="true">
+            <use xlink:href="#camera"></use>
+          </svg></span><span class="credit">&nbsp;{{ credit }}</span>
+        </figcaption>
+      </div>
+  {% endif %}
+{% endmacro %}
+
 {# set type to roof for roof ads, footer for footer ads #}
 {% macro ad(value, type) %}
 <div class="plugin plugin--centered">

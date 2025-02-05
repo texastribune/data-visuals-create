@@ -76,3 +76,42 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+.related-stories {
+  .t-links-underlined-hover {
+    border-bottom: 0px solid #a1d2df;
+    transition: all .15s ease-in-out;
+    box-shadow: inset 0 0 #a1d2df;
+  }
+  
+  .t-links-underlined-hover:hover {
+    border-bottom: 1px solid #a1d2df;
+    box-shadow: inset 0 -2px 0 0 #a1d2df;
+  }
+}
+
+// related story topics
+#related-story-topics {
+  max-width: 664px;
+  margin: 2.5rem auto;
+  
+  @media (max-width: 664px) {
+    padding: 0 0.85rem;
+  }
+}
+
+.c-tags {
+  flex-wrap: wrap;
+  gap: .5rem .4rem;
+
+  .c-tag {
+    font-family: $font-sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: .85rem;
+  }
+  :hover {
+    background-color: #348094;
+    color: white;
+  }
+}

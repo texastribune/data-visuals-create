@@ -1,0 +1,15 @@
+// authors
+.c-author-info__container {
+  align-items: flex-start;
+  gap: 1.75rem;
+}
+
+.c-author-info__trib-author-container {
+  gap: .92rem;
+}
+
+#nonstaff-author {
+  h3 {
+    font-family: $font-serif;
+  }
+}

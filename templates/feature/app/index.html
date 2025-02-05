@@ -51,6 +51,11 @@
 
           <p class="t-copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
 
+          {# Brief promo #}
+          {% include "includes/brief-promo.html" %}
+
+          <p class="t-copy">Duis mattis orci a porta maximus. Pellentesque vel pellentesque augue, a condimentum nibh. Integer eget feugiat turpis, at vehicula metus. Vestibulum arcu dui, hendrerit sed purus sed, vulputate aliquam est. Duis quis metus sed odio commodo dapibus. Maecenas pulvinar elit sit amet lorem iaculis blandit. Aliquam vitae sollicitudin urna. Sed viverra tincidunt felis.</p>
+
           <h2 class="t-copy t-copy--subheader">{{ 'A cool subhead here' | widont }}</h2>
 
           <p class="t-copy">Curabitur vestibulum sagittis diam, vitae pulvinar lorem accumsan ut. Mauris enim massa, vestibulum sed sollicitudin dapibus, ultrices eget ligula. Aenean tempor mi urna, eu porta tortor vehicula quis. Morbi hendrerit, eros nec interdum tempus, sem purus fringilla leo, ut iaculis urna tortor id diam. Duis laoreet maximus sapien, sed scelerisque sapien volutpat vel. Sed est lacus, sollicitudin nec euismod eu, placerat eget turpis. Quisque ultricies urna et mollis bibendum. Quisque tempus, elit ut faucibus hendrerit, augue enim faucibus massa, eu scelerisque dui eros at dolor. Sed rutrum, ipsum id convallis facilisis, justo ex rhoncus ex, in ultrices nisi augue vitae erat. Donec consequat ipsum ac nunc aliquam, eu porttitor quam viverra. Praesent ultrices, diam eget placerat sodales, magna magna porttitor urna, nec mollis ipsum odio at magna. Nulla ac consectetur turpis. Cras non ligula elementum, aliquet arcu ut, interdum nulla.</p>
@@ -70,10 +75,30 @@
         </div>
 
         {{ ad('gray', 'footer') }}
+        
+        {# Authors and contributors #}
+        {% include "includes/authors.html" %}
+        {% if context['contributors'] %}
+          {% include "includes/contributors.html" %}
+        {% endif %}
+
+        {# Trust project #}
+        {% include "includes/trust-project.html" %}
       {% endblock content %}
     </article>
   </main>
   <aside>
+    {# Related story topics #}
+    <section id="related-story-topics" class="c-plugin c-plugin--default c-plugin--narrow is-hidden-print">
+      <h2 class="t-size-s has-xs-btm-marg">Explore related story topics</h2>
+      <p class="c-tags l-flex">
+        {% for topic in context['related_story_topics'] %}
+          <a href="{{ topic['topic_link'] }}" ga-event-category="article-tag" class="c-tag c-tag__inner has-bg-white-off is-rounded-b">{{ topic['topic_title'] }}</a>
+        {% endfor %}
+      </p>
+    </section>
+
+    {# Related stories #}
     <div class="related-content l-container has-page-padding" id="related-content-container"></div>
     <div id="ribbon-container"></div>
   </aside>
