@@ -15,6 +15,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [7.6.6] - 2025-06-09
+
+### Added
+- `templates/feature/app/templates/includes/authors.html` - added a template markup for footer authors section
+- `templates/feature/app/styles/components/_authors.scss` - styles for authors template
+- `templates/feature/app/templates/includes/brief-promo.html` - added a template markup for brief promo
+- `templates/feature/app/styles/components/_brief-promo.scss` - styles for brief promo
+- `templates/feature/app/templates/includes/contributors.html` - added a template markup for footer contributors section
+- `templates/feature/app/templates/includes/trust-project.html` - added a template markup for trust project section
+- `templates/feature/app/styles/components/_images.scss` - styles for photos
+
+### Changed
+- `templates/feature/app/index.html` - added new components
+- `templates/feature/app/styles/main-queso.scss` - linked new scss files
+- `templates/feature/app/styles/components/_related-content.scss` - updated styles for related content
+- `templates/feature/app/templates/macros/processors-queso.html` - added photo/video embed templates
+- `templates/__common__/app/templates/includes/figma2html-config.html` - fixed a size error on figma2html
+- `templates/feature/app/templates/includes/svg-defs.html` - updated twitter logo to X logo
+- `templates/__common__/config/tasks/graphics-meta.js` - hot fix on puppeteer launch error
+
+
 ## [7.6.5] - 2024-04-08
 
 ### Added
