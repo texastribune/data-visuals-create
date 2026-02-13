@@ -13,7 +13,10 @@ if (relatedContentContainer && window.ttData.gutenTag) {
     /* webpackChunkName: "RelatedContent" */ './components/RelatedContent'
   ).then(({ default: RelatedContent }) =>
     render(
-      <RelatedContent title={'Read more'} gutenTag={window.ttData.gutenTag} />,
+      <RelatedContent
+        title={'Read more'}
+        related_category={window.ttData.related_category}
+      />,
       relatedContentContainer
     )
   );
