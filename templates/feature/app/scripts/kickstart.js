@@ -8,7 +8,7 @@ const relatedContentContainer = document.getElementById(
   'related-content-container'
 );
 
-if (relatedContentContainer && window.ttData.gutenTag) {
+if (relatedContentContainer && window.ttData.related_category) {
   import(
     /* webpackChunkName: "RelatedContent" */ './components/RelatedContent'
   ).then(({ default: RelatedContent }) =>
