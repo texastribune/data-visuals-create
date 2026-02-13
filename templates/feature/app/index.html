@@ -185,7 +185,7 @@ endblock %} {% block content_wrap %}
 {% endblock content_wrap %} {% block inline_data %}
 <script>
   window.ttData = {
-    gutenTag: '{{ context.related_tag or "subject-politics" }}',
+    related_category: '{{ context.related_category or "politics" }}',
   };
 </script>
 {% endblock inline_data %}
