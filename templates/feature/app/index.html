@@ -186,7 +186,7 @@ endblock %} {% block content_wrap %}
 <script>
   window.ttData = {
     gutenTag: '{{ context.related_tag or "subject-politics" }}',
-    targetingValue: '{{ context.targeting_value or "" }}',
+    targetingValue: '{{ data.text.targeting_value or "" }}',
   };
 </script>
 {% endblock inline_data %}
