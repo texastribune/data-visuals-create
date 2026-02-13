@@ -1,24 +1,44 @@
 import { Component, h } from 'preact';
-
 import Story from './Story';
-
-import { BUILD_RELATED_CONTENT_URL } from '../utils/feeds';
+import {
+  BUILD_RELATED_CONTENT_URL_NEWSPACK,
+  mappingTaxonomy,
+} from '../utils/feeds';
 
 class RelatedContent extends Component {
   constructor() {
     super();
-
     this.state = {
       stories: [],
     };
   }
 
   componentDidMount() {
-    const { gutenTag, numberOfStories } = this.props;
+    const { related_category, numberOfStories, taxonomy } = this.props;
 
-    fetch(BUILD_RELATED_CONTENT_URL({ gutenTag, numberOfStories }))
-      .then(res => res.json())
-      .then(({ results: stories }) => this.setState({ stories }));
+    mappingTaxonomy(taxonomy, related_category)
+      .then(term => {
+        if (!term) {
+          console.warn('No term found for tag or category');
+          return;
+        }
+
+        const itemId = term['fetched']['id'];
+        const taxonomyParam = taxonomy;
+
+        const url = BUILD_RELATED_CONTENT_URL_NEWSPACK({
+          taxonomy: taxonomyParam,
+          item: itemId,
+          numberOfStories,
+        });
+
+        return fetch(url)
+          .then(res => res.json())
+          .then(posts => {
+            this.setState({ stories: posts });
+          });
+      })
+      .catch(err => console.error('related content error:', err));
   }
 
   render({ title }, { stories }) {
@@ -40,6 +60,8 @@ class RelatedContent extends Component {
 RelatedContent.defaultProps = {
   numberOfStories: 4,
   title: 'Read more',
+  // either categories or tags
+  taxonomy: 'categories',
 };
 
 export default RelatedContent;
