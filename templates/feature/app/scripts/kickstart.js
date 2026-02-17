@@ -34,7 +34,10 @@ if (relatedContentContainer && window.ttData.related_category) {
 // ads
 import(/* webpackChunkName: "ads" */ './utils/ad-loader').then(
   ({ default: AdLoader }) => {
-    const ads = new AdLoader();
+    const ads = new AdLoader({
+      targetingKey: 'tribpedia',
+      targetingValue: window.ttData.targetingValue,
+    });
     ads.init();
   }
 );
