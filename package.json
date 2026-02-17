@@ -1,6 +1,6 @@
 {
   "name": "@data-visuals/create",
-  "version": "7.6.7",
+  "version": "7.7.0",
   "description": "Create graphics and features the Data Visuals way.",
   "scripts": {
     "build:docs": "doctoc README.md --github",
@@ -20,7 +20,7 @@
     "generator",
     "graphics"
   ],
-  "author": "Ryan Murphy",
+  "author": "Texas Tribune",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/texastribune/data-visuals-create/issues"
