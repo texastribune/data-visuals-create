@@ -6,6 +6,12 @@
 
 .c-author-info__trib-author-container {
   gap: 0.92rem;
+
+  img {
+    width: 90px;
+    height: auto; // Let height adjust to maintain aspect ratio
+    object-fit: cover; // Crop to fit if needed
+  }
 }
 
 #nonstaff-author {
