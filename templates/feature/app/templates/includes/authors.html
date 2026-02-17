@@ -2,18 +2,18 @@
   <hr class="has-bg-gray-light has-giant-btm-marg" />
   <h2 class="is-sr-only">Information about the authors</h2>
 
-  <div class="c-author-info__container l-flex l-flex-column l-ai-center">
+  <div class="c-author-info__container l-flex l-flex-column">
     <div
       id="staff-author"
       class="c-author-info__container l-flex l-flex-column"
     >
       {% for author in context['staff_authors'] %}
-      <div class="c-author-info__trib-author-container l-flex l-ai-center">
+      <div class="c-author-info__trib-author-container l-flex">
         {% if author['author_photo'] %}
         <a class="t-links-unset" href="{{ author['author_link'] }}">
           <noscript>
             <img
-              width="68"
+              width="100"
               height="100"
               alt="{{ author['author_name'] }}’s staff photo"
               src="{{ author['author_photo'] }}"
@@ -23,7 +23,7 @@
             alt="{{ author['author_name'] }}’s staff photo"
             class="l-display-block js-lazy-image has-bg-gray-dark js-lazy-image--loaded"
             data-src="{{ author['author_photo'] }}"
-            width="68"
+            width="100"
             height="100"
             src="{{ author['author_photo'] }}"
           />
@@ -44,7 +44,7 @@
             class="c-author-info__contacts-container l-flex l-flex-column t-size-xs t-sans"
           >
             {% if author['author_email'] %}
-            <p class="l-flex">
+            <p class="l-flex ">
               <a
                 tabindex="-1"
                 href="mailto:{{ author['author_email'] }}"
