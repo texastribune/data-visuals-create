@@ -4,7 +4,44 @@
     margin: 3.125rem auto;
     background-color: #000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    width: 100%;
+    overflow: hidden
   }
+
+  .c-prompt--livestream {
+    background-color: #000;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif
+}
+
+.c-prompt--box {
+    max-width: 350px;
+    height: 300px;
+    border-radius: .275rem;
+    outline: 0;
+    margin: auto;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2),0 4px 8px rgba(0,0,0,.1)
+}
+
+
+.c-prompt--box .c-prompt__content {
+    height: 100%;
+    flex-flow: column
+}
+
+.c-prompt__content {
+    clear: both;
+    justify-content: center;
+    align-items: center;
+    gap: .7rem;
+    display: flex
+}
+
+.c-prompt--box .c-prompt__img {
+    max-height: 3rem
+}
 
   .c-prompt__content {
     gap: 1.25rem;
@@ -25,3 +62,4 @@
     width: 80%;
   }
 }
+

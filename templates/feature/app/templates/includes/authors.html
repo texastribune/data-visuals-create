@@ -44,7 +44,7 @@
             class="c-author-info__contacts-container l-flex l-flex-column t-size-xs t-sans"
           >
             {% if author['author_email'] %}
-            <p class="l-flex l-ai-center">
+            <p class="l-flex">
               <a
                 tabindex="-1"
                 href="mailto:{{ author['author_email'] }}"
@@ -61,7 +61,7 @@
               </a>
             </p>
             {% endif %} {% if author['author_twitter'] %}
-            <p class="l-flex l-ai-center">
+            <p class="l-flex">
               <a
                 tabindex="-1"
                 href="https://twitter.com/{{ author['author_twitter'] }}"
