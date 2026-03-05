@@ -79,12 +79,6 @@ async function writeToSheet(
 
 // update log of past data visuals works with project info
 let updateLogSheet = async (mainPath, config) => {
-  // Check if manifest exists first
-  if (!fs.existsSync(`${paths.appDist}/manifest.json`)) {
-    console.log('No manifest.json found, skipping detailed metadata logging');
-    return;
-  }
-
   // read manifest file, which has metadata about the project
   const manifest = fs.readFileSync(`${paths.appDist}/manifest.json`, 'utf8');
 
