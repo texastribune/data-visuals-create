@@ -179,7 +179,7 @@ If any projects should be ignored in `manifest.json`, add the paths in `metadata
 
 ### How it works
 
-The `npm run parse` step will use [Puppeteer](https://github.com/puppeteer/puppeteer) and a local Chrome install to emulate the project in a browser. This will help build metadata based on a project's HTML and, for embeddable graphics, export image-based previews of the graphic as well as a manifest of all the metadata (`manifest.json`).
+The `npm run parse` step will use [Puppeteer](https://github.com/puppeteer/puppeteer) and a local Chrome install to emulate the project in a browser. This will help build metadata based on a project's HTML, as well as a manifest of all the metadata (`manifest.json`).
 
 #### Troubleshooting
 
